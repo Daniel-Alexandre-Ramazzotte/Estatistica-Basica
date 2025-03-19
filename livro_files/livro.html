@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Daniel Alexandre Ramazzotte">
+
+<title>Introdução Interativa a Estatística</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="livro_files/libs/clipboard/clipboard.min.js"></script>
+<script src="livro_files/libs/quarto-html/quarto.js"></script>
+<script src="livro_files/libs/quarto-html/popper.min.js"></script>
+<script src="livro_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="livro_files/libs/quarto-html/anchor.min.js"></script>
+<link href="livro_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="livro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="livro_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="livro_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="livro_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introdução-a-estatística-e-a-análise-exploratória-de-dados" id="toc-introdução-a-estatística-e-a-análise-exploratória-de-dados" class="nav-link active" data-scroll-target="#introdução-a-estatística-e-a-análise-exploratória-de-dados"><span class="header-section-number">1</span> Introdução à Estatística e à Análise Exploratória de Dados</a>
+  <ul>
+  <li><a href="#o-que-é-estatística" id="toc-o-que-é-estatística" class="nav-link" data-scroll-target="#o-que-é-estatística"><span class="header-section-number">1.1</span> O que é Estatística</a>
+  <ul class="collapse">
+  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">1.1.1</span> Definição</a></li>
+  <li><a href="#evolução-histórica" id="toc-evolução-histórica" class="nav-link" data-scroll-target="#evolução-histórica"><span class="header-section-number">1.1.2</span> Breve História da Estatística</a></li>
+  <li><a href="#importância-e-aplicações" id="toc-importância-e-aplicações" class="nav-link" data-scroll-target="#importância-e-aplicações"><span class="header-section-number">1.1.3</span> Importância e Aplicações</a></li>
+  </ul></li>
+  <li><a href="#divisão-do-livro" id="toc-divisão-do-livro" class="nav-link" data-scroll-target="#divisão-do-livro"><span class="header-section-number">1.2</span> Divisão do Livro</a></li>
+  <li><a href="#conceitos-básicos" id="toc-conceitos-básicos" class="nav-link" data-scroll-target="#conceitos-básicos"><span class="header-section-number">1.3</span> Conceitos Básicos</a>
+  <ul class="collapse">
+  <li><a href="#população" id="toc-população" class="nav-link" data-scroll-target="#população"><span class="header-section-number">1.3.1</span> População</a></li>
+  <li><a href="#amostra" id="toc-amostra" class="nav-link" data-scroll-target="#amostra"><span class="header-section-number">1.3.2</span> Amostra</a></li>
+  <li><a href="#censo" id="toc-censo" class="nav-link" data-scroll-target="#censo"><span class="header-section-number">1.3.3</span> Censo</a></li>
+  <li><a href="#parâmetros" id="toc-parâmetros" class="nav-link" data-scroll-target="#parâmetros"><span class="header-section-number">1.3.4</span> Parâmetros</a></li>
+  <li><a href="#estatísticas" id="toc-estatísticas" class="nav-link" data-scroll-target="#estatísticas"><span class="header-section-number">1.3.5</span> Estatísticas</a></li>
+  <li><a href="#variável" id="toc-variável" class="nav-link" data-scroll-target="#variável"><span class="header-section-number">1.3.6</span> Variável</a></li>
+  <li><a href="#estrutura-de-uma-planilha" id="toc-estrutura-de-uma-planilha" class="nav-link" data-scroll-target="#estrutura-de-uma-planilha"><span class="header-section-number">1.3.7</span> Estrutura de uma planilha</a></li>
+  </ul></li>
+  <li><a href="#classificação-das-variáveis" id="toc-classificação-das-variáveis" class="nav-link" data-scroll-target="#classificação-das-variáveis"><span class="header-section-number">1.4</span> Classificação das Variáveis</a></li>
+  <li><a href="#distribuição-de-frequências" id="toc-distribuição-de-frequências" class="nav-link" data-scroll-target="#distribuição-de-frequências"><span class="header-section-number">1.5</span> Distribuição de Frequências</a>
+  <ul class="collapse">
+  <li><a href="#distribuição-para-variáveis-quantitativas" id="toc-distribuição-para-variáveis-quantitativas" class="nav-link" data-scroll-target="#distribuição-para-variáveis-quantitativas"><span class="header-section-number">1.5.1</span> Distribuição para Variáveis Quantitativas</a></li>
+  <li><a href="#distribuição-para-variáveis-qualitativas" id="toc-distribuição-para-variáveis-qualitativas" class="nav-link" data-scroll-target="#distribuição-para-variáveis-qualitativas"><span class="header-section-number">1.5.2</span> Distribuição para Variáveis Qualitativas</a></li>
+  </ul></li>
+  <li><a href="#medidas-de-posição-e-dispersão" id="toc-medidas-de-posição-e-dispersão" class="nav-link" data-scroll-target="#medidas-de-posição-e-dispersão"><span class="header-section-number">1.6</span> Medidas de Posição e Dispersão</a>
+  <ul class="collapse">
+  <li><a href="#média" id="toc-média" class="nav-link" data-scroll-target="#média"><span class="header-section-number">1.6.1</span> Média</a></li>
+  <li><a href="#mediana" id="toc-mediana" class="nav-link" data-scroll-target="#mediana"><span class="header-section-number">1.6.2</span> Mediana</a></li>
+  <li><a href="#moda" id="toc-moda" class="nav-link" data-scroll-target="#moda"><span class="header-section-number">1.6.3</span> Moda</a></li>
+  <li><a href="#desvio-padrão" id="toc-desvio-padrão" class="nav-link" data-scroll-target="#desvio-padrão"><span class="header-section-number">1.6.4</span> Desvio Padrão</a></li>
+  <li><a href="#variância" id="toc-variância" class="nav-link" data-scroll-target="#variância"><span class="header-section-number">1.6.5</span> Variância</a></li>
+  <li><a href="#assimetria" id="toc-assimetria" class="nav-link" data-scroll-target="#assimetria"><span class="header-section-number">1.6.6</span> Assimetria</a></li>
+  <li><a href="#curtose" id="toc-curtose" class="nav-link" data-scroll-target="#curtose"><span class="header-section-number">1.6.7</span> Curtose</a></li>
+  </ul></li>
+  <li><a href="#gráficos" id="toc-gráficos" class="nav-link" data-scroll-target="#gráficos"><span class="header-section-number">1.7</span> Gráficos</a>
+  <ul class="collapse">
+  <li><a href="#gráficos-para-variáveis-qualitativas" id="toc-gráficos-para-variáveis-qualitativas" class="nav-link" data-scroll-target="#gráficos-para-variáveis-qualitativas"><span class="header-section-number">1.7.1</span> Gráficos para Variáveis Qualitativas</a>
+  <ul class="collapse">
+  <li><a href="#barras" id="toc-barras" class="nav-link" data-scroll-target="#barras"><span class="header-section-number">1.7.1.1</span> Barras</a></li>
+  <li><a href="#colunas" id="toc-colunas" class="nav-link" data-scroll-target="#colunas"><span class="header-section-number">1.7.1.2</span> Colunas</a></li>
+  <li><a href="#setores" id="toc-setores" class="nav-link" data-scroll-target="#setores"><span class="header-section-number">1.7.1.3</span> Setores</a></li>
+  <li><a href="#linhas" id="toc-linhas" class="nav-link" data-scroll-target="#linhas"><span class="header-section-number">1.7.1.4</span> Linhas</a></li>
+  </ul></li>
+  <li><a href="#gráficos-para-variáveis-quantitativas" id="toc-gráficos-para-variáveis-quantitativas" class="nav-link" data-scroll-target="#gráficos-para-variáveis-quantitativas"><span class="header-section-number">1.7.2</span> Gráficos para Variáveis Quantitativas</a>
+  <ul class="collapse">
+  <li><a href="#histograma" id="toc-histograma" class="nav-link" data-scroll-target="#histograma"><span class="header-section-number">1.7.2.1</span> Histograma</a></li>
+  <li><a href="#polígono-de-frequências" id="toc-polígono-de-frequências" class="nav-link" data-scroll-target="#polígono-de-frequências"><span class="header-section-number">1.7.2.2</span> Polígono de Frequências</a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">1.7.2.3</span> Boxplot</a></li>
+  <li><a href="#diagrama-de-dispersão" id="toc-diagrama-de-dispersão" class="nav-link" data-scroll-target="#diagrama-de-dispersão"><span class="header-section-number">1.7.2.4</span> Diagrama de Dispersão</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#análise-bidimensional-de-dados" id="toc-análise-bidimensional-de-dados" class="nav-link" data-scroll-target="#análise-bidimensional-de-dados"><span class="header-section-number">1.8</span> Análise Bidimensional de Dados</a>
+  <ul class="collapse">
+  <li><a href="#tabelas-de-contingência" id="toc-tabelas-de-contingência" class="nav-link" data-scroll-target="#tabelas-de-contingência"><span class="header-section-number">1.8.1</span> Tabelas de Contingência</a></li>
+  <li><a href="#covariância-e-correlação" id="toc-covariância-e-correlação" class="nav-link" data-scroll-target="#covariância-e-correlação"><span class="header-section-number">1.8.2</span> Covariância e Correlação</a></li>
+  <li><a href="#amostragem-probabilística" id="toc-amostragem-probabilística" class="nav-link" data-scroll-target="#amostragem-probabilística"><span class="header-section-number">1.8.3</span> Amostragem Probabilística (Aleatória)</a></li>
+  <li><a href="#amostragem-não-probabilística" id="toc-amostragem-não-probabilística" class="nav-link" data-scroll-target="#amostragem-não-probabilística"><span class="header-section-number">1.8.4</span> Amostragem Não Probabilística</a></li>
+  <li><a href="#amostragem-aleatória-simples" id="toc-amostragem-aleatória-simples" class="nav-link" data-scroll-target="#amostragem-aleatória-simples"><span class="header-section-number">1.8.5</span> Amostragem Aleatória Simples</a></li>
+  <li><a href="#amostragem-sistemática" id="toc-amostragem-sistemática" class="nav-link" data-scroll-target="#amostragem-sistemática"><span class="header-section-number">1.8.6</span> Amostragem Sistemática</a></li>
+  <li><a href="#amostragem-estratificada" id="toc-amostragem-estratificada" class="nav-link" data-scroll-target="#amostragem-estratificada"><span class="header-section-number">1.8.7</span> Amostragem Estratificada</a></li>
+  <li><a href="#amostragem-por-conglomerados" id="toc-amostragem-por-conglomerados" class="nav-link" data-scroll-target="#amostragem-por-conglomerados"><span class="header-section-number">1.8.8</span> Amostragem por Conglomerados</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#noções-de-probabilidade" id="toc-noções-de-probabilidade" class="nav-link" data-scroll-target="#noções-de-probabilidade"><span class="header-section-number">2</span> Noções de Probabilidade</a>
+  <ul>
+  <li><a href="#análise-combinatória" id="toc-análise-combinatória" class="nav-link" data-scroll-target="#análise-combinatória"><span class="header-section-number">2.1</span> Análise Combinatória</a></li>
+  <li><a href="#conceitos-básicos-1" id="toc-conceitos-básicos-1" class="nav-link" data-scroll-target="#conceitos-básicos-1"><span class="header-section-number">2.2</span> Conceitos básicos</a>
+  <ul class="collapse">
+  <li><a href="#experimento-aleatório" id="toc-experimento-aleatório" class="nav-link" data-scroll-target="#experimento-aleatório"><span class="header-section-number">2.2.1</span> Experimento Aleatório</a></li>
+  <li><a href="#espaço-amostral" id="toc-espaço-amostral" class="nav-link" data-scroll-target="#espaço-amostral"><span class="header-section-number">2.2.2</span> Espaço Amostral</a></li>
+  <li><a href="#eventos" id="toc-eventos" class="nav-link" data-scroll-target="#eventos"><span class="header-section-number">2.2.3</span> Eventos</a></li>
+  </ul></li>
+  <li><a href="#definição-de-probabilidade" id="toc-definição-de-probabilidade" class="nav-link" data-scroll-target="#definição-de-probabilidade"><span class="header-section-number">2.3</span> Definição de Probabilidade</a>
+  <ul class="collapse">
+  <li><a href="#axiomas-da-probabilidade" id="toc-axiomas-da-probabilidade" class="nav-link" data-scroll-target="#axiomas-da-probabilidade"><span class="header-section-number">2.3.1</span> Axiomas da Probabilidade</a></li>
+  <li><a href="#propriedades-fundamentais" id="toc-propriedades-fundamentais" class="nav-link" data-scroll-target="#propriedades-fundamentais"><span class="header-section-number">2.3.2</span> Propriedades Fundamentais</a></li>
+  </ul></li>
+  <li><a href="#probabilidade-condicional-e-teorema-de-bayes" id="toc-probabilidade-condicional-e-teorema-de-bayes" class="nav-link" data-scroll-target="#probabilidade-condicional-e-teorema-de-bayes"><span class="header-section-number">2.4</span> Probabilidade Condicional e Teorema de Bayes</a>
+  <ul class="collapse">
+  <li><a href="#probabilidade-condicional" id="toc-probabilidade-condicional" class="nav-link" data-scroll-target="#probabilidade-condicional"><span class="header-section-number">2.4.1</span> Probabilidade Condicional</a></li>
+  <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="header-section-number">2.4.2</span> Teorema de Bayes</a></li>
+  </ul></li>
+  <li><a href="#independência-de-eventos" id="toc-independência-de-eventos" class="nav-link" data-scroll-target="#independência-de-eventos"><span class="header-section-number">2.5</span> Independência de Eventos</a>
+  <ul class="collapse">
+  <li><a href="#definição-de-independência" id="toc-definição-de-independência" class="nav-link" data-scroll-target="#definição-de-independência"><span class="header-section-number">2.5.1</span> Definição de Independência</a></li>
+  <li><a href="#exemplos-de-independência" id="toc-exemplos-de-independência" class="nav-link" data-scroll-target="#exemplos-de-independência"><span class="header-section-number">2.5.2</span> Exemplos de Independência</a></li>
+  </ul></li>
+  <li><a href="#variáveis-aleatórias" id="toc-variáveis-aleatórias" class="nav-link" data-scroll-target="#variáveis-aleatórias"><span class="header-section-number">2.6</span> Variáveis Aleatórias</a>
+  <ul class="collapse">
+  <li><a href="#variáveis-aleatórias-discretas" id="toc-variáveis-aleatórias-discretas" class="nav-link" data-scroll-target="#variáveis-aleatórias-discretas"><span class="header-section-number">2.6.1</span> Variáveis Aleatórias Discretas</a></li>
+  <li><a href="#variáveis-aleatórias-contínuas" id="toc-variáveis-aleatórias-contínuas" class="nav-link" data-scroll-target="#variáveis-aleatórias-contínuas"><span class="header-section-number">2.6.2</span> Variáveis Aleatórias Contínuas</a></li>
+  </ul></li>
+  <li><a href="#distribuições-de-probabilidade" id="toc-distribuições-de-probabilidade" class="nav-link" data-scroll-target="#distribuições-de-probabilidade"><span class="header-section-number">2.7</span> Distribuições de Probabilidade</a>
+  <ul class="collapse">
+  <li><a href="#distribuições-discretas" id="toc-distribuições-discretas" class="nav-link" data-scroll-target="#distribuições-discretas"><span class="header-section-number">2.7.1</span> Distribuições Discretas</a></li>
+  <li><a href="#distribuições-contínuas" id="toc-distribuições-contínuas" class="nav-link" data-scroll-target="#distribuições-contínuas"><span class="header-section-number">2.7.2</span> Distribuições Contínuas</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#noções-de-inferência-estatística" id="toc-noções-de-inferência-estatística" class="nav-link" data-scroll-target="#noções-de-inferência-estatística"><span class="header-section-number">3</span> Noções de Inferência Estatística</a>
+  <ul>
+  <li><a href="#parâmetros-estimadores-e-estimativas" id="toc-parâmetros-estimadores-e-estimativas" class="nav-link" data-scroll-target="#parâmetros-estimadores-e-estimativas"><span class="header-section-number">3.1</span> Parâmetros, Estimadores e Estimativas</a>
+  <ul class="collapse">
+  <li><a href="#parâmetros-1" id="toc-parâmetros-1" class="nav-link" data-scroll-target="#parâmetros-1"><span class="header-section-number">3.1.1</span> Parâmetros</a></li>
+  <li><a href="#estimadores" id="toc-estimadores" class="nav-link" data-scroll-target="#estimadores"><span class="header-section-number">3.1.2</span> Estimadores</a></li>
+  <li><a href="#estimativas" id="toc-estimativas" class="nav-link" data-scroll-target="#estimativas"><span class="header-section-number">3.1.3</span> Estimativas</a></li>
+  </ul></li>
+  <li><a href="#distribuição-amostral" id="toc-distribuição-amostral" class="nav-link" data-scroll-target="#distribuição-amostral"><span class="header-section-number">3.2</span> Distribuição Amostral</a>
+  <ul class="collapse">
+  <li><a href="#distribuição-da-média" id="toc-distribuição-da-média" class="nav-link" data-scroll-target="#distribuição-da-média"><span class="header-section-number">3.2.1</span> Distribuição da Média</a></li>
+  <li><a href="#distribuição-da-proporção" id="toc-distribuição-da-proporção" class="nav-link" data-scroll-target="#distribuição-da-proporção"><span class="header-section-number">3.2.2</span> Distribuição da Proporção</a></li>
+  <li><a href="#distribuição-da-diferença-de-médias" id="toc-distribuição-da-diferença-de-médias" class="nav-link" data-scroll-target="#distribuição-da-diferença-de-médias"><span class="header-section-number">3.2.3</span> Distribuição da Diferença de Médias</a></li>
+  </ul></li>
+  <li><a href="#intervalo-de-confiança" id="toc-intervalo-de-confiança" class="nav-link" data-scroll-target="#intervalo-de-confiança"><span class="header-section-number">3.3</span> Intervalo de Confiança</a>
+  <ul class="collapse">
+  <li><a href="#intervalo-para-a-média" id="toc-intervalo-para-a-média" class="nav-link" data-scroll-target="#intervalo-para-a-média"><span class="header-section-number">3.3.1</span> Intervalo para a Média</a></li>
+  <li><a href="#intervalo-para-a-proporção" id="toc-intervalo-para-a-proporção" class="nav-link" data-scroll-target="#intervalo-para-a-proporção"><span class="header-section-number">3.3.2</span> Intervalo para a Proporção</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#noções-de-regressão-linear-simples" id="toc-noções-de-regressão-linear-simples" class="nav-link" data-scroll-target="#noções-de-regressão-linear-simples"><span class="header-section-number">4</span> Noções de Regressão Linear Simples</a>
+  <ul>
+  <li><a href="#conceitos" id="toc-conceitos" class="nav-link" data-scroll-target="#conceitos"><span class="header-section-number">4.1</span> Conceitos</a></li>
+  <li><a href="#estimação-dos-parâmetros" id="toc-estimação-dos-parâmetros" class="nav-link" data-scroll-target="#estimação-dos-parâmetros"><span class="header-section-number">4.2</span> Estimação dos Parâmetros</a></li>
+  <li><a href="#coeficiente-de-determinação" id="toc-coeficiente-de-determinação" class="nav-link" data-scroll-target="#coeficiente-de-determinação"><span class="header-section-number">4.3</span> Coeficiente de Determinação</a></li>
+  </ul></li>
+  <li><a href="#apêndices" id="toc-apêndices" class="nav-link" data-scroll-target="#apêndices"><span class="header-section-number">5</span> Apêndices</a>
+  <ul>
+  <li><a href="#arquivos-de-aulas" id="toc-arquivos-de-aulas" class="nav-link" data-scroll-target="#arquivos-de-aulas"><span class="header-section-number">5.1</span> Arquivos de Aulas</a></li>
+  <li><a href="#nivelamento-em-r" id="toc-nivelamento-em-r" class="nav-link" data-scroll-target="#nivelamento-em-r"><span class="header-section-number">5.2</span> Nivelamento em R</a></li>
+  <li><a href="#dicas-de-geração-de-código-com-ia" id="toc-dicas-de-geração-de-código-com-ia" class="nav-link" data-scroll-target="#dicas-de-geração-de-código-com-ia"><span class="header-section-number">5.3</span> Dicas de geração de código com IA</a></li>
+  </ul></li>
+  <li><a href="#créditos-e-agradecimentos" id="toc-créditos-e-agradecimentos" class="nav-link" data-scroll-target="#créditos-e-agradecimentos"><span class="header-section-number">6</span> Créditos e Agradecimentos</a>
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6.0.1</span> </a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Introdução Interativa a Estatística</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Daniel Alexandre Ramazzotte </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Invalid Date</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introdução-a-estatística-e-a-análise-exploratória-de-dados" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introdução à Estatística e à Análise Exploratória de Dados</h1>
+<section id="o-que-é-estatística" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="o-que-é-estatística"><span class="header-section-number">1.1</span> O que é Estatística</h2>
+<section id="definição" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="definição"><span class="header-section-number">1.1.1</span> Definição</h3>
+<p>Algumas definições para a estatística:</p>
+<p>Estatística é a ciência que utiliza as teorias probabilísticas (o que entenderemos na próxima seção) para explicar a frequência da ocorrência de eventos, tanto em estudos observacionais quanto em experimentos para modelar a aleatoriedade e a incerteza de forma a estimar ou possibilitar a previsão de fenômenos futuros, conforme o caso. (Saulo Henrique Weber, 2006)</p>
+<p>A Estatística é a ciência que coleta, organiza, analisa, interpreta e apresenta dados. Ela fornece ferramentas e métodos para transformar informações brutas em conhecimento útil, permitindo a tomada de decisões embasadas em evidências. (D.S. Moore, et al., 1999).</p>
+<p>Até que um fenômeno de qualquer ramo do conhecimento seja submetido a medidas e números, este não assumirá um status e seriedade na Ciência. Popularmente atribuída à Francis Galton</p>
+<p>Estatística é a arte de aprender a partir de dados (Ross, 2010)</p>
+<p>Sem dados você é uma pessoa qualquer com uma opinião” William Edwards Deming</p>
+<p>“Estatística é”a gramática da Ciência” Karl Pearson</p>
+</section>
+<section id="evolução-histórica" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="evolução-histórica"><span class="header-section-number">1.1.2</span> Breve História da Estatística</h3>
+<p>escrever</p>
+<p>Algumas leituras recomendadas são O Andar do Bêbado e Uma Senhora Toma Chá para aprendizado sobre a evolução da histórica da estatística e probabilidade e intuição sobre conceitos complexos.</p>
+</section>
+<section id="importância-e-aplicações" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="importância-e-aplicações"><span class="header-section-number">1.1.3</span> Importância e Aplicações</h3>
+<p>A Estatística é fundamental para muitas áreas e aplicável em quase todas porque permite testar hipóteses, validar teorias e generalizar resultados a partir de dados e hoje em dia se coletam dados de quase tudo. Algumas dessas áreas são administração do Estado, otimização de processos industriais e de engenharia, computação, ciências (saúde, biológicas, sociais, física).</p>
+<p>Ela nos permite responder questões como:</p>
+<ul>
+<li>Qual tipo e quantidade de dados devo coletar?</li>
+<li>Como organizar e resumir estes dados?</li>
+<li>Como analisar os dados e fazer conclusões dele?</li>
+<li>Como avaliar a força destas conclusões e avaliar sua incerteza?</li>
+<li>Como planejar um experimento que verifique a minha hipótese?</li>
+</ul>
+<p>Algumas aplicações específicas são:</p>
+<ul>
+<li>Identificar mensagens indesejáveis em um e-mail (spam);</li>
+<li>Segmentação do comportamento de consumidores para propagandas direcionadas;</li>
+<li>Redução de fraudes em transações de cartão de crédito;</li>
+<li>Predição de eleições;</li>
+<li>Otimização do uso de energia em edifícios;</li>
+<li>Existe relação entre desemprego e procura por Uber?</li>
+<li>Os desembolsos do BNDES fizeram aumentar a taxa de investimento da economia brasileira?</li>
+<li>Como explicar a inflação de alimentos?</li>
+<li>O Banco Central brasileiro reage aos choques cambiais?</li>
+<li>Qual o efeito do aumento da volatilidade no mercado sobre a taxa de câmbio?</li>
+</ul>
+</section>
+</section>
+<section id="divisão-do-livro" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="divisão-do-livro"><span class="header-section-number">1.2</span> Divisão do Livro</h2>
+<p>Tradicionalmente se divide didaticamente a estatística nas seguintes partes (o que a ementa dessa disciplina faz e consequentemente esta apostila também):</p>
+<ul>
+<li>Estatística Descritiva: É a área da estatística que visa organizar, resumir e descrever um conjunto de dados</li>
+<li>Estatística Inferencial: Coleção de métodos e técnicas utilizados para estudar uma população baseado em amostras probabilísticas desta população. É uma ferramenta valiosa para tomar decisões e fazer previsões</li>
+<li>Teoria da Probabilidade: Base teórica da estatística, é um ramo da matemática que estuda fenômenos aleatórios, ou seja, eventos cujos resultados não são determinísticos, mas sim sujeitos a incertezas. Ela fornece uma estrutura formal para quantificar a incerteza e modelar situações onde o acaso está presente.</li>
+</ul>
+</section>
+<section id="conceitos-básicos" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="conceitos-básicos"><span class="header-section-number">1.3</span> Conceitos Básicos</h2>
+<section id="população" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="população"><span class="header-section-number">1.3.1</span> População</h3>
+<p>Conjunto de todos os elementos com a característica de interesse, sobre a qual desejamos obter informações. A população pode ser finita ou infinita. Representamos por “N” o número de elementos da população.</p>
+</section>
+<section id="amostra" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="amostra"><span class="header-section-number">1.3.2</span> Amostra</h3>
+<p>É um subconjunto retirado de uma população, obtido através de técnicas de amostragem. O número de elementos da amostra é representado por “n”. Exemplo: Em uma pesquisa eleitoral para saber o resultado das eleições para presidente do Brasil, qual a população de interesse? Qual seria a amostra? R: A população é constituída de todos os eleitores do Brasil. A amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.</p>
+</section>
+<section id="censo" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="censo"><span class="header-section-number">1.3.3</span> Censo</h3>
+<p>É o processo utilizado para levantar as características observáveis, abordando todos os elementos de uma população. Então, um levantamento efetuado sobre toda uma população é denominado de levantamento censitário ou simplesmente censo.</p>
+<p>https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html escrever breve texto sobre o censo de 2022</p>
+</section>
+<section id="parâmetros" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="parâmetros"><span class="header-section-number">1.3.4</span> Parâmetros</h3>
+</section>
+<section id="estatísticas" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="estatísticas"><span class="header-section-number">1.3.5</span> Estatísticas</h3>
+</section>
+<section id="variável" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="variável"><span class="header-section-number">1.3.6</span> Variável</h3>
+<p>Variável é qualquer característica que varia de um elemento da população para outro. É a característica que está sendo analisada em cada elemento de uma população. Exemplo: Na população funcionários de uma determinada empresa – podemos estudar as varáveis: número de dependentes, remuneração financeira, idade, sexo, local de residência, nível de escolaridade, estado civil, tempo deserviços na empresa, etc.</p>
+</section>
+<section id="estrutura-de-uma-planilha" class="level3" data-number="1.3.7">
+<h3 data-number="1.3.7" class="anchored" data-anchor-id="estrutura-de-uma-planilha"><span class="header-section-number">1.3.7</span> Estrutura de uma planilha</h3>
+<p>ESCREVER UM BASICO E ENSINAR R</p>
+</section>
+</section>
+<section id="classificação-das-variáveis" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="classificação-das-variáveis"><span class="header-section-number">1.4</span> Classificação das Variáveis</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="var.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura 1: Classificação das Variáveis</figcaption>
+</figure>
+</div>
+</section>
+<section id="distribuição-de-frequências" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="distribuição-de-frequências"><span class="header-section-number">1.5</span> Distribuição de Frequências</h2>
+<p>A distribuição de frequências é uma forma de organizar e resumir dados, mostrando como os valores de uma variável estão distribuídos. Ela pode ser aplicada tanto para variáveis quantitativas (numéricas) quanto para variáveis qualitativas (categóricas).</p>
+<section id="distribuição-para-variáveis-quantitativas" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="distribuição-para-variáveis-quantitativas"><span class="header-section-number">1.5.1</span> Distribuição para Variáveis Quantitativas</h3>
+<p>A distribuição de frequências para variáveis quantitativas é feita agrupando os dados em intervalos de classe ou listando cada valor individualmente.</p>
+<p>Passos para Construir a Distribuição: 1. Definir os Intervalos de Classe (para dados contínuos): - Divida os dados em intervalos (ex: 0-10, 10-20, 20-30). - Cada intervalo é chamado de classe. - O tamanho do intervalo é chamado de amplitude de classe e existem várias maneiras de defini-la 2. Contar a Frequência: - Conte quantos valores estão em cada intervalo (frequência absoluta). 3. Calcular Frequências Relativas e Acumuladas: - Frequência relativa: Proporção de valores em cada classe em relação ao total. - Frequência acumulada: Soma das frequências até uma determinada classe.</p>
+<p>Formas de definir a amplitude das classes:</p>
+<p>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</p>
+</section>
+<section id="distribuição-para-variáveis-qualitativas" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="distribuição-para-variáveis-qualitativas"><span class="header-section-number">1.5.2</span> Distribuição para Variáveis Qualitativas</h3>
+<p>A distribuição de frequências para variáveis qualitativas é feita contando a ocorrência de cada categoria.</p>
+<ol type="1">
+<li>Listar as Categorias:</li>
+<li>Contar a Frequência Absoluta</li>
+<li>Calcular Frequências Relativas e Acumuladas</li>
+</ol>
+<p>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</p>
+</section>
+</section>
+<section id="medidas-de-posição-e-dispersão" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="medidas-de-posição-e-dispersão"><span class="header-section-number">1.6</span> Medidas de Posição e Dispersão</h2>
+<section id="média" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="média"><span class="header-section-number">1.6.1</span> Média</h3>
+<p>Média</p>
+</section>
+<section id="mediana" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="mediana"><span class="header-section-number">1.6.2</span> Mediana</h3>
+</section>
+<section id="moda" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="moda"><span class="header-section-number">1.6.3</span> Moda</h3>
+</section>
+<section id="desvio-padrão" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="desvio-padrão"><span class="header-section-number">1.6.4</span> Desvio Padrão</h3>
+</section>
+<section id="variância" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="variância"><span class="header-section-number">1.6.5</span> Variância</h3>
+</section>
+<section id="assimetria" class="level3" data-number="1.6.6">
+<h3 data-number="1.6.6" class="anchored" data-anchor-id="assimetria"><span class="header-section-number">1.6.6</span> Assimetria</h3>
+</section>
+<section id="curtose" class="level3" data-number="1.6.7">
+<h3 data-number="1.6.7" class="anchored" data-anchor-id="curtose"><span class="header-section-number">1.6.7</span> Curtose</h3>
+</section>
+</section>
+<section id="gráficos" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="gráficos"><span class="header-section-number">1.7</span> Gráficos</h2>
+<section id="gráficos-para-variáveis-qualitativas" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="gráficos-para-variáveis-qualitativas"><span class="header-section-number">1.7.1</span> Gráficos para Variáveis Qualitativas</h3>
+<section id="barras" class="level4" data-number="1.7.1.1">
+<h4 data-number="1.7.1.1" class="anchored" data-anchor-id="barras"><span class="header-section-number">1.7.1.1</span> Barras</h4>
+</section>
+<section id="colunas" class="level4" data-number="1.7.1.2">
+<h4 data-number="1.7.1.2" class="anchored" data-anchor-id="colunas"><span class="header-section-number">1.7.1.2</span> Colunas</h4>
+</section>
+<section id="setores" class="level4" data-number="1.7.1.3">
+<h4 data-number="1.7.1.3" class="anchored" data-anchor-id="setores"><span class="header-section-number">1.7.1.3</span> Setores</h4>
+</section>
+<section id="linhas" class="level4" data-number="1.7.1.4">
+<h4 data-number="1.7.1.4" class="anchored" data-anchor-id="linhas"><span class="header-section-number">1.7.1.4</span> Linhas</h4>
+</section>
+</section>
+<section id="gráficos-para-variáveis-quantitativas" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="gráficos-para-variáveis-quantitativas"><span class="header-section-number">1.7.2</span> Gráficos para Variáveis Quantitativas</h3>
+<section id="histograma" class="level4" data-number="1.7.2.1">
+<h4 data-number="1.7.2.1" class="anchored" data-anchor-id="histograma"><span class="header-section-number">1.7.2.1</span> Histograma</h4>
+</section>
+<section id="polígono-de-frequências" class="level4" data-number="1.7.2.2">
+<h4 data-number="1.7.2.2" class="anchored" data-anchor-id="polígono-de-frequências"><span class="header-section-number">1.7.2.2</span> Polígono de Frequências</h4>
+</section>
+<section id="boxplot" class="level4" data-number="1.7.2.3">
+<h4 data-number="1.7.2.3" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">1.7.2.3</span> Boxplot</h4>
+</section>
+<section id="diagrama-de-dispersão" class="level4" data-number="1.7.2.4">
+<h4 data-number="1.7.2.4" class="anchored" data-anchor-id="diagrama-de-dispersão"><span class="header-section-number">1.7.2.4</span> Diagrama de Dispersão</h4>
+</section>
+</section>
+</section>
+<section id="análise-bidimensional-de-dados" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="análise-bidimensional-de-dados"><span class="header-section-number">1.8</span> Análise Bidimensional de Dados</h2>
+<section id="tabelas-de-contingência" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="tabelas-de-contingência"><span class="header-section-number">1.8.1</span> Tabelas de Contingência</h3>
+<p>Mostram a relação entre duas variáveis categóricas.</p>
+</section>
+<section id="covariância-e-correlação" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="covariância-e-correlação"><span class="header-section-number">1.8.2</span> Covariância e Correlação</h3>
+<p>Medem a relação entre variáveis quantitativas. ## Técnicas de Amostragem {#técnicas-de-amostragem}</p>
+</section>
+<section id="amostragem-probabilística" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="amostragem-probabilística"><span class="header-section-number">1.8.3</span> Amostragem Probabilística (Aleatória)</h3>
+<p>Envolve seleção aleatória, onde todos os membros da população têm a mesma chance de serem selecionados.</p>
+</section>
+<section id="amostragem-não-probabilística" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="amostragem-não-probabilística"><span class="header-section-number">1.8.4</span> Amostragem Não Probabilística</h3>
+<p>Não envolve seleção aleatória.</p>
+</section>
+<section id="amostragem-aleatória-simples" class="level3" data-number="1.8.5">
+<h3 data-number="1.8.5" class="anchored" data-anchor-id="amostragem-aleatória-simples"><span class="header-section-number">1.8.5</span> Amostragem Aleatória Simples</h3>
+<p>Todos os membros da população têm a mesma chance de serem selecionados.</p>
+</section>
+<section id="amostragem-sistemática" class="level3" data-number="1.8.6">
+<h3 data-number="1.8.6" class="anchored" data-anchor-id="amostragem-sistemática"><span class="header-section-number">1.8.6</span> Amostragem Sistemática</h3>
+<p>A seleção é feita a partir de um intervalo fixo na lista populacional.</p>
+</section>
+<section id="amostragem-estratificada" class="level3" data-number="1.8.7">
+<h3 data-number="1.8.7" class="anchored" data-anchor-id="amostragem-estratificada"><span class="header-section-number">1.8.7</span> Amostragem Estratificada</h3>
+<p>A população é dividida em estratos, e amostras são retiradas de cada estrato.</p>
+</section>
+<section id="amostragem-por-conglomerados" class="level3" data-number="1.8.8">
+<h3 data-number="1.8.8" class="anchored" data-anchor-id="amostragem-por-conglomerados"><span class="header-section-number">1.8.8</span> Amostragem por Conglomerados</h3>
+<p>A população é dividida em conglomerados, e alguns conglomerados são selecionados aleatoriamente.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="noções-de-probabilidade" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Noções de Probabilidade</h1>
+<p>A probabilidade é um ramo da matemática que estuda a incerteza e a aleatoriedade. Ela fornece ferramentas para quantificar a chance de ocorrência de eventos em situações onde o resultado não é previsível com certeza. Desde previsões do tempo até decisões financeiras, a probabilidade está presente em diversos aspectos da vida cotidiana e é fundamental em áreas como estatística, ciência de dados, física, engenharia e economia.</p>
+<section id="análise-combinatória" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="análise-combinatória"><span class="header-section-number">2.1</span> Análise Combinatória</h2>
+<p>Esse é um assunto difícil e não faz parte do escopo da disciplina, então foque em ter um entendimento intuitivo das ideias contidas nessa sub-seção</p>
+<p>…</p>
+</section>
+<section id="conceitos-básicos-1" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="conceitos-básicos-1"><span class="header-section-number">2.2</span> Conceitos básicos</h2>
+<section id="experimento-aleatório" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="experimento-aleatório"><span class="header-section-number">2.2.1</span> Experimento Aleatório</h3>
+<p>Um experimento aleatório é qualquer processo que pode ser repetido sob as mesmas condições, mas cujo resultado não pode ser previsto com certeza. Exemplos incluem: - Lançar uma moeda; - Jogar um dado; - Sortear uma carta de um baralho; - Número de peças defeituosas em um lote; - Quantidade de chamadas telefônicas em uma hora em um call center</p>
+</section>
+<section id="espaço-amostral" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="espaço-amostral"><span class="header-section-number">2.2.2</span> Espaço Amostral</h3>
+<p>O espaço amostral é o conjunto de todos os resultados possíveis de um experimento aleatório. Por exemplo: - No lançamento de uma moeda: S = {Cara, Coroa}. - No lançamento de um dado: S = {1, 2, 3, 4, 5, 6}. - Considere o exemplo da seção anterior em que observamos o número de chamadas telefônicas que chegam a uma central durante um determinado intervalo de tempo. O espaço amostral é o conjunto: S = {0,1,2, 3,…}.</p>
+<p>EXEMPLO: LANÇAMENTO DE DUAS MOEDAS, EXPLANAÇÃO RAPIDA DE ANALISE COMBINATORIA</p>
+<p>Exercício: pense e delimite (nao precisa escrever, só raciocinar) qual o tamanho do espaço amostral e quais são os elementos do espaço amostral de uma mão no jogo truco. Se você não sabe truco, faça o mesmo com o sorteio aleatório de uma carta.</p>
+</section>
+<section id="eventos" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="eventos"><span class="header-section-number">2.2.3</span> Eventos</h3>
+<p>Um evento é um subconjunto do espaço amostral. Ele representa um resultado ou uma combinação de resultados de interesse. Por exemplo: - No lançamento de um dado, o evento “sair um número par” é o subconjunto {2, 4, 6}. - Na retirada de uma mão no truco em que a vira é o Ás o evento “tirar as 4 cartas mais fortes” é o subconjunto {2 de espadas, 2 de ouros, 2 copas, 2 de paus}</p>
+</section>
+</section>
+<section id="definição-de-probabilidade" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="definição-de-probabilidade"><span class="header-section-number">2.3</span> Definição de Probabilidade</h2>
+<p>A probabilidade, em termos informais, é uma medida que quantifica a chance de um evento ocorrer. Ela é representada por um número entre 0 e 1, onde:</p>
+<ul>
+<li><p>0: O evento é impossível (nunca ocorre).</p></li>
+<li><p>1: O evento é certo (sempre ocorre).</p></li>
+</ul>
+<p>A probabilidade de um evento A é denotada por P(A)</p>
+<p><span class="math display">\[
+P(A) = \frac{n(A)}{n(\Omega)}
+\]</span></p>
+<p>Onde: - n(A): Número de resultados favoráveis ao evento - n(Ω): Número total de resultados possíveis no espaço amostral</p>
+<section id="axiomas-da-probabilidade" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="axiomas-da-probabilidade"><span class="header-section-number">2.3.1</span> Axiomas da Probabilidade</h3>
+<p>Regras básicas que definem a probabilidade.</p>
+</section>
+<section id="propriedades-fundamentais" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="propriedades-fundamentais"><span class="header-section-number">2.3.2</span> Propriedades Fundamentais</h3>
+<p>Propriedades derivadas dos axiomas.</p>
+</section>
+</section>
+<section id="probabilidade-condicional-e-teorema-de-bayes" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="probabilidade-condicional-e-teorema-de-bayes"><span class="header-section-number">2.4</span> Probabilidade Condicional e Teorema de Bayes</h2>
+<section id="probabilidade-condicional" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="probabilidade-condicional"><span class="header-section-number">2.4.1</span> Probabilidade Condicional</h3>
+<p>Probabilidade de um evento dado que outro ocorreu.</p>
+</section>
+<section id="teorema-de-bayes" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="teorema-de-bayes"><span class="header-section-number">2.4.2</span> Teorema de Bayes</h3>
+<p>Relaciona probabilidades condicionais.</p>
+</section>
+</section>
+<section id="independência-de-eventos" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="independência-de-eventos"><span class="header-section-number">2.5</span> Independência de Eventos</h2>
+<section id="definição-de-independência" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="definição-de-independência"><span class="header-section-number">2.5.1</span> Definição de Independência</h3>
+<p>Dois eventos são independentes se a ocorrência de um não afeta a probabilidade do outro.</p>
+</section>
+<section id="exemplos-de-independência" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="exemplos-de-independência"><span class="header-section-number">2.5.2</span> Exemplos de Independência</h3>
+<p>Exemplos práticos de eventos independentes.</p>
+</section>
+</section>
+<section id="variáveis-aleatórias" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="variáveis-aleatórias"><span class="header-section-number">2.6</span> Variáveis Aleatórias</h2>
+<section id="variáveis-aleatórias-discretas" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="variáveis-aleatórias-discretas"><span class="header-section-number">2.6.1</span> Variáveis Aleatórias Discretas</h3>
+<p>Assumem valores contáveis.</p>
+</section>
+<section id="variáveis-aleatórias-contínuas" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="variáveis-aleatórias-contínuas"><span class="header-section-number">2.6.2</span> Variáveis Aleatórias Contínuas</h3>
+<p>Assumem valores em um intervalo.</p>
+</section>
+</section>
+<section id="distribuições-de-probabilidade" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="distribuições-de-probabilidade"><span class="header-section-number">2.7</span> Distribuições de Probabilidade</h2>
+<section id="distribuições-discretas" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="distribuições-discretas"><span class="header-section-number">2.7.1</span> Distribuições Discretas</h3>
+<p>Binomial, Poisson.</p>
+</section>
+<section id="distribuições-contínuas" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="distribuições-contínuas"><span class="header-section-number">2.7.2</span> Distribuições Contínuas</h3>
+<p>Exponencial, Normal.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="noções-de-inferência-estatística" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Noções de Inferência Estatística</h1>
+<section id="parâmetros-estimadores-e-estimativas" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="parâmetros-estimadores-e-estimativas"><span class="header-section-number">3.1</span> Parâmetros, Estimadores e Estimativas</h2>
+<section id="parâmetros-1" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="parâmetros-1"><span class="header-section-number">3.1.1</span> Parâmetros</h3>
+<p>Características da população.</p>
+</section>
+<section id="estimadores" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="estimadores"><span class="header-section-number">3.1.2</span> Estimadores</h3>
+<p>Funções dos dados usadas para estimar parâmetros.</p>
+</section>
+<section id="estimativas" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="estimativas"><span class="header-section-number">3.1.3</span> Estimativas</h3>
+<p>Valores calculados a partir dos dados.</p>
+</section>
+</section>
+<section id="distribuição-amostral" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="distribuição-amostral"><span class="header-section-number">3.2</span> Distribuição Amostral</h2>
+<section id="distribuição-da-média" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="distribuição-da-média"><span class="header-section-number">3.2.1</span> Distribuição da Média</h3>
+<p>Distribuição da média amostral.</p>
+</section>
+<section id="distribuição-da-proporção" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="distribuição-da-proporção"><span class="header-section-number">3.2.2</span> Distribuição da Proporção</h3>
+<p>Distribuição da proporção amostral.</p>
+</section>
+<section id="distribuição-da-diferença-de-médias" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="distribuição-da-diferença-de-médias"><span class="header-section-number">3.2.3</span> Distribuição da Diferença de Médias</h3>
+<p>Distribuição da diferença entre médias amostrais.</p>
+</section>
+</section>
+<section id="intervalo-de-confiança" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="intervalo-de-confiança"><span class="header-section-number">3.3</span> Intervalo de Confiança</h2>
+<section id="intervalo-para-a-média" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="intervalo-para-a-média"><span class="header-section-number">3.3.1</span> Intervalo para a Média</h3>
+<p>Intervalo de confiança para a média populacional.</p>
+</section>
+<section id="intervalo-para-a-proporção" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="intervalo-para-a-proporção"><span class="header-section-number">3.3.2</span> Intervalo para a Proporção</h3>
+<p>Intervalo de confiança para a proporção populacional.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="noções-de-regressão-linear-simples" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Noções de Regressão Linear Simples</h1>
+<section id="conceitos" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="conceitos"><span class="header-section-number">4.1</span> Conceitos</h2>
+</section>
+<section id="estimação-dos-parâmetros" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="estimação-dos-parâmetros"><span class="header-section-number">4.2</span> Estimação dos Parâmetros</h2>
+</section>
+<section id="coeficiente-de-determinação" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="coeficiente-de-determinação"><span class="header-section-number">4.3</span> Coeficiente de Determinação</h2>
+<hr>
+</section>
+</section>
+<section id="apêndices" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Apêndices</h1>
+<section id="arquivos-de-aulas" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="arquivos-de-aulas"><span class="header-section-number">5.1</span> Arquivos de Aulas</h2>
+</section>
+<section id="nivelamento-em-r" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="nivelamento-em-r"><span class="header-section-number">5.2</span> Nivelamento em R</h2>
+</section>
+<section id="dicas-de-geração-de-código-com-ia" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="dicas-de-geração-de-código-com-ia"><span class="header-section-number">5.3</span> Dicas de geração de código com IA</h2>
+<hr>
+</section>
+</section>
+<section id="créditos-e-agradecimentos" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Créditos e Agradecimentos</h1>
+<p>DIEGO e seus slides maravilhosos</p>
+<section id="section" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="section"><span class="header-section-number">6.0.1</span> </h3>
+<!-- -->
+
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> "Introdução Interativa a Estatística"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="an">author:</span><span class="co"> "Daniel Alexandre Ramazzotte"</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="an">date:</span><span class="co"> "2025-xx-xx"</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="an">format:</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">  html:</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">    toc: true</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">    toc-depth: 4  # Aumentei a profundidade do índice para incluir subseções</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">    code-copy: true</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">    code-link: true</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">    highlight-style: pygments</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="an">editor:</span><span class="co"> </span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">  markdown: </span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co">    wrap: 72</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co">---</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="fu"># Introdução à Estatística e à Análise Exploratória de Dados {#introdução-a-estatística-e-a-análise-exploratória-de-dados}</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="fu">## O que é Estatística {#o-que-é-estatística}</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a></span>
+<span id="cb1-27"><a href="#cb1-27"></a><span class="fu">### Definição {#definição}</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a></span>
+<span id="cb1-29"><a href="#cb1-29"></a>Algumas definições para a estatística:</span>
+<span id="cb1-30"><a href="#cb1-30"></a></span>
+<span id="cb1-31"><a href="#cb1-31"></a>Estatística é a ciência que utiliza as teorias probabilísticas (o que</span>
+<span id="cb1-32"><a href="#cb1-32"></a>entenderemos na próxima seção) para explicar a frequência da ocorrência</span>
+<span id="cb1-33"><a href="#cb1-33"></a>de eventos, tanto em estudos observacionais quanto em experimentos para</span>
+<span id="cb1-34"><a href="#cb1-34"></a>modelar a aleatoriedade e a incerteza de forma a estimar ou possibilitar</span>
+<span id="cb1-35"><a href="#cb1-35"></a>a previsão de fenômenos futuros, conforme o caso. (Saulo Henrique Weber,</span>
+<span id="cb1-36"><a href="#cb1-36"></a>2006)</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a>A Estatística é a ciência que coleta, organiza, analisa, interpreta e</span>
+<span id="cb1-39"><a href="#cb1-39"></a>apresenta dados. Ela fornece ferramentas e métodos para transformar</span>
+<span id="cb1-40"><a href="#cb1-40"></a>informações brutas em conhecimento útil, permitindo a tomada de decisões</span>
+<span id="cb1-41"><a href="#cb1-41"></a>embasadas em evidências. (D.S. Moore, et al., 1999).</span>
+<span id="cb1-42"><a href="#cb1-42"></a></span>
+<span id="cb1-43"><a href="#cb1-43"></a>Até que um fenômeno de qualquer ramo do conhecimento seja submetido a</span>
+<span id="cb1-44"><a href="#cb1-44"></a>medidas e números, este não assumirá um status e seriedade na Ciência.</span>
+<span id="cb1-45"><a href="#cb1-45"></a>Popularmente atribuída à Francis Galton</span>
+<span id="cb1-46"><a href="#cb1-46"></a></span>
+<span id="cb1-47"><a href="#cb1-47"></a>Estatística é a arte de aprender a partir de dados (Ross, 2010)</span>
+<span id="cb1-48"><a href="#cb1-48"></a></span>
+<span id="cb1-49"><a href="#cb1-49"></a>Sem dados você é uma pessoa qualquer com uma opinião" William Edwards</span>
+<span id="cb1-50"><a href="#cb1-50"></a>Deming</span>
+<span id="cb1-51"><a href="#cb1-51"></a></span>
+<span id="cb1-52"><a href="#cb1-52"></a>"Estatística é "a gramática da Ciência" Karl Pearson</span>
+<span id="cb1-53"><a href="#cb1-53"></a></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="fu">### Breve História da Estatística {#evolução-histórica}</span></span>
+<span id="cb1-55"><a href="#cb1-55"></a></span>
+<span id="cb1-56"><a href="#cb1-56"></a>escrever</span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
+<span id="cb1-58"><a href="#cb1-58"></a>Algumas leituras recomendadas são O Andar do Bêbado e Uma Senhora Toma</span>
+<span id="cb1-59"><a href="#cb1-59"></a>Chá para aprendizado sobre a evolução da histórica da estatística e</span>
+<span id="cb1-60"><a href="#cb1-60"></a>probabilidade e intuição sobre conceitos complexos.</span>
+<span id="cb1-61"><a href="#cb1-61"></a></span>
+<span id="cb1-62"><a href="#cb1-62"></a><span class="fu">### Importância e Aplicações {#importância-e-aplicações}</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a></span>
+<span id="cb1-64"><a href="#cb1-64"></a>A Estatística é fundamental para muitas áreas e aplicável em quase todas</span>
+<span id="cb1-65"><a href="#cb1-65"></a>porque permite testar hipóteses, validar teorias e generalizar</span>
+<span id="cb1-66"><a href="#cb1-66"></a>resultados a partir de dados e hoje em dia se coletam dados de quase</span>
+<span id="cb1-67"><a href="#cb1-67"></a>tudo. Algumas dessas áreas são administração do Estado, otimização de</span>
+<span id="cb1-68"><a href="#cb1-68"></a>processos industriais e de engenharia, computação, ciências (saúde,</span>
+<span id="cb1-69"><a href="#cb1-69"></a>biológicas, sociais, física).</span>
+<span id="cb1-70"><a href="#cb1-70"></a></span>
+<span id="cb1-71"><a href="#cb1-71"></a>Ela nos permite responder questões como:</span>
+<span id="cb1-72"><a href="#cb1-72"></a></span>
+<span id="cb1-73"><a href="#cb1-73"></a><span class="ss">-   </span>Qual tipo e quantidade de dados devo coletar?</span>
+<span id="cb1-74"><a href="#cb1-74"></a><span class="ss">-   </span>Como organizar e resumir estes dados?</span>
+<span id="cb1-75"><a href="#cb1-75"></a><span class="ss">-   </span>Como analisar os dados e fazer conclusões dele?</span>
+<span id="cb1-76"><a href="#cb1-76"></a><span class="ss">-   </span>Como avaliar a força destas conclusões e avaliar sua incerteza?</span>
+<span id="cb1-77"><a href="#cb1-77"></a><span class="ss">-   </span>Como planejar um experimento que verifique a minha hipótese?</span>
+<span id="cb1-78"><a href="#cb1-78"></a></span>
+<span id="cb1-79"><a href="#cb1-79"></a>Algumas aplicações específicas são:</span>
+<span id="cb1-80"><a href="#cb1-80"></a></span>
+<span id="cb1-81"><a href="#cb1-81"></a><span class="ss">-   </span>Identificar mensagens indesejáveis em um e-mail (spam);</span>
+<span id="cb1-82"><a href="#cb1-82"></a><span class="ss">-   </span>Segmentação do comportamento de consumidores para propagandas</span>
+<span id="cb1-83"><a href="#cb1-83"></a>    direcionadas;</span>
+<span id="cb1-84"><a href="#cb1-84"></a><span class="ss">-   </span>Redução de fraudes em transações de cartão de crédito;</span>
+<span id="cb1-85"><a href="#cb1-85"></a><span class="ss">-   </span>Predição de eleições;</span>
+<span id="cb1-86"><a href="#cb1-86"></a><span class="ss">-   </span>Otimização do uso de energia em edifícios;</span>
+<span id="cb1-87"><a href="#cb1-87"></a><span class="ss">-   </span>Existe relação entre desemprego e procura por Uber?</span>
+<span id="cb1-88"><a href="#cb1-88"></a><span class="ss">-   </span>Os desembolsos do BNDES fizeram aumentar a taxa de investimento da</span>
+<span id="cb1-89"><a href="#cb1-89"></a>    economia brasileira?</span>
+<span id="cb1-90"><a href="#cb1-90"></a><span class="ss">-   </span>Como explicar a inflação de alimentos?</span>
+<span id="cb1-91"><a href="#cb1-91"></a><span class="ss">-   </span>O Banco Central brasileiro reage aos choques cambiais?</span>
+<span id="cb1-92"><a href="#cb1-92"></a><span class="ss">-   </span>Qual o efeito do aumento da volatilidade no mercado sobre a taxa de</span>
+<span id="cb1-93"><a href="#cb1-93"></a>    câmbio?</span>
+<span id="cb1-94"><a href="#cb1-94"></a></span>
+<span id="cb1-95"><a href="#cb1-95"></a><span class="fu">## Divisão do Livro</span></span>
+<span id="cb1-96"><a href="#cb1-96"></a></span>
+<span id="cb1-97"><a href="#cb1-97"></a>Tradicionalmente se divide didaticamente a estatística nas seguintes</span>
+<span id="cb1-98"><a href="#cb1-98"></a>partes (o que a ementa dessa disciplina faz e consequentemente esta</span>
+<span id="cb1-99"><a href="#cb1-99"></a>apostila também):</span>
+<span id="cb1-100"><a href="#cb1-100"></a></span>
+<span id="cb1-101"><a href="#cb1-101"></a><span class="ss">-   </span>Estatística Descritiva: É a área da estatística que visa organizar,</span>
+<span id="cb1-102"><a href="#cb1-102"></a>    resumir e descrever um conjunto de dados</span>
+<span id="cb1-103"><a href="#cb1-103"></a><span class="ss">-   </span>Estatística Inferencial: Coleção de métodos e técnicas utilizados</span>
+<span id="cb1-104"><a href="#cb1-104"></a>    para estudar uma população baseado em amostras probabilísticas desta</span>
+<span id="cb1-105"><a href="#cb1-105"></a>    população. É uma ferramenta valiosa para tomar decisões e fazer</span>
+<span id="cb1-106"><a href="#cb1-106"></a>    previsões</span>
+<span id="cb1-107"><a href="#cb1-107"></a><span class="ss">-   </span>Teoria da Probabilidade: Base teórica da estatística, é um ramo da</span>
+<span id="cb1-108"><a href="#cb1-108"></a>    matemática que estuda fenômenos aleatórios, ou seja, eventos cujos</span>
+<span id="cb1-109"><a href="#cb1-109"></a>    resultados não são determinísticos, mas sim sujeitos a incertezas.</span>
+<span id="cb1-110"><a href="#cb1-110"></a>    Ela fornece uma estrutura formal para quantificar a incerteza e</span>
+<span id="cb1-111"><a href="#cb1-111"></a>    modelar situações onde o acaso está presente.</span>
+<span id="cb1-112"><a href="#cb1-112"></a></span>
+<span id="cb1-113"><a href="#cb1-113"></a><span class="fu">## Conceitos Básicos {#conceitos-básicos}</span></span>
+<span id="cb1-114"><a href="#cb1-114"></a></span>
+<span id="cb1-115"><a href="#cb1-115"></a><span class="fu">### População {#população}</span></span>
+<span id="cb1-116"><a href="#cb1-116"></a></span>
+<span id="cb1-117"><a href="#cb1-117"></a>Conjunto de todos os elementos com a característica de interesse, sobre</span>
+<span id="cb1-118"><a href="#cb1-118"></a>a qual desejamos obter informações. A população pode ser finita ou</span>
+<span id="cb1-119"><a href="#cb1-119"></a>infinita. Representamos por "N" o número de elementos da população.</span>
+<span id="cb1-120"><a href="#cb1-120"></a></span>
+<span id="cb1-121"><a href="#cb1-121"></a><span class="fu">### Amostra {#amostra}</span></span>
+<span id="cb1-122"><a href="#cb1-122"></a></span>
+<span id="cb1-123"><a href="#cb1-123"></a>É um subconjunto retirado de uma população, obtido através de técnicas</span>
+<span id="cb1-124"><a href="#cb1-124"></a>de amostragem. O número de elementos da amostra é representado por "n".</span>
+<span id="cb1-125"><a href="#cb1-125"></a>Exemplo: Em uma pesquisa eleitoral para saber o resultado das eleições</span>
+<span id="cb1-126"><a href="#cb1-126"></a>para presidente do Brasil, qual a população de interesse? Qual seria a</span>
+<span id="cb1-127"><a href="#cb1-127"></a>amostra? R: A população é constituída de todos os eleitores do Brasil. A</span>
+<span id="cb1-128"><a href="#cb1-128"></a>amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.</span>
+<span id="cb1-129"><a href="#cb1-129"></a></span>
+<span id="cb1-130"><a href="#cb1-130"></a><span class="fu">### Censo {#censo}</span></span>
+<span id="cb1-131"><a href="#cb1-131"></a></span>
+<span id="cb1-132"><a href="#cb1-132"></a>É o processo utilizado para levantar as características observáveis,</span>
+<span id="cb1-133"><a href="#cb1-133"></a>abordando todos os elementos de uma população. Então, um levantamento</span>
+<span id="cb1-134"><a href="#cb1-134"></a>efetuado sobre toda uma população é denominado de levantamento</span>
+<span id="cb1-135"><a href="#cb1-135"></a>censitário ou simplesmente censo.</span>
+<span id="cb1-136"><a href="#cb1-136"></a></span>
+<span id="cb1-137"><a href="#cb1-137"></a>https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html</span>
+<span id="cb1-138"><a href="#cb1-138"></a>escrever breve texto sobre o censo de 2022</span>
+<span id="cb1-139"><a href="#cb1-139"></a></span>
+<span id="cb1-140"><a href="#cb1-140"></a><span class="fu">### Parâmetros {#parâmetros}</span></span>
+<span id="cb1-141"><a href="#cb1-141"></a></span>
+<span id="cb1-142"><a href="#cb1-142"></a><span class="fu">### Estatísticas {#estatísticas}</span></span>
+<span id="cb1-143"><a href="#cb1-143"></a></span>
+<span id="cb1-144"><a href="#cb1-144"></a><span class="fu">### Variável {#variável}</span></span>
+<span id="cb1-145"><a href="#cb1-145"></a></span>
+<span id="cb1-146"><a href="#cb1-146"></a>Variável é qualquer característica que varia de um elemento da população</span>
+<span id="cb1-147"><a href="#cb1-147"></a>para outro. É a característica que está sendo analisada em cada elemento</span>
+<span id="cb1-148"><a href="#cb1-148"></a>de uma população. Exemplo: Na população funcionários de uma determinada</span>
+<span id="cb1-149"><a href="#cb1-149"></a>empresa -- podemos estudar as varáveis: número de dependentes,</span>
+<span id="cb1-150"><a href="#cb1-150"></a>remuneração financeira, idade, sexo, local de residência, nível de</span>
+<span id="cb1-151"><a href="#cb1-151"></a>escolaridade, estado civil, tempo deserviços na empresa, etc.</span>
+<span id="cb1-152"><a href="#cb1-152"></a></span>
+<span id="cb1-153"><a href="#cb1-153"></a><span class="fu">### Estrutura de uma planilha</span></span>
+<span id="cb1-154"><a href="#cb1-154"></a></span>
+<span id="cb1-155"><a href="#cb1-155"></a>ESCREVER UM BASICO E ENSINAR R</span>
+<span id="cb1-156"><a href="#cb1-156"></a></span>
+<span id="cb1-157"><a href="#cb1-157"></a><span class="fu">## Classificação das Variáveis {#classificação-das-variáveis}</span></span>
+<span id="cb1-158"><a href="#cb1-158"></a></span>
+<span id="cb1-159"><a href="#cb1-159"></a><span class="al">![Figura 1: Classificação das Variáveis](var.png)</span></span>
+<span id="cb1-160"><a href="#cb1-160"></a></span>
+<span id="cb1-161"><a href="#cb1-161"></a><span class="fu">## Distribuição de Frequências {#distribuição-de-frequências}</span></span>
+<span id="cb1-162"><a href="#cb1-162"></a></span>
+<span id="cb1-163"><a href="#cb1-163"></a>A distribuição de frequências é uma forma de organizar e resumir dados,</span>
+<span id="cb1-164"><a href="#cb1-164"></a>mostrando como os valores de uma variável estão distribuídos. Ela pode</span>
+<span id="cb1-165"><a href="#cb1-165"></a>ser aplicada tanto para variáveis quantitativas (numéricas) quanto para</span>
+<span id="cb1-166"><a href="#cb1-166"></a>variáveis qualitativas (categóricas).</span>
+<span id="cb1-167"><a href="#cb1-167"></a></span>
+<span id="cb1-168"><a href="#cb1-168"></a><span class="fu">### Distribuição para Variáveis Quantitativas {#distribuição-para-variáveis-quantitativas}</span></span>
+<span id="cb1-169"><a href="#cb1-169"></a></span>
+<span id="cb1-170"><a href="#cb1-170"></a>A distribuição de frequências para variáveis quantitativas é feita</span>
+<span id="cb1-171"><a href="#cb1-171"></a>agrupando os dados em intervalos de classe ou listando cada valor</span>
+<span id="cb1-172"><a href="#cb1-172"></a>individualmente.</span>
+<span id="cb1-173"><a href="#cb1-173"></a></span>
+<span id="cb1-174"><a href="#cb1-174"></a>Passos para Construir a Distribuição: 1. Definir os Intervalos de Classe</span>
+<span id="cb1-175"><a href="#cb1-175"></a>(para dados contínuos): - Divida os dados em intervalos (ex: 0-10,</span>
+<span id="cb1-176"><a href="#cb1-176"></a>10-20, 20-30). - Cada intervalo é chamado de classe. - O tamanho do</span>
+<span id="cb1-177"><a href="#cb1-177"></a>intervalo é chamado de amplitude de classe e existem várias maneiras de</span>
+<span id="cb1-178"><a href="#cb1-178"></a>defini-la 2. Contar a Frequência: - Conte quantos valores estão em cada</span>
+<span id="cb1-179"><a href="#cb1-179"></a>intervalo (frequência absoluta). 3. Calcular Frequências Relativas e</span>
+<span id="cb1-180"><a href="#cb1-180"></a>Acumuladas: - Frequência relativa: Proporção de valores em cada classe</span>
+<span id="cb1-181"><a href="#cb1-181"></a>em relação ao total. - Frequência acumulada: Soma das frequências até</span>
+<span id="cb1-182"><a href="#cb1-182"></a>uma determinada classe.</span>
+<span id="cb1-183"><a href="#cb1-183"></a></span>
+<span id="cb1-184"><a href="#cb1-184"></a>Formas de definir a amplitude das classes:</span>
+<span id="cb1-185"><a href="#cb1-185"></a></span>
+<span id="cb1-186"><a href="#cb1-186"></a>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO</span>
+<span id="cb1-187"><a href="#cb1-187"></a>DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</span>
+<span id="cb1-188"><a href="#cb1-188"></a></span>
+<span id="cb1-189"><a href="#cb1-189"></a><span class="fu">### Distribuição para Variáveis Qualitativas {#distribuição-para-variáveis-qualitativas}</span></span>
+<span id="cb1-190"><a href="#cb1-190"></a></span>
+<span id="cb1-191"><a href="#cb1-191"></a>A distribuição de frequências para variáveis qualitativas é feita</span>
+<span id="cb1-192"><a href="#cb1-192"></a>contando a ocorrência de cada categoria.</span>
+<span id="cb1-193"><a href="#cb1-193"></a></span>
+<span id="cb1-194"><a href="#cb1-194"></a><span class="ss">1.  </span>Listar as Categorias:</span>
+<span id="cb1-195"><a href="#cb1-195"></a><span class="ss">2.  </span>Contar a Frequência Absoluta</span>
+<span id="cb1-196"><a href="#cb1-196"></a><span class="ss">3.  </span>Calcular Frequências Relativas e Acumuladas</span>
+<span id="cb1-197"><a href="#cb1-197"></a></span>
+<span id="cb1-198"><a href="#cb1-198"></a>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO</span>
+<span id="cb1-199"><a href="#cb1-199"></a>DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</span>
+<span id="cb1-200"><a href="#cb1-200"></a></span>
+<span id="cb1-201"><a href="#cb1-201"></a><span class="fu">## Medidas de Posição e Dispersão {#medidas-de-posição-e-dispersão}</span></span>
+<span id="cb1-202"><a href="#cb1-202"></a></span>
+<span id="cb1-203"><a href="#cb1-203"></a><span class="fu">### Média {#média}</span></span>
+<span id="cb1-204"><a href="#cb1-204"></a></span>
+<span id="cb1-205"><a href="#cb1-205"></a>Média</span>
+<span id="cb1-206"><a href="#cb1-206"></a></span>
+<span id="cb1-207"><a href="#cb1-207"></a><span class="fu">### Mediana {#mediana}</span></span>
+<span id="cb1-208"><a href="#cb1-208"></a></span>
+<span id="cb1-209"><a href="#cb1-209"></a><span class="fu">### Moda {#moda}</span></span>
+<span id="cb1-210"><a href="#cb1-210"></a></span>
+<span id="cb1-211"><a href="#cb1-211"></a><span class="fu">### Desvio Padrão {#desvio-padrão}</span></span>
+<span id="cb1-212"><a href="#cb1-212"></a></span>
+<span id="cb1-213"><a href="#cb1-213"></a><span class="fu">### Variância {#variância}</span></span>
+<span id="cb1-214"><a href="#cb1-214"></a></span>
+<span id="cb1-215"><a href="#cb1-215"></a><span class="fu">### Assimetria {#assimetria}</span></span>
+<span id="cb1-216"><a href="#cb1-216"></a></span>
+<span id="cb1-217"><a href="#cb1-217"></a><span class="fu">### Curtose {#curtose}</span></span>
+<span id="cb1-218"><a href="#cb1-218"></a></span>
+<span id="cb1-219"><a href="#cb1-219"></a><span class="fu">## Gráficos {#gráficos}</span></span>
+<span id="cb1-220"><a href="#cb1-220"></a></span>
+<span id="cb1-221"><a href="#cb1-221"></a><span class="fu">### Gráficos para Variáveis Qualitativas {#gráficos-para-variáveis-qualitativas}</span></span>
+<span id="cb1-222"><a href="#cb1-222"></a></span>
+<span id="cb1-223"><a href="#cb1-223"></a><span class="fu">#### Barras</span></span>
+<span id="cb1-224"><a href="#cb1-224"></a></span>
+<span id="cb1-225"><a href="#cb1-225"></a><span class="fu">#### Colunas</span></span>
+<span id="cb1-226"><a href="#cb1-226"></a></span>
+<span id="cb1-227"><a href="#cb1-227"></a><span class="fu">#### Setores</span></span>
+<span id="cb1-228"><a href="#cb1-228"></a></span>
+<span id="cb1-229"><a href="#cb1-229"></a><span class="fu">#### Linhas</span></span>
+<span id="cb1-230"><a href="#cb1-230"></a></span>
+<span id="cb1-231"><a href="#cb1-231"></a><span class="fu">### Gráficos para Variáveis Quantitativas {#gráficos-para-variáveis-quantitativas}</span></span>
+<span id="cb1-232"><a href="#cb1-232"></a></span>
+<span id="cb1-233"><a href="#cb1-233"></a><span class="fu">#### Histograma</span></span>
+<span id="cb1-234"><a href="#cb1-234"></a></span>
+<span id="cb1-235"><a href="#cb1-235"></a><span class="fu">#### Polígono de Frequências</span></span>
+<span id="cb1-236"><a href="#cb1-236"></a></span>
+<span id="cb1-237"><a href="#cb1-237"></a><span class="fu">#### Boxplot</span></span>
+<span id="cb1-238"><a href="#cb1-238"></a></span>
+<span id="cb1-239"><a href="#cb1-239"></a><span class="fu">#### Diagrama de Dispersão</span></span>
+<span id="cb1-240"><a href="#cb1-240"></a></span>
+<span id="cb1-241"><a href="#cb1-241"></a><span class="fu">## Análise Bidimensional de Dados {#análise-bidimensional-de-dados}</span></span>
+<span id="cb1-242"><a href="#cb1-242"></a></span>
+<span id="cb1-243"><a href="#cb1-243"></a><span class="fu">### Tabelas de Contingência {#tabelas-de-contingência}</span></span>
+<span id="cb1-244"><a href="#cb1-244"></a></span>
+<span id="cb1-245"><a href="#cb1-245"></a>Mostram a relação entre duas variáveis categóricas.</span>
+<span id="cb1-246"><a href="#cb1-246"></a></span>
+<span id="cb1-247"><a href="#cb1-247"></a><span class="fu">### Covariância e Correlação {#covariância-e-correlação}</span></span>
+<span id="cb1-248"><a href="#cb1-248"></a></span>
+<span id="cb1-249"><a href="#cb1-249"></a>Medem a relação entre variáveis quantitativas. <span class="sc">\#</span># Técnicas de</span>
+<span id="cb1-250"><a href="#cb1-250"></a>Amostragem {#técnicas-de-amostragem}</span>
+<span id="cb1-251"><a href="#cb1-251"></a></span>
+<span id="cb1-252"><a href="#cb1-252"></a><span class="fu">### Amostragem Probabilística (Aleatória) {#amostragem-probabilística}</span></span>
+<span id="cb1-253"><a href="#cb1-253"></a></span>
+<span id="cb1-254"><a href="#cb1-254"></a>Envolve seleção aleatória, onde todos os membros da população têm a</span>
+<span id="cb1-255"><a href="#cb1-255"></a>mesma chance de serem selecionados.</span>
+<span id="cb1-256"><a href="#cb1-256"></a></span>
+<span id="cb1-257"><a href="#cb1-257"></a><span class="fu">### Amostragem Não Probabilística {#amostragem-não-probabilística}</span></span>
+<span id="cb1-258"><a href="#cb1-258"></a></span>
+<span id="cb1-259"><a href="#cb1-259"></a>Não envolve seleção aleatória.</span>
+<span id="cb1-260"><a href="#cb1-260"></a></span>
+<span id="cb1-261"><a href="#cb1-261"></a><span class="fu">### Amostragem Aleatória Simples {#amostragem-aleatória-simples}</span></span>
+<span id="cb1-262"><a href="#cb1-262"></a></span>
+<span id="cb1-263"><a href="#cb1-263"></a>Todos os membros da população têm a mesma chance de serem selecionados.</span>
+<span id="cb1-264"><a href="#cb1-264"></a></span>
+<span id="cb1-265"><a href="#cb1-265"></a><span class="fu">### Amostragem Sistemática {#amostragem-sistemática}</span></span>
+<span id="cb1-266"><a href="#cb1-266"></a></span>
+<span id="cb1-267"><a href="#cb1-267"></a>A seleção é feita a partir de um intervalo fixo na lista populacional.</span>
+<span id="cb1-268"><a href="#cb1-268"></a></span>
+<span id="cb1-269"><a href="#cb1-269"></a><span class="fu">### Amostragem Estratificada {#amostragem-estratificada}</span></span>
+<span id="cb1-270"><a href="#cb1-270"></a></span>
+<span id="cb1-271"><a href="#cb1-271"></a>A população é dividida em estratos, e amostras são retiradas de cada</span>
+<span id="cb1-272"><a href="#cb1-272"></a>estrato.</span>
+<span id="cb1-273"><a href="#cb1-273"></a></span>
+<span id="cb1-274"><a href="#cb1-274"></a><span class="fu">### Amostragem por Conglomerados {#amostragem-por-conglomerados}</span></span>
+<span id="cb1-275"><a href="#cb1-275"></a></span>
+<span id="cb1-276"><a href="#cb1-276"></a>A população é dividida em conglomerados, e alguns conglomerados são</span>
+<span id="cb1-277"><a href="#cb1-277"></a>selecionados aleatoriamente.</span>
+<span id="cb1-278"><a href="#cb1-278"></a></span>
+<span id="cb1-279"><a href="#cb1-279"></a>------------------------------------------------------------------------</span>
+<span id="cb1-280"><a href="#cb1-280"></a></span>
+<span id="cb1-281"><a href="#cb1-281"></a><span class="fu"># Noções de Probabilidade {#noções-de-probabilidade}</span></span>
+<span id="cb1-282"><a href="#cb1-282"></a></span>
+<span id="cb1-283"><a href="#cb1-283"></a>A probabilidade é um ramo da matemática que estuda a incerteza e a</span>
+<span id="cb1-284"><a href="#cb1-284"></a>aleatoriedade. Ela fornece ferramentas para quantificar a chance de</span>
+<span id="cb1-285"><a href="#cb1-285"></a>ocorrência de eventos em situações onde o resultado não é previsível com</span>
+<span id="cb1-286"><a href="#cb1-286"></a>certeza. Desde previsões do tempo até decisões financeiras, a</span>
+<span id="cb1-287"><a href="#cb1-287"></a>probabilidade está presente em diversos aspectos da vida cotidiana e é</span>
+<span id="cb1-288"><a href="#cb1-288"></a>fundamental em áreas como estatística, ciência de dados, física,</span>
+<span id="cb1-289"><a href="#cb1-289"></a>engenharia e economia.</span>
+<span id="cb1-290"><a href="#cb1-290"></a></span>
+<span id="cb1-291"><a href="#cb1-291"></a><span class="fu">## Análise Combinatória {#análise-combinatória}</span></span>
+<span id="cb1-292"><a href="#cb1-292"></a></span>
+<span id="cb1-293"><a href="#cb1-293"></a>Esse é um assunto difícil e não faz parte do escopo da disciplina, então</span>
+<span id="cb1-294"><a href="#cb1-294"></a>foque em ter um entendimento intuitivo das ideias contidas nessa</span>
+<span id="cb1-295"><a href="#cb1-295"></a>sub-seção</span>
+<span id="cb1-296"><a href="#cb1-296"></a></span>
+<span id="cb1-297"><a href="#cb1-297"></a>...</span>
+<span id="cb1-298"><a href="#cb1-298"></a></span>
+<span id="cb1-299"><a href="#cb1-299"></a><span class="fu">## Conceitos básicos</span></span>
+<span id="cb1-300"><a href="#cb1-300"></a></span>
+<span id="cb1-301"><a href="#cb1-301"></a><span class="fu">### Experimento Aleatório {#experimento-aleatório}</span></span>
+<span id="cb1-302"><a href="#cb1-302"></a></span>
+<span id="cb1-303"><a href="#cb1-303"></a>Um experimento aleatório é qualquer processo que pode ser repetido sob</span>
+<span id="cb1-304"><a href="#cb1-304"></a>as mesmas condições, mas cujo resultado não pode ser previsto com</span>
+<span id="cb1-305"><a href="#cb1-305"></a>certeza. Exemplos incluem: </span>
+<span id="cb1-306"><a href="#cb1-306"></a><span class="ss">-  </span>Lançar uma moeda;</span>
+<span id="cb1-307"><a href="#cb1-307"></a><span class="ss">-  </span>Jogar um dado;</span>
+<span id="cb1-308"><a href="#cb1-308"></a><span class="ss">-  </span>Sortear uma carta de um baralho; </span>
+<span id="cb1-309"><a href="#cb1-309"></a><span class="ss">-  </span>Número de peças defeituosas em um lote;</span>
+<span id="cb1-310"><a href="#cb1-310"></a><span class="ss">-  </span>Quantidade de chamadas telefônicas em uma hora em um call center</span>
+<span id="cb1-311"><a href="#cb1-311"></a></span>
+<span id="cb1-312"><a href="#cb1-312"></a><span class="fu">### Espaço Amostral {#espaço-amostral}</span></span>
+<span id="cb1-313"><a href="#cb1-313"></a></span>
+<span id="cb1-314"><a href="#cb1-314"></a>O espaço amostral é o conjunto de todos os resultados possíveis de um</span>
+<span id="cb1-315"><a href="#cb1-315"></a>experimento aleatório. Por exemplo: - No lançamento de uma moeda: S =</span>
+<span id="cb1-316"><a href="#cb1-316"></a>{Cara, Coroa}. - No lançamento de um dado: S = {1, 2, 3, 4, 5, 6}. -</span>
+<span id="cb1-317"><a href="#cb1-317"></a>Considere o exemplo da seção anterior em que observamos o número de</span>
+<span id="cb1-318"><a href="#cb1-318"></a>chamadas telefônicas que chegam a uma central durante um determinado</span>
+<span id="cb1-319"><a href="#cb1-319"></a>intervalo de tempo. O espaço amostral é o conjunto: S = {0,1,2, 3,...}.</span>
+<span id="cb1-320"><a href="#cb1-320"></a></span>
+<span id="cb1-321"><a href="#cb1-321"></a>EXEMPLO: LANÇAMENTO DE DUAS MOEDAS, EXPLANAÇÃO RAPIDA DE ANALISE</span>
+<span id="cb1-322"><a href="#cb1-322"></a>COMBINATORIA</span>
+<span id="cb1-323"><a href="#cb1-323"></a></span>
+<span id="cb1-324"><a href="#cb1-324"></a>Exercício: pense e delimite (nao precisa escrever, só raciocinar) qual o</span>
+<span id="cb1-325"><a href="#cb1-325"></a>tamanho do espaço amostral e quais são os elementos do espaço amostral</span>
+<span id="cb1-326"><a href="#cb1-326"></a>de uma mão no jogo truco. Se você não sabe truco, faça o mesmo com o</span>
+<span id="cb1-327"><a href="#cb1-327"></a>sorteio aleatório de uma carta.</span>
+<span id="cb1-328"><a href="#cb1-328"></a></span>
+<span id="cb1-329"><a href="#cb1-329"></a><span class="fu">### Eventos {#eventos}</span></span>
+<span id="cb1-330"><a href="#cb1-330"></a></span>
+<span id="cb1-331"><a href="#cb1-331"></a>Um evento é um subconjunto do espaço amostral. Ele representa um</span>
+<span id="cb1-332"><a href="#cb1-332"></a>resultado ou uma combinação de resultados de interesse. Por exemplo: -</span>
+<span id="cb1-333"><a href="#cb1-333"></a>No lançamento de um dado, o evento "sair um número par" é o subconjunto</span>
+<span id="cb1-334"><a href="#cb1-334"></a>{2, 4, 6}. - Na retirada de uma mão no truco em que a vira é o Ás o</span>
+<span id="cb1-335"><a href="#cb1-335"></a>evento "tirar as 4 cartas mais fortes" é o subconjunto {2 de espadas, 2</span>
+<span id="cb1-336"><a href="#cb1-336"></a>de ouros, 2 copas, 2 de paus}</span>
+<span id="cb1-337"><a href="#cb1-337"></a></span>
+<span id="cb1-338"><a href="#cb1-338"></a><span class="fu">## Definição de Probabilidade {#definição-de-probabilidade}</span></span>
+<span id="cb1-339"><a href="#cb1-339"></a></span>
+<span id="cb1-340"><a href="#cb1-340"></a>A probabilidade, em termos informais, é uma medida que quantifica a</span>
+<span id="cb1-341"><a href="#cb1-341"></a>chance de um evento ocorrer. Ela é representada por um número entre 0 e</span>
+<span id="cb1-342"><a href="#cb1-342"></a>1, onde:</span>
+<span id="cb1-343"><a href="#cb1-343"></a></span>
+<span id="cb1-344"><a href="#cb1-344"></a><span class="ss">-   </span>0: O evento é impossível (nunca ocorre).</span>
+<span id="cb1-345"><a href="#cb1-345"></a></span>
+<span id="cb1-346"><a href="#cb1-346"></a><span class="ss">-   </span>1: O evento é certo (sempre ocorre).</span>
+<span id="cb1-347"><a href="#cb1-347"></a></span>
+<span id="cb1-348"><a href="#cb1-348"></a>A probabilidade de um evento A é denotada por P(A)</span>
+<span id="cb1-349"><a href="#cb1-349"></a></span>
+<span id="cb1-350"><a href="#cb1-350"></a>$$</span>
+<span id="cb1-351"><a href="#cb1-351"></a>P(A) = \frac{n(A)}{n(\Omega)}</span>
+<span id="cb1-352"><a href="#cb1-352"></a>$$ </span>
+<span id="cb1-353"><a href="#cb1-353"></a></span>
+<span id="cb1-354"><a href="#cb1-354"></a>Onde:</span>
+<span id="cb1-355"><a href="#cb1-355"></a><span class="ss">-   </span>n(A): Número de resultados favoráveis ao evento </span>
+<span id="cb1-356"><a href="#cb1-356"></a><span class="ss">-   </span>n(Ω): Número total de resultados possíveis no espaço amostral</span>
+<span id="cb1-357"><a href="#cb1-357"></a></span>
+<span id="cb1-358"><a href="#cb1-358"></a><span class="fu">### Axiomas da Probabilidade {#axiomas-da-probabilidade}</span></span>
+<span id="cb1-359"><a href="#cb1-359"></a></span>
+<span id="cb1-360"><a href="#cb1-360"></a>Regras básicas que definem a probabilidade.</span>
+<span id="cb1-361"><a href="#cb1-361"></a></span>
+<span id="cb1-362"><a href="#cb1-362"></a><span class="fu">### Propriedades Fundamentais {#propriedades-fundamentais}</span></span>
+<span id="cb1-363"><a href="#cb1-363"></a></span>
+<span id="cb1-364"><a href="#cb1-364"></a>Propriedades derivadas dos axiomas.</span>
+<span id="cb1-365"><a href="#cb1-365"></a></span>
+<span id="cb1-366"><a href="#cb1-366"></a><span class="fu">## Probabilidade Condicional e Teorema de Bayes {#probabilidade-condicional-e-teorema-de-bayes}</span></span>
+<span id="cb1-367"><a href="#cb1-367"></a></span>
+<span id="cb1-368"><a href="#cb1-368"></a><span class="fu">### Probabilidade Condicional {#probabilidade-condicional}</span></span>
+<span id="cb1-369"><a href="#cb1-369"></a></span>
+<span id="cb1-370"><a href="#cb1-370"></a>Probabilidade de um evento dado que outro ocorreu.</span>
+<span id="cb1-371"><a href="#cb1-371"></a></span>
+<span id="cb1-372"><a href="#cb1-372"></a><span class="fu">### Teorema de Bayes {#teorema-de-bayes}</span></span>
+<span id="cb1-373"><a href="#cb1-373"></a></span>
+<span id="cb1-374"><a href="#cb1-374"></a>Relaciona probabilidades condicionais.</span>
+<span id="cb1-375"><a href="#cb1-375"></a></span>
+<span id="cb1-376"><a href="#cb1-376"></a><span class="fu">## Independência de Eventos {#independência-de-eventos}</span></span>
+<span id="cb1-377"><a href="#cb1-377"></a></span>
+<span id="cb1-378"><a href="#cb1-378"></a><span class="fu">### Definição de Independência {#definição-de-independência}</span></span>
+<span id="cb1-379"><a href="#cb1-379"></a></span>
+<span id="cb1-380"><a href="#cb1-380"></a>Dois eventos são independentes se a ocorrência de um não afeta a</span>
+<span id="cb1-381"><a href="#cb1-381"></a>probabilidade do outro.</span>
+<span id="cb1-382"><a href="#cb1-382"></a></span>
+<span id="cb1-383"><a href="#cb1-383"></a><span class="fu">### Exemplos de Independência {#exemplos-de-independência}</span></span>
+<span id="cb1-384"><a href="#cb1-384"></a></span>
+<span id="cb1-385"><a href="#cb1-385"></a>Exemplos práticos de eventos independentes.</span>
+<span id="cb1-386"><a href="#cb1-386"></a></span>
+<span id="cb1-387"><a href="#cb1-387"></a><span class="fu">## Variáveis Aleatórias {#variáveis-aleatórias}</span></span>
+<span id="cb1-388"><a href="#cb1-388"></a></span>
+<span id="cb1-389"><a href="#cb1-389"></a><span class="fu">### Variáveis Aleatórias Discretas {#variáveis-aleatórias-discretas}</span></span>
+<span id="cb1-390"><a href="#cb1-390"></a></span>
+<span id="cb1-391"><a href="#cb1-391"></a>Assumem valores contáveis.</span>
+<span id="cb1-392"><a href="#cb1-392"></a></span>
+<span id="cb1-393"><a href="#cb1-393"></a><span class="fu">### Variáveis Aleatórias Contínuas {#variáveis-aleatórias-contínuas}</span></span>
+<span id="cb1-394"><a href="#cb1-394"></a></span>
+<span id="cb1-395"><a href="#cb1-395"></a>Assumem valores em um intervalo.</span>
+<span id="cb1-396"><a href="#cb1-396"></a></span>
+<span id="cb1-397"><a href="#cb1-397"></a><span class="fu">## Distribuições de Probabilidade {#distribuições-de-probabilidade}</span></span>
+<span id="cb1-398"><a href="#cb1-398"></a></span>
+<span id="cb1-399"><a href="#cb1-399"></a><span class="fu">### Distribuições Discretas {#distribuições-discretas}</span></span>
+<span id="cb1-400"><a href="#cb1-400"></a></span>
+<span id="cb1-401"><a href="#cb1-401"></a>Binomial, Poisson.</span>
+<span id="cb1-402"><a href="#cb1-402"></a></span>
+<span id="cb1-403"><a href="#cb1-403"></a><span class="fu">### Distribuições Contínuas {#distribuições-contínuas}</span></span>
+<span id="cb1-404"><a href="#cb1-404"></a></span>
+<span id="cb1-405"><a href="#cb1-405"></a>Exponencial, Normal.</span>
+<span id="cb1-406"><a href="#cb1-406"></a></span>
+<span id="cb1-407"><a href="#cb1-407"></a>------------------------------------------------------------------------</span>
+<span id="cb1-408"><a href="#cb1-408"></a></span>
+<span id="cb1-409"><a href="#cb1-409"></a><span class="fu"># Noções de Inferência Estatística {#noções-de-inferência-estatística}</span></span>
+<span id="cb1-410"><a href="#cb1-410"></a></span>
+<span id="cb1-411"><a href="#cb1-411"></a><span class="fu">## Parâmetros, Estimadores e Estimativas {#parâmetros-estimadores-e-estimativas}</span></span>
+<span id="cb1-412"><a href="#cb1-412"></a></span>
+<span id="cb1-413"><a href="#cb1-413"></a><span class="fu">### Parâmetros</span></span>
+<span id="cb1-414"><a href="#cb1-414"></a></span>
+<span id="cb1-415"><a href="#cb1-415"></a>Características da população.</span>
+<span id="cb1-416"><a href="#cb1-416"></a></span>
+<span id="cb1-417"><a href="#cb1-417"></a><span class="fu">### Estimadores {#estimadores}</span></span>
+<span id="cb1-418"><a href="#cb1-418"></a></span>
+<span id="cb1-419"><a href="#cb1-419"></a>Funções dos dados usadas para estimar parâmetros.</span>
+<span id="cb1-420"><a href="#cb1-420"></a></span>
+<span id="cb1-421"><a href="#cb1-421"></a><span class="fu">### Estimativas {#estimativas}</span></span>
+<span id="cb1-422"><a href="#cb1-422"></a></span>
+<span id="cb1-423"><a href="#cb1-423"></a>Valores calculados a partir dos dados.</span>
+<span id="cb1-424"><a href="#cb1-424"></a></span>
+<span id="cb1-425"><a href="#cb1-425"></a><span class="fu">## Distribuição Amostral {#distribuição-amostral}</span></span>
+<span id="cb1-426"><a href="#cb1-426"></a></span>
+<span id="cb1-427"><a href="#cb1-427"></a><span class="fu">### Distribuição da Média {#distribuição-da-média}</span></span>
+<span id="cb1-428"><a href="#cb1-428"></a></span>
+<span id="cb1-429"><a href="#cb1-429"></a>Distribuição da média amostral.</span>
+<span id="cb1-430"><a href="#cb1-430"></a></span>
+<span id="cb1-431"><a href="#cb1-431"></a><span class="fu">### Distribuição da Proporção {#distribuição-da-proporção}</span></span>
+<span id="cb1-432"><a href="#cb1-432"></a></span>
+<span id="cb1-433"><a href="#cb1-433"></a>Distribuição da proporção amostral.</span>
+<span id="cb1-434"><a href="#cb1-434"></a></span>
+<span id="cb1-435"><a href="#cb1-435"></a><span class="fu">### Distribuição da Diferença de Médias {#distribuição-da-diferença-de-médias}</span></span>
+<span id="cb1-436"><a href="#cb1-436"></a></span>
+<span id="cb1-437"><a href="#cb1-437"></a>Distribuição da diferença entre médias amostrais.</span>
+<span id="cb1-438"><a href="#cb1-438"></a></span>
+<span id="cb1-439"><a href="#cb1-439"></a><span class="fu">## Intervalo de Confiança {#intervalo-de-confiança}</span></span>
+<span id="cb1-440"><a href="#cb1-440"></a></span>
+<span id="cb1-441"><a href="#cb1-441"></a><span class="fu">### Intervalo para a Média {#intervalo-para-a-média}</span></span>
+<span id="cb1-442"><a href="#cb1-442"></a></span>
+<span id="cb1-443"><a href="#cb1-443"></a>Intervalo de confiança para a média populacional.</span>
+<span id="cb1-444"><a href="#cb1-444"></a></span>
+<span id="cb1-445"><a href="#cb1-445"></a><span class="fu">### Intervalo para a Proporção {#intervalo-para-a-proporção}</span></span>
+<span id="cb1-446"><a href="#cb1-446"></a></span>
+<span id="cb1-447"><a href="#cb1-447"></a>Intervalo de confiança para a proporção populacional.</span>
+<span id="cb1-448"><a href="#cb1-448"></a></span>
+<span id="cb1-449"><a href="#cb1-449"></a>------------------------------------------------------------------------</span>
+<span id="cb1-450"><a href="#cb1-450"></a></span>
+<span id="cb1-451"><a href="#cb1-451"></a><span class="fu"># Noções de Regressão Linear Simples {#noções-de-regressão-linear-simples}</span></span>
+<span id="cb1-452"><a href="#cb1-452"></a></span>
+<span id="cb1-453"><a href="#cb1-453"></a><span class="fu">## Conceitos {#conceitos}</span></span>
+<span id="cb1-454"><a href="#cb1-454"></a></span>
+<span id="cb1-455"><a href="#cb1-455"></a><span class="fu">## Estimação dos Parâmetros {#estimação-dos-parâmetros}</span></span>
+<span id="cb1-456"><a href="#cb1-456"></a></span>
+<span id="cb1-457"><a href="#cb1-457"></a><span class="fu">## Coeficiente de Determinação {#coeficiente-de-determinação}</span></span>
+<span id="cb1-458"><a href="#cb1-458"></a></span>
+<span id="cb1-459"><a href="#cb1-459"></a>------------------------------------------------------------------------</span>
+<span id="cb1-460"><a href="#cb1-460"></a></span>
+<span id="cb1-461"><a href="#cb1-461"></a><span class="fu"># Apêndices</span></span>
+<span id="cb1-462"><a href="#cb1-462"></a></span>
+<span id="cb1-463"><a href="#cb1-463"></a><span class="fu">## Arquivos de Aulas</span></span>
+<span id="cb1-464"><a href="#cb1-464"></a></span>
+<span id="cb1-465"><a href="#cb1-465"></a><span class="fu">## Nivelamento em R</span></span>
+<span id="cb1-466"><a href="#cb1-466"></a></span>
+<span id="cb1-467"><a href="#cb1-467"></a><span class="fu">## Dicas de geração de código com IA</span></span>
+<span id="cb1-468"><a href="#cb1-468"></a></span>
+<span id="cb1-469"><a href="#cb1-469"></a>------------------------------------------------------------------------</span>
+<span id="cb1-470"><a href="#cb1-470"></a></span>
+<span id="cb1-471"><a href="#cb1-471"></a><span class="fu"># Créditos e Agradecimentos</span></span>
+<span id="cb1-472"><a href="#cb1-472"></a></span>
+<span id="cb1-473"><a href="#cb1-473"></a>DIEGO e seus slides maravilhosos</span>
+<span id="cb1-474"><a href="#cb1-474"></a></span>
+<span id="cb1-475"><a href="#cb1-475"></a><span class="fu">### </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

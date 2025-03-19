@@ -1,0 +1,475 @@
+---
+title: "Introdução Interativa a Estatística"
+author: "Daniel Alexandre Ramazzotte"
+date: "2025-xx-xx"
+format:
+  html:
+    toc: true
+    toc-depth: 4  # Aumentei a profundidade do índice para incluir subseções
+    number-sections: true
+    code-tools: true
+    code-fold: true
+    code-line-numbers: true
+    code-overflow: wrap
+    code-copy: true
+    code-link: true
+    highlight-style: pygments
+    theme: cosmo
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# Introdução à Estatística e à Análise Exploratória de Dados {#introdução-a-estatística-e-a-análise-exploratória-de-dados}
+
+## O que é Estatística {#o-que-é-estatística}
+
+### Definição {#definição}
+
+Algumas definições para a estatística:
+
+Estatística é a ciência que utiliza as teorias probabilísticas (o que
+entenderemos na próxima seção) para explicar a frequência da ocorrência
+de eventos, tanto em estudos observacionais quanto em experimentos para
+modelar a aleatoriedade e a incerteza de forma a estimar ou possibilitar
+a previsão de fenômenos futuros, conforme o caso. (Saulo Henrique Weber,
+2006)
+
+A Estatística é a ciência que coleta, organiza, analisa, interpreta e
+apresenta dados. Ela fornece ferramentas e métodos para transformar
+informações brutas em conhecimento útil, permitindo a tomada de decisões
+embasadas em evidências. (D.S. Moore, et al., 1999).
+
+Até que um fenômeno de qualquer ramo do conhecimento seja submetido a
+medidas e números, este não assumirá um status e seriedade na Ciência.
+Popularmente atribuída à Francis Galton
+
+Estatística é a arte de aprender a partir de dados (Ross, 2010)
+
+Sem dados você é uma pessoa qualquer com uma opinião" William Edwards
+Deming
+
+"Estatística é "a gramática da Ciência" Karl Pearson
+
+### Breve História da Estatística {#evolução-histórica}
+
+escrever
+
+Algumas leituras recomendadas são O Andar do Bêbado e Uma Senhora Toma
+Chá para aprendizado sobre a evolução da histórica da estatística e
+probabilidade e intuição sobre conceitos complexos.
+
+### Importância e Aplicações {#importância-e-aplicações}
+
+A Estatística é fundamental para muitas áreas e aplicável em quase todas
+porque permite testar hipóteses, validar teorias e generalizar
+resultados a partir de dados e hoje em dia se coletam dados de quase
+tudo. Algumas dessas áreas são administração do Estado, otimização de
+processos industriais e de engenharia, computação, ciências (saúde,
+biológicas, sociais, física).
+
+Ela nos permite responder questões como:
+
+-   Qual tipo e quantidade de dados devo coletar?
+-   Como organizar e resumir estes dados?
+-   Como analisar os dados e fazer conclusões dele?
+-   Como avaliar a força destas conclusões e avaliar sua incerteza?
+-   Como planejar um experimento que verifique a minha hipótese?
+
+Algumas aplicações específicas são:
+
+-   Identificar mensagens indesejáveis em um e-mail (spam);
+-   Segmentação do comportamento de consumidores para propagandas
+    direcionadas;
+-   Redução de fraudes em transações de cartão de crédito;
+-   Predição de eleições;
+-   Otimização do uso de energia em edifícios;
+-   Existe relação entre desemprego e procura por Uber?
+-   Os desembolsos do BNDES fizeram aumentar a taxa de investimento da
+    economia brasileira?
+-   Como explicar a inflação de alimentos?
+-   O Banco Central brasileiro reage aos choques cambiais?
+-   Qual o efeito do aumento da volatilidade no mercado sobre a taxa de
+    câmbio?
+
+## Divisão do Livro
+
+Tradicionalmente se divide didaticamente a estatística nas seguintes
+partes (o que a ementa dessa disciplina faz e consequentemente esta
+apostila também):
+
+-   Estatística Descritiva: É a área da estatística que visa organizar,
+    resumir e descrever um conjunto de dados
+-   Estatística Inferencial: Coleção de métodos e técnicas utilizados
+    para estudar uma população baseado em amostras probabilísticas desta
+    população. É uma ferramenta valiosa para tomar decisões e fazer
+    previsões
+-   Teoria da Probabilidade: Base teórica da estatística, é um ramo da
+    matemática que estuda fenômenos aleatórios, ou seja, eventos cujos
+    resultados não são determinísticos, mas sim sujeitos a incertezas.
+    Ela fornece uma estrutura formal para quantificar a incerteza e
+    modelar situações onde o acaso está presente.
+
+## Conceitos Básicos {#conceitos-básicos}
+
+### População {#população}
+
+Conjunto de todos os elementos com a característica de interesse, sobre
+a qual desejamos obter informações. A população pode ser finita ou
+infinita. Representamos por "N" o número de elementos da população.
+
+### Amostra {#amostra}
+
+É um subconjunto retirado de uma população, obtido através de técnicas
+de amostragem. O número de elementos da amostra é representado por "n".
+Exemplo: Em uma pesquisa eleitoral para saber o resultado das eleições
+para presidente do Brasil, qual a população de interesse? Qual seria a
+amostra? R: A população é constituída de todos os eleitores do Brasil. A
+amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.
+
+### Censo {#censo}
+
+É o processo utilizado para levantar as características observáveis,
+abordando todos os elementos de uma população. Então, um levantamento
+efetuado sobre toda uma população é denominado de levantamento
+censitário ou simplesmente censo.
+   n
+https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html
+escrever breve texto sobre o censo de 2022
+
+### Parâmetros {#parâmetros}
+
+### Estatísticas {#estatísticas}
+
+### Variável {#variável}
+
+Variável é qualquer característica que varia de um elemento da população
+para outro. É a característica que está sendo analisada em cada elemento
+de uma população. Exemplo: Na população funcionários de uma determinada
+empresa -- podemos estudar as varáveis: número de dependentes,
+remuneração financeira, idade, sexo, local de residência, nível de
+escolaridade, estado civil, tempo deserviços na empresa, etc.
+
+### Estrutura de uma planilha
+
+ESCREVER UM BASICO E ENSINAR R
+
+## Classificação das Variáveis {#classificação-das-variáveis}
+
+![Figura 1: Classificação das Variáveis](var.png)
+
+## Distribuição de Frequências {#distribuição-de-frequências}
+
+A distribuição de frequências é uma forma de organizar e resumir dados,
+mostrando como os valores de uma variável estão distribuídos. Ela pode
+ser aplicada tanto para variáveis quantitativas (numéricas) quanto para
+variáveis qualitativas (categóricas).
+
+### Distribuição para Variáveis Quantitativas {#distribuição-para-variáveis-quantitativas}
+
+A distribuição de frequências para variáveis quantitativas é feita
+agrupando os dados em intervalos de classe ou listando cada valor
+individualmente.
+
+Passos para Construir a Distribuição: 1. Definir os Intervalos de Classe
+(para dados contínuos): - Divida os dados em intervalos (ex: 0-10,
+10-20, 20-30). - Cada intervalo é chamado de classe. - O tamanho do
+intervalo é chamado de amplitude de classe e existem várias maneiras de
+defini-la 2. Contar a Frequência: - Conte quantos valores estão em cada
+intervalo (frequência absoluta). 3. Calcular Frequências Relativas e
+Acumuladas: - Frequência relativa: Proporção de valores em cada classe
+em relação ao total. - Frequência acumulada: Soma das frequências até
+uma determinada classe.
+
+Formas de definir a amplitude das classes:
+
+EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO
+DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO
+
+### Distribuição para Variáveis Qualitativas {#distribuição-para-variáveis-qualitativas}
+
+A distribuição de frequências para variáveis qualitativas é feita
+contando a ocorrência de cada categoria.
+
+1.  Listar as Categorias:
+2.  Contar a Frequência Absoluta
+3.  Calcular Frequências Relativas e Acumuladas
+
+EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO
+DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO
+
+## Medidas de Posição e Dispersão {#medidas-de-posição-e-dispersão}
+
+### Média {#média}
+
+Média
+
+### Mediana {#mediana}
+
+### Moda {#moda}
+
+### Desvio Padrão {#desvio-padrão}
+
+### Variância {#variância}
+
+### Assimetria {#assimetria}
+
+### Curtose {#curtose}
+
+## Gráficos {#gráficos}
+
+### Gráficos para Variáveis Qualitativas {#gráficos-para-variáveis-qualitativas}
+
+#### Barras
+
+#### Colunas
+
+#### Setores
+
+#### Linhas
+
+### Gráficos para Variáveis Quantitativas {#gráficos-para-variáveis-quantitativas}
+
+#### Histograma
+
+#### Polígono de Frequências
+
+#### Boxplot
+
+#### Diagrama de Dispersão
+
+## Análise Bidimensional de Dados {#análise-bidimensional-de-dados}
+
+### Tabelas de Contingência {#tabelas-de-contingência}
+
+Mostram a relação entre duas variáveis categóricas.
+
+### Covariância e Correlação {#covariância-e-correlação}
+
+Medem a relação entre variáveis quantitativas. \## Técnicas de
+Amostragem {#técnicas-de-amostragem}
+
+### Amostragem Probabilística (Aleatória) {#amostragem-probabilística}
+
+Envolve seleção aleatória, onde todos os membros da população têm a
+mesma chance de serem selecionados.
+
+### Amostragem Não Probabilística {#amostragem-não-probabilística}
+
+Não envolve seleção aleatória.
+
+### Amostragem Aleatória Simples {#amostragem-aleatória-simples}
+
+Todos os membros da população têm a mesma chance de serem selecionados.
+
+### Amostragem Sistemática {#amostragem-sistemática}
+
+A seleção é feita a partir de um intervalo fixo na lista populacional.
+
+### Amostragem Estratificada {#amostragem-estratificada}
+
+A população é dividida em estratos, e amostras são retiradas de cada
+estrato.
+
+### Amostragem por Conglomerados {#amostragem-por-conglomerados}
+
+A população é dividida em conglomerados, e alguns conglomerados são
+selecionados aleatoriamente.
+
+------------------------------------------------------------------------
+
+# Noções de Probabilidade {#noções-de-probabilidade}
+
+A probabilidade é um ramo da matemática que estuda a incerteza e a
+aleatoriedade. Ela fornece ferramentas para quantificar a chance de
+ocorrência de eventos em situações onde o resultado não é previsível com
+certeza. Desde previsões do tempo até decisões financeiras, a
+probabilidade está presente em diversos aspectos da vida cotidiana e é
+fundamental em áreas como estatística, ciência de dados, física,
+engenharia e economia.
+
+## Análise Combinatória {#análise-combinatória}
+
+Esse é um assunto difícil e não faz parte do escopo da disciplina, então
+foque em ter um entendimento intuitivo das ideias contidas nessa
+sub-seção
+
+...
+
+## Conceitos básicos
+
+### Experimento Aleatório {#experimento-aleatório}
+
+Um experimento aleatório é qualquer processo que pode ser repetido sob
+as mesmas condições, mas cujo resultado não pode ser previsto com
+certeza. Exemplos incluem: 
+-  Lançar uma moeda;
+-  Jogar um dado;
+-  Sortear uma carta de um baralho; 
+-  Número de peças defeituosas em um lote;
+-  Quantidade de chamadas telefônicas em uma hora em um call center
+
+### Espaço Amostral {#espaço-amostral}
+
+O espaço amostral é o conjunto de todos os resultados possíveis de um
+experimento aleatório. Por exemplo: - No lançamento de uma moeda: S =
+{Cara, Coroa}. - No lançamento de um dado: S = {1, 2, 3, 4, 5, 6}. -
+Considere o exemplo da seção anterior em que observamos o número de
+chamadas telefônicas que chegam a uma central durante um determinado
+intervalo de tempo. O espaço amostral é o conjunto: S = {0,1,2, 3,...}.
+
+EXEMPLO: LANÇAMENTO DE DUAS MOEDAS, EXPLANAÇÃO RAPIDA DE ANALISE
+COMBINATORIA
+
+Exercício: pense e delimite (nao precisa escrever, só raciocinar) qual o
+tamanho do espaço amostral e quais são os elementos do espaço amostral
+de uma mão no jogo truco. Se você não sabe truco, faça o mesmo com o
+sorteio aleatório de uma carta.
+
+### Eventos {#eventos}
+
+Um evento é um subconjunto do espaço amostral. Ele representa um
+resultado ou uma combinação de resultados de interesse. Por exemplo: -
+No lançamento de um dado, o evento "sair um número par" é o subconjunto
+{2, 4, 6}. - Na retirada de uma mão no truco em que a vira é o Ás o
+evento "tirar as 4 cartas mais fortes" é o subconjunto {2 de espadas, 2
+de ouros, 2 copas, 2 de paus}
+
+## Definição de Probabilidade {#definição-de-probabilidade}
+
+A probabilidade, em termos informais, é uma medida que quantifica a
+chance de um evento ocorrer. Ela é representada por um número entre 0 e
+1, onde:
+
+-   0: O evento é impossível (nunca ocorre).
+
+-   1: O evento é certo (sempre ocorre).
+
+A probabilidade de um evento A é denotada por P(A)
+
+$$
+P(A) = \frac{n(A)}{n(\Omega)}
+$$ 
+
+Onde:
+-   n(A): Número de resultados favoráveis ao evento 
+-   n(Ω): Número total de resultados possíveis no espaço amostral   
+
+### Axiomas da Probabilidade {#axiomas-da-probabilidade}
+
+Regras básicas que definem a probabilidade.
+
+### Propriedades Fundamentais {#propriedades-fundamentais}
+
+Propriedades derivadas dos axiomas.
+
+## Probabilidade Condicional e Teorema de Bayes {#probabilidade-condicional-e-teorema-de-bayes}
+
+### Probabilidade Condicional {#probabilidade-condicional}
+
+Probabilidade de um evento dado que outro ocorreu.
+
+### Teorema de Bayes {#teorema-de-bayes}
+
+Relaciona probabilidades condicionais.
+
+## Independência de Eventos {#independência-de-eventos}
+
+### Definição de Independência {#definição-de-independência}
+
+Dois eventos são independentes se a ocorrência de um não afeta a
+probabilidade do outro.
+
+### Exemplos de Independência {#exemplos-de-independência}
+
+Exemplos práticos de eventos independentes.
+
+## Variáveis Aleatórias {#variáveis-aleatórias}
+
+### Variáveis Aleatórias Discretas {#variáveis-aleatórias-discretas}
+
+Assumem valores contáveis.
+
+### Variáveis Aleatórias Contínuas {#variáveis-aleatórias-contínuas}
+
+Assumem valores em um intervalo.
+
+## Distribuições de Probabilidade {#distribuições-de-probabilidade}
+
+### Distribuições Discretas {#distribuições-discretas}
+
+Binomial, Poisson.
+
+### Distribuições Contínuas {#distribuições-contínuas}
+
+Exponencial, Normal.
+
+------------------------------------------------------------------------
+
+# Noções de Inferência Estatística {#noções-de-inferência-estatística}
+
+## Parâmetros, Estimadores e Estimativas {#parâmetros-estimadores-e-estimativas}
+
+### Parâmetros
+
+Características da população.
+
+### Estimadores {#estimadores}
+
+Funções dos dados usadas para estimar parâmetros.
+
+### Estimativas {#estimativas}
+
+Valores calculados a partir dos dados.
+
+## Distribuição Amostral {#distribuição-amostral}
+
+### Distribuição da Média {#distribuição-da-média}
+
+Distribuição da média amostral.
+
+### Distribuição da Proporção {#distribuição-da-proporção}
+
+Distribuição da proporção amostral.
+
+### Distribuição da Diferença de Médias {#distribuição-da-diferença-de-médias}
+
+Distribuição da diferença entre médias amostrais.
+
+## Intervalo de Confiança {#intervalo-de-confiança}
+
+### Intervalo para a Média {#intervalo-para-a-média}
+
+Intervalo de confiança para a média populacional.
+
+### Intervalo para a Proporção {#intervalo-para-a-proporção}
+
+Intervalo de confiança para a proporção populacional.
+
+------------------------------------------------------------------------
+
+# Noções de Regressão Linear Simples {#noções-de-regressão-linear-simples}
+
+## Conceitos {#conceitos}
+
+## Estimação dos Parâmetros {#estimação-dos-parâmetros}
+
+## Coeficiente de Determinação {#coeficiente-de-determinação}
+
+------------------------------------------------------------------------
+
+# Apêndices
+
+## Arquivos de Aulas
+
+## Nivelamento em R
+
+## Dicas de geração de código com IA
+
+------------------------------------------------------------------------
+
+# Créditos e Agradecimentos
+
+DIEGO e seus slides maravilhosos
+
+### 
