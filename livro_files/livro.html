@@ -69,6 +69,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="livro_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="livro_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+<script src="livro_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="livro_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -210,8 +213,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#apêndices" id="toc-apêndices" class="nav-link" data-scroll-target="#apêndices"><span class="header-section-number">5</span> Apêndices</a>
   <ul>
   <li><a href="#arquivos-de-aulas" id="toc-arquivos-de-aulas" class="nav-link" data-scroll-target="#arquivos-de-aulas"><span class="header-section-number">5.1</span> Arquivos de Aulas</a></li>
-  <li><a href="#nivelamento-em-r" id="toc-nivelamento-em-r" class="nav-link" data-scroll-target="#nivelamento-em-r"><span class="header-section-number">5.2</span> Nivelamento em R</a></li>
-  <li><a href="#dicas-de-geração-de-código-com-ia" id="toc-dicas-de-geração-de-código-com-ia" class="nav-link" data-scroll-target="#dicas-de-geração-de-código-com-ia"><span class="header-section-number">5.3</span> Dicas de geração de código com IA</a></li>
+  <li><a href="#introdução-a-r" id="toc-introdução-a-r" class="nav-link" data-scroll-target="#introdução-a-r"><span class="header-section-number">5.2</span> Introdução a R</a>
+  <ul class="collapse">
+  <li><a href="#instalação-do-ambiente-rstudio" id="toc-instalação-do-ambiente-rstudio" class="nav-link" data-scroll-target="#instalação-do-ambiente-rstudio"><span class="header-section-number">5.2.1</span> Instalação do ambiente Rstudio</a></li>
+  <li><a href="#libraries-libs-ou-bibliotecas" id="toc-libraries-libs-ou-bibliotecas" class="nav-link" data-scroll-target="#libraries-libs-ou-bibliotecas"><span class="header-section-number">5.2.2</span> Libraries (Libs ou Bibliotecas)</a></li>
+  <li><a href="#variáveis" id="toc-variáveis" class="nav-link" data-scroll-target="#variáveis"><span class="header-section-number">5.2.3</span> Variáveis</a>
+  <ul class="collapse">
+  <li><a href="#numérica-numeric" id="toc-numérica-numeric" class="nav-link" data-scroll-target="#numérica-numeric"><span class="header-section-number">5.2.3.1</span> Numérica (numeric)</a></li>
+  <li><a href="#caracteres-character-ou-string" id="toc-caracteres-character-ou-string" class="nav-link" data-scroll-target="#caracteres-character-ou-string"><span class="header-section-number">5.2.3.2</span> Caracteres (character ou string)</a></li>
+  <li><a href="#lógicas-logical-ou-boolean" id="toc-lógicas-logical-ou-boolean" class="nav-link" data-scroll-target="#lógicas-logical-ou-boolean"><span class="header-section-number">5.2.3.3</span> Lógicas (logical ou boolean)</a></li>
+  <li><a href="#fatores-factor" id="toc-fatores-factor" class="nav-link" data-scroll-target="#fatores-factor"><span class="header-section-number">5.2.3.4</span> Fatores (factor)</a></li>
+  <li><a href="#datas-date-ou-posixct" id="toc-datas-date-ou-posixct" class="nav-link" data-scroll-target="#datas-date-ou-posixct"><span class="header-section-number">5.2.3.5</span> Datas (Date ou POSIXct)</a></li>
+  <li><a href="#vetores-vector" id="toc-vetores-vector" class="nav-link" data-scroll-target="#vetores-vector"><span class="header-section-number">5.2.3.6</span> Vetores (vector)</a></li>
+  <li><a href="#listas-list" id="toc-listas-list" class="nav-link" data-scroll-target="#listas-list"><span class="header-section-number">5.2.3.7</span> Listas (list)</a></li>
+  <li><a href="#data-frames-data.frame" id="toc-data-frames-data.frame" class="nav-link" data-scroll-target="#data-frames-data.frame"><span class="header-section-number">5.2.3.8</span> Data Frames (data.frame)</a></li>
+  <li><a href="#matrizes" id="toc-matrizes" class="nav-link" data-scroll-target="#matrizes"><span class="header-section-number">5.2.3.9</span> Matrizes</a></li>
+  </ul></li>
+  <li><a href="#operações" id="toc-operações" class="nav-link" data-scroll-target="#operações"><span class="header-section-number">5.2.4</span> Operações</a></li>
+  <li><a href="#estruturas-condicionais" id="toc-estruturas-condicionais" class="nav-link" data-scroll-target="#estruturas-condicionais"><span class="header-section-number">5.2.5</span> Estruturas Condicionais</a></li>
+  <li><a href="#estruturas-de-laço-loop" id="toc-estruturas-de-laço-loop" class="nav-link" data-scroll-target="#estruturas-de-laço-loop"><span class="header-section-number">5.2.6</span> Estruturas de Laço (loop)</a></li>
+  <li><a href="#funções" id="toc-funções" class="nav-link" data-scroll-target="#funções"><span class="header-section-number">5.2.7</span> Funções</a></li>
+  <li><a href="#importação-de-dados" id="toc-importação-de-dados" class="nav-link" data-scroll-target="#importação-de-dados"><span class="header-section-number">5.2.8</span> Importação de Dados</a></li>
+  <li><a href="#manipulação-de-dados" id="toc-manipulação-de-dados" class="nav-link" data-scroll-target="#manipulação-de-dados"><span class="header-section-number">5.2.9</span> Manipulação de Dados</a></li>
+  </ul></li>
+  <li><a href="#introdução-a-python" id="toc-introdução-a-python" class="nav-link" data-scroll-target="#introdução-a-python"><span class="header-section-number">5.3</span> Introdução a Python</a>
+  <ul class="collapse">
+  <li><a href="#introdução-ao-google-collab" id="toc-introdução-ao-google-collab" class="nav-link" data-scroll-target="#introdução-ao-google-collab"><span class="header-section-number">5.3.1</span> Introdução ao google collab</a></li>
+  <li><a href="#libraries-libs-ou-bibliotecas-1" id="toc-libraries-libs-ou-bibliotecas-1" class="nav-link" data-scroll-target="#libraries-libs-ou-bibliotecas-1"><span class="header-section-number">5.3.2</span> Libraries (Libs ou Bibliotecas)</a></li>
+  </ul></li>
+  <li><a href="#dicas-de-geração-de-código-com-ia" id="toc-dicas-de-geração-de-código-com-ia" class="nav-link" data-scroll-target="#dicas-de-geração-de-código-com-ia"><span class="header-section-number">5.4</span> Dicas de geração de código com IA</a></li>
   </ul></li>
   <li><a href="#créditos-e-agradecimentos" id="toc-créditos-e-agradecimentos" class="nav-link" data-scroll-target="#créditos-e-agradecimentos"><span class="header-section-number">6</span> Créditos e Agradecimentos</a>
   <ul>
@@ -224,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Introdução Interativa a Estatística</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Introdução Interativa a Estatística</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -304,31 +334,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Estatística Inferencial: Coleção de métodos e técnicas utilizados para estudar uma população baseado em amostras probabilísticas desta população. É uma ferramenta valiosa para tomar decisões e fazer previsões</li>
 <li>Teoria da Probabilidade: Base teórica da estatística, é um ramo da matemática que estuda fenômenos aleatórios, ou seja, eventos cujos resultados não são determinísticos, mas sim sujeitos a incertezas. Ela fornece uma estrutura formal para quantificar a incerteza e modelar situações onde o acaso está presente.</li>
 </ul>
+<p>ESCREVER SOBRE O APLICATIVO E A CLASSIFICAÇÃO DAS QUESTÕES</p>
+<p>Também haverá seções em cada capítulo onde a aplicação dos conceitos citados será feita nos softwares estatísticos R, Python e aplicativos de planilhas (no caso o Google Sheets, mas o mesmo pode ser aplicado em libreoffice calc ou o clássico Excel)</p>
 </section>
 <section id="conceitos-básicos" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="conceitos-básicos"><span class="header-section-number">1.3</span> Conceitos Básicos</h2>
 <section id="população" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="população"><span class="header-section-number">1.3.1</span> População</h3>
-<p>Conjunto de todos os elementos com a característica de interesse, sobre a qual desejamos obter informações. A população pode ser finita ou infinita. Representamos por “N” o número de elementos da população.</p>
+<p>Conjunto de todos os elementos com a característica de interesse, sobre a qual desejamos obter informações. A população pode ser finita ou infinita. Representamos por “N” o número de elementos da população. Exemplos: Todos os pacientes com diabetes no Brasil em um determinado ano. Todas as árvores de uma floresta tropical. Todos os carros de um modelo específico em uma concessionária. Todos os acessos a um site em 24 horas</p>
 </section>
 <section id="amostra" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="amostra"><span class="header-section-number">1.3.2</span> Amostra</h3>
 <p>É um subconjunto retirado de uma população, obtido através de técnicas de amostragem. O número de elementos da amostra é representado por “n”. Exemplo: Em uma pesquisa eleitoral para saber o resultado das eleições para presidente do Brasil, qual a população de interesse? Qual seria a amostra? R: A população é constituída de todos os eleitores do Brasil. A amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="popam.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura 1: População e Amostra</figcaption>
+</figure>
+</div>
 </section>
 <section id="censo" class="level3" data-number="1.3.3">
 <h3 data-number="1.3.3" class="anchored" data-anchor-id="censo"><span class="header-section-number">1.3.3</span> Censo</h3>
-<p>É o processo utilizado para levantar as características observáveis, abordando todos os elementos de uma população. Então, um levantamento efetuado sobre toda uma população é denominado de levantamento censitário ou simplesmente censo.</p>
-<p>https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html escrever breve texto sobre o censo de 2022</p>
+<p>É o processo utilizado para levantar as características observáveis, abordando todos os elementos de uma população. Então, um levantamento efetuado sobre toda uma população é denominado de levantamento censitário ou simplesmente censo. n https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html escrever breve texto sobre o censo de 2022</p>
 </section>
 <section id="parâmetros" class="level3" data-number="1.3.4">
 <h3 data-number="1.3.4" class="anchored" data-anchor-id="parâmetros"><span class="header-section-number">1.3.4</span> Parâmetros</h3>
+<p>É uma medida fixa (geralmente desconhecida) que descreve uma característica de uma população inteira.</p>
+<p>Como se refere a toda a população, seu valor não muda (a menos que a população seja alterada).</p>
+<p>Exemplos: Média populacional (μ), desvio padrão populacional (σ), proporção populacional (p).</p>
 </section>
 <section id="estatísticas" class="level3" data-number="1.3.5">
 <h3 data-number="1.3.5" class="anchored" data-anchor-id="estatísticas"><span class="header-section-number">1.3.5</span> Estatísticas</h3>
+<p>É uma medida descritiva calculada a partir de uma amostra (um subconjunto de uma população).</p>
+<p>Como a amostra é apenas uma parte da população, a estatística pode variar de amostra para amostra (variabilidade amostral).</p>
+<p>Exemplos: Média amostral (xbar), desvio padrão amostral (s), proporção amostral (phat).</p>
 </section>
 <section id="variável" class="level3" data-number="1.3.6">
 <h3 data-number="1.3.6" class="anchored" data-anchor-id="variável"><span class="header-section-number">1.3.6</span> Variável</h3>
-<p>Variável é qualquer característica que varia de um elemento da população para outro. É a característica que está sendo analisada em cada elemento de uma população. Exemplo: Na população funcionários de uma determinada empresa – podemos estudar as varáveis: número de dependentes, remuneração financeira, idade, sexo, local de residência, nível de escolaridade, estado civil, tempo deserviços na empresa, etc.</p>
+<p>Variável é qualquer característica que varia de um elemento da população para outro. É a característica que está sendo analisada em cada elemento de uma população. Exemplo: Na população funcionários de uma determinada empresa – podemos estudar as varáveis: número de dependentes, remuneração financeira, idade, sexo, local de residência, nível de escolaridade, estado civil, tempo de serviços na empresa, etc.</p>
 </section>
 <section id="estrutura-de-uma-planilha" class="level3" data-number="1.3.7">
 <h3 data-number="1.3.7" class="anchored" data-anchor-id="estrutura-de-uma-planilha"><span class="header-section-number">1.3.7</span> Estrutura de uma planilha</h3>
@@ -340,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="var.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figura 1: Classificação das Variáveis</figcaption>
+<figcaption class="figure-caption">Figura 2: Classificação das Variáveis</figcaption>
 </figure>
 </div>
 </section>
@@ -462,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="noções-de-probabilidade" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Noções de Probabilidade</h1>
-<p>A probabilidade é um ramo da matemática que estuda a incerteza e a aleatoriedade. Ela fornece ferramentas para quantificar a chance de ocorrência de eventos em situações onde o resultado não é previsível com certeza. Desde previsões do tempo até decisões financeiras, a probabilidade está presente em diversos aspectos da vida cotidiana e é fundamental em áreas como estatística, ciência de dados, física, engenharia e economia.</p>
+<p>A probabilidade é um ramo da matemática que estuda a incerteza e a aleatoriedade. Ela fornece ferramentas para quantificar a chance de ocorrência de eventos em situações onde o resultado não é previsível com certeza. Desde previsões do tempo até decisões financeiras, a probabilidade está presente em diversos aspectos da vida cotidiana e é fundamental em áreas como estatística, ciência de dados, física, engenharia, economia e jogos.</p>
 <section id="análise-combinatória" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="análise-combinatória"><span class="header-section-number">2.1</span> Análise Combinatória</h2>
 <p>Esse é um assunto difícil e não faz parte do escopo da disciplina, então foque em ter um entendimento intuitivo das ideias contidas nessa sub-seção</p>
@@ -615,11 +658,612 @@ P(A) = \frac{n(A)}{n(\Omega)}
 <section id="arquivos-de-aulas" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="arquivos-de-aulas"><span class="header-section-number">5.1</span> Arquivos de Aulas</h2>
 </section>
-<section id="nivelamento-em-r" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="nivelamento-em-r"><span class="header-section-number">5.2</span> Nivelamento em R</h2>
+<section id="introdução-a-r" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="introdução-a-r"><span class="header-section-number">5.2</span> Introdução a R</h2>
+<p>Essa será uma breve introdução a R para poder entender como funciona a linguagem de programação e já brincar com estatística utilizando funções mais elementares, as mais importantes, como calcular medidas simples como média, moda, mediana, criação de gráficos e tabelas e elaboração de regressões simples. Para maiores discussões sobre tipos avançados de visualização ver o livro R para Ciência de Dados: https://pt.r4ds.hadley.nz/</p>
+<p>EXPLICAR COMENTARIOS</p>
+<p>Sugere-se ao/a professor/a uma leitura rápida desta seção após uma curta introdução para o/a aluno/a começar a se familizar com os conceitos, após isso esta seção pode servir como consulta para sintaxe e ajuda rápida</p>
+<section id="instalação-do-ambiente-rstudio" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="instalação-do-ambiente-rstudio"><span class="header-section-number">5.2.1</span> Instalação do ambiente Rstudio</h3>
+<p>A instalação é trivial, basta baixar e executar o R em https://cran.rstudio.com/ e baixar o Rstudio https://posit.co/download/rstudio-desktop/ em seguida</p>
+<p>Para usar o Rstudio, basta abrir um script com Ctrl + Shift + N e para executar códigos basta selecionar a linha com o mouse e teclar Ctrl + Enter</p>
+<p>Para quaisquer dificuldades: https://www.youtube.com/watch?v=a4_0pKVY6RE&amp;list=PLs7DH7eMtNjcfzzZT6beLu0nmSr2yIhIr&amp;index=2</p>
 </section>
-<section id="dicas-de-geração-de-código-com-ia" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="dicas-de-geração-de-código-com-ia"><span class="header-section-number">5.3</span> Dicas de geração de código com IA</h2>
+<section id="libraries-libs-ou-bibliotecas" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="libraries-libs-ou-bibliotecas"><span class="header-section-number">5.2.2</span> Libraries (Libs ou Bibliotecas)</h3>
+<p>Em programação, uma library (biblioteca) é um conjunto de códigos pré-escritos (funções, classes, métodos, variáveis) que podem ser reutilizados para facilitar o desenvolvimento de software. Elas são criadas para resolver problemas específicos, evitando que os programadores tenham que “reinventar a roda” a cada projeto.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Instalar uma biblioteca (fazer apenas a primeira vez)</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#install.packages("nome_da_biblioteca")  # Ex: install.packages("ggplot2")</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># Carregar para uso na sessão atual</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#library(nome_da_biblioteca)            # Ex: library(ggplot2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Exemplo (o aluno é encorajado a copiar e executar o código na própria máquina):</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># dplyr é uma biblioteca para lidar com bancos de dados e ggplot2 é uma biblioteca para visualização, teremos um capítulo explicando cada uma delas</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Filtrar dados e criar gráfico</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>dados <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span>  </span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span>  </span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  </span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relação Peso vs. Consumo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Principais Bibliotecas em R por Categoria</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Categoria</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Biblioteca</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Descrição</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Exemplo de Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; font-weight: bold; vertical-align: top !important;">Manipulação de Dados</td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Ferramentas para filtrar, agrupar e sumarizar dados</td>
+<td style="text-align: left;">`dados %&gt;% filter(coluna &gt; 10) %&gt;% group_by(...)`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tidyr</td>
+<td style="text-align: left;">Organização e limpeza de dados (pivotagem, separação de colunas)</td>
+<td style="text-align: left;">`pivot_longer(dados, cols = c(...))`</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; font-weight: bold; vertical-align: top !important;">Visualização</td>
+<td style="text-align: left;">ggplot2</td>
+<td style="text-align: left;">Criação de gráficos elegantes e personalizáveis</td>
+<td style="text-align: left;">`ggplot(dados, aes(x, y)) + geom_point()`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">plotly</td>
+<td style="text-align: left;">Gráficos interativos (3D, hover effects)</td>
+<td style="text-align: left;">`plot_ly(dados, x = ~x, y = ~y, type = 'scatter')`</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; font-weight: bold; vertical-align: top !important;">Análise Estatística</td>
+<td style="text-align: left;">stats</td>
+<td style="text-align: left;">Funções estatísticas básicas (testes t, ANOVA, regressão)</td>
+<td style="text-align: left;">`t.test(x, y)`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lme4</td>
+<td style="text-align: left;">Modelos lineares mistos (para dados hierárquicos)</td>
+<td style="text-align: left;">`lmer(resposta ~ preditor + (1&amp;#124;grupo))`</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; font-weight: bold; vertical-align: top !important;">Machine Learning</td>
+<td style="text-align: left;">caret</td>
+<td style="text-align: left;">Treinamento e validação de modelos preditivos</td>
+<td style="text-align: left;">`train(classe ~ ., data = dados, method = "rf")`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">randomForest</td>
+<td style="text-align: left;">Algoritmo de florestas aleatórias para classificação/regressão</td>
+<td style="text-align: left;">`randomForest(y ~ ., data = dados)`</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; font-weight: bold; vertical-align: top !important;">Text Mining</td>
+<td style="text-align: left;">tm</td>
+<td style="text-align: left;">Mineração e pré-processamento de textos</td>
+<td style="text-align: left;">`Corpus(VectorSource(textos)) %&gt;% tm_map(...)`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tidytext</td>
+<td style="text-align: left;">Análise de texto integrada ao tidyverse</td>
+<td style="text-align: left;">`unnest_tokens(dados, palavra, texto)`</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; font-weight: bold; vertical-align: top !important;">Geoprocessamento</td>
+<td style="text-align: left;">sf</td>
+<td style="text-align: left;">Manipulação de dados espaciais (vetores)</td>
+<td style="text-align: left;">`st_read("caminho/shapefile.shp")`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">raster</td>
+<td style="text-align: left;">Análise de dados raster (imagens de satélite, mapas)</td>
+<td style="text-align: left;">`raster("imagem.tif") %&gt;% plot()`</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; font-weight: bold; vertical-align: top !important;">Reprodutibilidade</td>
+<td style="text-align: left;">knitr</td>
+<td style="text-align: left;">Geração de relatórios dinâmicos (HTML, PDF)</td>
+<td style="text-align: left;">`knit("documento.Rmd")`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rmarkdown</td>
+<td style="text-align: left;">Integração de código, texto e visualizações em documentos</td>
+<td style="text-align: left;">`render("relatorio.Rmd")`</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="variáveis" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="variáveis"><span class="header-section-number">5.2.3</span> Variáveis</h3>
+<p>Uma <strong>variável</strong> é um <strong>nome simbólico</strong> que armazena um <strong>valor</strong> ou <strong>dado</strong> na memória do computador. Em R, as variáveis são usadas para guardar informações que podem ser manipuladas durante a execução de um código.</p>
+<p>Tipos de variáveis:</p>
+<section id="numérica-numeric" class="level4" data-number="5.2.3.1">
+<h4 data-number="5.2.3.1" class="anchored" data-anchor-id="numérica-numeric"><span class="header-section-number">5.2.3.1</span> Numérica (numeric)</h4>
+<p>Armazenam números (inteiros ou decimais).</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="ot">&lt;-</span> <span class="fl">10.5</span>      <span class="co"># Decimal  </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>y <span class="ot">&lt;-</span> 20L       <span class="co"># Inteiro (com sufixo 'L')  </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>z <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">3.14</span>     <span class="co"># Negativo</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.5</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -3.14</code></pre>
+</div>
+</div>
+</section>
+<section id="caracteres-character-ou-string" class="level4" data-number="5.2.3.2">
+<h4 data-number="5.2.3.2" class="anchored" data-anchor-id="caracteres-character-ou-string"><span class="header-section-number">5.2.3.2</span> Caracteres (character ou string)</h4>
+<p>Armazenam caracteres ou conjuntos de caracteres (strings), para manipulação de strings ver o capítulo 14 do r4ds. Algumas coisas que podem ser feitas são transformar todos os caracteres em maiúsculos ou minúsculos, retirar acentos, caracteres especiais, retirar padrões do texto, separar em várias strings separando por um delimitador (como o espaço), calcular o tamanho de uma string. Enfim, várias utilidades bem úteis para lidar com dados de texto.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>nome <span class="ot">&lt;-</span> <span class="st">"Maria"</span>  </span>
+<span id="cb9-2"><a href="#cb9-2"></a>frase <span class="ot">&lt;-</span> <span class="st">'Olá, mundo!'</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>nome</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Maria"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>frase</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Olá, mundo!"</code></pre>
+</div>
+</div>
+</section>
+<section id="lógicas-logical-ou-boolean" class="level4" data-number="5.2.3.3">
+<h4 data-number="5.2.3.3" class="anchored" data-anchor-id="lógicas-logical-ou-boolean"><span class="header-section-number">5.2.3.3</span> Lógicas (logical ou boolean)</h4>
+<p>Armazenam valores lógicos: verdadeiro ou falso São bem úteis para verificação de estruturais condicionais que são demonstradas na seção ESCREVER SECAO</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>ativo <span class="ot">&lt;-</span> <span class="cn">TRUE</span>  </span>
+<span id="cb13-2"><a href="#cb13-2"></a>falha <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>ativo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>falha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="fatores-factor" class="level4" data-number="5.2.3.4">
+<h4 data-number="5.2.3.4" class="anchored" data-anchor-id="fatores-factor"><span class="header-section-number">5.2.3.4</span> Fatores (factor)</h4>
+<p>São categorias Equivale a variável categóricas ordinal ou nominal, explicada no capítulo: COLOCAR CAPÍTULO</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>grupo <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>))  </span>
+<span id="cb17-2"><a href="#cb17-2"></a>niveis <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">c</span>(<span class="st">"Baixo"</span>, <span class="st">"Médio"</span>, <span class="st">"Alto"</span>),</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Baixo"</span>, <span class="st">"Médio"</span>, <span class="st">"Alto"</span>),  <span class="co"># É necessário definir a ordem assim, se não ele vai errado</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="at">ordered =</span> <span class="cn">TRUE</span> <span class="co"># definir que é ordinal </span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a>niveis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Baixo Médio Alto 
+Levels: Baixo &lt; Médio &lt; Alto</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>grupo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] A B A C
+Levels: A B C</code></pre>
+</div>
+</div>
+</section>
+<section id="datas-date-ou-posixct" class="level4" data-number="5.2.3.5">
+<h4 data-number="5.2.3.5" class="anchored" data-anchor-id="datas-date-ou-posixct"><span class="header-section-number">5.2.3.5</span> Datas (Date ou POSIXct)</h4>
+<p>Armazenam datas e horários Para maiores discussões sobre datas ver capítulo 17 de r4ds</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>hoje <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-03-26"</span>)  </span>
+<span id="cb21-2"><a href="#cb21-2"></a>agora <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2025-03-26 14:30:00"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>hoje</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-26"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>agora</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-26 14:30:00 -03"</code></pre>
+</div>
+</div>
+</section>
+<section id="vetores-vector" class="level4" data-number="5.2.3.6">
+<h4 data-number="5.2.3.6" class="anchored" data-anchor-id="vetores-vector"><span class="header-section-number">5.2.3.6</span> Vetores (vector)</h4>
+<p>Coleção de elementos do mesmo tipo Se você colocar uma letra no meio dos números todos os números serão tratados como letras (caso tenha se perguntado isso)</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)  </span>
+<span id="cb25-2"><a href="#cb25-2"></a>letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a>numeros_como_letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">"A"</span>, <span class="dv">3</span>, <span class="dv">4</span>)  </span>
+<span id="cb25-4"><a href="#cb25-4"></a>numeros</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>letras</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a" "b" "c"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>numeros_como_letras</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1" "A" "3" "4"</code></pre>
+</div>
+</div>
+</section>
+<section id="listas-list" class="level4" data-number="5.2.3.7">
+<h4 data-number="5.2.3.7" class="anchored" data-anchor-id="listas-list"><span class="header-section-number">5.2.3.7</span> Listas (list)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">nome =</span> <span class="st">"João"</span>, <span class="at">idade =</span> <span class="dv">30</span>, <span class="at">ativo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-2"><a href="#cb31-2"></a>dados</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$nome
+[1] "João"
+
+$idade
+[1] 30
+
+$ativo
+[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frames-data.frame" class="level4" data-number="5.2.3.8">
+<h4 data-number="5.2.3.8" class="anchored" data-anchor-id="data-frames-data.frame"><span class="header-section-number">5.2.3.8</span> Data Frames (data.frame)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>tabela <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(  </span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="at">nome =</span> <span class="fu">c</span>(<span class="st">"Ana"</span>, <span class="st">"Carlos"</span>),  </span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="at">idade =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>)  </span>
+<span id="cb33-4"><a href="#cb33-4"></a>)</span>
+<span id="cb33-5"><a href="#cb33-5"></a>tabela</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    nome idade
+1    Ana    25
+2 Carlos    30</code></pre>
+</div>
+</div>
+</section>
+<section id="matrizes" class="level4" data-number="5.2.3.9">
+<h4 data-number="5.2.3.9" class="anchored" data-anchor-id="matrizes"><span class="header-section-number">5.2.3.9</span> Matrizes</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a></span>
+<span id="cb35-3"><a href="#cb35-3"></a>matriz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="operações" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="operações"><span class="header-section-number">5.2.4</span> Operações</h3>
+<p>Toda linguagem de programação tem as operações matemáticas elementares implementadas, vamos estudar sua sintaxe:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<caption>Operações Básicas em R vs Matemática em R</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Operação</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Símbolo Matemático</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sintaxe em R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adição</td>
+<td style="text-align: center;">a + b</td>
+<td style="text-align: left;">`a + b`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Subtração</td>
+<td style="text-align: center;">a - b</td>
+<td style="text-align: left;">`a - b`</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Multiplicação</td>
+<td style="text-align: center;">a × b</td>
+<td style="text-align: left;">`a * b`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Divisão</td>
+<td style="text-align: center;">a ÷ b</td>
+<td style="text-align: left;">`a / b`</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Potenciação</td>
+<td style="text-align: center;">a^b</td>
+<td style="text-align: left;">`a ^ b` ou `a ** b`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Raiz quadrada</td>
+<td style="text-align: center;">va</td>
+<td style="text-align: left;">`sqrt(a)`</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Logaritmo natural</td>
+<td style="text-align: center;">ln(a)</td>
+<td style="text-align: left;">`log(a)`</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Logaritmo base 10</td>
+<td style="text-align: center;">log10(a)</td>
+<td style="text-align: left;">`log10(a)`</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Módulo (resto da divisão inteira)</td>
+<td style="text-align: center;">a mod b</td>
+<td style="text-align: left;">`a %% b`</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="estruturas-condicionais" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="estruturas-condicionais"><span class="header-section-number">5.2.5</span> Estruturas Condicionais</h3>
+<p>As estruturas condicionais permitem que você execute diferentes blocos de código com base em condições específicas. As principais estruturas condicionais em R são:</p>
+<p>if em inglês significa “se”, então em na estrutura de uma frase temos: se ‘condição’, então ‘codigo’</p>
+<p>Modelo:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co">#if (condição) {</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="co"># código a ser executado se a condição for TRUE</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="co">#}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Exemplo: Se x for maior que 5 então aparece na tela a mensagem especificada</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">print</span>(<span class="st">"x é maior que 5"</span>)</span>
+<span id="cb38-4"><a href="#cb38-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x é maior que 5"</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="if.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura 3: Fluxograma if</figcaption>
+</figure>
+</div>
+<p>Basicamente um se ou se não</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co">#if (condição) {</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="co"># código se TRUE</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="co">#} else {</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a>  <span class="co"># código se FALSE</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a><span class="co">#}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Exemplo:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb41-3"><a href="#cb41-3"></a>  <span class="fu">print</span>(<span class="st">"x é maior que 5"</span>)</span>
+<span id="cb41-4"><a href="#cb41-4"></a>} <span class="cf">else</span> {</span>
+<span id="cb41-5"><a href="#cb41-5"></a>  <span class="fu">print</span>(<span class="st">"x não é maior que 5"</span>)</span>
+<span id="cb41-6"><a href="#cb41-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x não é maior que 5"</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ifelse.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura 4: Fluxograma ifelse</figcaption>
+</figure>
+</div>
+<p>Também pode-se “aninhar” várias estruturas condicionais. “Aninhar” significa colocar uma atrás da outra em uma hierarquia</p>
+<p>Modelo:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">#if (condição1) {</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>  <span class="co"># código se condição1 TRUE</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="co">#} else if (condição2) {</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>  <span class="co"># código se condição2 TRUE</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="co">#} else {</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>  <span class="co"># código se todas FALSE</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="co">#}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>x <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb44-3"><a href="#cb44-3"></a>  <span class="fu">print</span>(<span class="st">"x é menor que 5"</span>)</span>
+<span id="cb44-4"><a href="#cb44-4"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb44-5"><a href="#cb44-5"></a>  <span class="fu">print</span>(<span class="st">"x está entre 5 e 10"</span>)</span>
+<span id="cb44-6"><a href="#cb44-6"></a>} <span class="cf">else</span> {</span>
+<span id="cb44-7"><a href="#cb44-7"></a>  <span class="fu">print</span>(<span class="st">"x é 10 ou maior"</span>)</span>
+<span id="cb44-8"><a href="#cb44-8"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x está entre 5 e 10"</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ifelseif.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura 5: Fluxograma ifelseif</figcaption>
+</figure>
+</div>
+<p>Em estatística operações vetorizadas são muito importantes, digamos que você é um estatístico em uma empresa de crédito e você tem um dado de quantos dias os clientes estão em atrasado com o pagamento das parcelas de um empréstimo, mas você quer um indicador simples de ele estar inadimplente ou não (ou seja, uma variável booleana ou lógica), então é útil fazer um ifelse vetorizado com uma condição de, por exemplo, ele estar inadimplente se a dívida passar de 90 dias:</p>
+<p>Modelo:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># ifelse(condição, valor_se_TRUE, valor_se_FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Exemplo simples:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># Cria um vetor com números de 1 a 10</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">ifelse</span>(x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"par"</span>, <span class="st">"ímpar"</span>) <span class="co"># checa a operação de módulo para cada elemento do vetor e determina se é par ou ímpar (obs: todo número par dividido por 2 tem resto 0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ímpar" "par"   "ímpar" "par"   "ímpar" "par"   "ímpar" "par"   "ímpar"
+[10] "par"  </code></pre>
+</div>
+</div>
+<p>Exemplo de uso: ESCREVER O EXEMPLO</p>
+<p>Quando é necessário escolher entre várias opções, por exemplo uma caixa de seleção em um formulário, pode ser ineficaz ficar aninhando várias ifs e else, para isso que serve a estrutura condicional switch/case, implementada da seguinte maneira em R:</p>
+<p>Modelo:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co">#switch(expressão, </span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="co">#       caso1 = ação1,</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="co">#       caso2 = ação2,</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a><span class="co">#       ...,</span></span>
+<span id="cb49-5"><a href="#cb49-5"></a><span class="co">#       ação_padrão)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Exemplo simples:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>operação <span class="ot">&lt;-</span> <span class="st">"soma"</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>resultado <span class="ot">&lt;-</span> <span class="cf">switch</span>(operação,</span>
+<span id="cb50-3"><a href="#cb50-3"></a>                   <span class="st">"soma"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span>,</span>
+<span id="cb50-4"><a href="#cb50-4"></a>                   <span class="st">"subtração"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">-</span> <span class="dv">3</span>,</span>
+<span id="cb50-5"><a href="#cb50-5"></a>                   <span class="st">"multiplicação"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">3</span>,</span>
+<span id="cb50-6"><a href="#cb50-6"></a>                   <span class="st">"divisão"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">3</span>,</span>
+<span id="cb50-7"><a href="#cb50-7"></a>                   <span class="st">"operação não reconhecida"</span>)</span>
+<span id="cb50-8"><a href="#cb50-8"></a><span class="fu">print</span>(resultado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>Exemplo prático:</p>
+<p>ESCREVER</p>
+</section>
+<section id="estruturas-de-laço-loop" class="level3" data-number="5.2.6">
+<h3 data-number="5.2.6" class="anchored" data-anchor-id="estruturas-de-laço-loop"><span class="header-section-number">5.2.6</span> Estruturas de Laço (loop)</h3>
+<p>Em programação, muitas vezes é necessário repetir uma operação várias vezes com base em uma condição ou ‘iterando’ por um vetor ou alguma estrutura de dados (iterar significa repetir ou passar sequencialmente). Existem duas estruturas principais para isso: o WHILE e o FOR</p>
+<p>While significa enquanto, então enquanto uma determinada condição for verdadeira</p>
+</section>
+<section id="funções" class="level3" data-number="5.2.7">
+<h3 data-number="5.2.7" class="anchored" data-anchor-id="funções"><span class="header-section-number">5.2.7</span> Funções</h3>
+</section>
+<section id="importação-de-dados" class="level3" data-number="5.2.8">
+<h3 data-number="5.2.8" class="anchored" data-anchor-id="importação-de-dados"><span class="header-section-number">5.2.8</span> Importação de Dados</h3>
+<p>Trabalhamos com dados em estatística, então isso é a coisa mais importante para aprender kkkkkk. Felizmente temos tudo pronto (implementado) em R, se vc for tentar se aventurar a fazer isso em C vai ser bem difícil. Existem vários tipos de dados, mas a forma de importá-los é semelhante e simples, porém deve-se atentar a alguns detalhes. Principais tipos de arquivos de dados:</p>
+<p>COLOCAR UMA TABELA</p>
+<p>FALAR SOBRE DELIMITADORES DE MILHAR E DECIMAL E ASCII</p>
+</section>
+<section id="manipulação-de-dados" class="level3" data-number="5.2.9">
+<h3 data-number="5.2.9" class="anchored" data-anchor-id="manipulação-de-dados"><span class="header-section-number">5.2.9</span> Manipulação de Dados</h3>
+<p>Lembre-se de que tudo aqui é uma introdução, essa parte é relativamente confusa, para mais informações consulte o cap TAL de r ESCREVER DEPOIS ### Gráficos</p>
+</section>
+</section>
+<section id="introdução-a-python" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="introdução-a-python"><span class="header-section-number">5.3</span> Introdução a Python</h2>
+<section id="introdução-ao-google-collab" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="introdução-ao-google-collab"><span class="header-section-number">5.3.1</span> Introdução ao google collab</h3>
+<p>Existem várias plataformas que te permitem codar em python. Google Collab é uma plataforma web com tudo já pronto para executar códigos</p>
+</section>
+<section id="libraries-libs-ou-bibliotecas-1" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="libraries-libs-ou-bibliotecas-1"><span class="header-section-number">5.3.2</span> Libraries (Libs ou Bibliotecas)</h3>
+</section>
+</section>
+<section id="dicas-de-geração-de-código-com-ia" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="dicas-de-geração-de-código-com-ia"><span class="header-section-number">5.4</span> Dicas de geração de código com IA</h2>
+<p>As IAs são ferramentas extremamente úteis e válidas no contexto da programação. Primeiramente nenhuma IA fará milagres, você precisa ser claro e evidente nas suas perguntas, como diria algum matemático: “Uma pergunta bem formulada já está respondida” Existem tarefas de programação que até o mais entendido de programação terá que ler a documentação de várias bibliotecas e raciocionar muito tempo para executar, a IA facilita esse trabalho fazendo o trabalho duro de gerar código. Como diriam muitos programadores, a tarefa de gerar código é a mais trivial, o importante é juntar aqueles códigos em algo que faça sentido, outra coisa que eles dizem é que se passa muito mais tempo debugando um código do que gerando ele em si, primeiro se pensa a lógica depois os problemas são solucionados um a um. E é aí que entramos. A IA tem o papel de gerar código e nós de checar se ele faz sentido, se ela não está alucinando, esse tipo de coisa</p>
 <hr>
 </section>
 </section>
@@ -919,481 +1563,955 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> "Introdução Interativa a Estatística"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="an">author:</span><span class="co"> "Daniel Alexandre Ramazzotte"</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="an">date:</span><span class="co"> "2025-xx-xx"</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="an">format:</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">  html:</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">    toc: true</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">    toc-depth: 4  # Aumentei a profundidade do índice para incluir subseções</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">    code-fold: true</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">    code-line-numbers: true</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co">    code-copy: true</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="co">    code-link: true</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co">    highlight-style: pygments</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co">    theme: cosmo</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="an">editor:</span><span class="co"> </span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="co">  markdown: </span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="co">    wrap: 72</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="co">---</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="fu"># Introdução à Estatística e à Análise Exploratória de Dados {#introdução-a-estatística-e-a-análise-exploratória-de-dados}</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="fu">## O que é Estatística {#o-que-é-estatística}</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="fu">### Definição {#definição}</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a></span>
-<span id="cb1-29"><a href="#cb1-29"></a>Algumas definições para a estatística:</span>
-<span id="cb1-30"><a href="#cb1-30"></a></span>
-<span id="cb1-31"><a href="#cb1-31"></a>Estatística é a ciência que utiliza as teorias probabilísticas (o que</span>
-<span id="cb1-32"><a href="#cb1-32"></a>entenderemos na próxima seção) para explicar a frequência da ocorrência</span>
-<span id="cb1-33"><a href="#cb1-33"></a>de eventos, tanto em estudos observacionais quanto em experimentos para</span>
-<span id="cb1-34"><a href="#cb1-34"></a>modelar a aleatoriedade e a incerteza de forma a estimar ou possibilitar</span>
-<span id="cb1-35"><a href="#cb1-35"></a>a previsão de fenômenos futuros, conforme o caso. (Saulo Henrique Weber,</span>
-<span id="cb1-36"><a href="#cb1-36"></a>2006)</span>
-<span id="cb1-37"><a href="#cb1-37"></a></span>
-<span id="cb1-38"><a href="#cb1-38"></a>A Estatística é a ciência que coleta, organiza, analisa, interpreta e</span>
-<span id="cb1-39"><a href="#cb1-39"></a>apresenta dados. Ela fornece ferramentas e métodos para transformar</span>
-<span id="cb1-40"><a href="#cb1-40"></a>informações brutas em conhecimento útil, permitindo a tomada de decisões</span>
-<span id="cb1-41"><a href="#cb1-41"></a>embasadas em evidências. (D.S. Moore, et al., 1999).</span>
-<span id="cb1-42"><a href="#cb1-42"></a></span>
-<span id="cb1-43"><a href="#cb1-43"></a>Até que um fenômeno de qualquer ramo do conhecimento seja submetido a</span>
-<span id="cb1-44"><a href="#cb1-44"></a>medidas e números, este não assumirá um status e seriedade na Ciência.</span>
-<span id="cb1-45"><a href="#cb1-45"></a>Popularmente atribuída à Francis Galton</span>
-<span id="cb1-46"><a href="#cb1-46"></a></span>
-<span id="cb1-47"><a href="#cb1-47"></a>Estatística é a arte de aprender a partir de dados (Ross, 2010)</span>
-<span id="cb1-48"><a href="#cb1-48"></a></span>
-<span id="cb1-49"><a href="#cb1-49"></a>Sem dados você é uma pessoa qualquer com uma opinião" William Edwards</span>
-<span id="cb1-50"><a href="#cb1-50"></a>Deming</span>
-<span id="cb1-51"><a href="#cb1-51"></a></span>
-<span id="cb1-52"><a href="#cb1-52"></a>"Estatística é "a gramática da Ciência" Karl Pearson</span>
-<span id="cb1-53"><a href="#cb1-53"></a></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="fu">### Breve História da Estatística {#evolução-histórica}</span></span>
-<span id="cb1-55"><a href="#cb1-55"></a></span>
-<span id="cb1-56"><a href="#cb1-56"></a>escrever</span>
-<span id="cb1-57"><a href="#cb1-57"></a></span>
-<span id="cb1-58"><a href="#cb1-58"></a>Algumas leituras recomendadas são O Andar do Bêbado e Uma Senhora Toma</span>
-<span id="cb1-59"><a href="#cb1-59"></a>Chá para aprendizado sobre a evolução da histórica da estatística e</span>
-<span id="cb1-60"><a href="#cb1-60"></a>probabilidade e intuição sobre conceitos complexos.</span>
-<span id="cb1-61"><a href="#cb1-61"></a></span>
-<span id="cb1-62"><a href="#cb1-62"></a><span class="fu">### Importância e Aplicações {#importância-e-aplicações}</span></span>
-<span id="cb1-63"><a href="#cb1-63"></a></span>
-<span id="cb1-64"><a href="#cb1-64"></a>A Estatística é fundamental para muitas áreas e aplicável em quase todas</span>
-<span id="cb1-65"><a href="#cb1-65"></a>porque permite testar hipóteses, validar teorias e generalizar</span>
-<span id="cb1-66"><a href="#cb1-66"></a>resultados a partir de dados e hoje em dia se coletam dados de quase</span>
-<span id="cb1-67"><a href="#cb1-67"></a>tudo. Algumas dessas áreas são administração do Estado, otimização de</span>
-<span id="cb1-68"><a href="#cb1-68"></a>processos industriais e de engenharia, computação, ciências (saúde,</span>
-<span id="cb1-69"><a href="#cb1-69"></a>biológicas, sociais, física).</span>
-<span id="cb1-70"><a href="#cb1-70"></a></span>
-<span id="cb1-71"><a href="#cb1-71"></a>Ela nos permite responder questões como:</span>
-<span id="cb1-72"><a href="#cb1-72"></a></span>
-<span id="cb1-73"><a href="#cb1-73"></a><span class="ss">-   </span>Qual tipo e quantidade de dados devo coletar?</span>
-<span id="cb1-74"><a href="#cb1-74"></a><span class="ss">-   </span>Como organizar e resumir estes dados?</span>
-<span id="cb1-75"><a href="#cb1-75"></a><span class="ss">-   </span>Como analisar os dados e fazer conclusões dele?</span>
-<span id="cb1-76"><a href="#cb1-76"></a><span class="ss">-   </span>Como avaliar a força destas conclusões e avaliar sua incerteza?</span>
-<span id="cb1-77"><a href="#cb1-77"></a><span class="ss">-   </span>Como planejar um experimento que verifique a minha hipótese?</span>
-<span id="cb1-78"><a href="#cb1-78"></a></span>
-<span id="cb1-79"><a href="#cb1-79"></a>Algumas aplicações específicas são:</span>
-<span id="cb1-80"><a href="#cb1-80"></a></span>
-<span id="cb1-81"><a href="#cb1-81"></a><span class="ss">-   </span>Identificar mensagens indesejáveis em um e-mail (spam);</span>
-<span id="cb1-82"><a href="#cb1-82"></a><span class="ss">-   </span>Segmentação do comportamento de consumidores para propagandas</span>
-<span id="cb1-83"><a href="#cb1-83"></a>    direcionadas;</span>
-<span id="cb1-84"><a href="#cb1-84"></a><span class="ss">-   </span>Redução de fraudes em transações de cartão de crédito;</span>
-<span id="cb1-85"><a href="#cb1-85"></a><span class="ss">-   </span>Predição de eleições;</span>
-<span id="cb1-86"><a href="#cb1-86"></a><span class="ss">-   </span>Otimização do uso de energia em edifícios;</span>
-<span id="cb1-87"><a href="#cb1-87"></a><span class="ss">-   </span>Existe relação entre desemprego e procura por Uber?</span>
-<span id="cb1-88"><a href="#cb1-88"></a><span class="ss">-   </span>Os desembolsos do BNDES fizeram aumentar a taxa de investimento da</span>
-<span id="cb1-89"><a href="#cb1-89"></a>    economia brasileira?</span>
-<span id="cb1-90"><a href="#cb1-90"></a><span class="ss">-   </span>Como explicar a inflação de alimentos?</span>
-<span id="cb1-91"><a href="#cb1-91"></a><span class="ss">-   </span>O Banco Central brasileiro reage aos choques cambiais?</span>
-<span id="cb1-92"><a href="#cb1-92"></a><span class="ss">-   </span>Qual o efeito do aumento da volatilidade no mercado sobre a taxa de</span>
-<span id="cb1-93"><a href="#cb1-93"></a>    câmbio?</span>
-<span id="cb1-94"><a href="#cb1-94"></a></span>
-<span id="cb1-95"><a href="#cb1-95"></a><span class="fu">## Divisão do Livro</span></span>
-<span id="cb1-96"><a href="#cb1-96"></a></span>
-<span id="cb1-97"><a href="#cb1-97"></a>Tradicionalmente se divide didaticamente a estatística nas seguintes</span>
-<span id="cb1-98"><a href="#cb1-98"></a>partes (o que a ementa dessa disciplina faz e consequentemente esta</span>
-<span id="cb1-99"><a href="#cb1-99"></a>apostila também):</span>
-<span id="cb1-100"><a href="#cb1-100"></a></span>
-<span id="cb1-101"><a href="#cb1-101"></a><span class="ss">-   </span>Estatística Descritiva: É a área da estatística que visa organizar,</span>
-<span id="cb1-102"><a href="#cb1-102"></a>    resumir e descrever um conjunto de dados</span>
-<span id="cb1-103"><a href="#cb1-103"></a><span class="ss">-   </span>Estatística Inferencial: Coleção de métodos e técnicas utilizados</span>
-<span id="cb1-104"><a href="#cb1-104"></a>    para estudar uma população baseado em amostras probabilísticas desta</span>
-<span id="cb1-105"><a href="#cb1-105"></a>    população. É uma ferramenta valiosa para tomar decisões e fazer</span>
-<span id="cb1-106"><a href="#cb1-106"></a>    previsões</span>
-<span id="cb1-107"><a href="#cb1-107"></a><span class="ss">-   </span>Teoria da Probabilidade: Base teórica da estatística, é um ramo da</span>
-<span id="cb1-108"><a href="#cb1-108"></a>    matemática que estuda fenômenos aleatórios, ou seja, eventos cujos</span>
-<span id="cb1-109"><a href="#cb1-109"></a>    resultados não são determinísticos, mas sim sujeitos a incertezas.</span>
-<span id="cb1-110"><a href="#cb1-110"></a>    Ela fornece uma estrutura formal para quantificar a incerteza e</span>
-<span id="cb1-111"><a href="#cb1-111"></a>    modelar situações onde o acaso está presente.</span>
-<span id="cb1-112"><a href="#cb1-112"></a></span>
-<span id="cb1-113"><a href="#cb1-113"></a><span class="fu">## Conceitos Básicos {#conceitos-básicos}</span></span>
-<span id="cb1-114"><a href="#cb1-114"></a></span>
-<span id="cb1-115"><a href="#cb1-115"></a><span class="fu">### População {#população}</span></span>
-<span id="cb1-116"><a href="#cb1-116"></a></span>
-<span id="cb1-117"><a href="#cb1-117"></a>Conjunto de todos os elementos com a característica de interesse, sobre</span>
-<span id="cb1-118"><a href="#cb1-118"></a>a qual desejamos obter informações. A população pode ser finita ou</span>
-<span id="cb1-119"><a href="#cb1-119"></a>infinita. Representamos por "N" o número de elementos da população.</span>
-<span id="cb1-120"><a href="#cb1-120"></a></span>
-<span id="cb1-121"><a href="#cb1-121"></a><span class="fu">### Amostra {#amostra}</span></span>
-<span id="cb1-122"><a href="#cb1-122"></a></span>
-<span id="cb1-123"><a href="#cb1-123"></a>É um subconjunto retirado de uma população, obtido através de técnicas</span>
-<span id="cb1-124"><a href="#cb1-124"></a>de amostragem. O número de elementos da amostra é representado por "n".</span>
-<span id="cb1-125"><a href="#cb1-125"></a>Exemplo: Em uma pesquisa eleitoral para saber o resultado das eleições</span>
-<span id="cb1-126"><a href="#cb1-126"></a>para presidente do Brasil, qual a população de interesse? Qual seria a</span>
-<span id="cb1-127"><a href="#cb1-127"></a>amostra? R: A população é constituída de todos os eleitores do Brasil. A</span>
-<span id="cb1-128"><a href="#cb1-128"></a>amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.</span>
-<span id="cb1-129"><a href="#cb1-129"></a></span>
-<span id="cb1-130"><a href="#cb1-130"></a><span class="fu">### Censo {#censo}</span></span>
-<span id="cb1-131"><a href="#cb1-131"></a></span>
-<span id="cb1-132"><a href="#cb1-132"></a>É o processo utilizado para levantar as características observáveis,</span>
-<span id="cb1-133"><a href="#cb1-133"></a>abordando todos os elementos de uma população. Então, um levantamento</span>
-<span id="cb1-134"><a href="#cb1-134"></a>efetuado sobre toda uma população é denominado de levantamento</span>
-<span id="cb1-135"><a href="#cb1-135"></a>censitário ou simplesmente censo.</span>
-<span id="cb1-136"><a href="#cb1-136"></a></span>
-<span id="cb1-137"><a href="#cb1-137"></a>https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html</span>
-<span id="cb1-138"><a href="#cb1-138"></a>escrever breve texto sobre o censo de 2022</span>
-<span id="cb1-139"><a href="#cb1-139"></a></span>
-<span id="cb1-140"><a href="#cb1-140"></a><span class="fu">### Parâmetros {#parâmetros}</span></span>
-<span id="cb1-141"><a href="#cb1-141"></a></span>
-<span id="cb1-142"><a href="#cb1-142"></a><span class="fu">### Estatísticas {#estatísticas}</span></span>
-<span id="cb1-143"><a href="#cb1-143"></a></span>
-<span id="cb1-144"><a href="#cb1-144"></a><span class="fu">### Variável {#variável}</span></span>
-<span id="cb1-145"><a href="#cb1-145"></a></span>
-<span id="cb1-146"><a href="#cb1-146"></a>Variável é qualquer característica que varia de um elemento da população</span>
-<span id="cb1-147"><a href="#cb1-147"></a>para outro. É a característica que está sendo analisada em cada elemento</span>
-<span id="cb1-148"><a href="#cb1-148"></a>de uma população. Exemplo: Na população funcionários de uma determinada</span>
-<span id="cb1-149"><a href="#cb1-149"></a>empresa -- podemos estudar as varáveis: número de dependentes,</span>
-<span id="cb1-150"><a href="#cb1-150"></a>remuneração financeira, idade, sexo, local de residência, nível de</span>
-<span id="cb1-151"><a href="#cb1-151"></a>escolaridade, estado civil, tempo deserviços na empresa, etc.</span>
-<span id="cb1-152"><a href="#cb1-152"></a></span>
-<span id="cb1-153"><a href="#cb1-153"></a><span class="fu">### Estrutura de uma planilha</span></span>
-<span id="cb1-154"><a href="#cb1-154"></a></span>
-<span id="cb1-155"><a href="#cb1-155"></a>ESCREVER UM BASICO E ENSINAR R</span>
-<span id="cb1-156"><a href="#cb1-156"></a></span>
-<span id="cb1-157"><a href="#cb1-157"></a><span class="fu">## Classificação das Variáveis {#classificação-das-variáveis}</span></span>
-<span id="cb1-158"><a href="#cb1-158"></a></span>
-<span id="cb1-159"><a href="#cb1-159"></a><span class="al">![Figura 1: Classificação das Variáveis](var.png)</span></span>
-<span id="cb1-160"><a href="#cb1-160"></a></span>
-<span id="cb1-161"><a href="#cb1-161"></a><span class="fu">## Distribuição de Frequências {#distribuição-de-frequências}</span></span>
-<span id="cb1-162"><a href="#cb1-162"></a></span>
-<span id="cb1-163"><a href="#cb1-163"></a>A distribuição de frequências é uma forma de organizar e resumir dados,</span>
-<span id="cb1-164"><a href="#cb1-164"></a>mostrando como os valores de uma variável estão distribuídos. Ela pode</span>
-<span id="cb1-165"><a href="#cb1-165"></a>ser aplicada tanto para variáveis quantitativas (numéricas) quanto para</span>
-<span id="cb1-166"><a href="#cb1-166"></a>variáveis qualitativas (categóricas).</span>
-<span id="cb1-167"><a href="#cb1-167"></a></span>
-<span id="cb1-168"><a href="#cb1-168"></a><span class="fu">### Distribuição para Variáveis Quantitativas {#distribuição-para-variáveis-quantitativas}</span></span>
-<span id="cb1-169"><a href="#cb1-169"></a></span>
-<span id="cb1-170"><a href="#cb1-170"></a>A distribuição de frequências para variáveis quantitativas é feita</span>
-<span id="cb1-171"><a href="#cb1-171"></a>agrupando os dados em intervalos de classe ou listando cada valor</span>
-<span id="cb1-172"><a href="#cb1-172"></a>individualmente.</span>
-<span id="cb1-173"><a href="#cb1-173"></a></span>
-<span id="cb1-174"><a href="#cb1-174"></a>Passos para Construir a Distribuição: 1. Definir os Intervalos de Classe</span>
-<span id="cb1-175"><a href="#cb1-175"></a>(para dados contínuos): - Divida os dados em intervalos (ex: 0-10,</span>
-<span id="cb1-176"><a href="#cb1-176"></a>10-20, 20-30). - Cada intervalo é chamado de classe. - O tamanho do</span>
-<span id="cb1-177"><a href="#cb1-177"></a>intervalo é chamado de amplitude de classe e existem várias maneiras de</span>
-<span id="cb1-178"><a href="#cb1-178"></a>defini-la 2. Contar a Frequência: - Conte quantos valores estão em cada</span>
-<span id="cb1-179"><a href="#cb1-179"></a>intervalo (frequência absoluta). 3. Calcular Frequências Relativas e</span>
-<span id="cb1-180"><a href="#cb1-180"></a>Acumuladas: - Frequência relativa: Proporção de valores em cada classe</span>
-<span id="cb1-181"><a href="#cb1-181"></a>em relação ao total. - Frequência acumulada: Soma das frequências até</span>
-<span id="cb1-182"><a href="#cb1-182"></a>uma determinada classe.</span>
-<span id="cb1-183"><a href="#cb1-183"></a></span>
-<span id="cb1-184"><a href="#cb1-184"></a>Formas de definir a amplitude das classes:</span>
-<span id="cb1-185"><a href="#cb1-185"></a></span>
-<span id="cb1-186"><a href="#cb1-186"></a>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO</span>
-<span id="cb1-187"><a href="#cb1-187"></a>DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</span>
-<span id="cb1-188"><a href="#cb1-188"></a></span>
-<span id="cb1-189"><a href="#cb1-189"></a><span class="fu">### Distribuição para Variáveis Qualitativas {#distribuição-para-variáveis-qualitativas}</span></span>
-<span id="cb1-190"><a href="#cb1-190"></a></span>
-<span id="cb1-191"><a href="#cb1-191"></a>A distribuição de frequências para variáveis qualitativas é feita</span>
-<span id="cb1-192"><a href="#cb1-192"></a>contando a ocorrência de cada categoria.</span>
-<span id="cb1-193"><a href="#cb1-193"></a></span>
-<span id="cb1-194"><a href="#cb1-194"></a><span class="ss">1.  </span>Listar as Categorias:</span>
-<span id="cb1-195"><a href="#cb1-195"></a><span class="ss">2.  </span>Contar a Frequência Absoluta</span>
-<span id="cb1-196"><a href="#cb1-196"></a><span class="ss">3.  </span>Calcular Frequências Relativas e Acumuladas</span>
-<span id="cb1-197"><a href="#cb1-197"></a></span>
-<span id="cb1-198"><a href="#cb1-198"></a>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO</span>
-<span id="cb1-199"><a href="#cb1-199"></a>DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</span>
-<span id="cb1-200"><a href="#cb1-200"></a></span>
-<span id="cb1-201"><a href="#cb1-201"></a><span class="fu">## Medidas de Posição e Dispersão {#medidas-de-posição-e-dispersão}</span></span>
-<span id="cb1-202"><a href="#cb1-202"></a></span>
-<span id="cb1-203"><a href="#cb1-203"></a><span class="fu">### Média {#média}</span></span>
-<span id="cb1-204"><a href="#cb1-204"></a></span>
-<span id="cb1-205"><a href="#cb1-205"></a>Média</span>
-<span id="cb1-206"><a href="#cb1-206"></a></span>
-<span id="cb1-207"><a href="#cb1-207"></a><span class="fu">### Mediana {#mediana}</span></span>
-<span id="cb1-208"><a href="#cb1-208"></a></span>
-<span id="cb1-209"><a href="#cb1-209"></a><span class="fu">### Moda {#moda}</span></span>
-<span id="cb1-210"><a href="#cb1-210"></a></span>
-<span id="cb1-211"><a href="#cb1-211"></a><span class="fu">### Desvio Padrão {#desvio-padrão}</span></span>
-<span id="cb1-212"><a href="#cb1-212"></a></span>
-<span id="cb1-213"><a href="#cb1-213"></a><span class="fu">### Variância {#variância}</span></span>
-<span id="cb1-214"><a href="#cb1-214"></a></span>
-<span id="cb1-215"><a href="#cb1-215"></a><span class="fu">### Assimetria {#assimetria}</span></span>
-<span id="cb1-216"><a href="#cb1-216"></a></span>
-<span id="cb1-217"><a href="#cb1-217"></a><span class="fu">### Curtose {#curtose}</span></span>
-<span id="cb1-218"><a href="#cb1-218"></a></span>
-<span id="cb1-219"><a href="#cb1-219"></a><span class="fu">## Gráficos {#gráficos}</span></span>
-<span id="cb1-220"><a href="#cb1-220"></a></span>
-<span id="cb1-221"><a href="#cb1-221"></a><span class="fu">### Gráficos para Variáveis Qualitativas {#gráficos-para-variáveis-qualitativas}</span></span>
-<span id="cb1-222"><a href="#cb1-222"></a></span>
-<span id="cb1-223"><a href="#cb1-223"></a><span class="fu">#### Barras</span></span>
-<span id="cb1-224"><a href="#cb1-224"></a></span>
-<span id="cb1-225"><a href="#cb1-225"></a><span class="fu">#### Colunas</span></span>
-<span id="cb1-226"><a href="#cb1-226"></a></span>
-<span id="cb1-227"><a href="#cb1-227"></a><span class="fu">#### Setores</span></span>
-<span id="cb1-228"><a href="#cb1-228"></a></span>
-<span id="cb1-229"><a href="#cb1-229"></a><span class="fu">#### Linhas</span></span>
-<span id="cb1-230"><a href="#cb1-230"></a></span>
-<span id="cb1-231"><a href="#cb1-231"></a><span class="fu">### Gráficos para Variáveis Quantitativas {#gráficos-para-variáveis-quantitativas}</span></span>
-<span id="cb1-232"><a href="#cb1-232"></a></span>
-<span id="cb1-233"><a href="#cb1-233"></a><span class="fu">#### Histograma</span></span>
-<span id="cb1-234"><a href="#cb1-234"></a></span>
-<span id="cb1-235"><a href="#cb1-235"></a><span class="fu">#### Polígono de Frequências</span></span>
-<span id="cb1-236"><a href="#cb1-236"></a></span>
-<span id="cb1-237"><a href="#cb1-237"></a><span class="fu">#### Boxplot</span></span>
-<span id="cb1-238"><a href="#cb1-238"></a></span>
-<span id="cb1-239"><a href="#cb1-239"></a><span class="fu">#### Diagrama de Dispersão</span></span>
-<span id="cb1-240"><a href="#cb1-240"></a></span>
-<span id="cb1-241"><a href="#cb1-241"></a><span class="fu">## Análise Bidimensional de Dados {#análise-bidimensional-de-dados}</span></span>
-<span id="cb1-242"><a href="#cb1-242"></a></span>
-<span id="cb1-243"><a href="#cb1-243"></a><span class="fu">### Tabelas de Contingência {#tabelas-de-contingência}</span></span>
-<span id="cb1-244"><a href="#cb1-244"></a></span>
-<span id="cb1-245"><a href="#cb1-245"></a>Mostram a relação entre duas variáveis categóricas.</span>
-<span id="cb1-246"><a href="#cb1-246"></a></span>
-<span id="cb1-247"><a href="#cb1-247"></a><span class="fu">### Covariância e Correlação {#covariância-e-correlação}</span></span>
-<span id="cb1-248"><a href="#cb1-248"></a></span>
-<span id="cb1-249"><a href="#cb1-249"></a>Medem a relação entre variáveis quantitativas. <span class="sc">\#</span># Técnicas de</span>
-<span id="cb1-250"><a href="#cb1-250"></a>Amostragem {#técnicas-de-amostragem}</span>
-<span id="cb1-251"><a href="#cb1-251"></a></span>
-<span id="cb1-252"><a href="#cb1-252"></a><span class="fu">### Amostragem Probabilística (Aleatória) {#amostragem-probabilística}</span></span>
-<span id="cb1-253"><a href="#cb1-253"></a></span>
-<span id="cb1-254"><a href="#cb1-254"></a>Envolve seleção aleatória, onde todos os membros da população têm a</span>
-<span id="cb1-255"><a href="#cb1-255"></a>mesma chance de serem selecionados.</span>
-<span id="cb1-256"><a href="#cb1-256"></a></span>
-<span id="cb1-257"><a href="#cb1-257"></a><span class="fu">### Amostragem Não Probabilística {#amostragem-não-probabilística}</span></span>
-<span id="cb1-258"><a href="#cb1-258"></a></span>
-<span id="cb1-259"><a href="#cb1-259"></a>Não envolve seleção aleatória.</span>
-<span id="cb1-260"><a href="#cb1-260"></a></span>
-<span id="cb1-261"><a href="#cb1-261"></a><span class="fu">### Amostragem Aleatória Simples {#amostragem-aleatória-simples}</span></span>
-<span id="cb1-262"><a href="#cb1-262"></a></span>
-<span id="cb1-263"><a href="#cb1-263"></a>Todos os membros da população têm a mesma chance de serem selecionados.</span>
-<span id="cb1-264"><a href="#cb1-264"></a></span>
-<span id="cb1-265"><a href="#cb1-265"></a><span class="fu">### Amostragem Sistemática {#amostragem-sistemática}</span></span>
-<span id="cb1-266"><a href="#cb1-266"></a></span>
-<span id="cb1-267"><a href="#cb1-267"></a>A seleção é feita a partir de um intervalo fixo na lista populacional.</span>
-<span id="cb1-268"><a href="#cb1-268"></a></span>
-<span id="cb1-269"><a href="#cb1-269"></a><span class="fu">### Amostragem Estratificada {#amostragem-estratificada}</span></span>
-<span id="cb1-270"><a href="#cb1-270"></a></span>
-<span id="cb1-271"><a href="#cb1-271"></a>A população é dividida em estratos, e amostras são retiradas de cada</span>
-<span id="cb1-272"><a href="#cb1-272"></a>estrato.</span>
-<span id="cb1-273"><a href="#cb1-273"></a></span>
-<span id="cb1-274"><a href="#cb1-274"></a><span class="fu">### Amostragem por Conglomerados {#amostragem-por-conglomerados}</span></span>
-<span id="cb1-275"><a href="#cb1-275"></a></span>
-<span id="cb1-276"><a href="#cb1-276"></a>A população é dividida em conglomerados, e alguns conglomerados são</span>
-<span id="cb1-277"><a href="#cb1-277"></a>selecionados aleatoriamente.</span>
-<span id="cb1-278"><a href="#cb1-278"></a></span>
-<span id="cb1-279"><a href="#cb1-279"></a>------------------------------------------------------------------------</span>
-<span id="cb1-280"><a href="#cb1-280"></a></span>
-<span id="cb1-281"><a href="#cb1-281"></a><span class="fu"># Noções de Probabilidade {#noções-de-probabilidade}</span></span>
-<span id="cb1-282"><a href="#cb1-282"></a></span>
-<span id="cb1-283"><a href="#cb1-283"></a>A probabilidade é um ramo da matemática que estuda a incerteza e a</span>
-<span id="cb1-284"><a href="#cb1-284"></a>aleatoriedade. Ela fornece ferramentas para quantificar a chance de</span>
-<span id="cb1-285"><a href="#cb1-285"></a>ocorrência de eventos em situações onde o resultado não é previsível com</span>
-<span id="cb1-286"><a href="#cb1-286"></a>certeza. Desde previsões do tempo até decisões financeiras, a</span>
-<span id="cb1-287"><a href="#cb1-287"></a>probabilidade está presente em diversos aspectos da vida cotidiana e é</span>
-<span id="cb1-288"><a href="#cb1-288"></a>fundamental em áreas como estatística, ciência de dados, física,</span>
-<span id="cb1-289"><a href="#cb1-289"></a>engenharia e economia.</span>
-<span id="cb1-290"><a href="#cb1-290"></a></span>
-<span id="cb1-291"><a href="#cb1-291"></a><span class="fu">## Análise Combinatória {#análise-combinatória}</span></span>
-<span id="cb1-292"><a href="#cb1-292"></a></span>
-<span id="cb1-293"><a href="#cb1-293"></a>Esse é um assunto difícil e não faz parte do escopo da disciplina, então</span>
-<span id="cb1-294"><a href="#cb1-294"></a>foque em ter um entendimento intuitivo das ideias contidas nessa</span>
-<span id="cb1-295"><a href="#cb1-295"></a>sub-seção</span>
-<span id="cb1-296"><a href="#cb1-296"></a></span>
-<span id="cb1-297"><a href="#cb1-297"></a>...</span>
-<span id="cb1-298"><a href="#cb1-298"></a></span>
-<span id="cb1-299"><a href="#cb1-299"></a><span class="fu">## Conceitos básicos</span></span>
-<span id="cb1-300"><a href="#cb1-300"></a></span>
-<span id="cb1-301"><a href="#cb1-301"></a><span class="fu">### Experimento Aleatório {#experimento-aleatório}</span></span>
-<span id="cb1-302"><a href="#cb1-302"></a></span>
-<span id="cb1-303"><a href="#cb1-303"></a>Um experimento aleatório é qualquer processo que pode ser repetido sob</span>
-<span id="cb1-304"><a href="#cb1-304"></a>as mesmas condições, mas cujo resultado não pode ser previsto com</span>
-<span id="cb1-305"><a href="#cb1-305"></a>certeza. Exemplos incluem: </span>
-<span id="cb1-306"><a href="#cb1-306"></a><span class="ss">-  </span>Lançar uma moeda;</span>
-<span id="cb1-307"><a href="#cb1-307"></a><span class="ss">-  </span>Jogar um dado;</span>
-<span id="cb1-308"><a href="#cb1-308"></a><span class="ss">-  </span>Sortear uma carta de um baralho; </span>
-<span id="cb1-309"><a href="#cb1-309"></a><span class="ss">-  </span>Número de peças defeituosas em um lote;</span>
-<span id="cb1-310"><a href="#cb1-310"></a><span class="ss">-  </span>Quantidade de chamadas telefônicas em uma hora em um call center</span>
-<span id="cb1-311"><a href="#cb1-311"></a></span>
-<span id="cb1-312"><a href="#cb1-312"></a><span class="fu">### Espaço Amostral {#espaço-amostral}</span></span>
-<span id="cb1-313"><a href="#cb1-313"></a></span>
-<span id="cb1-314"><a href="#cb1-314"></a>O espaço amostral é o conjunto de todos os resultados possíveis de um</span>
-<span id="cb1-315"><a href="#cb1-315"></a>experimento aleatório. Por exemplo: - No lançamento de uma moeda: S =</span>
-<span id="cb1-316"><a href="#cb1-316"></a>{Cara, Coroa}. - No lançamento de um dado: S = {1, 2, 3, 4, 5, 6}. -</span>
-<span id="cb1-317"><a href="#cb1-317"></a>Considere o exemplo da seção anterior em que observamos o número de</span>
-<span id="cb1-318"><a href="#cb1-318"></a>chamadas telefônicas que chegam a uma central durante um determinado</span>
-<span id="cb1-319"><a href="#cb1-319"></a>intervalo de tempo. O espaço amostral é o conjunto: S = {0,1,2, 3,...}.</span>
-<span id="cb1-320"><a href="#cb1-320"></a></span>
-<span id="cb1-321"><a href="#cb1-321"></a>EXEMPLO: LANÇAMENTO DE DUAS MOEDAS, EXPLANAÇÃO RAPIDA DE ANALISE</span>
-<span id="cb1-322"><a href="#cb1-322"></a>COMBINATORIA</span>
-<span id="cb1-323"><a href="#cb1-323"></a></span>
-<span id="cb1-324"><a href="#cb1-324"></a>Exercício: pense e delimite (nao precisa escrever, só raciocinar) qual o</span>
-<span id="cb1-325"><a href="#cb1-325"></a>tamanho do espaço amostral e quais são os elementos do espaço amostral</span>
-<span id="cb1-326"><a href="#cb1-326"></a>de uma mão no jogo truco. Se você não sabe truco, faça o mesmo com o</span>
-<span id="cb1-327"><a href="#cb1-327"></a>sorteio aleatório de uma carta.</span>
-<span id="cb1-328"><a href="#cb1-328"></a></span>
-<span id="cb1-329"><a href="#cb1-329"></a><span class="fu">### Eventos {#eventos}</span></span>
-<span id="cb1-330"><a href="#cb1-330"></a></span>
-<span id="cb1-331"><a href="#cb1-331"></a>Um evento é um subconjunto do espaço amostral. Ele representa um</span>
-<span id="cb1-332"><a href="#cb1-332"></a>resultado ou uma combinação de resultados de interesse. Por exemplo: -</span>
-<span id="cb1-333"><a href="#cb1-333"></a>No lançamento de um dado, o evento "sair um número par" é o subconjunto</span>
-<span id="cb1-334"><a href="#cb1-334"></a>{2, 4, 6}. - Na retirada de uma mão no truco em que a vira é o Ás o</span>
-<span id="cb1-335"><a href="#cb1-335"></a>evento "tirar as 4 cartas mais fortes" é o subconjunto {2 de espadas, 2</span>
-<span id="cb1-336"><a href="#cb1-336"></a>de ouros, 2 copas, 2 de paus}</span>
-<span id="cb1-337"><a href="#cb1-337"></a></span>
-<span id="cb1-338"><a href="#cb1-338"></a><span class="fu">## Definição de Probabilidade {#definição-de-probabilidade}</span></span>
-<span id="cb1-339"><a href="#cb1-339"></a></span>
-<span id="cb1-340"><a href="#cb1-340"></a>A probabilidade, em termos informais, é uma medida que quantifica a</span>
-<span id="cb1-341"><a href="#cb1-341"></a>chance de um evento ocorrer. Ela é representada por um número entre 0 e</span>
-<span id="cb1-342"><a href="#cb1-342"></a>1, onde:</span>
-<span id="cb1-343"><a href="#cb1-343"></a></span>
-<span id="cb1-344"><a href="#cb1-344"></a><span class="ss">-   </span>0: O evento é impossível (nunca ocorre).</span>
-<span id="cb1-345"><a href="#cb1-345"></a></span>
-<span id="cb1-346"><a href="#cb1-346"></a><span class="ss">-   </span>1: O evento é certo (sempre ocorre).</span>
-<span id="cb1-347"><a href="#cb1-347"></a></span>
-<span id="cb1-348"><a href="#cb1-348"></a>A probabilidade de um evento A é denotada por P(A)</span>
-<span id="cb1-349"><a href="#cb1-349"></a></span>
-<span id="cb1-350"><a href="#cb1-350"></a>$$</span>
-<span id="cb1-351"><a href="#cb1-351"></a>P(A) = \frac{n(A)}{n(\Omega)}</span>
-<span id="cb1-352"><a href="#cb1-352"></a>$$ </span>
-<span id="cb1-353"><a href="#cb1-353"></a></span>
-<span id="cb1-354"><a href="#cb1-354"></a>Onde:</span>
-<span id="cb1-355"><a href="#cb1-355"></a><span class="ss">-   </span>n(A): Número de resultados favoráveis ao evento </span>
-<span id="cb1-356"><a href="#cb1-356"></a><span class="ss">-   </span>n(Ω): Número total de resultados possíveis no espaço amostral</span>
-<span id="cb1-357"><a href="#cb1-357"></a></span>
-<span id="cb1-358"><a href="#cb1-358"></a><span class="fu">### Axiomas da Probabilidade {#axiomas-da-probabilidade}</span></span>
-<span id="cb1-359"><a href="#cb1-359"></a></span>
-<span id="cb1-360"><a href="#cb1-360"></a>Regras básicas que definem a probabilidade.</span>
-<span id="cb1-361"><a href="#cb1-361"></a></span>
-<span id="cb1-362"><a href="#cb1-362"></a><span class="fu">### Propriedades Fundamentais {#propriedades-fundamentais}</span></span>
-<span id="cb1-363"><a href="#cb1-363"></a></span>
-<span id="cb1-364"><a href="#cb1-364"></a>Propriedades derivadas dos axiomas.</span>
-<span id="cb1-365"><a href="#cb1-365"></a></span>
-<span id="cb1-366"><a href="#cb1-366"></a><span class="fu">## Probabilidade Condicional e Teorema de Bayes {#probabilidade-condicional-e-teorema-de-bayes}</span></span>
-<span id="cb1-367"><a href="#cb1-367"></a></span>
-<span id="cb1-368"><a href="#cb1-368"></a><span class="fu">### Probabilidade Condicional {#probabilidade-condicional}</span></span>
-<span id="cb1-369"><a href="#cb1-369"></a></span>
-<span id="cb1-370"><a href="#cb1-370"></a>Probabilidade de um evento dado que outro ocorreu.</span>
-<span id="cb1-371"><a href="#cb1-371"></a></span>
-<span id="cb1-372"><a href="#cb1-372"></a><span class="fu">### Teorema de Bayes {#teorema-de-bayes}</span></span>
-<span id="cb1-373"><a href="#cb1-373"></a></span>
-<span id="cb1-374"><a href="#cb1-374"></a>Relaciona probabilidades condicionais.</span>
-<span id="cb1-375"><a href="#cb1-375"></a></span>
-<span id="cb1-376"><a href="#cb1-376"></a><span class="fu">## Independência de Eventos {#independência-de-eventos}</span></span>
-<span id="cb1-377"><a href="#cb1-377"></a></span>
-<span id="cb1-378"><a href="#cb1-378"></a><span class="fu">### Definição de Independência {#definição-de-independência}</span></span>
-<span id="cb1-379"><a href="#cb1-379"></a></span>
-<span id="cb1-380"><a href="#cb1-380"></a>Dois eventos são independentes se a ocorrência de um não afeta a</span>
-<span id="cb1-381"><a href="#cb1-381"></a>probabilidade do outro.</span>
-<span id="cb1-382"><a href="#cb1-382"></a></span>
-<span id="cb1-383"><a href="#cb1-383"></a><span class="fu">### Exemplos de Independência {#exemplos-de-independência}</span></span>
-<span id="cb1-384"><a href="#cb1-384"></a></span>
-<span id="cb1-385"><a href="#cb1-385"></a>Exemplos práticos de eventos independentes.</span>
-<span id="cb1-386"><a href="#cb1-386"></a></span>
-<span id="cb1-387"><a href="#cb1-387"></a><span class="fu">## Variáveis Aleatórias {#variáveis-aleatórias}</span></span>
-<span id="cb1-388"><a href="#cb1-388"></a></span>
-<span id="cb1-389"><a href="#cb1-389"></a><span class="fu">### Variáveis Aleatórias Discretas {#variáveis-aleatórias-discretas}</span></span>
-<span id="cb1-390"><a href="#cb1-390"></a></span>
-<span id="cb1-391"><a href="#cb1-391"></a>Assumem valores contáveis.</span>
-<span id="cb1-392"><a href="#cb1-392"></a></span>
-<span id="cb1-393"><a href="#cb1-393"></a><span class="fu">### Variáveis Aleatórias Contínuas {#variáveis-aleatórias-contínuas}</span></span>
-<span id="cb1-394"><a href="#cb1-394"></a></span>
-<span id="cb1-395"><a href="#cb1-395"></a>Assumem valores em um intervalo.</span>
-<span id="cb1-396"><a href="#cb1-396"></a></span>
-<span id="cb1-397"><a href="#cb1-397"></a><span class="fu">## Distribuições de Probabilidade {#distribuições-de-probabilidade}</span></span>
-<span id="cb1-398"><a href="#cb1-398"></a></span>
-<span id="cb1-399"><a href="#cb1-399"></a><span class="fu">### Distribuições Discretas {#distribuições-discretas}</span></span>
-<span id="cb1-400"><a href="#cb1-400"></a></span>
-<span id="cb1-401"><a href="#cb1-401"></a>Binomial, Poisson.</span>
-<span id="cb1-402"><a href="#cb1-402"></a></span>
-<span id="cb1-403"><a href="#cb1-403"></a><span class="fu">### Distribuições Contínuas {#distribuições-contínuas}</span></span>
-<span id="cb1-404"><a href="#cb1-404"></a></span>
-<span id="cb1-405"><a href="#cb1-405"></a>Exponencial, Normal.</span>
-<span id="cb1-406"><a href="#cb1-406"></a></span>
-<span id="cb1-407"><a href="#cb1-407"></a>------------------------------------------------------------------------</span>
-<span id="cb1-408"><a href="#cb1-408"></a></span>
-<span id="cb1-409"><a href="#cb1-409"></a><span class="fu"># Noções de Inferência Estatística {#noções-de-inferência-estatística}</span></span>
-<span id="cb1-410"><a href="#cb1-410"></a></span>
-<span id="cb1-411"><a href="#cb1-411"></a><span class="fu">## Parâmetros, Estimadores e Estimativas {#parâmetros-estimadores-e-estimativas}</span></span>
-<span id="cb1-412"><a href="#cb1-412"></a></span>
-<span id="cb1-413"><a href="#cb1-413"></a><span class="fu">### Parâmetros</span></span>
-<span id="cb1-414"><a href="#cb1-414"></a></span>
-<span id="cb1-415"><a href="#cb1-415"></a>Características da população.</span>
-<span id="cb1-416"><a href="#cb1-416"></a></span>
-<span id="cb1-417"><a href="#cb1-417"></a><span class="fu">### Estimadores {#estimadores}</span></span>
-<span id="cb1-418"><a href="#cb1-418"></a></span>
-<span id="cb1-419"><a href="#cb1-419"></a>Funções dos dados usadas para estimar parâmetros.</span>
-<span id="cb1-420"><a href="#cb1-420"></a></span>
-<span id="cb1-421"><a href="#cb1-421"></a><span class="fu">### Estimativas {#estimativas}</span></span>
-<span id="cb1-422"><a href="#cb1-422"></a></span>
-<span id="cb1-423"><a href="#cb1-423"></a>Valores calculados a partir dos dados.</span>
-<span id="cb1-424"><a href="#cb1-424"></a></span>
-<span id="cb1-425"><a href="#cb1-425"></a><span class="fu">## Distribuição Amostral {#distribuição-amostral}</span></span>
-<span id="cb1-426"><a href="#cb1-426"></a></span>
-<span id="cb1-427"><a href="#cb1-427"></a><span class="fu">### Distribuição da Média {#distribuição-da-média}</span></span>
-<span id="cb1-428"><a href="#cb1-428"></a></span>
-<span id="cb1-429"><a href="#cb1-429"></a>Distribuição da média amostral.</span>
-<span id="cb1-430"><a href="#cb1-430"></a></span>
-<span id="cb1-431"><a href="#cb1-431"></a><span class="fu">### Distribuição da Proporção {#distribuição-da-proporção}</span></span>
-<span id="cb1-432"><a href="#cb1-432"></a></span>
-<span id="cb1-433"><a href="#cb1-433"></a>Distribuição da proporção amostral.</span>
-<span id="cb1-434"><a href="#cb1-434"></a></span>
-<span id="cb1-435"><a href="#cb1-435"></a><span class="fu">### Distribuição da Diferença de Médias {#distribuição-da-diferença-de-médias}</span></span>
-<span id="cb1-436"><a href="#cb1-436"></a></span>
-<span id="cb1-437"><a href="#cb1-437"></a>Distribuição da diferença entre médias amostrais.</span>
-<span id="cb1-438"><a href="#cb1-438"></a></span>
-<span id="cb1-439"><a href="#cb1-439"></a><span class="fu">## Intervalo de Confiança {#intervalo-de-confiança}</span></span>
-<span id="cb1-440"><a href="#cb1-440"></a></span>
-<span id="cb1-441"><a href="#cb1-441"></a><span class="fu">### Intervalo para a Média {#intervalo-para-a-média}</span></span>
-<span id="cb1-442"><a href="#cb1-442"></a></span>
-<span id="cb1-443"><a href="#cb1-443"></a>Intervalo de confiança para a média populacional.</span>
-<span id="cb1-444"><a href="#cb1-444"></a></span>
-<span id="cb1-445"><a href="#cb1-445"></a><span class="fu">### Intervalo para a Proporção {#intervalo-para-a-proporção}</span></span>
-<span id="cb1-446"><a href="#cb1-446"></a></span>
-<span id="cb1-447"><a href="#cb1-447"></a>Intervalo de confiança para a proporção populacional.</span>
-<span id="cb1-448"><a href="#cb1-448"></a></span>
-<span id="cb1-449"><a href="#cb1-449"></a>------------------------------------------------------------------------</span>
-<span id="cb1-450"><a href="#cb1-450"></a></span>
-<span id="cb1-451"><a href="#cb1-451"></a><span class="fu"># Noções de Regressão Linear Simples {#noções-de-regressão-linear-simples}</span></span>
-<span id="cb1-452"><a href="#cb1-452"></a></span>
-<span id="cb1-453"><a href="#cb1-453"></a><span class="fu">## Conceitos {#conceitos}</span></span>
-<span id="cb1-454"><a href="#cb1-454"></a></span>
-<span id="cb1-455"><a href="#cb1-455"></a><span class="fu">## Estimação dos Parâmetros {#estimação-dos-parâmetros}</span></span>
-<span id="cb1-456"><a href="#cb1-456"></a></span>
-<span id="cb1-457"><a href="#cb1-457"></a><span class="fu">## Coeficiente de Determinação {#coeficiente-de-determinação}</span></span>
-<span id="cb1-458"><a href="#cb1-458"></a></span>
-<span id="cb1-459"><a href="#cb1-459"></a>------------------------------------------------------------------------</span>
-<span id="cb1-460"><a href="#cb1-460"></a></span>
-<span id="cb1-461"><a href="#cb1-461"></a><span class="fu"># Apêndices</span></span>
-<span id="cb1-462"><a href="#cb1-462"></a></span>
-<span id="cb1-463"><a href="#cb1-463"></a><span class="fu">## Arquivos de Aulas</span></span>
-<span id="cb1-464"><a href="#cb1-464"></a></span>
-<span id="cb1-465"><a href="#cb1-465"></a><span class="fu">## Nivelamento em R</span></span>
-<span id="cb1-466"><a href="#cb1-466"></a></span>
-<span id="cb1-467"><a href="#cb1-467"></a><span class="fu">## Dicas de geração de código com IA</span></span>
-<span id="cb1-468"><a href="#cb1-468"></a></span>
-<span id="cb1-469"><a href="#cb1-469"></a>------------------------------------------------------------------------</span>
-<span id="cb1-470"><a href="#cb1-470"></a></span>
-<span id="cb1-471"><a href="#cb1-471"></a><span class="fu"># Créditos e Agradecimentos</span></span>
-<span id="cb1-472"><a href="#cb1-472"></a></span>
-<span id="cb1-473"><a href="#cb1-473"></a>DIEGO e seus slides maravilhosos</span>
-<span id="cb1-474"><a href="#cb1-474"></a></span>
-<span id="cb1-475"><a href="#cb1-475"></a><span class="fu">### </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1"></a><span class="co">---</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="an">title:</span><span class="co"> "Introdução Interativa a Estatística"</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="an">author:</span><span class="co"> "Daniel Alexandre Ramazzotte"</span></span>
+<span id="cb52-4"><a href="#cb52-4"></a><span class="an">date:</span><span class="co"> "2025-xx-xx"</span></span>
+<span id="cb52-5"><a href="#cb52-5"></a><span class="an">format:</span></span>
+<span id="cb52-6"><a href="#cb52-6"></a><span class="co">  html:</span></span>
+<span id="cb52-7"><a href="#cb52-7"></a><span class="co">    toc: true</span></span>
+<span id="cb52-8"><a href="#cb52-8"></a><span class="co">    toc-depth: 4  # Aumentei a profundidade do índice para incluir subseções</span></span>
+<span id="cb52-9"><a href="#cb52-9"></a><span class="co">    number-sections: true</span></span>
+<span id="cb52-10"><a href="#cb52-10"></a><span class="co">    code-tools: true</span></span>
+<span id="cb52-11"><a href="#cb52-11"></a><span class="co">    code-fold: true</span></span>
+<span id="cb52-12"><a href="#cb52-12"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb52-13"><a href="#cb52-13"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb52-14"><a href="#cb52-14"></a><span class="co">    code-copy: true</span></span>
+<span id="cb52-15"><a href="#cb52-15"></a><span class="co">    code-link: true</span></span>
+<span id="cb52-16"><a href="#cb52-16"></a><span class="co">    highlight-style: pygments</span></span>
+<span id="cb52-17"><a href="#cb52-17"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb52-18"><a href="#cb52-18"></a><span class="an">editor:</span><span class="co"> </span></span>
+<span id="cb52-19"><a href="#cb52-19"></a><span class="co">  markdown: </span></span>
+<span id="cb52-20"><a href="#cb52-20"></a><span class="co">    wrap: 72</span></span>
+<span id="cb52-21"><a href="#cb52-21"></a><span class="co">---</span></span>
+<span id="cb52-22"><a href="#cb52-22"></a></span>
+<span id="cb52-23"><a href="#cb52-23"></a><span class="fu"># Introdução à Estatística e à Análise Exploratória de Dados {#introdução-a-estatística-e-a-análise-exploratória-de-dados}</span></span>
+<span id="cb52-24"><a href="#cb52-24"></a></span>
+<span id="cb52-25"><a href="#cb52-25"></a><span class="fu">## O que é Estatística {#o-que-é-estatística}</span></span>
+<span id="cb52-26"><a href="#cb52-26"></a></span>
+<span id="cb52-27"><a href="#cb52-27"></a><span class="fu">### Definição {#definição}</span></span>
+<span id="cb52-28"><a href="#cb52-28"></a></span>
+<span id="cb52-29"><a href="#cb52-29"></a>Algumas definições para a estatística:</span>
+<span id="cb52-30"><a href="#cb52-30"></a></span>
+<span id="cb52-31"><a href="#cb52-31"></a>Estatística é a ciência que utiliza as teorias probabilísticas (o que</span>
+<span id="cb52-32"><a href="#cb52-32"></a>entenderemos na próxima seção) para explicar a frequência da ocorrência</span>
+<span id="cb52-33"><a href="#cb52-33"></a>de eventos, tanto em estudos observacionais quanto em experimentos para</span>
+<span id="cb52-34"><a href="#cb52-34"></a>modelar a aleatoriedade e a incerteza de forma a estimar ou possibilitar</span>
+<span id="cb52-35"><a href="#cb52-35"></a>a previsão de fenômenos futuros, conforme o caso. (Saulo Henrique Weber,</span>
+<span id="cb52-36"><a href="#cb52-36"></a>2006)</span>
+<span id="cb52-37"><a href="#cb52-37"></a></span>
+<span id="cb52-38"><a href="#cb52-38"></a>A Estatística é a ciência que coleta, organiza, analisa, interpreta e</span>
+<span id="cb52-39"><a href="#cb52-39"></a>apresenta dados. Ela fornece ferramentas e métodos para transformar</span>
+<span id="cb52-40"><a href="#cb52-40"></a>informações brutas em conhecimento útil, permitindo a tomada de decisões</span>
+<span id="cb52-41"><a href="#cb52-41"></a>embasadas em evidências. (D.S. Moore, et al., 1999).</span>
+<span id="cb52-42"><a href="#cb52-42"></a></span>
+<span id="cb52-43"><a href="#cb52-43"></a>Até que um fenômeno de qualquer ramo do conhecimento seja submetido a</span>
+<span id="cb52-44"><a href="#cb52-44"></a>medidas e números, este não assumirá um status e seriedade na Ciência.</span>
+<span id="cb52-45"><a href="#cb52-45"></a>Popularmente atribuída à Francis Galton</span>
+<span id="cb52-46"><a href="#cb52-46"></a></span>
+<span id="cb52-47"><a href="#cb52-47"></a>Estatística é a arte de aprender a partir de dados (Ross, 2010)</span>
+<span id="cb52-48"><a href="#cb52-48"></a></span>
+<span id="cb52-49"><a href="#cb52-49"></a>Sem dados você é uma pessoa qualquer com uma opinião" William Edwards</span>
+<span id="cb52-50"><a href="#cb52-50"></a>Deming</span>
+<span id="cb52-51"><a href="#cb52-51"></a></span>
+<span id="cb52-52"><a href="#cb52-52"></a>"Estatística é "a gramática da Ciência" Karl Pearson</span>
+<span id="cb52-53"><a href="#cb52-53"></a></span>
+<span id="cb52-54"><a href="#cb52-54"></a><span class="fu">### Breve História da Estatística {#evolução-histórica}</span></span>
+<span id="cb52-55"><a href="#cb52-55"></a></span>
+<span id="cb52-56"><a href="#cb52-56"></a>escrever</span>
+<span id="cb52-57"><a href="#cb52-57"></a></span>
+<span id="cb52-58"><a href="#cb52-58"></a>Algumas leituras recomendadas são O Andar do Bêbado e Uma Senhora Toma</span>
+<span id="cb52-59"><a href="#cb52-59"></a>Chá para aprendizado sobre a evolução da histórica da estatística e</span>
+<span id="cb52-60"><a href="#cb52-60"></a>probabilidade e intuição sobre conceitos complexos.</span>
+<span id="cb52-61"><a href="#cb52-61"></a></span>
+<span id="cb52-62"><a href="#cb52-62"></a><span class="fu">### Importância e Aplicações {#importância-e-aplicações}</span></span>
+<span id="cb52-63"><a href="#cb52-63"></a></span>
+<span id="cb52-64"><a href="#cb52-64"></a>A Estatística é fundamental para muitas áreas e aplicável em quase todas</span>
+<span id="cb52-65"><a href="#cb52-65"></a>porque permite testar hipóteses, validar teorias e generalizar</span>
+<span id="cb52-66"><a href="#cb52-66"></a>resultados a partir de dados e hoje em dia se coletam dados de quase</span>
+<span id="cb52-67"><a href="#cb52-67"></a>tudo. Algumas dessas áreas são administração do Estado, otimização de</span>
+<span id="cb52-68"><a href="#cb52-68"></a>processos industriais e de engenharia, computação, ciências (saúde,</span>
+<span id="cb52-69"><a href="#cb52-69"></a>biológicas, sociais, física).</span>
+<span id="cb52-70"><a href="#cb52-70"></a></span>
+<span id="cb52-71"><a href="#cb52-71"></a>Ela nos permite responder questões como:</span>
+<span id="cb52-72"><a href="#cb52-72"></a></span>
+<span id="cb52-73"><a href="#cb52-73"></a><span class="ss">-   </span>Qual tipo e quantidade de dados devo coletar?</span>
+<span id="cb52-74"><a href="#cb52-74"></a><span class="ss">-   </span>Como organizar e resumir estes dados?</span>
+<span id="cb52-75"><a href="#cb52-75"></a><span class="ss">-   </span>Como analisar os dados e fazer conclusões dele?</span>
+<span id="cb52-76"><a href="#cb52-76"></a><span class="ss">-   </span>Como avaliar a força destas conclusões e avaliar sua incerteza?</span>
+<span id="cb52-77"><a href="#cb52-77"></a><span class="ss">-   </span>Como planejar um experimento que verifique a minha hipótese?</span>
+<span id="cb52-78"><a href="#cb52-78"></a></span>
+<span id="cb52-79"><a href="#cb52-79"></a>Algumas aplicações específicas são:</span>
+<span id="cb52-80"><a href="#cb52-80"></a></span>
+<span id="cb52-81"><a href="#cb52-81"></a><span class="ss">-   </span>Identificar mensagens indesejáveis em um e-mail (spam);</span>
+<span id="cb52-82"><a href="#cb52-82"></a><span class="ss">-   </span>Segmentação do comportamento de consumidores para propagandas</span>
+<span id="cb52-83"><a href="#cb52-83"></a>    direcionadas;</span>
+<span id="cb52-84"><a href="#cb52-84"></a><span class="ss">-   </span>Redução de fraudes em transações de cartão de crédito;</span>
+<span id="cb52-85"><a href="#cb52-85"></a><span class="ss">-   </span>Predição de eleições;</span>
+<span id="cb52-86"><a href="#cb52-86"></a><span class="ss">-   </span>Otimização do uso de energia em edifícios;</span>
+<span id="cb52-87"><a href="#cb52-87"></a><span class="ss">-   </span>Existe relação entre desemprego e procura por Uber?</span>
+<span id="cb52-88"><a href="#cb52-88"></a><span class="ss">-   </span>Os desembolsos do BNDES fizeram aumentar a taxa de investimento da</span>
+<span id="cb52-89"><a href="#cb52-89"></a>    economia brasileira?</span>
+<span id="cb52-90"><a href="#cb52-90"></a><span class="ss">-   </span>Como explicar a inflação de alimentos?</span>
+<span id="cb52-91"><a href="#cb52-91"></a><span class="ss">-   </span>O Banco Central brasileiro reage aos choques cambiais?</span>
+<span id="cb52-92"><a href="#cb52-92"></a><span class="ss">-   </span>Qual o efeito do aumento da volatilidade no mercado sobre a taxa de</span>
+<span id="cb52-93"><a href="#cb52-93"></a>    câmbio?</span>
+<span id="cb52-94"><a href="#cb52-94"></a></span>
+<span id="cb52-95"><a href="#cb52-95"></a><span class="fu">## Divisão do Livro</span></span>
+<span id="cb52-96"><a href="#cb52-96"></a></span>
+<span id="cb52-97"><a href="#cb52-97"></a>Tradicionalmente se divide didaticamente a estatística nas seguintes</span>
+<span id="cb52-98"><a href="#cb52-98"></a>partes (o que a ementa dessa disciplina faz e consequentemente esta</span>
+<span id="cb52-99"><a href="#cb52-99"></a>apostila também):</span>
+<span id="cb52-100"><a href="#cb52-100"></a></span>
+<span id="cb52-101"><a href="#cb52-101"></a><span class="ss">-   </span>Estatística Descritiva: É a área da estatística que visa organizar,</span>
+<span id="cb52-102"><a href="#cb52-102"></a>    resumir e descrever um conjunto de dados</span>
+<span id="cb52-103"><a href="#cb52-103"></a><span class="ss">-   </span>Estatística Inferencial: Coleção de métodos e técnicas utilizados</span>
+<span id="cb52-104"><a href="#cb52-104"></a>    para estudar uma população baseado em amostras probabilísticas desta</span>
+<span id="cb52-105"><a href="#cb52-105"></a>    população. É uma ferramenta valiosa para tomar decisões e fazer</span>
+<span id="cb52-106"><a href="#cb52-106"></a>    previsões</span>
+<span id="cb52-107"><a href="#cb52-107"></a><span class="ss">-   </span>Teoria da Probabilidade: Base teórica da estatística, é um ramo da</span>
+<span id="cb52-108"><a href="#cb52-108"></a>    matemática que estuda fenômenos aleatórios, ou seja, eventos cujos</span>
+<span id="cb52-109"><a href="#cb52-109"></a>    resultados não são determinísticos, mas sim sujeitos a incertezas.</span>
+<span id="cb52-110"><a href="#cb52-110"></a>    Ela fornece uma estrutura formal para quantificar a incerteza e</span>
+<span id="cb52-111"><a href="#cb52-111"></a>    modelar situações onde o acaso está presente.</span>
+<span id="cb52-112"><a href="#cb52-112"></a>    </span>
+<span id="cb52-113"><a href="#cb52-113"></a>ESCREVER SOBRE O APLICATIVO E A CLASSIFICAÇÃO DAS QUESTÕES</span>
+<span id="cb52-114"><a href="#cb52-114"></a></span>
+<span id="cb52-115"><a href="#cb52-115"></a>Também haverá seções em cada capítulo onde a aplicação dos conceitos citados será feita</span>
+<span id="cb52-116"><a href="#cb52-116"></a>nos softwares estatísticos R, Python e aplicativos de planilhas (no caso o Google Sheets, mas o mesmo pode ser aplicado em libreoffice calc ou o clássico Excel) </span>
+<span id="cb52-117"><a href="#cb52-117"></a></span>
+<span id="cb52-118"><a href="#cb52-118"></a><span class="fu">## Conceitos Básicos {#conceitos-básicos}</span></span>
+<span id="cb52-119"><a href="#cb52-119"></a></span>
+<span id="cb52-120"><a href="#cb52-120"></a><span class="fu">### População {#população}</span></span>
+<span id="cb52-121"><a href="#cb52-121"></a></span>
+<span id="cb52-122"><a href="#cb52-122"></a>Conjunto de todos os elementos com a característica de interesse, sobre</span>
+<span id="cb52-123"><a href="#cb52-123"></a>a qual desejamos obter informações. A população pode ser finita ou</span>
+<span id="cb52-124"><a href="#cb52-124"></a>infinita. Representamos por "N" o número de elementos da população.</span>
+<span id="cb52-125"><a href="#cb52-125"></a>Exemplos:</span>
+<span id="cb52-126"><a href="#cb52-126"></a>Todos os pacientes com diabetes no Brasil em um determinado ano.</span>
+<span id="cb52-127"><a href="#cb52-127"></a>Todas as árvores de uma floresta tropical.</span>
+<span id="cb52-128"><a href="#cb52-128"></a>Todos os carros de um modelo específico em uma concessionária.</span>
+<span id="cb52-129"><a href="#cb52-129"></a>Todos os acessos a um site em 24 horas</span>
+<span id="cb52-130"><a href="#cb52-130"></a></span>
+<span id="cb52-131"><a href="#cb52-131"></a></span>
+<span id="cb52-132"><a href="#cb52-132"></a></span>
+<span id="cb52-133"><a href="#cb52-133"></a><span class="fu">### Amostra {#amostra}</span></span>
+<span id="cb52-134"><a href="#cb52-134"></a></span>
+<span id="cb52-135"><a href="#cb52-135"></a>É um subconjunto retirado de uma população, obtido através de técnicas</span>
+<span id="cb52-136"><a href="#cb52-136"></a>de amostragem. O número de elementos da amostra é representado por "n".</span>
+<span id="cb52-137"><a href="#cb52-137"></a>Exemplo: Em uma pesquisa eleitoral para saber o resultado das eleições</span>
+<span id="cb52-138"><a href="#cb52-138"></a>para presidente do Brasil, qual a população de interesse? Qual seria a</span>
+<span id="cb52-139"><a href="#cb52-139"></a>amostra? R: A população é constituída de todos os eleitores do Brasil. A</span>
+<span id="cb52-140"><a href="#cb52-140"></a>amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.</span>
+<span id="cb52-141"><a href="#cb52-141"></a></span>
+<span id="cb52-142"><a href="#cb52-142"></a><span class="al">![Figura 1: População e Amostra](popam.png)</span></span>
+<span id="cb52-143"><a href="#cb52-143"></a></span>
+<span id="cb52-144"><a href="#cb52-144"></a></span>
+<span id="cb52-145"><a href="#cb52-145"></a><span class="fu">### Censo {#censo}</span></span>
+<span id="cb52-146"><a href="#cb52-146"></a></span>
+<span id="cb52-147"><a href="#cb52-147"></a>É o processo utilizado para levantar as características observáveis,</span>
+<span id="cb52-148"><a href="#cb52-148"></a>abordando todos os elementos de uma população. Então, um levantamento</span>
+<span id="cb52-149"><a href="#cb52-149"></a>efetuado sobre toda uma população é denominado de levantamento</span>
+<span id="cb52-150"><a href="#cb52-150"></a>censitário ou simplesmente censo.</span>
+<span id="cb52-151"><a href="#cb52-151"></a>   n</span>
+<span id="cb52-152"><a href="#cb52-152"></a>https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html</span>
+<span id="cb52-153"><a href="#cb52-153"></a>escrever breve texto sobre o censo de 2022</span>
+<span id="cb52-154"><a href="#cb52-154"></a></span>
+<span id="cb52-155"><a href="#cb52-155"></a><span class="fu">### Parâmetros {#parâmetros}</span></span>
+<span id="cb52-156"><a href="#cb52-156"></a></span>
+<span id="cb52-157"><a href="#cb52-157"></a>É uma medida fixa (geralmente desconhecida) que descreve uma característica de uma população inteira.</span>
+<span id="cb52-158"><a href="#cb52-158"></a></span>
+<span id="cb52-159"><a href="#cb52-159"></a>Como se refere a toda a população, seu valor não muda (a menos que a população seja alterada).</span>
+<span id="cb52-160"><a href="#cb52-160"></a></span>
+<span id="cb52-161"><a href="#cb52-161"></a>Exemplos: Média populacional (μ), desvio padrão populacional (σ), proporção populacional (p).</span>
+<span id="cb52-162"><a href="#cb52-162"></a></span>
+<span id="cb52-163"><a href="#cb52-163"></a><span class="fu">### Estatísticas {#estatísticas}</span></span>
+<span id="cb52-164"><a href="#cb52-164"></a></span>
+<span id="cb52-165"><a href="#cb52-165"></a>É uma medida descritiva calculada a partir de uma amostra (um subconjunto de uma população).</span>
+<span id="cb52-166"><a href="#cb52-166"></a></span>
+<span id="cb52-167"><a href="#cb52-167"></a>Como a amostra é apenas uma parte da população, a estatística pode variar de amostra para amostra (variabilidade amostral).</span>
+<span id="cb52-168"><a href="#cb52-168"></a></span>
+<span id="cb52-169"><a href="#cb52-169"></a>Exemplos: Média amostral (xbar), desvio padrão amostral (s), proporção amostral (phat).</span>
+<span id="cb52-170"><a href="#cb52-170"></a></span>
+<span id="cb52-171"><a href="#cb52-171"></a><span class="fu">### Variável {#variável}</span></span>
+<span id="cb52-172"><a href="#cb52-172"></a></span>
+<span id="cb52-173"><a href="#cb52-173"></a>Variável é qualquer característica que varia de um elemento da população</span>
+<span id="cb52-174"><a href="#cb52-174"></a>para outro. É a característica que está sendo analisada em cada elemento</span>
+<span id="cb52-175"><a href="#cb52-175"></a>de uma população. Exemplo: Na população funcionários de uma determinada</span>
+<span id="cb52-176"><a href="#cb52-176"></a>empresa -- podemos estudar as varáveis: número de dependentes,</span>
+<span id="cb52-177"><a href="#cb52-177"></a>remuneração financeira, idade, sexo, local de residência, nível de</span>
+<span id="cb52-178"><a href="#cb52-178"></a>escolaridade, estado civil, tempo de serviços na empresa, etc.</span>
+<span id="cb52-179"><a href="#cb52-179"></a></span>
+<span id="cb52-180"><a href="#cb52-180"></a><span class="fu">### Estrutura de uma planilha</span></span>
+<span id="cb52-181"><a href="#cb52-181"></a></span>
+<span id="cb52-182"><a href="#cb52-182"></a>ESCREVER UM BASICO E ENSINAR R</span>
+<span id="cb52-183"><a href="#cb52-183"></a></span>
+<span id="cb52-184"><a href="#cb52-184"></a><span class="fu">## Classificação das Variáveis {#classificação-das-variáveis}</span></span>
+<span id="cb52-185"><a href="#cb52-185"></a></span>
+<span id="cb52-186"><a href="#cb52-186"></a><span class="al">![Figura 2: Classificação das Variáveis](var.png)</span></span>
+<span id="cb52-187"><a href="#cb52-187"></a></span>
+<span id="cb52-188"><a href="#cb52-188"></a><span class="fu">## Distribuição de Frequências {#distribuição-de-frequências}</span></span>
+<span id="cb52-189"><a href="#cb52-189"></a></span>
+<span id="cb52-190"><a href="#cb52-190"></a>A distribuição de frequências é uma forma de organizar e resumir dados,</span>
+<span id="cb52-191"><a href="#cb52-191"></a>mostrando como os valores de uma variável estão distribuídos. Ela pode</span>
+<span id="cb52-192"><a href="#cb52-192"></a>ser aplicada tanto para variáveis quantitativas (numéricas) quanto para</span>
+<span id="cb52-193"><a href="#cb52-193"></a>variáveis qualitativas (categóricas).</span>
+<span id="cb52-194"><a href="#cb52-194"></a></span>
+<span id="cb52-195"><a href="#cb52-195"></a><span class="fu">### Distribuição para Variáveis Quantitativas {#distribuição-para-variáveis-quantitativas}</span></span>
+<span id="cb52-196"><a href="#cb52-196"></a></span>
+<span id="cb52-197"><a href="#cb52-197"></a>A distribuição de frequências para variáveis quantitativas é feita</span>
+<span id="cb52-198"><a href="#cb52-198"></a>agrupando os dados em intervalos de classe ou listando cada valor</span>
+<span id="cb52-199"><a href="#cb52-199"></a>individualmente.</span>
+<span id="cb52-200"><a href="#cb52-200"></a></span>
+<span id="cb52-201"><a href="#cb52-201"></a>Passos para Construir a Distribuição: 1. Definir os Intervalos de Classe</span>
+<span id="cb52-202"><a href="#cb52-202"></a>(para dados contínuos): - Divida os dados em intervalos (ex: 0-10,</span>
+<span id="cb52-203"><a href="#cb52-203"></a>10-20, 20-30). - Cada intervalo é chamado de classe. - O tamanho do</span>
+<span id="cb52-204"><a href="#cb52-204"></a>intervalo é chamado de amplitude de classe e existem várias maneiras de</span>
+<span id="cb52-205"><a href="#cb52-205"></a>defini-la 2. Contar a Frequência: - Conte quantos valores estão em cada</span>
+<span id="cb52-206"><a href="#cb52-206"></a>intervalo (frequência absoluta). 3. Calcular Frequências Relativas e</span>
+<span id="cb52-207"><a href="#cb52-207"></a>Acumuladas: - Frequência relativa: Proporção de valores em cada classe</span>
+<span id="cb52-208"><a href="#cb52-208"></a>em relação ao total. - Frequência acumulada: Soma das frequências até</span>
+<span id="cb52-209"><a href="#cb52-209"></a>uma determinada classe.</span>
+<span id="cb52-210"><a href="#cb52-210"></a></span>
+<span id="cb52-211"><a href="#cb52-211"></a>Formas de definir a amplitude das classes:</span>
+<span id="cb52-212"><a href="#cb52-212"></a></span>
+<span id="cb52-213"><a href="#cb52-213"></a>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO</span>
+<span id="cb52-214"><a href="#cb52-214"></a>DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</span>
+<span id="cb52-215"><a href="#cb52-215"></a></span>
+<span id="cb52-216"><a href="#cb52-216"></a><span class="fu">### Distribuição para Variáveis Qualitativas {#distribuição-para-variáveis-qualitativas}</span></span>
+<span id="cb52-217"><a href="#cb52-217"></a></span>
+<span id="cb52-218"><a href="#cb52-218"></a>A distribuição de frequências para variáveis qualitativas é feita</span>
+<span id="cb52-219"><a href="#cb52-219"></a>contando a ocorrência de cada categoria.</span>
+<span id="cb52-220"><a href="#cb52-220"></a></span>
+<span id="cb52-221"><a href="#cb52-221"></a><span class="ss">1.  </span>Listar as Categorias:</span>
+<span id="cb52-222"><a href="#cb52-222"></a><span class="ss">2.  </span>Contar a Frequência Absoluta</span>
+<span id="cb52-223"><a href="#cb52-223"></a><span class="ss">3.  </span>Calcular Frequências Relativas e Acumuladas</span>
+<span id="cb52-224"><a href="#cb52-224"></a></span>
+<span id="cb52-225"><a href="#cb52-225"></a>EXEMPLO INTERATIVO: COLOCAR LINHAS DE CODIGO E FAZER PERGUNTAS AO LONGO</span>
+<span id="cb52-226"><a href="#cb52-226"></a>DA EXECUÇÃO COLOCAR NO FINAL O CODIGO QUE FAZ TUDO</span>
+<span id="cb52-227"><a href="#cb52-227"></a></span>
+<span id="cb52-228"><a href="#cb52-228"></a><span class="fu">## Medidas de Posição e Dispersão {#medidas-de-posição-e-dispersão}</span></span>
+<span id="cb52-229"><a href="#cb52-229"></a></span>
+<span id="cb52-230"><a href="#cb52-230"></a><span class="fu">### Média {#média}</span></span>
+<span id="cb52-231"><a href="#cb52-231"></a></span>
+<span id="cb52-232"><a href="#cb52-232"></a>Média</span>
+<span id="cb52-233"><a href="#cb52-233"></a></span>
+<span id="cb52-234"><a href="#cb52-234"></a><span class="fu">### Mediana {#mediana}</span></span>
+<span id="cb52-235"><a href="#cb52-235"></a></span>
+<span id="cb52-236"><a href="#cb52-236"></a><span class="fu">### Moda {#moda}</span></span>
+<span id="cb52-237"><a href="#cb52-237"></a></span>
+<span id="cb52-238"><a href="#cb52-238"></a><span class="fu">### Desvio Padrão {#desvio-padrão}</span></span>
+<span id="cb52-239"><a href="#cb52-239"></a></span>
+<span id="cb52-240"><a href="#cb52-240"></a><span class="fu">### Variância {#variância}</span></span>
+<span id="cb52-241"><a href="#cb52-241"></a></span>
+<span id="cb52-242"><a href="#cb52-242"></a><span class="fu">### Assimetria {#assimetria}</span></span>
+<span id="cb52-243"><a href="#cb52-243"></a></span>
+<span id="cb52-244"><a href="#cb52-244"></a><span class="fu">### Curtose {#curtose}</span></span>
+<span id="cb52-245"><a href="#cb52-245"></a></span>
+<span id="cb52-246"><a href="#cb52-246"></a><span class="fu">## Gráficos {#gráficos}</span></span>
+<span id="cb52-247"><a href="#cb52-247"></a></span>
+<span id="cb52-248"><a href="#cb52-248"></a><span class="fu">### Gráficos para Variáveis Qualitativas {#gráficos-para-variáveis-qualitativas}</span></span>
+<span id="cb52-249"><a href="#cb52-249"></a></span>
+<span id="cb52-250"><a href="#cb52-250"></a><span class="fu">#### Barras</span></span>
+<span id="cb52-251"><a href="#cb52-251"></a></span>
+<span id="cb52-252"><a href="#cb52-252"></a><span class="fu">#### Colunas</span></span>
+<span id="cb52-253"><a href="#cb52-253"></a></span>
+<span id="cb52-254"><a href="#cb52-254"></a><span class="fu">#### Setores</span></span>
+<span id="cb52-255"><a href="#cb52-255"></a></span>
+<span id="cb52-256"><a href="#cb52-256"></a><span class="fu">#### Linhas</span></span>
+<span id="cb52-257"><a href="#cb52-257"></a></span>
+<span id="cb52-258"><a href="#cb52-258"></a><span class="fu">### Gráficos para Variáveis Quantitativas {#gráficos-para-variáveis-quantitativas}</span></span>
+<span id="cb52-259"><a href="#cb52-259"></a></span>
+<span id="cb52-260"><a href="#cb52-260"></a><span class="fu">#### Histograma</span></span>
+<span id="cb52-261"><a href="#cb52-261"></a></span>
+<span id="cb52-262"><a href="#cb52-262"></a><span class="fu">#### Polígono de Frequências</span></span>
+<span id="cb52-263"><a href="#cb52-263"></a></span>
+<span id="cb52-264"><a href="#cb52-264"></a><span class="fu">#### Boxplot</span></span>
+<span id="cb52-265"><a href="#cb52-265"></a></span>
+<span id="cb52-266"><a href="#cb52-266"></a><span class="fu">#### Diagrama de Dispersão</span></span>
+<span id="cb52-267"><a href="#cb52-267"></a></span>
+<span id="cb52-268"><a href="#cb52-268"></a><span class="fu">## Análise Bidimensional de Dados {#análise-bidimensional-de-dados}</span></span>
+<span id="cb52-269"><a href="#cb52-269"></a></span>
+<span id="cb52-270"><a href="#cb52-270"></a><span class="fu">### Tabelas de Contingência {#tabelas-de-contingência}</span></span>
+<span id="cb52-271"><a href="#cb52-271"></a></span>
+<span id="cb52-272"><a href="#cb52-272"></a>Mostram a relação entre duas variáveis categóricas.</span>
+<span id="cb52-273"><a href="#cb52-273"></a></span>
+<span id="cb52-274"><a href="#cb52-274"></a><span class="fu">### Covariância e Correlação {#covariância-e-correlação}</span></span>
+<span id="cb52-275"><a href="#cb52-275"></a></span>
+<span id="cb52-276"><a href="#cb52-276"></a>Medem a relação entre variáveis quantitativas. <span class="sc">\#</span># Técnicas de</span>
+<span id="cb52-277"><a href="#cb52-277"></a>Amostragem {#técnicas-de-amostragem}</span>
+<span id="cb52-278"><a href="#cb52-278"></a></span>
+<span id="cb52-279"><a href="#cb52-279"></a><span class="fu">### Amostragem Probabilística (Aleatória) {#amostragem-probabilística}</span></span>
+<span id="cb52-280"><a href="#cb52-280"></a></span>
+<span id="cb52-281"><a href="#cb52-281"></a>Envolve seleção aleatória, onde todos os membros da população têm a</span>
+<span id="cb52-282"><a href="#cb52-282"></a>mesma chance de serem selecionados.</span>
+<span id="cb52-283"><a href="#cb52-283"></a></span>
+<span id="cb52-284"><a href="#cb52-284"></a><span class="fu">### Amostragem Não Probabilística {#amostragem-não-probabilística}</span></span>
+<span id="cb52-285"><a href="#cb52-285"></a></span>
+<span id="cb52-286"><a href="#cb52-286"></a>Não envolve seleção aleatória.</span>
+<span id="cb52-287"><a href="#cb52-287"></a></span>
+<span id="cb52-288"><a href="#cb52-288"></a><span class="fu">### Amostragem Aleatória Simples {#amostragem-aleatória-simples}</span></span>
+<span id="cb52-289"><a href="#cb52-289"></a></span>
+<span id="cb52-290"><a href="#cb52-290"></a>Todos os membros da população têm a mesma chance de serem selecionados.</span>
+<span id="cb52-291"><a href="#cb52-291"></a></span>
+<span id="cb52-292"><a href="#cb52-292"></a><span class="fu">### Amostragem Sistemática {#amostragem-sistemática}</span></span>
+<span id="cb52-293"><a href="#cb52-293"></a></span>
+<span id="cb52-294"><a href="#cb52-294"></a>A seleção é feita a partir de um intervalo fixo na lista populacional.</span>
+<span id="cb52-295"><a href="#cb52-295"></a></span>
+<span id="cb52-296"><a href="#cb52-296"></a><span class="fu">### Amostragem Estratificada {#amostragem-estratificada}</span></span>
+<span id="cb52-297"><a href="#cb52-297"></a></span>
+<span id="cb52-298"><a href="#cb52-298"></a>A população é dividida em estratos, e amostras são retiradas de cada</span>
+<span id="cb52-299"><a href="#cb52-299"></a>estrato.</span>
+<span id="cb52-300"><a href="#cb52-300"></a></span>
+<span id="cb52-301"><a href="#cb52-301"></a><span class="fu">### Amostragem por Conglomerados {#amostragem-por-conglomerados}</span></span>
+<span id="cb52-302"><a href="#cb52-302"></a></span>
+<span id="cb52-303"><a href="#cb52-303"></a>A população é dividida em conglomerados, e alguns conglomerados são</span>
+<span id="cb52-304"><a href="#cb52-304"></a>selecionados aleatoriamente.</span>
+<span id="cb52-305"><a href="#cb52-305"></a></span>
+<span id="cb52-306"><a href="#cb52-306"></a>------------------------------------------------------------------------</span>
+<span id="cb52-307"><a href="#cb52-307"></a></span>
+<span id="cb52-308"><a href="#cb52-308"></a><span class="fu"># Noções de Probabilidade {#noções-de-probabilidade}</span></span>
+<span id="cb52-309"><a href="#cb52-309"></a></span>
+<span id="cb52-310"><a href="#cb52-310"></a>A probabilidade é um ramo da matemática que estuda a incerteza e a</span>
+<span id="cb52-311"><a href="#cb52-311"></a>aleatoriedade. Ela fornece ferramentas para quantificar a chance de</span>
+<span id="cb52-312"><a href="#cb52-312"></a>ocorrência de eventos em situações onde o resultado não é previsível com</span>
+<span id="cb52-313"><a href="#cb52-313"></a>certeza. Desde previsões do tempo até decisões financeiras, a</span>
+<span id="cb52-314"><a href="#cb52-314"></a>probabilidade está presente em diversos aspectos da vida cotidiana e é</span>
+<span id="cb52-315"><a href="#cb52-315"></a>fundamental em áreas como estatística, ciência de dados, física,</span>
+<span id="cb52-316"><a href="#cb52-316"></a>engenharia, economia e jogos.</span>
+<span id="cb52-317"><a href="#cb52-317"></a></span>
+<span id="cb52-318"><a href="#cb52-318"></a><span class="fu">## Análise Combinatória {#análise-combinatória}</span></span>
+<span id="cb52-319"><a href="#cb52-319"></a></span>
+<span id="cb52-320"><a href="#cb52-320"></a>Esse é um assunto difícil e não faz parte do escopo da disciplina, então</span>
+<span id="cb52-321"><a href="#cb52-321"></a>foque em ter um entendimento intuitivo das ideias contidas nessa</span>
+<span id="cb52-322"><a href="#cb52-322"></a>sub-seção</span>
+<span id="cb52-323"><a href="#cb52-323"></a></span>
+<span id="cb52-324"><a href="#cb52-324"></a>...</span>
+<span id="cb52-325"><a href="#cb52-325"></a></span>
+<span id="cb52-326"><a href="#cb52-326"></a><span class="fu">## Conceitos básicos</span></span>
+<span id="cb52-327"><a href="#cb52-327"></a></span>
+<span id="cb52-328"><a href="#cb52-328"></a><span class="fu">### Experimento Aleatório {#experimento-aleatório}</span></span>
+<span id="cb52-329"><a href="#cb52-329"></a></span>
+<span id="cb52-330"><a href="#cb52-330"></a>Um experimento aleatório é qualquer processo que pode ser repetido sob</span>
+<span id="cb52-331"><a href="#cb52-331"></a>as mesmas condições, mas cujo resultado não pode ser previsto com</span>
+<span id="cb52-332"><a href="#cb52-332"></a>certeza. Exemplos incluem: </span>
+<span id="cb52-333"><a href="#cb52-333"></a><span class="ss">-  </span>Lançar uma moeda;</span>
+<span id="cb52-334"><a href="#cb52-334"></a><span class="ss">-  </span>Jogar um dado;</span>
+<span id="cb52-335"><a href="#cb52-335"></a><span class="ss">-  </span>Sortear uma carta de um baralho; </span>
+<span id="cb52-336"><a href="#cb52-336"></a><span class="ss">-  </span>Número de peças defeituosas em um lote;</span>
+<span id="cb52-337"><a href="#cb52-337"></a><span class="ss">-  </span>Quantidade de chamadas telefônicas em uma hora em um call center</span>
+<span id="cb52-338"><a href="#cb52-338"></a></span>
+<span id="cb52-339"><a href="#cb52-339"></a><span class="fu">### Espaço Amostral {#espaço-amostral}</span></span>
+<span id="cb52-340"><a href="#cb52-340"></a></span>
+<span id="cb52-341"><a href="#cb52-341"></a>O espaço amostral é o conjunto de todos os resultados possíveis de um</span>
+<span id="cb52-342"><a href="#cb52-342"></a>experimento aleatório. Por exemplo: - No lançamento de uma moeda: S =</span>
+<span id="cb52-343"><a href="#cb52-343"></a>{Cara, Coroa}. - No lançamento de um dado: S = {1, 2, 3, 4, 5, 6}. -</span>
+<span id="cb52-344"><a href="#cb52-344"></a>Considere o exemplo da seção anterior em que observamos o número de</span>
+<span id="cb52-345"><a href="#cb52-345"></a>chamadas telefônicas que chegam a uma central durante um determinado</span>
+<span id="cb52-346"><a href="#cb52-346"></a>intervalo de tempo. O espaço amostral é o conjunto: S = {0,1,2, 3,...}.</span>
+<span id="cb52-347"><a href="#cb52-347"></a></span>
+<span id="cb52-348"><a href="#cb52-348"></a>EXEMPLO: LANÇAMENTO DE DUAS MOEDAS, EXPLANAÇÃO RAPIDA DE ANALISE</span>
+<span id="cb52-349"><a href="#cb52-349"></a>COMBINATORIA</span>
+<span id="cb52-350"><a href="#cb52-350"></a></span>
+<span id="cb52-351"><a href="#cb52-351"></a>Exercício: pense e delimite (nao precisa escrever, só raciocinar) qual o</span>
+<span id="cb52-352"><a href="#cb52-352"></a>tamanho do espaço amostral e quais são os elementos do espaço amostral</span>
+<span id="cb52-353"><a href="#cb52-353"></a>de uma mão no jogo truco. Se você não sabe truco, faça o mesmo com o</span>
+<span id="cb52-354"><a href="#cb52-354"></a>sorteio aleatório de uma carta.</span>
+<span id="cb52-355"><a href="#cb52-355"></a></span>
+<span id="cb52-356"><a href="#cb52-356"></a><span class="fu">### Eventos {#eventos}</span></span>
+<span id="cb52-357"><a href="#cb52-357"></a></span>
+<span id="cb52-358"><a href="#cb52-358"></a>Um evento é um subconjunto do espaço amostral. Ele representa um</span>
+<span id="cb52-359"><a href="#cb52-359"></a>resultado ou uma combinação de resultados de interesse. Por exemplo: -</span>
+<span id="cb52-360"><a href="#cb52-360"></a>No lançamento de um dado, o evento "sair um número par" é o subconjunto</span>
+<span id="cb52-361"><a href="#cb52-361"></a>{2, 4, 6}. - Na retirada de uma mão no truco em que a vira é o Ás o</span>
+<span id="cb52-362"><a href="#cb52-362"></a>evento "tirar as 4 cartas mais fortes" é o subconjunto {2 de espadas, 2</span>
+<span id="cb52-363"><a href="#cb52-363"></a>de ouros, 2 copas, 2 de paus}</span>
+<span id="cb52-364"><a href="#cb52-364"></a></span>
+<span id="cb52-365"><a href="#cb52-365"></a><span class="fu">## Definição de Probabilidade {#definição-de-probabilidade}</span></span>
+<span id="cb52-366"><a href="#cb52-366"></a></span>
+<span id="cb52-367"><a href="#cb52-367"></a>A probabilidade, em termos informais, é uma medida que quantifica a</span>
+<span id="cb52-368"><a href="#cb52-368"></a>chance de um evento ocorrer. Ela é representada por um número entre 0 e</span>
+<span id="cb52-369"><a href="#cb52-369"></a>1, onde:</span>
+<span id="cb52-370"><a href="#cb52-370"></a></span>
+<span id="cb52-371"><a href="#cb52-371"></a><span class="ss">-   </span>0: O evento é impossível (nunca ocorre).</span>
+<span id="cb52-372"><a href="#cb52-372"></a></span>
+<span id="cb52-373"><a href="#cb52-373"></a><span class="ss">-   </span>1: O evento é certo (sempre ocorre).</span>
+<span id="cb52-374"><a href="#cb52-374"></a></span>
+<span id="cb52-375"><a href="#cb52-375"></a>A probabilidade de um evento A é denotada por P(A)</span>
+<span id="cb52-376"><a href="#cb52-376"></a></span>
+<span id="cb52-377"><a href="#cb52-377"></a>$$</span>
+<span id="cb52-378"><a href="#cb52-378"></a>P(A) = \frac{n(A)}{n(\Omega)}</span>
+<span id="cb52-379"><a href="#cb52-379"></a>$$ </span>
+<span id="cb52-380"><a href="#cb52-380"></a></span>
+<span id="cb52-381"><a href="#cb52-381"></a>Onde:</span>
+<span id="cb52-382"><a href="#cb52-382"></a><span class="ss">-   </span>n(A): Número de resultados favoráveis ao evento </span>
+<span id="cb52-383"><a href="#cb52-383"></a><span class="ss">-   </span>n(Ω): Número total de resultados possíveis no espaço amostral   </span>
+<span id="cb52-384"><a href="#cb52-384"></a></span>
+<span id="cb52-385"><a href="#cb52-385"></a><span class="fu">### Axiomas da Probabilidade {#axiomas-da-probabilidade}</span></span>
+<span id="cb52-386"><a href="#cb52-386"></a></span>
+<span id="cb52-387"><a href="#cb52-387"></a>Regras básicas que definem a probabilidade.</span>
+<span id="cb52-388"><a href="#cb52-388"></a></span>
+<span id="cb52-389"><a href="#cb52-389"></a><span class="fu">### Propriedades Fundamentais {#propriedades-fundamentais}</span></span>
+<span id="cb52-390"><a href="#cb52-390"></a></span>
+<span id="cb52-391"><a href="#cb52-391"></a>Propriedades derivadas dos axiomas.</span>
+<span id="cb52-392"><a href="#cb52-392"></a></span>
+<span id="cb52-393"><a href="#cb52-393"></a><span class="fu">## Probabilidade Condicional e Teorema de Bayes {#probabilidade-condicional-e-teorema-de-bayes}</span></span>
+<span id="cb52-394"><a href="#cb52-394"></a></span>
+<span id="cb52-395"><a href="#cb52-395"></a><span class="fu">### Probabilidade Condicional {#probabilidade-condicional}</span></span>
+<span id="cb52-396"><a href="#cb52-396"></a></span>
+<span id="cb52-397"><a href="#cb52-397"></a>Probabilidade de um evento dado que outro ocorreu.</span>
+<span id="cb52-398"><a href="#cb52-398"></a></span>
+<span id="cb52-399"><a href="#cb52-399"></a><span class="fu">### Teorema de Bayes {#teorema-de-bayes}</span></span>
+<span id="cb52-400"><a href="#cb52-400"></a></span>
+<span id="cb52-401"><a href="#cb52-401"></a>Relaciona probabilidades condicionais.</span>
+<span id="cb52-402"><a href="#cb52-402"></a></span>
+<span id="cb52-403"><a href="#cb52-403"></a><span class="fu">## Independência de Eventos {#independência-de-eventos}</span></span>
+<span id="cb52-404"><a href="#cb52-404"></a></span>
+<span id="cb52-405"><a href="#cb52-405"></a><span class="fu">### Definição de Independência {#definição-de-independência}</span></span>
+<span id="cb52-406"><a href="#cb52-406"></a></span>
+<span id="cb52-407"><a href="#cb52-407"></a>Dois eventos são independentes se a ocorrência de um não afeta a</span>
+<span id="cb52-408"><a href="#cb52-408"></a>probabilidade do outro.</span>
+<span id="cb52-409"><a href="#cb52-409"></a></span>
+<span id="cb52-410"><a href="#cb52-410"></a><span class="fu">### Exemplos de Independência {#exemplos-de-independência}</span></span>
+<span id="cb52-411"><a href="#cb52-411"></a></span>
+<span id="cb52-412"><a href="#cb52-412"></a>Exemplos práticos de eventos independentes.</span>
+<span id="cb52-413"><a href="#cb52-413"></a></span>
+<span id="cb52-414"><a href="#cb52-414"></a><span class="fu">## Variáveis Aleatórias {#variáveis-aleatórias}</span></span>
+<span id="cb52-415"><a href="#cb52-415"></a></span>
+<span id="cb52-416"><a href="#cb52-416"></a><span class="fu">### Variáveis Aleatórias Discretas {#variáveis-aleatórias-discretas}</span></span>
+<span id="cb52-417"><a href="#cb52-417"></a></span>
+<span id="cb52-418"><a href="#cb52-418"></a>Assumem valores contáveis.</span>
+<span id="cb52-419"><a href="#cb52-419"></a></span>
+<span id="cb52-420"><a href="#cb52-420"></a><span class="fu">### Variáveis Aleatórias Contínuas {#variáveis-aleatórias-contínuas}</span></span>
+<span id="cb52-421"><a href="#cb52-421"></a></span>
+<span id="cb52-422"><a href="#cb52-422"></a>Assumem valores em um intervalo.</span>
+<span id="cb52-423"><a href="#cb52-423"></a></span>
+<span id="cb52-424"><a href="#cb52-424"></a><span class="fu">## Distribuições de Probabilidade {#distribuições-de-probabilidade}</span></span>
+<span id="cb52-425"><a href="#cb52-425"></a></span>
+<span id="cb52-426"><a href="#cb52-426"></a><span class="fu">### Distribuições Discretas {#distribuições-discretas}</span></span>
+<span id="cb52-427"><a href="#cb52-427"></a></span>
+<span id="cb52-428"><a href="#cb52-428"></a>Binomial, Poisson.</span>
+<span id="cb52-429"><a href="#cb52-429"></a></span>
+<span id="cb52-430"><a href="#cb52-430"></a><span class="fu">### Distribuições Contínuas {#distribuições-contínuas}</span></span>
+<span id="cb52-431"><a href="#cb52-431"></a></span>
+<span id="cb52-432"><a href="#cb52-432"></a>Exponencial, Normal.</span>
+<span id="cb52-433"><a href="#cb52-433"></a></span>
+<span id="cb52-434"><a href="#cb52-434"></a>------------------------------------------------------------------------</span>
+<span id="cb52-435"><a href="#cb52-435"></a></span>
+<span id="cb52-436"><a href="#cb52-436"></a><span class="fu"># Noções de Inferência Estatística {#noções-de-inferência-estatística}</span></span>
+<span id="cb52-437"><a href="#cb52-437"></a></span>
+<span id="cb52-438"><a href="#cb52-438"></a><span class="fu">## Parâmetros, Estimadores e Estimativas {#parâmetros-estimadores-e-estimativas}</span></span>
+<span id="cb52-439"><a href="#cb52-439"></a></span>
+<span id="cb52-440"><a href="#cb52-440"></a><span class="fu">### Parâmetros</span></span>
+<span id="cb52-441"><a href="#cb52-441"></a></span>
+<span id="cb52-442"><a href="#cb52-442"></a>Características da população.</span>
+<span id="cb52-443"><a href="#cb52-443"></a></span>
+<span id="cb52-444"><a href="#cb52-444"></a><span class="fu">### Estimadores {#estimadores}</span></span>
+<span id="cb52-445"><a href="#cb52-445"></a></span>
+<span id="cb52-446"><a href="#cb52-446"></a>Funções dos dados usadas para estimar parâmetros.</span>
+<span id="cb52-447"><a href="#cb52-447"></a></span>
+<span id="cb52-448"><a href="#cb52-448"></a><span class="fu">### Estimativas {#estimativas}</span></span>
+<span id="cb52-449"><a href="#cb52-449"></a></span>
+<span id="cb52-450"><a href="#cb52-450"></a>Valores calculados a partir dos dados.</span>
+<span id="cb52-451"><a href="#cb52-451"></a></span>
+<span id="cb52-452"><a href="#cb52-452"></a><span class="fu">## Distribuição Amostral {#distribuição-amostral}</span></span>
+<span id="cb52-453"><a href="#cb52-453"></a></span>
+<span id="cb52-454"><a href="#cb52-454"></a><span class="fu">### Distribuição da Média {#distribuição-da-média}</span></span>
+<span id="cb52-455"><a href="#cb52-455"></a></span>
+<span id="cb52-456"><a href="#cb52-456"></a>Distribuição da média amostral.</span>
+<span id="cb52-457"><a href="#cb52-457"></a></span>
+<span id="cb52-458"><a href="#cb52-458"></a><span class="fu">### Distribuição da Proporção {#distribuição-da-proporção}</span></span>
+<span id="cb52-459"><a href="#cb52-459"></a></span>
+<span id="cb52-460"><a href="#cb52-460"></a>Distribuição da proporção amostral.</span>
+<span id="cb52-461"><a href="#cb52-461"></a></span>
+<span id="cb52-462"><a href="#cb52-462"></a><span class="fu">### Distribuição da Diferença de Médias {#distribuição-da-diferença-de-médias}</span></span>
+<span id="cb52-463"><a href="#cb52-463"></a></span>
+<span id="cb52-464"><a href="#cb52-464"></a>Distribuição da diferença entre médias amostrais.</span>
+<span id="cb52-465"><a href="#cb52-465"></a></span>
+<span id="cb52-466"><a href="#cb52-466"></a><span class="fu">## Intervalo de Confiança {#intervalo-de-confiança}</span></span>
+<span id="cb52-467"><a href="#cb52-467"></a></span>
+<span id="cb52-468"><a href="#cb52-468"></a><span class="fu">### Intervalo para a Média {#intervalo-para-a-média}</span></span>
+<span id="cb52-469"><a href="#cb52-469"></a></span>
+<span id="cb52-470"><a href="#cb52-470"></a>Intervalo de confiança para a média populacional.</span>
+<span id="cb52-471"><a href="#cb52-471"></a></span>
+<span id="cb52-472"><a href="#cb52-472"></a><span class="fu">### Intervalo para a Proporção {#intervalo-para-a-proporção}</span></span>
+<span id="cb52-473"><a href="#cb52-473"></a></span>
+<span id="cb52-474"><a href="#cb52-474"></a>Intervalo de confiança para a proporção populacional.</span>
+<span id="cb52-475"><a href="#cb52-475"></a></span>
+<span id="cb52-476"><a href="#cb52-476"></a>------------------------------------------------------------------------</span>
+<span id="cb52-477"><a href="#cb52-477"></a></span>
+<span id="cb52-478"><a href="#cb52-478"></a><span class="fu"># Noções de Regressão Linear Simples {#noções-de-regressão-linear-simples}</span></span>
+<span id="cb52-479"><a href="#cb52-479"></a></span>
+<span id="cb52-480"><a href="#cb52-480"></a><span class="fu">## Conceitos {#conceitos}</span></span>
+<span id="cb52-481"><a href="#cb52-481"></a></span>
+<span id="cb52-482"><a href="#cb52-482"></a><span class="fu">## Estimação dos Parâmetros {#estimação-dos-parâmetros}</span></span>
+<span id="cb52-483"><a href="#cb52-483"></a></span>
+<span id="cb52-484"><a href="#cb52-484"></a><span class="fu">## Coeficiente de Determinação {#coeficiente-de-determinação}</span></span>
+<span id="cb52-485"><a href="#cb52-485"></a></span>
+<span id="cb52-486"><a href="#cb52-486"></a>------------------------------------------------------------------------</span>
+<span id="cb52-487"><a href="#cb52-487"></a></span>
+<span id="cb52-488"><a href="#cb52-488"></a><span class="fu"># Apêndices</span></span>
+<span id="cb52-489"><a href="#cb52-489"></a></span>
+<span id="cb52-490"><a href="#cb52-490"></a><span class="fu">## Arquivos de Aulas</span></span>
+<span id="cb52-491"><a href="#cb52-491"></a></span>
+<span id="cb52-492"><a href="#cb52-492"></a><span class="fu">## Introdução a R</span></span>
+<span id="cb52-493"><a href="#cb52-493"></a></span>
+<span id="cb52-494"><a href="#cb52-494"></a>Essa será uma breve introdução a R para poder entender como funciona a linguagem de programação e já brincar com estatística utilizando funções mais elementares, as mais importantes, como calcular medidas simples como média, moda, mediana, criação de gráficos e tabelas e elaboração de regressões simples. Para maiores discussões sobre tipos avançados de visualização ver o livro R para Ciência de Dados: https://pt.r4ds.hadley.nz/</span>
+<span id="cb52-495"><a href="#cb52-495"></a></span>
+<span id="cb52-496"><a href="#cb52-496"></a>EXPLICAR COMENTARIOS</span>
+<span id="cb52-497"><a href="#cb52-497"></a></span>
+<span id="cb52-498"><a href="#cb52-498"></a>Sugere-se ao/a professor/a uma leitura rápida desta seção após uma curta introdução para o/a aluno/a começar a se familizar com os conceitos, após isso esta seção pode servir como consulta para sintaxe e ajuda rápida</span>
+<span id="cb52-499"><a href="#cb52-499"></a></span>
+<span id="cb52-500"><a href="#cb52-500"></a><span class="fu">### Instalação do ambiente Rstudio</span></span>
+<span id="cb52-501"><a href="#cb52-501"></a></span>
+<span id="cb52-502"><a href="#cb52-502"></a>A instalação é trivial, basta baixar e executar o R em https://cran.rstudio.com/</span>
+<span id="cb52-503"><a href="#cb52-503"></a>e baixar o Rstudio https://posit.co/download/rstudio-desktop/ em seguida</span>
+<span id="cb52-504"><a href="#cb52-504"></a></span>
+<span id="cb52-505"><a href="#cb52-505"></a>Para usar o Rstudio, basta abrir um script com Ctrl + Shift + N e para executar códigos basta selecionar a linha com o mouse e teclar Ctrl + Enter</span>
+<span id="cb52-506"><a href="#cb52-506"></a></span>
+<span id="cb52-507"><a href="#cb52-507"></a>Para quaisquer dificuldades: https://www.youtube.com/watch?v=a4_0pKVY6RE&amp;list=PLs7DH7eMtNjcfzzZT6beLu0nmSr2yIhIr&amp;index=2</span>
+<span id="cb52-508"><a href="#cb52-508"></a></span>
+<span id="cb52-509"><a href="#cb52-509"></a><span class="fu">### Libraries (Libs ou Bibliotecas)</span></span>
+<span id="cb52-510"><a href="#cb52-510"></a></span>
+<span id="cb52-511"><a href="#cb52-511"></a>Em programação, uma library (biblioteca) é um conjunto de códigos pré-escritos (funções, classes, métodos, variáveis) que podem ser reutilizados para facilitar o desenvolvimento de software. Elas são criadas para resolver problemas específicos, evitando que os programadores tenham que "reinventar a roda" a cada projeto.</span>
+<span id="cb52-512"><a href="#cb52-512"></a></span>
+<span id="cb52-515"><a href="#cb52-515"></a><span class="in">```{r}</span></span>
+<span id="cb52-516"><a href="#cb52-516"></a><span class="co">#| eval: false</span></span>
+<span id="cb52-517"><a href="#cb52-517"></a></span>
+<span id="cb52-518"><a href="#cb52-518"></a><span class="co"># Instalar uma biblioteca (fazer apenas a primeira vez)</span></span>
+<span id="cb52-519"><a href="#cb52-519"></a><span class="co">#install.packages("nome_da_biblioteca")  # Ex: install.packages("ggplot2")</span></span>
+<span id="cb52-520"><a href="#cb52-520"></a></span>
+<span id="cb52-521"><a href="#cb52-521"></a><span class="co"># Carregar para uso na sessão atual</span></span>
+<span id="cb52-522"><a href="#cb52-522"></a><span class="co">#library(nome_da_biblioteca)            # Ex: library(ggplot2)</span></span>
+<span id="cb52-523"><a href="#cb52-523"></a><span class="in">```</span></span>
+<span id="cb52-524"><a href="#cb52-524"></a></span>
+<span id="cb52-525"><a href="#cb52-525"></a>Exemplo (o aluno é encorajado a copiar e executar o código na própria máquina):</span>
+<span id="cb52-526"><a href="#cb52-526"></a></span>
+<span id="cb52-529"><a href="#cb52-529"></a><span class="in">```{r}</span></span>
+<span id="cb52-530"><a href="#cb52-530"></a><span class="co">#| eval: false  </span></span>
+<span id="cb52-531"><a href="#cb52-531"></a></span>
+<span id="cb52-532"><a href="#cb52-532"></a><span class="co"># dplyr é uma biblioteca para lidar com bancos de dados e ggplot2 é uma biblioteca para visualização, teremos um capítulo explicando cada uma delas</span></span>
+<span id="cb52-533"><a href="#cb52-533"></a></span>
+<span id="cb52-534"><a href="#cb52-534"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb52-535"><a href="#cb52-535"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb52-536"><a href="#cb52-536"></a></span>
+<span id="cb52-537"><a href="#cb52-537"></a><span class="co"># Filtrar dados e criar gráfico</span></span>
+<span id="cb52-538"><a href="#cb52-538"></a>dados <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span>  </span>
+<span id="cb52-539"><a href="#cb52-539"></a>  <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb52-540"><a href="#cb52-540"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span>  </span>
+<span id="cb52-541"><a href="#cb52-541"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  </span>
+<span id="cb52-542"><a href="#cb52-542"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relação Peso vs. Consumo"</span>)</span>
+<span id="cb52-543"><a href="#cb52-543"></a><span class="in">```</span></span>
+<span id="cb52-544"><a href="#cb52-544"></a></span>
+<span id="cb52-547"><a href="#cb52-547"></a><span class="in">```{r}</span></span>
+<span id="cb52-548"><a href="#cb52-548"></a><span class="co">#| echo: false</span></span>
+<span id="cb52-549"><a href="#cb52-549"></a><span class="co">#| warning: false</span></span>
+<span id="cb52-550"><a href="#cb52-550"></a><span class="co">#| message: false</span></span>
+<span id="cb52-551"><a href="#cb52-551"></a></span>
+<span id="cb52-552"><a href="#cb52-552"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb52-553"><a href="#cb52-553"></a><span class="fu">library</span>(kableExtra)  </span>
+<span id="cb52-554"><a href="#cb52-554"></a></span>
+<span id="cb52-555"><a href="#cb52-555"></a>tabela_bibliotecas_R <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb52-556"><a href="#cb52-556"></a>  <span class="at">Categoria =</span> <span class="fu">c</span>(</span>
+<span id="cb52-557"><a href="#cb52-557"></a>    <span class="st">"Manipulação de Dados"</span>, <span class="st">"Manipulação de Dados"</span>,</span>
+<span id="cb52-558"><a href="#cb52-558"></a>    <span class="st">"Visualização"</span>, <span class="st">"Visualização"</span>,</span>
+<span id="cb52-559"><a href="#cb52-559"></a>    <span class="st">"Análise Estatística"</span>, <span class="st">"Análise Estatística"</span>,</span>
+<span id="cb52-560"><a href="#cb52-560"></a>    <span class="st">"Machine Learning"</span>, <span class="st">"Machine Learning"</span>,</span>
+<span id="cb52-561"><a href="#cb52-561"></a>    <span class="st">"Text Mining"</span>, <span class="st">"Text Mining"</span>,</span>
+<span id="cb52-562"><a href="#cb52-562"></a>    <span class="st">"Geoprocessamento"</span>, <span class="st">"Geoprocessamento"</span>,</span>
+<span id="cb52-563"><a href="#cb52-563"></a>    <span class="st">"Reprodutibilidade"</span>, <span class="st">"Reprodutibilidade"</span></span>
+<span id="cb52-564"><a href="#cb52-564"></a>  ),</span>
+<span id="cb52-565"><a href="#cb52-565"></a>  <span class="at">Biblioteca =</span> <span class="fu">c</span>(</span>
+<span id="cb52-566"><a href="#cb52-566"></a>    <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>,</span>
+<span id="cb52-567"><a href="#cb52-567"></a>    <span class="st">"ggplot2"</span>, <span class="st">"plotly"</span>,</span>
+<span id="cb52-568"><a href="#cb52-568"></a>    <span class="st">"stats"</span>, <span class="st">"lme4"</span>,</span>
+<span id="cb52-569"><a href="#cb52-569"></a>    <span class="st">"caret"</span>, <span class="st">"randomForest"</span>,</span>
+<span id="cb52-570"><a href="#cb52-570"></a>    <span class="st">"tm"</span>, <span class="st">"tidytext"</span>,</span>
+<span id="cb52-571"><a href="#cb52-571"></a>    <span class="st">"sf"</span>, <span class="st">"raster"</span>,</span>
+<span id="cb52-572"><a href="#cb52-572"></a>    <span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span></span>
+<span id="cb52-573"><a href="#cb52-573"></a>  ),</span>
+<span id="cb52-574"><a href="#cb52-574"></a>  Descrição <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb52-575"><a href="#cb52-575"></a>    <span class="st">"Ferramentas para filtrar, agrupar e sumarizar dados"</span>,</span>
+<span id="cb52-576"><a href="#cb52-576"></a>    <span class="st">"Organização e limpeza de dados (pivotagem, separação de colunas)"</span>,</span>
+<span id="cb52-577"><a href="#cb52-577"></a>    <span class="st">"Criação de gráficos elegantes e personalizáveis"</span>,</span>
+<span id="cb52-578"><a href="#cb52-578"></a>    <span class="st">"Gráficos interativos (3D, hover effects)"</span>,</span>
+<span id="cb52-579"><a href="#cb52-579"></a>    <span class="st">"Funções estatísticas básicas (testes t, ANOVA, regressão)"</span>,</span>
+<span id="cb52-580"><a href="#cb52-580"></a>    <span class="st">"Modelos lineares mistos (para dados hierárquicos)"</span>,</span>
+<span id="cb52-581"><a href="#cb52-581"></a>    <span class="st">"Treinamento e validação de modelos preditivos"</span>,</span>
+<span id="cb52-582"><a href="#cb52-582"></a>    <span class="st">"Algoritmo de florestas aleatórias para classificação/regressão"</span>,</span>
+<span id="cb52-583"><a href="#cb52-583"></a>    <span class="st">"Mineração e pré-processamento de textos"</span>,</span>
+<span id="cb52-584"><a href="#cb52-584"></a>    <span class="st">"Análise de texto integrada ao tidyverse"</span>,</span>
+<span id="cb52-585"><a href="#cb52-585"></a>    <span class="st">"Manipulação de dados espaciais (vetores)"</span>,</span>
+<span id="cb52-586"><a href="#cb52-586"></a>    <span class="st">"Análise de dados raster (imagens de satélite, mapas)"</span>,</span>
+<span id="cb52-587"><a href="#cb52-587"></a>    <span class="st">"Geração de relatórios dinâmicos (HTML, PDF)"</span>,</span>
+<span id="cb52-588"><a href="#cb52-588"></a>    <span class="st">"Integração de código, texto e visualizações em documentos"</span></span>
+<span id="cb52-589"><a href="#cb52-589"></a>  ),</span>
+<span id="cb52-590"><a href="#cb52-590"></a>  <span class="at">Exemplo =</span> <span class="fu">c</span>(</span>
+<span id="cb52-591"><a href="#cb52-591"></a>    <span class="st">"`dados %&gt;% filter(coluna &gt; 10) %&gt;% group_by(...)`"</span>,</span>
+<span id="cb52-592"><a href="#cb52-592"></a>    <span class="st">"`pivot_longer(dados, cols = c(...))`"</span>,</span>
+<span id="cb52-593"><a href="#cb52-593"></a>    <span class="st">"`ggplot(dados, aes(x, y)) + geom_point()`"</span>,</span>
+<span id="cb52-594"><a href="#cb52-594"></a>    <span class="st">"`plot_ly(dados, x = ~x, y = ~y, type = 'scatter')`"</span>,</span>
+<span id="cb52-595"><a href="#cb52-595"></a>    <span class="st">"`t.test(x, y)`"</span>,</span>
+<span id="cb52-596"><a href="#cb52-596"></a>    <span class="st">"`lmer(resposta ~ preditor + (1|grupo))`"</span>,</span>
+<span id="cb52-597"><a href="#cb52-597"></a>    <span class="st">"`train(classe ~ ., data = dados, method = </span><span class="sc">\"</span><span class="st">rf</span><span class="sc">\"</span><span class="st">)`"</span>,</span>
+<span id="cb52-598"><a href="#cb52-598"></a>    <span class="st">"`randomForest(y ~ ., data = dados)`"</span>,</span>
+<span id="cb52-599"><a href="#cb52-599"></a>    <span class="st">"`Corpus(VectorSource(textos)) %&gt;% tm_map(...)`"</span>,</span>
+<span id="cb52-600"><a href="#cb52-600"></a>    <span class="st">"`unnest_tokens(dados, palavra, texto)`"</span>,</span>
+<span id="cb52-601"><a href="#cb52-601"></a>    <span class="st">"`st_read(</span><span class="sc">\"</span><span class="st">caminho/shapefile.shp</span><span class="sc">\"</span><span class="st">)`"</span>,</span>
+<span id="cb52-602"><a href="#cb52-602"></a>    <span class="st">"`raster(</span><span class="sc">\"</span><span class="st">imagem.tif</span><span class="sc">\"</span><span class="st">) %&gt;% plot()`"</span>,</span>
+<span id="cb52-603"><a href="#cb52-603"></a>    <span class="st">"`knit(</span><span class="sc">\"</span><span class="st">documento.Rmd</span><span class="sc">\"</span><span class="st">)`"</span>,</span>
+<span id="cb52-604"><a href="#cb52-604"></a>    <span class="st">"`render(</span><span class="sc">\"</span><span class="st">relatorio.Rmd</span><span class="sc">\"</span><span class="st">)`"</span></span>
+<span id="cb52-605"><a href="#cb52-605"></a>  )</span>
+<span id="cb52-606"><a href="#cb52-606"></a>)</span>
+<span id="cb52-607"><a href="#cb52-607"></a></span>
+<span id="cb52-608"><a href="#cb52-608"></a><span class="fu">kable</span>(tabela_bibliotecas_R, </span>
+<span id="cb52-609"><a href="#cb52-609"></a>      <span class="at">caption =</span> <span class="st">"Principais Bibliotecas em R por Categoria"</span>,</span>
+<span id="cb52-610"><a href="#cb52-610"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Categoria"</span>, <span class="st">"Biblioteca"</span>, <span class="st">"Descrição"</span>, <span class="st">"Exemplo de Uso"</span>),</span>
+<span id="cb52-611"><a href="#cb52-611"></a>      <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-612"><a href="#cb52-612"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb52-613"><a href="#cb52-613"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb52-614"><a href="#cb52-614"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb52-615"><a href="#cb52-615"></a>  <span class="fu">collapse_rows</span>(<span class="at">columns =</span> <span class="dv">1</span>, <span class="at">valign =</span> <span class="st">"top"</span>)</span>
+<span id="cb52-616"><a href="#cb52-616"></a><span class="in">```</span></span>
+<span id="cb52-617"><a href="#cb52-617"></a></span>
+<span id="cb52-618"><a href="#cb52-618"></a></span>
+<span id="cb52-619"><a href="#cb52-619"></a><span class="fu">### Variáveis</span></span>
+<span id="cb52-620"><a href="#cb52-620"></a></span>
+<span id="cb52-621"><a href="#cb52-621"></a>Uma **variável** é um **nome simbólico** que armazena um **valor** ou **dado** na memória do computador. Em R, as variáveis são usadas para guardar informações que podem ser manipuladas durante a execução de um código.</span>
+<span id="cb52-622"><a href="#cb52-622"></a></span>
+<span id="cb52-623"><a href="#cb52-623"></a>Tipos de variáveis:</span>
+<span id="cb52-624"><a href="#cb52-624"></a></span>
+<span id="cb52-625"><a href="#cb52-625"></a><span class="fu">#### Numérica (numeric)</span></span>
+<span id="cb52-626"><a href="#cb52-626"></a></span>
+<span id="cb52-627"><a href="#cb52-627"></a>Armazenam números (inteiros ou decimais).</span>
+<span id="cb52-628"><a href="#cb52-628"></a></span>
+<span id="cb52-631"><a href="#cb52-631"></a><span class="in">```{r}</span></span>
+<span id="cb52-632"><a href="#cb52-632"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-633"><a href="#cb52-633"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-634"><a href="#cb52-634"></a></span>
+<span id="cb52-635"><a href="#cb52-635"></a>x <span class="ot">&lt;-</span> <span class="fl">10.5</span>      <span class="co"># Decimal  </span></span>
+<span id="cb52-636"><a href="#cb52-636"></a>y <span class="ot">&lt;-</span> 20L       <span class="co"># Inteiro (com sufixo 'L')  </span></span>
+<span id="cb52-637"><a href="#cb52-637"></a>z <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">3.14</span>     <span class="co"># Negativo</span></span>
+<span id="cb52-638"><a href="#cb52-638"></a></span>
+<span id="cb52-639"><a href="#cb52-639"></a>x</span>
+<span id="cb52-640"><a href="#cb52-640"></a>y</span>
+<span id="cb52-641"><a href="#cb52-641"></a>z</span>
+<span id="cb52-642"><a href="#cb52-642"></a><span class="in">```</span></span>
+<span id="cb52-643"><a href="#cb52-643"></a></span>
+<span id="cb52-644"><a href="#cb52-644"></a><span class="fu">#### Caracteres (character ou string)</span></span>
+<span id="cb52-645"><a href="#cb52-645"></a></span>
+<span id="cb52-646"><a href="#cb52-646"></a>Armazenam caracteres ou conjuntos de caracteres (strings), para manipulação de strings ver o capítulo 14 do r4ds. Algumas coisas que podem ser feitas são transformar todos os caracteres em maiúsculos ou minúsculos, retirar acentos, caracteres especiais, retirar padrões do texto, separar em várias strings separando por um delimitador (como o espaço), calcular o tamanho de uma string. Enfim, várias utilidades bem úteis para lidar com dados de texto.</span>
+<span id="cb52-649"><a href="#cb52-649"></a><span class="in">```{r}</span></span>
+<span id="cb52-650"><a href="#cb52-650"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-651"><a href="#cb52-651"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-652"><a href="#cb52-652"></a></span>
+<span id="cb52-653"><a href="#cb52-653"></a>nome <span class="ot">&lt;-</span> <span class="st">"Maria"</span>  </span>
+<span id="cb52-654"><a href="#cb52-654"></a>frase <span class="ot">&lt;-</span> <span class="st">'Olá, mundo!'</span></span>
+<span id="cb52-655"><a href="#cb52-655"></a>nome</span>
+<span id="cb52-656"><a href="#cb52-656"></a>frase</span>
+<span id="cb52-657"><a href="#cb52-657"></a><span class="in">```</span></span>
+<span id="cb52-658"><a href="#cb52-658"></a></span>
+<span id="cb52-659"><a href="#cb52-659"></a><span class="fu">#### Lógicas (logical ou boolean)</span></span>
+<span id="cb52-660"><a href="#cb52-660"></a></span>
+<span id="cb52-661"><a href="#cb52-661"></a>Armazenam valores lógicos: verdadeiro ou falso</span>
+<span id="cb52-662"><a href="#cb52-662"></a>São bem úteis para verificação de estruturais condicionais que são demonstradas na seção ESCREVER SECAO</span>
+<span id="cb52-663"><a href="#cb52-663"></a></span>
+<span id="cb52-666"><a href="#cb52-666"></a><span class="in">```{r}</span></span>
+<span id="cb52-667"><a href="#cb52-667"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-668"><a href="#cb52-668"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-669"><a href="#cb52-669"></a></span>
+<span id="cb52-670"><a href="#cb52-670"></a>ativo <span class="ot">&lt;-</span> <span class="cn">TRUE</span>  </span>
+<span id="cb52-671"><a href="#cb52-671"></a>falha <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb52-672"><a href="#cb52-672"></a>ativo</span>
+<span id="cb52-673"><a href="#cb52-673"></a>falha</span>
+<span id="cb52-674"><a href="#cb52-674"></a><span class="in">```</span></span>
+<span id="cb52-675"><a href="#cb52-675"></a></span>
+<span id="cb52-676"><a href="#cb52-676"></a><span class="fu">#### Fatores (factor)</span></span>
+<span id="cb52-677"><a href="#cb52-677"></a></span>
+<span id="cb52-678"><a href="#cb52-678"></a>São categorias</span>
+<span id="cb52-679"><a href="#cb52-679"></a>Equivale a variável categóricas ordinal ou nominal, explicada no capítulo: COLOCAR CAPÍTULO</span>
+<span id="cb52-682"><a href="#cb52-682"></a><span class="in">```{r}</span></span>
+<span id="cb52-683"><a href="#cb52-683"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-684"><a href="#cb52-684"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-685"><a href="#cb52-685"></a></span>
+<span id="cb52-686"><a href="#cb52-686"></a>grupo <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>))  </span>
+<span id="cb52-687"><a href="#cb52-687"></a>niveis <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb52-688"><a href="#cb52-688"></a>  <span class="fu">c</span>(<span class="st">"Baixo"</span>, <span class="st">"Médio"</span>, <span class="st">"Alto"</span>),</span>
+<span id="cb52-689"><a href="#cb52-689"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Baixo"</span>, <span class="st">"Médio"</span>, <span class="st">"Alto"</span>),  <span class="co"># É necessário definir a ordem assim, se não ele vai errado</span></span>
+<span id="cb52-690"><a href="#cb52-690"></a>  <span class="at">ordered =</span> <span class="cn">TRUE</span> <span class="co"># definir que é ordinal </span></span>
+<span id="cb52-691"><a href="#cb52-691"></a>)</span>
+<span id="cb52-692"><a href="#cb52-692"></a>niveis</span>
+<span id="cb52-693"><a href="#cb52-693"></a>grupo</span>
+<span id="cb52-694"><a href="#cb52-694"></a><span class="in">```</span></span>
+<span id="cb52-695"><a href="#cb52-695"></a></span>
+<span id="cb52-696"><a href="#cb52-696"></a><span class="fu">#### Datas (Date ou POSIXct)</span></span>
+<span id="cb52-697"><a href="#cb52-697"></a></span>
+<span id="cb52-698"><a href="#cb52-698"></a>Armazenam datas e horários</span>
+<span id="cb52-699"><a href="#cb52-699"></a>Para maiores discussões sobre datas ver capítulo 17 de r4ds</span>
+<span id="cb52-700"><a href="#cb52-700"></a></span>
+<span id="cb52-703"><a href="#cb52-703"></a><span class="in">```{r}</span></span>
+<span id="cb52-704"><a href="#cb52-704"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-705"><a href="#cb52-705"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-706"><a href="#cb52-706"></a></span>
+<span id="cb52-707"><a href="#cb52-707"></a>hoje <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-03-26"</span>)  </span>
+<span id="cb52-708"><a href="#cb52-708"></a>agora <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2025-03-26 14:30:00"</span>)</span>
+<span id="cb52-709"><a href="#cb52-709"></a>hoje</span>
+<span id="cb52-710"><a href="#cb52-710"></a>agora</span>
+<span id="cb52-711"><a href="#cb52-711"></a><span class="in">```</span></span>
+<span id="cb52-712"><a href="#cb52-712"></a></span>
+<span id="cb52-713"><a href="#cb52-713"></a><span class="fu">#### Vetores (vector)</span></span>
+<span id="cb52-714"><a href="#cb52-714"></a></span>
+<span id="cb52-715"><a href="#cb52-715"></a>Coleção de elementos do mesmo tipo</span>
+<span id="cb52-716"><a href="#cb52-716"></a>Se você colocar uma letra no meio dos números todos os números serão tratados como letras (caso tenha se perguntado isso)</span>
+<span id="cb52-717"><a href="#cb52-717"></a></span>
+<span id="cb52-720"><a href="#cb52-720"></a><span class="in">```{r}</span></span>
+<span id="cb52-721"><a href="#cb52-721"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-722"><a href="#cb52-722"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-723"><a href="#cb52-723"></a></span>
+<span id="cb52-724"><a href="#cb52-724"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)  </span>
+<span id="cb52-725"><a href="#cb52-725"></a>letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
+<span id="cb52-726"><a href="#cb52-726"></a>numeros_como_letras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">"A"</span>, <span class="dv">3</span>, <span class="dv">4</span>)  </span>
+<span id="cb52-727"><a href="#cb52-727"></a>numeros</span>
+<span id="cb52-728"><a href="#cb52-728"></a>letras</span>
+<span id="cb52-729"><a href="#cb52-729"></a>numeros_como_letras</span>
+<span id="cb52-730"><a href="#cb52-730"></a><span class="in">```</span></span>
+<span id="cb52-731"><a href="#cb52-731"></a></span>
+<span id="cb52-732"><a href="#cb52-732"></a></span>
+<span id="cb52-733"><a href="#cb52-733"></a><span class="fu">#### Listas (list)</span></span>
+<span id="cb52-734"><a href="#cb52-734"></a></span>
+<span id="cb52-737"><a href="#cb52-737"></a><span class="in">```{r}</span></span>
+<span id="cb52-738"><a href="#cb52-738"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-739"><a href="#cb52-739"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-740"><a href="#cb52-740"></a></span>
+<span id="cb52-741"><a href="#cb52-741"></a>dados <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">nome =</span> <span class="st">"João"</span>, <span class="at">idade =</span> <span class="dv">30</span>, <span class="at">ativo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb52-742"><a href="#cb52-742"></a>dados</span>
+<span id="cb52-743"><a href="#cb52-743"></a><span class="in">```</span></span>
+<span id="cb52-744"><a href="#cb52-744"></a></span>
+<span id="cb52-745"><a href="#cb52-745"></a><span class="fu">#### Data Frames (data.frame)</span></span>
+<span id="cb52-746"><a href="#cb52-746"></a></span>
+<span id="cb52-749"><a href="#cb52-749"></a><span class="in">```{r}</span></span>
+<span id="cb52-750"><a href="#cb52-750"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-751"><a href="#cb52-751"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-752"><a href="#cb52-752"></a></span>
+<span id="cb52-753"><a href="#cb52-753"></a>tabela <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(  </span>
+<span id="cb52-754"><a href="#cb52-754"></a>  <span class="at">nome =</span> <span class="fu">c</span>(<span class="st">"Ana"</span>, <span class="st">"Carlos"</span>),  </span>
+<span id="cb52-755"><a href="#cb52-755"></a>  <span class="at">idade =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>)  </span>
+<span id="cb52-756"><a href="#cb52-756"></a>)</span>
+<span id="cb52-757"><a href="#cb52-757"></a>tabela</span>
+<span id="cb52-758"><a href="#cb52-758"></a><span class="in">```</span></span>
+<span id="cb52-759"><a href="#cb52-759"></a></span>
+<span id="cb52-760"><a href="#cb52-760"></a><span class="fu">#### Matrizes</span></span>
+<span id="cb52-761"><a href="#cb52-761"></a></span>
+<span id="cb52-764"><a href="#cb52-764"></a><span class="in">```{r}</span></span>
+<span id="cb52-765"><a href="#cb52-765"></a><span class="co">#| echo: true</span></span>
+<span id="cb52-766"><a href="#cb52-766"></a><span class="co">#| eval: true</span></span>
+<span id="cb52-767"><a href="#cb52-767"></a></span>
+<span id="cb52-768"><a href="#cb52-768"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb52-769"><a href="#cb52-769"></a></span>
+<span id="cb52-770"><a href="#cb52-770"></a>matriz</span>
+<span id="cb52-771"><a href="#cb52-771"></a><span class="in">```</span></span>
+<span id="cb52-772"><a href="#cb52-772"></a></span>
+<span id="cb52-773"><a href="#cb52-773"></a><span class="fu">### Operações</span></span>
+<span id="cb52-774"><a href="#cb52-774"></a></span>
+<span id="cb52-775"><a href="#cb52-775"></a>Toda linguagem de programação tem as operações matemáticas elementares implementadas, vamos estudar sua sintaxe:</span>
+<span id="cb52-776"><a href="#cb52-776"></a></span>
+<span id="cb52-777"><a href="#cb52-777"></a><span class="in">```{r, echo=FALSE, message=FALSE}</span></span>
+<span id="cb52-778"><a href="#cb52-778"></a></span>
+<span id="cb52-779"><a href="#cb52-779"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb52-780"><a href="#cb52-780"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb52-781"><a href="#cb52-781"></a></span>
+<span id="cb52-782"><a href="#cb52-782"></a><span class="co"># Criar a tabela de operações básicas em R (versão corrigida)</span></span>
+<span id="cb52-783"><a href="#cb52-783"></a>operacoes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb52-784"><a href="#cb52-784"></a>  Operação <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Adição"</span>, <span class="st">"Subtração"</span>, <span class="st">"Multiplicação"</span>, <span class="st">"Divisão"</span>, </span>
+<span id="cb52-785"><a href="#cb52-785"></a>               <span class="st">"Potenciação"</span>, <span class="st">"Raiz quadrada"</span>, <span class="st">"Logaritmo natural"</span>, </span>
+<span id="cb52-786"><a href="#cb52-786"></a>               <span class="st">"Logaritmo base 10"</span>, <span class="st">"Módulo (resto da divisão inteira)"</span>),</span>
+<span id="cb52-787"><a href="#cb52-787"></a>  Símbolo_Matemático <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"a + b"</span>, <span class="st">"a - b"</span>, <span class="st">"a × b"</span>, <span class="st">"a ÷ b"</span>, </span>
+<span id="cb52-788"><a href="#cb52-788"></a>                         <span class="st">"a^b"</span>, <span class="st">"√a"</span>, <span class="st">"ln(a)"</span>, </span>
+<span id="cb52-789"><a href="#cb52-789"></a>                         <span class="st">"log₁₀(a)"</span>, <span class="st">"a mod b"</span>),</span>
+<span id="cb52-790"><a href="#cb52-790"></a>  <span class="at">Sintaxe_em_R =</span> <span class="fu">c</span>(<span class="st">"`a + b`"</span>, <span class="st">"`a - b`"</span>, <span class="st">"`a * b`"</span>, <span class="st">"`a / b`"</span>, </span>
+<span id="cb52-791"><a href="#cb52-791"></a>                   <span class="st">"`a ^ b` ou `a ** b`"</span>, <span class="st">"`sqrt(a)`"</span>, <span class="st">"`log(a)`"</span>, </span>
+<span id="cb52-792"><a href="#cb52-792"></a>                   <span class="st">"`log10(a)`"</span>, <span class="st">"`a %% b`"</span>)</span>
+<span id="cb52-793"><a href="#cb52-793"></a>)</span>
+<span id="cb52-794"><a href="#cb52-794"></a></span>
+<span id="cb52-795"><a href="#cb52-795"></a><span class="co"># Exibir a tabela com kable</span></span>
+<span id="cb52-796"><a href="#cb52-796"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb52-797"><a href="#cb52-797"></a>  operacoes,</span>
+<span id="cb52-798"><a href="#cb52-798"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Operação"</span>, <span class="st">"Símbolo Matemático"</span>, <span class="st">"Sintaxe em R"</span>),</span>
+<span id="cb52-799"><a href="#cb52-799"></a>  <span class="at">caption =</span> <span class="st">"Operações Básicas em R vs Matemática em ℝ"</span>,</span>
+<span id="cb52-800"><a href="#cb52-800"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"l"</span>)</span>
+<span id="cb52-801"><a href="#cb52-801"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb52-802"><a href="#cb52-802"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(</span>
+<span id="cb52-803"><a href="#cb52-803"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>),</span>
+<span id="cb52-804"><a href="#cb52-804"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb52-805"><a href="#cb52-805"></a>    <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb52-806"><a href="#cb52-806"></a>  )</span>
+<span id="cb52-807"><a href="#cb52-807"></a><span class="in">```</span></span>
+<span id="cb52-808"><a href="#cb52-808"></a></span>
+<span id="cb52-809"><a href="#cb52-809"></a></span>
+<span id="cb52-810"><a href="#cb52-810"></a></span>
+<span id="cb52-811"><a href="#cb52-811"></a></span>
+<span id="cb52-812"><a href="#cb52-812"></a><span class="fu">### Estruturas Condicionais</span></span>
+<span id="cb52-813"><a href="#cb52-813"></a></span>
+<span id="cb52-814"><a href="#cb52-814"></a>As estruturas condicionais permitem que você execute diferentes blocos de código com base em condições específicas. As principais estruturas condicionais em R são:</span>
+<span id="cb52-815"><a href="#cb52-815"></a></span>
+<span id="cb52-816"><a href="#cb52-816"></a>if em inglês significa "se", então em na estrutura de uma frase temos: se 'condição', então 'codigo'</span>
+<span id="cb52-817"><a href="#cb52-817"></a></span>
+<span id="cb52-818"><a href="#cb52-818"></a>Modelo:</span>
+<span id="cb52-821"><a href="#cb52-821"></a><span class="in">```{r}</span></span>
+<span id="cb52-822"><a href="#cb52-822"></a><span class="co">#if (condição) {</span></span>
+<span id="cb52-823"><a href="#cb52-823"></a>  <span class="co"># código a ser executado se a condição for TRUE</span></span>
+<span id="cb52-824"><a href="#cb52-824"></a><span class="co">#}</span></span>
+<span id="cb52-825"><a href="#cb52-825"></a><span class="in">```</span></span>
+<span id="cb52-826"><a href="#cb52-826"></a></span>
+<span id="cb52-827"><a href="#cb52-827"></a>Exemplo:</span>
+<span id="cb52-828"><a href="#cb52-828"></a>Se x for maior que 5 então aparece na tela a mensagem especificada</span>
+<span id="cb52-831"><a href="#cb52-831"></a><span class="in">```{r}</span></span>
+<span id="cb52-832"><a href="#cb52-832"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb52-833"><a href="#cb52-833"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb52-834"><a href="#cb52-834"></a>  <span class="fu">print</span>(<span class="st">"x é maior que 5"</span>)</span>
+<span id="cb52-835"><a href="#cb52-835"></a>}</span>
+<span id="cb52-836"><a href="#cb52-836"></a><span class="in">```</span></span>
+<span id="cb52-837"><a href="#cb52-837"></a></span>
+<span id="cb52-838"><a href="#cb52-838"></a><span class="al">![Figura 3: Fluxograma if](if.png)</span></span>
+<span id="cb52-839"><a href="#cb52-839"></a></span>
+<span id="cb52-840"><a href="#cb52-840"></a>Basicamente um se ou se não</span>
+<span id="cb52-843"><a href="#cb52-843"></a><span class="in">```{r}</span></span>
+<span id="cb52-844"><a href="#cb52-844"></a><span class="co">#if (condição) {</span></span>
+<span id="cb52-845"><a href="#cb52-845"></a>  <span class="co"># código se TRUE</span></span>
+<span id="cb52-846"><a href="#cb52-846"></a><span class="co">#} else {</span></span>
+<span id="cb52-847"><a href="#cb52-847"></a>  <span class="co"># código se FALSE</span></span>
+<span id="cb52-848"><a href="#cb52-848"></a><span class="co">#}</span></span>
+<span id="cb52-849"><a href="#cb52-849"></a><span class="in">```</span></span>
+<span id="cb52-850"><a href="#cb52-850"></a></span>
+<span id="cb52-851"><a href="#cb52-851"></a>Exemplo:</span>
+<span id="cb52-854"><a href="#cb52-854"></a><span class="in">```{r}</span></span>
+<span id="cb52-855"><a href="#cb52-855"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb52-856"><a href="#cb52-856"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb52-857"><a href="#cb52-857"></a>  <span class="fu">print</span>(<span class="st">"x é maior que 5"</span>)</span>
+<span id="cb52-858"><a href="#cb52-858"></a>} <span class="cf">else</span> {</span>
+<span id="cb52-859"><a href="#cb52-859"></a>  <span class="fu">print</span>(<span class="st">"x não é maior que 5"</span>)</span>
+<span id="cb52-860"><a href="#cb52-860"></a>}</span>
+<span id="cb52-861"><a href="#cb52-861"></a><span class="in">```</span></span>
+<span id="cb52-862"><a href="#cb52-862"></a></span>
+<span id="cb52-863"><a href="#cb52-863"></a><span class="al">![Figura 4: Fluxograma ifelse](ifelse.png)</span></span>
+<span id="cb52-864"><a href="#cb52-864"></a></span>
+<span id="cb52-865"><a href="#cb52-865"></a>Também pode-se "aninhar" várias estruturas condicionais. "Aninhar" significa colocar uma atrás da outra em uma hierarquia</span>
+<span id="cb52-866"><a href="#cb52-866"></a></span>
+<span id="cb52-867"><a href="#cb52-867"></a>Modelo:</span>
+<span id="cb52-870"><a href="#cb52-870"></a><span class="in">```{r}</span></span>
+<span id="cb52-871"><a href="#cb52-871"></a><span class="co">#if (condição1) {</span></span>
+<span id="cb52-872"><a href="#cb52-872"></a>  <span class="co"># código se condição1 TRUE</span></span>
+<span id="cb52-873"><a href="#cb52-873"></a><span class="co">#} else if (condição2) {</span></span>
+<span id="cb52-874"><a href="#cb52-874"></a>  <span class="co"># código se condição2 TRUE</span></span>
+<span id="cb52-875"><a href="#cb52-875"></a><span class="co">#} else {</span></span>
+<span id="cb52-876"><a href="#cb52-876"></a>  <span class="co"># código se todas FALSE</span></span>
+<span id="cb52-877"><a href="#cb52-877"></a><span class="co">#}</span></span>
+<span id="cb52-878"><a href="#cb52-878"></a><span class="in">```</span></span>
+<span id="cb52-879"><a href="#cb52-879"></a></span>
+<span id="cb52-882"><a href="#cb52-882"></a><span class="in">```{r}</span></span>
+<span id="cb52-883"><a href="#cb52-883"></a>x <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb52-884"><a href="#cb52-884"></a><span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb52-885"><a href="#cb52-885"></a>  <span class="fu">print</span>(<span class="st">"x é menor que 5"</span>)</span>
+<span id="cb52-886"><a href="#cb52-886"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb52-887"><a href="#cb52-887"></a>  <span class="fu">print</span>(<span class="st">"x está entre 5 e 10"</span>)</span>
+<span id="cb52-888"><a href="#cb52-888"></a>} <span class="cf">else</span> {</span>
+<span id="cb52-889"><a href="#cb52-889"></a>  <span class="fu">print</span>(<span class="st">"x é 10 ou maior"</span>)</span>
+<span id="cb52-890"><a href="#cb52-890"></a>}</span>
+<span id="cb52-891"><a href="#cb52-891"></a><span class="in">```</span></span>
+<span id="cb52-892"><a href="#cb52-892"></a></span>
+<span id="cb52-893"><a href="#cb52-893"></a><span class="al">![Figura 5: Fluxograma ifelseif](ifelseif.png)</span></span>
+<span id="cb52-894"><a href="#cb52-894"></a></span>
+<span id="cb52-895"><a href="#cb52-895"></a>Em estatística operações vetorizadas são muito importantes, digamos que você é um estatístico em uma empresa de crédito e você tem um dado de quantos dias os clientes estão em atrasado com o pagamento das parcelas de um empréstimo, mas você quer um indicador simples de ele estar inadimplente ou não (ou seja, uma variável booleana ou lógica), então é útil fazer um ifelse vetorizado com uma condição de, por exemplo, ele estar inadimplente se a dívida passar de 90 dias:</span>
+<span id="cb52-896"><a href="#cb52-896"></a></span>
+<span id="cb52-897"><a href="#cb52-897"></a></span>
+<span id="cb52-898"><a href="#cb52-898"></a>Modelo:</span>
+<span id="cb52-901"><a href="#cb52-901"></a><span class="in">```{r}</span></span>
+<span id="cb52-902"><a href="#cb52-902"></a><span class="co"># ifelse(condição, valor_se_TRUE, valor_se_FALSE)</span></span>
+<span id="cb52-903"><a href="#cb52-903"></a><span class="in">```</span></span>
+<span id="cb52-904"><a href="#cb52-904"></a></span>
+<span id="cb52-905"><a href="#cb52-905"></a>Exemplo simples:</span>
+<span id="cb52-906"><a href="#cb52-906"></a></span>
+<span id="cb52-909"><a href="#cb52-909"></a><span class="in">```{r}</span></span>
+<span id="cb52-910"><a href="#cb52-910"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># Cria um vetor com números de 1 a 10</span></span>
+<span id="cb52-911"><a href="#cb52-911"></a><span class="fu">ifelse</span>(x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">"par"</span>, <span class="st">"ímpar"</span>) <span class="co"># checa a operação de módulo para cada elemento do vetor e determina se é par ou ímpar (obs: todo número par dividido por 2 tem resto 0)</span></span>
+<span id="cb52-912"><a href="#cb52-912"></a><span class="in">```</span></span>
+<span id="cb52-913"><a href="#cb52-913"></a></span>
+<span id="cb52-914"><a href="#cb52-914"></a>Exemplo de uso:</span>
+<span id="cb52-915"><a href="#cb52-915"></a>ESCREVER O EXEMPLO</span>
+<span id="cb52-916"><a href="#cb52-916"></a></span>
+<span id="cb52-917"><a href="#cb52-917"></a>Quando é necessário escolher entre várias opções, por exemplo uma caixa de seleção em um formulário, pode ser ineficaz ficar aninhando várias ifs e else, para isso que serve a estrutura condicional switch/case, implementada da seguinte maneira em R:</span>
+<span id="cb52-918"><a href="#cb52-918"></a></span>
+<span id="cb52-919"><a href="#cb52-919"></a>Modelo:</span>
+<span id="cb52-922"><a href="#cb52-922"></a><span class="in">```{r}</span></span>
+<span id="cb52-923"><a href="#cb52-923"></a><span class="co">#switch(expressão, </span></span>
+<span id="cb52-924"><a href="#cb52-924"></a><span class="co">#       caso1 = ação1,</span></span>
+<span id="cb52-925"><a href="#cb52-925"></a><span class="co">#       caso2 = ação2,</span></span>
+<span id="cb52-926"><a href="#cb52-926"></a><span class="co">#       ...,</span></span>
+<span id="cb52-927"><a href="#cb52-927"></a><span class="co">#       ação_padrão)</span></span>
+<span id="cb52-928"><a href="#cb52-928"></a><span class="in">```</span></span>
+<span id="cb52-929"><a href="#cb52-929"></a></span>
+<span id="cb52-930"><a href="#cb52-930"></a>Exemplo simples:</span>
+<span id="cb52-933"><a href="#cb52-933"></a><span class="in">```{r}</span></span>
+<span id="cb52-934"><a href="#cb52-934"></a>operação <span class="ot">&lt;-</span> <span class="st">"soma"</span></span>
+<span id="cb52-935"><a href="#cb52-935"></a>resultado <span class="ot">&lt;-</span> <span class="cf">switch</span>(operação,</span>
+<span id="cb52-936"><a href="#cb52-936"></a>                   <span class="st">"soma"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span>,</span>
+<span id="cb52-937"><a href="#cb52-937"></a>                   <span class="st">"subtração"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">-</span> <span class="dv">3</span>,</span>
+<span id="cb52-938"><a href="#cb52-938"></a>                   <span class="st">"multiplicação"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">3</span>,</span>
+<span id="cb52-939"><a href="#cb52-939"></a>                   <span class="st">"divisão"</span> <span class="ot">=</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">3</span>,</span>
+<span id="cb52-940"><a href="#cb52-940"></a>                   <span class="st">"operação não reconhecida"</span>)</span>
+<span id="cb52-941"><a href="#cb52-941"></a><span class="fu">print</span>(resultado)</span>
+<span id="cb52-942"><a href="#cb52-942"></a><span class="in">```</span></span>
+<span id="cb52-943"><a href="#cb52-943"></a></span>
+<span id="cb52-944"><a href="#cb52-944"></a>Exemplo prático:</span>
+<span id="cb52-945"><a href="#cb52-945"></a></span>
+<span id="cb52-946"><a href="#cb52-946"></a>ESCREVER </span>
+<span id="cb52-947"><a href="#cb52-947"></a></span>
+<span id="cb52-948"><a href="#cb52-948"></a><span class="fu">### Estruturas de Laço (loop)</span></span>
+<span id="cb52-949"><a href="#cb52-949"></a></span>
+<span id="cb52-950"><a href="#cb52-950"></a>Em programação, muitas vezes é necessário repetir uma operação várias vezes com base em uma condição ou 'iterando' por um vetor ou alguma estrutura de dados (iterar significa repetir ou passar sequencialmente). Existem duas estruturas principais para isso: o WHILE e o FOR</span>
+<span id="cb52-951"><a href="#cb52-951"></a></span>
+<span id="cb52-952"><a href="#cb52-952"></a>While significa enquanto, então enquanto uma determinada condição for verdadeira </span>
+<span id="cb52-953"><a href="#cb52-953"></a></span>
+<span id="cb52-954"><a href="#cb52-954"></a><span class="fu">### Funções</span></span>
+<span id="cb52-955"><a href="#cb52-955"></a><span class="fu">### Importação de Dados</span></span>
+<span id="cb52-956"><a href="#cb52-956"></a></span>
+<span id="cb52-957"><a href="#cb52-957"></a>Trabalhamos com dados em estatística, então isso é a coisa mais importante para aprender kkkkkk.</span>
+<span id="cb52-958"><a href="#cb52-958"></a>Felizmente temos tudo pronto (implementado) em R, se vc for tentar se aventurar a fazer isso em C vai ser bem difícil. Existem vários tipos de dados, mas a forma de importá-los é semelhante e simples, porém deve-se atentar a alguns detalhes.</span>
+<span id="cb52-959"><a href="#cb52-959"></a>Principais tipos de arquivos de dados:</span>
+<span id="cb52-960"><a href="#cb52-960"></a></span>
+<span id="cb52-961"><a href="#cb52-961"></a>COLOCAR UMA TABELA</span>
+<span id="cb52-962"><a href="#cb52-962"></a></span>
+<span id="cb52-963"><a href="#cb52-963"></a>FALAR SOBRE DELIMITADORES DE MILHAR E DECIMAL E ASCII</span>
+<span id="cb52-964"><a href="#cb52-964"></a></span>
+<span id="cb52-965"><a href="#cb52-965"></a><span class="fu">### Manipulação de Dados</span></span>
+<span id="cb52-966"><a href="#cb52-966"></a></span>
+<span id="cb52-967"><a href="#cb52-967"></a>Lembre-se de que tudo aqui é uma introdução, essa parte é relativamente confusa, para mais informações consulte o cap TAL de r</span>
+<span id="cb52-968"><a href="#cb52-968"></a>ESCREVER DEPOIS</span>
+<span id="cb52-969"><a href="#cb52-969"></a><span class="fu">### Gráficos</span></span>
+<span id="cb52-970"><a href="#cb52-970"></a></span>
+<span id="cb52-971"><a href="#cb52-971"></a><span class="fu">## Introdução a Python</span></span>
+<span id="cb52-972"><a href="#cb52-972"></a></span>
+<span id="cb52-973"><a href="#cb52-973"></a><span class="fu">### Introdução ao google collab </span></span>
+<span id="cb52-974"><a href="#cb52-974"></a></span>
+<span id="cb52-975"><a href="#cb52-975"></a>Existem várias plataformas que te permitem codar em python. Google Collab é uma plataforma web com tudo já pronto para executar códigos</span>
+<span id="cb52-976"><a href="#cb52-976"></a></span>
+<span id="cb52-977"><a href="#cb52-977"></a><span class="fu">### Libraries (Libs ou Bibliotecas)</span></span>
+<span id="cb52-978"><a href="#cb52-978"></a></span>
+<span id="cb52-979"><a href="#cb52-979"></a><span class="fu">## Dicas de geração de código com IA</span></span>
+<span id="cb52-980"><a href="#cb52-980"></a></span>
+<span id="cb52-981"><a href="#cb52-981"></a>As IAs são ferramentas extremamente úteis e válidas no contexto da programação. </span>
+<span id="cb52-982"><a href="#cb52-982"></a>Primeiramente nenhuma IA fará milagres, você precisa ser claro e evidente nas suas perguntas, como diria algum matemático: "Uma pergunta bem formulada já está respondida"</span>
+<span id="cb52-983"><a href="#cb52-983"></a>Existem tarefas de programação que até o mais entendido de programação terá que ler a documentação de várias bibliotecas e raciocionar muito tempo para executar, a IA facilita esse trabalho fazendo o trabalho duro de gerar código.</span>
+<span id="cb52-984"><a href="#cb52-984"></a>Como diriam muitos programadores, a tarefa de gerar código é a mais trivial, o importante é juntar aqueles códigos em algo que faça sentido, outra coisa que eles dizem é que se passa muito mais tempo debugando um código do que gerando ele em si, primeiro se pensa a lógica depois os problemas são solucionados um a um. E é aí que entramos. A IA tem o papel de gerar código e nós de checar se ele faz sentido, se ela não está alucinando, esse tipo de coisa</span>
+<span id="cb52-985"><a href="#cb52-985"></a></span>
+<span id="cb52-986"><a href="#cb52-986"></a>------------------------------------------------------------------------</span>
+<span id="cb52-987"><a href="#cb52-987"></a></span>
+<span id="cb52-988"><a href="#cb52-988"></a><span class="fu"># Créditos e Agradecimentos</span></span>
+<span id="cb52-989"><a href="#cb52-989"></a></span>
+<span id="cb52-990"><a href="#cb52-990"></a>DIEGO e seus slides maravilhosos</span>
+<span id="cb52-991"><a href="#cb52-991"></a></span>
+<span id="cb52-992"><a href="#cb52-992"></a><span class="fu">### </span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

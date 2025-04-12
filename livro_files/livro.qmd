@@ -8,7 +8,7 @@ format:
     toc-depth: 4  # Aumentei a profundidade do índice para incluir subseções
     number-sections: true
     code-tools: true
-    code-fold: true
+    code-fold: false
     code-line-numbers: true
     code-overflow: wrap
     code-copy: true
@@ -109,6 +109,11 @@ apostila também):
     resultados não são determinísticos, mas sim sujeitos a incertezas.
     Ela fornece uma estrutura formal para quantificar a incerteza e
     modelar situações onde o acaso está presente.
+    
+ESCREVER SOBRE O APLICATIVO E A CLASSIFICAÇÃO DAS QUESTÕES
+
+Também haverá seções em cada capítulo onde a aplicação dos conceitos citados será feita
+nos softwares estatísticos R, Python e aplicativos de planilhas (no caso o Google Sheets, mas o mesmo pode ser aplicado em libreoffice calc ou o clássico Excel) 
 
 ## Conceitos Básicos {#conceitos-básicos}
 
@@ -117,6 +122,13 @@ apostila também):
 Conjunto de todos os elementos com a característica de interesse, sobre
 a qual desejamos obter informações. A população pode ser finita ou
 infinita. Representamos por "N" o número de elementos da população.
+Exemplos:
+Todos os pacientes com diabetes no Brasil em um determinado ano.
+Todas as árvores de uma floresta tropical.
+Todos os carros de um modelo específico em uma concessionária.
+Todos os acessos a um site em 24 horas
+
+
 
 ### Amostra {#amostra}
 
@@ -126,6 +138,9 @@ Exemplo: Em uma pesquisa eleitoral para saber o resultado das eleições
 para presidente do Brasil, qual a população de interesse? Qual seria a
 amostra? R: A população é constituída de todos os eleitores do Brasil. A
 amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.
+
+![Figura 1: População e Amostra](popam.png)
+
 
 ### Censo {#censo}
 
@@ -139,7 +154,19 @@ escrever breve texto sobre o censo de 2022
 
 ### Parâmetros {#parâmetros}
 
+É uma medida fixa (geralmente desconhecida) que descreve uma característica de uma população inteira.
+
+Como se refere a toda a população, seu valor não muda (a menos que a população seja alterada).
+
+Exemplos: Média populacional (μ), desvio padrão populacional (σ), proporção populacional (p).
+
 ### Estatísticas {#estatísticas}
+
+É uma medida descritiva calculada a partir de uma amostra (um subconjunto de uma população).
+
+Como a amostra é apenas uma parte da população, a estatística pode variar de amostra para amostra (variabilidade amostral).
+
+Exemplos: Média amostral (xbar), desvio padrão amostral (s), proporção amostral (phat).
 
 ### Variável {#variável}
 
@@ -148,15 +175,21 @@ para outro. É a característica que está sendo analisada em cada elemento
 de uma população. Exemplo: Na população funcionários de uma determinada
 empresa -- podemos estudar as varáveis: número de dependentes,
 remuneração financeira, idade, sexo, local de residência, nível de
-escolaridade, estado civil, tempo deserviços na empresa, etc.
+escolaridade, estado civil, tempo de serviços na empresa, etc.
 
-### Estrutura de uma planilha
+### Conjuntos de Dados
 
-ESCREVER UM BASICO E ENSINAR R
+Os dados podem ser estruturados de diversas maneiras em diversas extensões e é nosso dever como analista de dados garantir que eles sejam importados da melhor forma para trabalharmos em cima deles.
+
+Para fins práticos trabalharemos com dados no formato de planilha que é o mais simples e efetivo, mas é possível trabalhar com data warehouses, bancos de dados relacionais (uma forma estruturada para reduzir redundância de dados e relacionar várias tabelas), bancos de dados não-relacionais e etc.
+
+Dados em formato de planilha se utilizam de apenas uma tabela onde as linhas representam os registros, instâncias ou elementos daquela amostra ou população e as colunas representam as variáveis:
+
+COLOCAR IMAGEM ILUSTRATIVA
 
 ## Classificação das Variáveis {#classificação-das-variáveis}
 
-![Figura 1: Classificação das Variáveis](var.png)
+![Figura 2: Classificação das Variáveis](var.png)
 
 ## Distribuição de Frequências {#distribuição-de-frequências}
 
@@ -171,7 +204,8 @@ A distribuição de frequências para variáveis quantitativas é feita
 agrupando os dados em intervalos de classe ou listando cada valor
 individualmente.
 
-Passos para Construir a Distribuição: 1. Definir os Intervalos de Classe
+Passos para Construir a Distribuição: 
+1. Definir os Intervalos de Classe
 (para dados contínuos): - Divida os dados em intervalos (ex: 0-10,
 10-20, 20-30). - Cada intervalo é chamado de classe. - O tamanho do
 intervalo é chamado de amplitude de classe e existem várias maneiras de
@@ -286,7 +320,7 @@ ocorrência de eventos em situações onde o resultado não é previsível com
 certeza. Desde previsões do tempo até decisões financeiras, a
 probabilidade está presente em diversos aspectos da vida cotidiana e é
 fundamental em áreas como estatística, ciência de dados, física,
-engenharia e economia.
+engenharia, economia e jogos.
 
 ## Análise Combinatória {#análise-combinatória}
 
@@ -462,9 +496,456 @@ Intervalo de confiança para a proporção populacional.
 
 ## Arquivos de Aulas
 
-## Nivelamento em R
+## Introdução a R
+
+Essa será uma breve introdução a R para poder entender como funciona a linguagem de programação e já brincar com estatística utilizando funções mais elementares, as mais importantes, como calcular medidas simples como média, moda, mediana, criação de gráficos e tabelas e elaboração de regressões simples. Para maiores discussões sobre tipos avançados de visualização ver o livro R para Ciência de Dados: https://pt.r4ds.hadley.nz/
+
+EXPLICAR COMENTARIOS
+
+Sugere-se ao/a professor/a uma leitura rápida desta seção após uma curta introdução para o/a aluno/a começar a se familizar com os conceitos, após isso esta seção pode servir como consulta para sintaxe e ajuda rápida
+
+### Instalação do ambiente Rstudio
+
+A instalação é trivial, basta baixar e executar o R em https://cran.rstudio.com/
+e baixar o Rstudio https://posit.co/download/rstudio-desktop/ em seguida
+
+Para usar o Rstudio, basta abrir um script com Ctrl + Shift + N e para executar códigos basta selecionar a linha com o mouse e teclar Ctrl + Enter
+
+Para quaisquer dificuldades: https://www.youtube.com/watch?v=a4_0pKVY6RE&list=PLs7DH7eMtNjcfzzZT6beLu0nmSr2yIhIr&index=2
+
+### Libraries (Libs ou Bibliotecas)
+
+Em programação, uma library (biblioteca) é um conjunto de códigos pré-escritos (funções, classes, métodos, variáveis) que podem ser reutilizados para facilitar o desenvolvimento de software. Elas são criadas para resolver problemas específicos, evitando que os programadores tenham que "reinventar a roda" a cada projeto.
+
+```{r}
+
+#| eval: false
+
+# Instalar uma biblioteca (fazer apenas a primeira vez)
+#install.packages("nome_da_biblioteca")  # Ex: install.packages("ggplot2")
+
+# Carregar para uso na sessão atual
+#library(nome_da_biblioteca)            # Ex: library(ggplot2)
+```
+
+Exemplo (o aluno é encorajado a copiar e executar o código na própria máquina):
+
+```{r}
+#| eval: false	
+
+# dplyr é uma biblioteca para lidar com bancos de dados e ggplot2 é uma biblioteca para visualização, teremos um capítulo explicando cada uma delas
+
+library(dplyr)
+library(ggplot2)
+
+# Filtrar dados e criar gráfico
+dados <- mtcars %>%  
+  filter(mpg > 20) %>%  
+  ggplot(aes(x = wt, y = mpg)) +  
+  geom_point() +  
+  labs(title = "Relação Peso vs. Consumo")
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(knitr)
+library(kableExtra)  
+
+tabela_bibliotecas_R <- data.frame(
+  Categoria = c(
+    "Manipulação de Dados", "Manipulação de Dados",
+    "Visualização", "Visualização",
+    "Análise Estatística", "Análise Estatística",
+    "Machine Learning", "Machine Learning",
+    "Text Mining", "Text Mining",
+    "Geoprocessamento", "Geoprocessamento",
+    "Reprodutibilidade", "Reprodutibilidade"
+  ),
+  Biblioteca = c(
+    "dplyr", "tidyr",
+    "ggplot2", "plotly",
+    "stats", "lme4",
+    "caret", "randomForest",
+    "tm", "tidytext",
+    "sf", "raster",
+    "knitr", "rmarkdown"
+  ),
+  Descrição = c(
+    "Ferramentas para filtrar, agrupar e sumarizar dados",
+    "Organização e limpeza de dados (pivotagem, separação de colunas)",
+    "Criação de gráficos elegantes e personalizáveis",
+    "Gráficos interativos (3D, hover effects)",
+    "Funções estatísticas básicas (testes t, ANOVA, regressão)",
+    "Modelos lineares mistos (para dados hierárquicos)",
+    "Treinamento e validação de modelos preditivos",
+    "Algoritmo de florestas aleatórias para classificação/regressão",
+    "Mineração e pré-processamento de textos",
+    "Análise de texto integrada ao tidyverse",
+    "Manipulação de dados espaciais (vetores)",
+    "Análise de dados raster (imagens de satélite, mapas)",
+    "Geração de relatórios dinâmicos (HTML, PDF)",
+    "Integração de código, texto e visualizações em documentos"
+  ),
+  Exemplo = c(
+    "`dados %>% filter(coluna > 10) %>% group_by(...)`",
+    "`pivot_longer(dados, cols = c(...))`",
+    "`ggplot(dados, aes(x, y)) + geom_point()`",
+    "`plot_ly(dados, x = ~x, y = ~y, type = 'scatter')`",
+    "`t.test(x, y)`",
+    "`lmer(resposta ~ preditor + (1|grupo))`",
+    "`train(classe ~ ., data = dados, method = \"rf\")`",
+    "`randomForest(y ~ ., data = dados)`",
+    "`Corpus(VectorSource(textos)) %>% tm_map(...)`",
+    "`unnest_tokens(dados, palavra, texto)`",
+    "`st_read(\"caminho/shapefile.shp\")`",
+    "`raster(\"imagem.tif\") %>% plot()`",
+    "`knit(\"documento.Rmd\")`",
+    "`render(\"relatorio.Rmd\")`"
+  )
+)
+
+kable(tabela_bibliotecas_R, 
+      caption = "Principais Bibliotecas em R por Categoria",
+      col.names = c("Categoria", "Biblioteca", "Descrição", "Exemplo de Uso"),
+      align = c("l", "l", "l", "l")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  column_spec(1, bold = TRUE) %>%
+  collapse_rows(columns = 1, valign = "top")
+```
+
+
+### Variáveis
+
+Uma **variável** é um **nome simbólico** que armazena um **valor** ou **dado** na memória do computador. Em R, as variáveis são usadas para guardar informações que podem ser manipuladas durante a execução de um código.
+
+Tipos de variáveis:
+
+#### Numérica (numeric)
+
+Armazenam números (inteiros ou decimais).
+
+```{r}
+#| echo: true
+#| eval: true
+
+x <- 10.5      # Decimal  
+y <- 20L       # Inteiro (com sufixo 'L')  
+z <- -3.14     # Negativo
+
+x
+y
+z
+```
+
+#### Caracteres (character ou string)
+
+Armazenam caracteres ou conjuntos de caracteres (strings), para manipulação de strings ver o capítulo 14 do r4ds. Algumas coisas que podem ser feitas são transformar todos os caracteres em maiúsculos ou minúsculos, retirar acentos, caracteres especiais, retirar padrões do texto, separar em várias strings separando por um delimitador (como o espaço), calcular o tamanho de uma string. Enfim, várias utilidades bem úteis para lidar com dados de texto.
+```{r}
+#| echo: true
+#| eval: true
+
+nome <- "Maria"  
+frase <- 'Olá, mundo!'
+nome
+frase
+```
+
+#### Lógicas (logical ou boolean)
+
+Armazenam valores lógicos: verdadeiro ou falso
+São bem úteis para verificação de estruturais condicionais que são demonstradas na seção ESCREVER SECAO
+
+```{r}
+#| echo: true
+#| eval: true
+
+ativo <- TRUE  
+falha <- FALSE
+ativo
+falha
+```
+
+#### Fatores (factor)
+
+São categorias
+Equivale a variável categóricas ordinal ou nominal, explicada no capítulo: COLOCAR CAPÍTULO
+```{r}
+#| echo: true
+#| eval: true
+
+grupo <- factor(c("A", "B", "A", "C"))  
+niveis <- factor(
+  c("Baixo", "Médio", "Alto"),
+  levels = c("Baixo", "Médio", "Alto"),  # É necessário definir a ordem assim, se não ele vai errado
+  ordered = TRUE # definir que é ordinal 
+)
+niveis
+grupo
+```
+
+#### Datas (Date ou POSIXct)
+
+Armazenam datas e horários
+Para maiores discussões sobre datas ver capítulo 17 de r4ds
+
+```{r}
+#| echo: true
+#| eval: true
+
+hoje <- as.Date("2025-03-26")  
+agora <- as.POSIXct("2025-03-26 14:30:00")
+hoje
+agora
+```
+
+#### Vetores (vector)
+
+Coleção de elementos do mesmo tipo
+Se você colocar uma letra no meio dos números todos os números serão tratados como letras (caso tenha se perguntado isso)
+
+```{r}
+#| echo: true
+#| eval: true
+
+numeros <- c(1, 2, 3, 4)  
+letras <- c("a", "b", "c")
+numeros_como_letras <- c(1, "A", 3, 4)  
+numeros
+letras
+numeros_como_letras
+```
+
+
+#### Listas (list)
+
+```{r}
+#| echo: true
+#| eval: true
+
+dados <- list(nome = "João", idade = 30, ativo = TRUE)
+dados
+```
+
+#### Data Frames (data.frame)
+
+```{r}
+#| echo: true
+#| eval: true
+
+tabela <- data.frame(  
+  nome = c("Ana", "Carlos"),  
+  idade = c(25, 30)  
+)
+tabela
+```
+
+#### Matrizes
+
+```{r}
+#| echo: true
+#| eval: true
+
+matriz <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
+
+matriz
+```
+
+### Operações
+
+Toda linguagem de programação tem as operações matemáticas elementares implementadas, vamos estudar sua sintaxe:
+
+```{r, echo=FALSE, message=FALSE}
+
+library(kableExtra)
+library(knitr)
+
+# Criar a tabela de operações básicas em R (versão corrigida)
+operacoes <- data.frame(
+  Operação = c("Adição", "Subtração", "Multiplicação", "Divisão", 
+               "Potenciação", "Raiz quadrada", "Logaritmo natural", 
+               "Logaritmo base 10", "Módulo (resto da divisão inteira)"),
+  Símbolo_Matemático = c("a + b", "a - b", "a × b", "a ÷ b", 
+                         "a^b", "√a", "ln(a)", 
+                         "log₁₀(a)", "a mod b"),
+  Sintaxe_em_R = c("`a + b`", "`a - b`", "`a * b`", "`a / b`", 
+                   "`a ^ b` ou `a ** b`", "`sqrt(a)`", "`log(a)`", 
+                   "`log10(a)`", "`a %% b`")
+)
+
+# Exibir a tabela com kable
+knitr::kable(
+  operacoes,
+  col.names = c("Operação", "Símbolo Matemático", "Sintaxe em R"),
+  caption = "Operações Básicas em R vs Matemática em ℝ",
+  align = c("l", "c", "l")
+) %>% 
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE,
+    position = "center"
+  )
+```
+
+
+
+
+### Estruturas Condicionais
+
+As estruturas condicionais permitem que você execute diferentes blocos de código com base em condições específicas. As principais estruturas condicionais em R são:
+
+if em inglês significa "se", então em na estrutura de uma frase temos: se 'condição', então 'codigo'
+
+Modelo:
+```{r}
+#if (condição) {
+  # código a ser executado se a condição for TRUE
+#}
+```
+
+Exemplo:
+Se x for maior que 5 então aparece na tela a mensagem especificada
+```{r}
+x <- 10
+if (x > 5) {
+  print("x é maior que 5")
+}
+```
+
+![Figura 3: Fluxograma if](if.png)
+
+Basicamente um se ou se não
+```{r}
+#if (condição) {
+  # código se TRUE
+#} else {
+  # código se FALSE
+#}
+```
+
+Exemplo:
+```{r}
+x <- 3
+if (x > 5) {
+  print("x é maior que 5")
+} else {
+  print("x não é maior que 5")
+}
+```
+
+![Figura 4: Fluxograma ifelse](ifelse.png)
+
+Também pode-se "aninhar" várias estruturas condicionais. "Aninhar" significa colocar uma atrás da outra em uma hierarquia
+
+Modelo:
+```{r}
+#if (condição1) {
+  # código se condição1 TRUE
+#} else if (condição2) {
+  # código se condição2 TRUE
+#} else {
+  # código se todas FALSE
+#}
+```
+
+```{r}
+x <- 7
+if (x < 5) {
+  print("x é menor que 5")
+} else if (x >= 5 & x < 10) {
+  print("x está entre 5 e 10")
+} else {
+  print("x é 10 ou maior")
+}
+```
+
+![Figura 5: Fluxograma ifelseif](ifelseif.png)
+
+Em estatística operações vetorizadas são muito importantes, digamos que você é um estatístico em uma empresa de crédito e você tem um dado de quantos dias os clientes estão em atrasado com o pagamento das parcelas de um empréstimo, mas você quer um indicador simples de ele estar inadimplente ou não (ou seja, uma variável booleana ou lógica), então é útil fazer um ifelse vetorizado com uma condição de, por exemplo, ele estar inadimplente se a dívida passar de 90 dias:
+
+
+Modelo:
+```{r}
+# ifelse(condição, valor_se_TRUE, valor_se_FALSE)
+```
+
+Exemplo simples:
+
+```{r}
+x <- 1:10 # Cria um vetor com números de 1 a 10
+ifelse(x %% 2 == 0, "par", "ímpar") # checa a operação de módulo para cada elemento do vetor e determina se é par ou ímpar (obs: todo número par dividido por 2 tem resto 0)
+```
+
+Exemplo de uso:
+ESCREVER O EXEMPLO
+
+Quando é necessário escolher entre várias opções, por exemplo uma caixa de seleção em um formulário, pode ser ineficaz ficar aninhando várias ifs e else, para isso que serve a estrutura condicional switch/case, implementada da seguinte maneira em R:
+
+Modelo:
+```{r}
+#switch(expressão, 
+#       caso1 = ação1,
+#       caso2 = ação2,
+#       ...,
+#       ação_padrão)
+```
+
+Exemplo simples:
+```{r}
+operação <- "soma"
+resultado <- switch(operação,
+                   "soma" = 5 + 3,
+                   "subtração" = 5 - 3,
+                   "multiplicação" = 5 * 3,
+                   "divisão" = 5 / 3,
+                   "operação não reconhecida")
+print(resultado)
+```
+
+Exemplo prático:
+
+ESCREVER 
+
+### Estruturas de Laço (loop)
+
+Em programação, muitas vezes é necessário repetir uma operação várias vezes com base em uma condição ou 'iterando' por um vetor ou alguma estrutura de dados (iterar significa repetir ou passar sequencialmente). Existem duas estruturas principais para isso: o WHILE e o FOR
+
+While significa enquanto, então enquanto uma determinada condição for verdadeira 
+
+### Funções
+### Importação de Dados
+
+Trabalhamos com dados em estatística, então isso é a coisa mais importante para aprender kkkkkk.
+Felizmente temos tudo pronto (implementado) em R, se vc for tentar se aventurar a fazer isso em C vai ser bem difícil. Existem vários tipos de dados, mas a forma de importá-los é semelhante e simples, porém deve-se atentar a alguns detalhes.
+Principais tipos de arquivos de dados:
+
+COLOCAR UMA TABELA
+
+FALAR SOBRE DELIMITADORES DE MILHAR E DECIMAL E ASCII
+
+### Manipulação de Dados
+
+Lembre-se de que tudo aqui é uma introdução, essa parte é relativamente confusa, para mais informações consulte o cap TAL de r
+ESCREVER DEPOIS
+### Gráficos
+
+## Introdução a Python
+
+### Introdução ao google collab 
+
+Existem várias plataformas que te permitem codar em python. Google Collab é uma plataforma web com tudo já pronto para executar códigos
+
+### Libraries (Libs ou Bibliotecas)
 
 ## Dicas de geração de código com IA
+
+As IAs são ferramentas extremamente úteis e válidas no contexto da programação. 
+Primeiramente nenhuma IA fará milagres, você precisa ser claro e evidente nas suas perguntas, como diria algum matemático: "Uma pergunta bem formulada já está respondida"
+Existem tarefas de programação que até o mais entendido de programação terá que ler a documentação de várias bibliotecas e raciocionar muito tempo para executar, a IA facilita esse trabalho fazendo o trabalho duro de gerar código.
+Como diriam muitos programadores, a tarefa de gerar código é a mais trivial, o importante é juntar aqueles códigos em algo que faça sentido, outra coisa que eles dizem é que se passa muito mais tempo debugando um código do que gerando ele em si, primeiro se pensa a lógica depois os problemas são solucionados um a um. E é aí que entramos. A IA tem o papel de gerar código e nós de checar se ele faz sentido, se ela não está alucinando, esse tipo de coisa
 
 ------------------------------------------------------------------------
 
