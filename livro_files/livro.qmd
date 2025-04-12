@@ -139,7 +139,7 @@ para presidente do Brasil, qual a população de interesse? Qual seria a
 amostra? R: A população é constituída de todos os eleitores do Brasil. A
 amostra seria um subconjunto (ex.,de n=2.000 eleitores) da população.
 
-![Figura 1: População e Amostra](popam.png)
+![Figura 1: População e Amostra](imagens/popam.png)
 
 
 ### Censo {#censo}
@@ -189,7 +189,7 @@ COLOCAR IMAGEM ILUSTRATIVA
 
 ## Classificação das Variáveis {#classificação-das-variáveis}
 
-![Figura 2: Classificação das Variáveis](var.png)
+![Figura 2: Classificação das Variáveis](imagens/var.png)
 
 ## Distribuição de Frequências {#distribuição-de-frequências}
 
@@ -815,7 +815,7 @@ if (x > 5) {
 }
 ```
 
-![Figura 3: Fluxograma if](if.png)
+![Figura 3: Fluxograma if](imagens/if.png)
 
 Basicamente um se ou se não
 ```{r}
@@ -836,7 +836,7 @@ if (x > 5) {
 }
 ```
 
-![Figura 4: Fluxograma ifelse](ifelse.png)
+![Figura 4: Fluxograma ifelse](imagens/ifelse.png)
 
 Também pode-se "aninhar" várias estruturas condicionais. "Aninhar" significa colocar uma atrás da outra em uma hierarquia
 
@@ -862,7 +862,7 @@ if (x < 5) {
 }
 ```
 
-![Figura 5: Fluxograma ifelseif](ifelseif.png)
+![Figura 5: Fluxograma ifelseif](imagens/ifelseif.png)
 
 Em estatística operações vetorizadas são muito importantes, digamos que você é um estatístico em uma empresa de crédito e você tem um dado de quantos dias os clientes estão em atrasado com o pagamento das parcelas de um empréstimo, mas você quer um indicador simples de ele estar inadimplente ou não (ou seja, uma variável booleana ou lógica), então é útil fazer um ifelse vetorizado com uma condição de, por exemplo, ele estar inadimplente se a dívida passar de 90 dias:
 
