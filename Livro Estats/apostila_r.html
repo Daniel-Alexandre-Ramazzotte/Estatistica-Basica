@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Gráficos | Uma Breve Introdução ao R</title>
+  <meta name="description" content="3 Gráficos | Uma Breve Introdução ao R" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Gráficos | Uma Breve Introdução ao R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="estatsej/apostila_r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Gráficos | Uma Breve Introdução ao R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Lemos, Ricardo Masuda, Samuel Vianna, Vitor Landi" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estatística-básica.html"/>
+<link rel="next" href="noções-de-probabilidade.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="princípios-básicos.html">Introdução ao R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="princípios-básicos.html"><a href="princípios-básicos.html"><i class="fa fa-check"></i><b>1</b> Princípios Básicos</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="princípios-básicos.html"><a href="princípios-básicos.html#primeiros-passos"><i class="fa fa-check"></i><b>1.1</b> Primeiros Passos</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="princípios-básicos.html"><a href="princípios-básicos.html#comandos-básicos"><i class="fa fa-check"></i><b>1.1.1</b> Comandos Básicos</a></li>
+<li class="chapter" data-level="1.1.2" data-path="princípios-básicos.html"><a href="princípios-básicos.html#atribuição-de-valores"><i class="fa fa-check"></i><b>1.1.2</b> Atribuição de Valores</a></li>
+<li class="chapter" data-level="1.1.3" data-path="princípios-básicos.html"><a href="princípios-básicos.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.1.3</b> Tipos de Variáveis</a></li>
+<li class="chapter" data-level="1.1.4" data-path="princípios-básicos.html"><a href="princípios-básicos.html#utilizando-ajuda-help"><i class="fa fa-check"></i><b>1.1.4</b> Utilizando Ajuda (help)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="princípios-básicos.html"><a href="princípios-básicos.html#operacoes-basicas"><i class="fa fa-check"></i><b>1.2</b> Operações Básicas</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="princípios-básicos.html"><a href="princípios-básicos.html#operações-simples"><i class="fa fa-check"></i><b>1.2.1</b> Operações simples</a></li>
+<li class="chapter" data-level="1.2.2" data-path="princípios-básicos.html"><a href="princípios-básicos.html#operações-lógicas"><i class="fa fa-check"></i><b>1.2.2</b> Operações lógicas</a></li>
+<li class="chapter" data-level="1.2.3" data-path="princípios-básicos.html"><a href="princípios-básicos.html#operações-matemáticas"><i class="fa fa-check"></i><b>1.2.3</b> Operações matemáticas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="princípios-básicos.html"><a href="princípios-básicos.html#estrututas-basicas"><i class="fa fa-check"></i><b>1.3</b> Estruturas Básicas</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="princípios-básicos.html"><a href="princípios-básicos.html#vetor"><i class="fa fa-check"></i><b>1.3.1</b> Vetor</a></li>
+<li class="chapter" data-level="1.3.2" data-path="princípios-básicos.html"><a href="princípios-básicos.html#matriz"><i class="fa fa-check"></i><b>1.3.2</b> Matriz</a></li>
+<li class="chapter" data-level="1.3.3" data-path="princípios-básicos.html"><a href="princípios-básicos.html#array"><i class="fa fa-check"></i><b>1.3.3</b> Array</a></li>
+<li class="chapter" data-level="1.3.4" data-path="princípios-básicos.html"><a href="princípios-básicos.html#lista"><i class="fa fa-check"></i><b>1.3.4</b> Lista</a></li>
+<li class="chapter" data-level="1.3.5" data-path="princípios-básicos.html"><a href="princípios-básicos.html#data-frame"><i class="fa fa-check"></i><b>1.3.5</b> Data Frame</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="princípios-básicos.html"><a href="princípios-básicos.html#tabelas"><i class="fa fa-check"></i><b>1.4</b> Tabelas</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="princípios-básicos.html"><a href="princípios-básicos.html#tabelas-simples"><i class="fa fa-check"></i><b>1.4.1</b> Tabelas Simples</a></li>
+<li class="chapter" data-level="1.4.2" data-path="princípios-básicos.html"><a href="princípios-básicos.html#tabelas-de-contingência"><i class="fa fa-check"></i><b>1.4.2</b> Tabelas de Contingência</a></li>
+<li class="chapter" data-level="1.4.3" data-path="princípios-básicos.html"><a href="princípios-básicos.html#tabelas-de-proporção"><i class="fa fa-check"></i><b>1.4.3</b> Tabelas de Proporção</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="princípios-básicos.html"><a href="princípios-básicos.html#funcoes"><i class="fa fa-check"></i><b>1.5</b> Funções</a></li>
+<li class="chapter" data-level="1.6" data-path="princípios-básicos.html"><a href="princípios-básicos.html#funcoes-apply"><i class="fa fa-check"></i><b>1.6</b> Funções Apply</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="princípios-básicos.html"><a href="princípios-básicos.html#apply"><i class="fa fa-check"></i><b>1.6.1</b> Apply</a></li>
+<li class="chapter" data-level="1.6.2" data-path="princípios-básicos.html"><a href="princípios-básicos.html#tapply"><i class="fa fa-check"></i><b>1.6.2</b> Tapply</a></li>
+<li class="chapter" data-level="1.6.3" data-path="princípios-básicos.html"><a href="princípios-básicos.html#sapply"><i class="fa fa-check"></i><b>1.6.3</b> Sapply</a></li>
+<li class="chapter" data-level="1.6.4" data-path="princípios-básicos.html"><a href="princípios-básicos.html#lapply"><i class="fa fa-check"></i><b>1.6.4</b> Lapply</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="princípios-básicos.html"><a href="princípios-básicos.html#pacotes"><i class="fa fa-check"></i><b>1.7</b> Pacotes</a></li>
+<li class="chapter" data-level="1.8" data-path="princípios-básicos.html"><a href="princípios-básicos.html#entrada-dados"><i class="fa fa-check"></i><b>1.8</b> Entrada de Dados</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="princípios-básicos.html"><a href="princípios-básicos.html#csv-ou-.txt"><i class="fa fa-check"></i><b>1.8.1</b> .csv ou .txt</a></li>
+<li class="chapter" data-level="1.8.2" data-path="princípios-básicos.html"><a href="princípios-básicos.html#leitura-de-dados-da-internet"><i class="fa fa-check"></i><b>1.8.2</b> Leitura de dados da internet</a></li>
+<li class="chapter" data-level="1.8.3" data-path="princípios-básicos.html"><a href="princípios-básicos.html#base-de-dados-do-r"><i class="fa fa-check"></i><b>1.8.3</b> Base de dados do R</a></li>
+<li class="chapter" data-level="1.8.4" data-path="princípios-básicos.html"><a href="princípios-básicos.html#conferência-dos-dados"><i class="fa fa-check"></i><b>1.8.4</b> Conferência dos dados</a></li>
+<li class="chapter" data-level="1.8.5" data-path="princípios-básicos.html"><a href="princípios-básicos.html#funções-adicionais"><i class="fa fa-check"></i><b>1.8.5</b> Funções Adicionais</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="estatística-básica.html"><a href="estatística-básica.html"><i class="fa fa-check"></i><b>2</b> Estatística Básica</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estatística-básica.html"><a href="estatística-básica.html#medida-de-posição"><i class="fa fa-check"></i><b>2.1</b> Medida de posição</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="estatística-básica.html"><a href="estatística-básica.html#média"><i class="fa fa-check"></i><b>2.1.1</b> Média</a></li>
+<li class="chapter" data-level="2.1.2" data-path="estatística-básica.html"><a href="estatística-básica.html#mediana"><i class="fa fa-check"></i><b>2.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="2.1.3" data-path="estatística-básica.html"><a href="estatística-básica.html#mínimo-e-máximo"><i class="fa fa-check"></i><b>2.1.3</b> Mínimo e máximo</a></li>
+<li class="chapter" data-level="2.1.4" data-path="estatística-básica.html"><a href="estatística-básica.html#quantis"><i class="fa fa-check"></i><b>2.1.4</b> Quantis</a></li>
+<li class="chapter" data-level="2.1.5" data-path="estatística-básica.html"><a href="estatística-básica.html#moda"><i class="fa fa-check"></i><b>2.1.5</b> Moda</a></li>
+<li class="chapter" data-level="2.1.6" data-path="estatística-básica.html"><a href="estatística-básica.html#função-summary"><i class="fa fa-check"></i><b>2.1.6</b> Função Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="estatística-básica.html"><a href="estatística-básica.html#medidas-dispersao"><i class="fa fa-check"></i><b>2.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="estatística-básica.html"><a href="estatística-básica.html#variância"><i class="fa fa-check"></i><b>2.2.1</b> Variância</a></li>
+<li class="chapter" data-level="2.2.2" data-path="estatística-básica.html"><a href="estatística-básica.html#desvio-padrão"><i class="fa fa-check"></i><b>2.2.2</b> Desvio Padrão</a></li>
+<li class="chapter" data-level="2.2.3" data-path="estatística-básica.html"><a href="estatística-básica.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>2.2.3</b> Coeficiente de Variação</a></li>
+<li class="chapter" data-level="2.2.4" data-path="estatística-básica.html"><a href="estatística-básica.html#amplitude"><i class="fa fa-check"></i><b>2.2.4</b> Amplitude</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="estatística-básica.html"><a href="estatística-básica.html#correlação"><i class="fa fa-check"></i><b>2.3</b> Correlação</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="estatística-básica.html"><a href="estatística-básica.html#coeficiente-de-pearson"><i class="fa fa-check"></i><b>2.3.1</b> Coeficiente de Pearson</a></li>
+<li class="chapter" data-level="2.3.2" data-path="estatística-básica.html"><a href="estatística-básica.html#coeficiente-de-kendall"><i class="fa fa-check"></i><b>2.3.2</b> Coeficiente de Kendall</a></li>
+<li class="chapter" data-level="2.3.3" data-path="estatística-básica.html"><a href="estatística-básica.html#coeficiente-de-spearman"><i class="fa fa-check"></i><b>2.3.3</b> Coeficiente de Spearman</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>3</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="gráficos.html"><a href="gráficos.html#gráficos-para-variáveis-qualitativas"><i class="fa fa-check"></i><b>3.1</b> Gráficos para variáveis qualitativas</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-barras"><i class="fa fa-check"></i><b>3.1.1</b> Gráficos de Barras</a></li>
+<li class="chapter" data-level="3.1.2" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-setores"><i class="fa fa-check"></i><b>3.1.2</b> Gráficos de Setores</a></li>
+<li class="chapter" data-level="3.1.3" data-path="gráficos.html"><a href="gráficos.html#representando-tabelas-de-contingencia"><i class="fa fa-check"></i><b>3.1.3</b> Representando tabelas de contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="gráficos.html"><a href="gráficos.html#gráficos-para-variáveis-contínuas"><i class="fa fa-check"></i><b>3.2</b> Gráficos para variáveis contínuas</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="gráficos.html"><a href="gráficos.html#histograma"><i class="fa fa-check"></i><b>3.2.1</b> Histograma</a></li>
+<li class="chapter" data-level="3.2.2" data-path="gráficos.html"><a href="gráficos.html#polígono-de-frequência"><i class="fa fa-check"></i><b>3.2.2</b> Polígono de frequência</a></li>
+<li class="chapter" data-level="3.2.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-bastões-hastes"><i class="fa fa-check"></i><b>3.2.3</b> Gráfico de bastões (hastes)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>3.2.4</b> Gráfico de Dispersão</a></li>
+<li class="chapter" data-level="3.2.5" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-caixas-box-plot"><i class="fa fa-check"></i><b>3.2.5</b> Gráfico de caixas (Box-plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="gráficos.html"><a href="gráficos.html#ajustes-gráficos"><i class="fa fa-check"></i><b>3.3</b> Ajustes Gráficos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="gráficos.html"><a href="gráficos.html#principais-ajustes"><i class="fa fa-check"></i><b>3.3.1</b> Principais Ajustes</a></li>
+<li class="chapter" data-level="3.3.2" data-path="gráficos.html"><a href="gráficos.html#tipos-de-gráficos"><i class="fa fa-check"></i><b>3.3.2</b> Tipos de gráficos</a></li>
+<li class="chapter" data-level="3.3.3" data-path="gráficos.html"><a href="gráficos.html#sobreposição-de-gráficos"><i class="fa fa-check"></i><b>3.3.3</b> Sobreposição de Gráficos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="gráficos.html"><a href="gráficos.html#símbolos-e-tipos-de-linhas"><i class="fa fa-check"></i><b>3.3.4</b> Símbolos e Tipos de Linhas</a></li>
+<li class="chapter" data-level="3.3.5" data-path="gráficos.html"><a href="gráficos.html#texto-e-legendas"><i class="fa fa-check"></i><b>3.3.5</b> Texto e Legendas</a></li>
+<li class="chapter" data-level="3.3.6" data-path="gráficos.html"><a href="gráficos.html#funcao-par"><i class="fa fa-check"></i><b>3.3.6</b> Função par</a></li>
+<li class="chapter" data-level="3.3.7" data-path="gráficos.html"><a href="gráficos.html#cores"><i class="fa fa-check"></i><b>3.3.7</b> Cores</a></li>
+<li class="chapter" data-level="3.3.8" data-path="gráficos.html"><a href="gráficos.html#representando-funções-matemáticas"><i class="fa fa-check"></i><b>3.3.8</b> Representando funções matemáticas</a></li>
+<li class="chapter" data-level="3.3.9" data-path="gráficos.html"><a href="gráficos.html#dispositivos-graficos"><i class="fa fa-check"></i><b>3.3.9</b> Dispositivos Gráficos</a></li>
+<li class="chapter" data-level="3.3.10" data-path="gráficos.html"><a href="gráficos.html#exportando-gráficos"><i class="fa fa-check"></i><b>3.3.10</b> Exportando gráficos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html"><i class="fa fa-check"></i><b>4</b> Noções de Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#amostragem"><i class="fa fa-check"></i><b>4.1</b> Amostragem</a></li>
+<li class="chapter" data-level="4.2" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#análise-combinatória"><i class="fa fa-check"></i><b>4.2</b> Análise Combinatória</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#permutação"><i class="fa fa-check"></i><b>4.2.1</b> Permutação</a></li>
+<li class="chapter" data-level="4.2.2" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#arranjo"><i class="fa fa-check"></i><b>4.2.2</b> Arranjo</a></li>
+<li class="chapter" data-level="4.2.3" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#combinação"><i class="fa fa-check"></i><b>4.2.3</b> Combinação</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>4.3</b> Distribuições de Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#geração-de-valores-aleatórios"><i class="fa fa-check"></i><b>4.3.1</b> Geração de valores aleatórios</a></li>
+<li class="chapter" data-level="4.3.2" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#função-de-densidade-probabilidade"><i class="fa fa-check"></i><b>4.3.2</b> Função de Densidade / Probabilidade</a></li>
+<li class="chapter" data-level="4.3.3" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#função-acumulada"><i class="fa fa-check"></i><b>4.3.3</b> Função Acumulada</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="noções-de-probabilidade.html"><a href="noções-de-probabilidade.html#quantis-1"><i class="fa fa-check"></i><b>4.4</b> Quantis</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Criado com bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Uma Breve Introdução ao R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gráficos" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Gráficos<a href="gráficos.html#gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="gráficos-para-variáveis-qualitativas" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Gráficos para variáveis qualitativas<a href="gráficos.html#gráficos-para-variáveis-qualitativas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="gráficos-de-barras" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Gráficos de Barras<a href="gráficos.html#gráficos-de-barras" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para criar gráficos de barras no <code>R</code>, podemos utilizar a seguinte sintaxe <code>barplot(dados)</code>.</p>
+<p>Lembrando que o argumento <code>dados</code>, deve ser um objeto de tipo vetor ou matriz.</p>
+<p>É recomendado utilizar a função <code>table</code> ao gerar vetores para gerar gráficos de barras.</p>
+<p>No exemplo abaixo, são criadas 10 barras não nomeadas com valores de 1 a 10.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="gráficos.html#cb166-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/exemplo_barras_1-1.png" width="672" /></p>
+<p>No exemplo abaixo, é utilizado um vetor com elementos nomeados (<code>a</code> e <code>b</code>), quando geramos um vetor com a função <code>table</code> temos o mesmo resultado, e com isso as barras no gráfico também são nomeadas.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="gráficos.html#cb167-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;b&quot;</span> <span class="ot">=</span> <span class="dv">4</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/exemplo_barras_2-1.png" width="672" /></p>
+<p>É importante lembrar que isso não se aplica a objetos de tipo lista, como no código abaixo.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="gráficos.html#cb168-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">list</span>(<span class="st">&quot;a&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;b&quot;</span> <span class="ot">=</span> <span class="dv">4</span>))</span></code></pre></div>
+<pre><code>## Error in -0.01 * height: non-numeric argument to binary operator</code></pre>
+<p>No exemplo abaixo, vemos como objetos de tipo matriz podem ser usados dentro da função <code>barplot</code>.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="gráficos.html#cb170-1" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;n1&quot;</span>, <span class="st">&quot;n2&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>)))</span>
+<span id="cb170-2"><a href="gráficos.html#cb170-2" tabindex="-1"></a>matriz</span></code></pre></div>
+<pre><code>##    a b
+## n1 2 7
+## n2 5 2</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="gráficos.html#cb172-1" tabindex="-1"></a><span class="fu">barplot</span>(matriz)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/exemplo_barras_4.2-1.png" width="672" /></p>
+<p>Abaixo, vemos como tabelas podem ser usadas para gerar o gráfico de barras.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="gráficos.html#cb173-1" tabindex="-1"></a>tabela <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">4</span>)))</span>
+<span id="cb173-2"><a href="gráficos.html#cb173-2" tabindex="-1"></a>tabela</span></code></pre></div>
+<pre><code>## 
+## a b 
+## 2 4</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="gráficos.html#cb175-1" tabindex="-1"></a><span class="fu">barplot</span>(tabela)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>Também é possível utilizar a função <code>barplot</code> para gerar um gráfico de colunas horizontais com o argumento <code>horiz = TRUE</code>.</p>
+<p>Abaixo, vemos também a função <code>table</code> sendo usada em conjunto com <code>data.frame</code>’s.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="gráficos.html#cb176-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">letra =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">5</span>), <span class="fu">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">7</span>),</span>
+<span id="cb176-2"><a href="gráficos.html#cb176-2" tabindex="-1"></a>                              <span class="fu">rep</span>(<span class="st">&quot;c&quot;</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;d&quot;</span>, <span class="dv">8</span>)))</span>
+<span id="cb176-3"><a href="gráficos.html#cb176-3" tabindex="-1"></a>dados</span></code></pre></div>
+<pre><code>##    letra
+## 1      a
+## 2      a
+## 3      a
+## 4      a
+## 5      a
+## 6      b
+## 7      b
+## 8      b
+## 9      b
+## 10     b
+## 11     b
+## 12     b
+## 13     c
+## 14     c
+## 15     d
+## 16     d
+## 17     d
+## 18     d
+## 19     d
+## 20     d
+## 21     d
+## 22     d</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="gráficos.html#cb178-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dados<span class="sc">$</span>letra), <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>Utilizando <code>data.frame</code>’s, podemos usar outra coluna para nomear nossas colunas utilizando o argumento <code>names.arg</code>.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="gráficos.html#cb179-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">letra =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>), <span class="at">numero =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">8</span>))</span>
+<span id="cb179-2"><a href="gráficos.html#cb179-2" tabindex="-1"></a>dados</span></code></pre></div>
+<pre><code>##   letra numero
+## 1     a      5
+## 2     b      7
+## 3     c      2
+## 4     d      8</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="gráficos.html#cb181-1" tabindex="-1"></a><span class="fu">barplot</span>(dados<span class="sc">$</span>numero, <span class="at">names.arg =</span> dados<span class="sc">$</span>letra)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+</div>
+<div id="gráficos-de-setores" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Gráficos de Setores<a href="gráficos.html#gráficos-de-setores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para criar gráficos de setores no <code>R</code>, podemos utilizar a seguinte sintaxe <code>pie(dados)</code>, onde <code>dados</code> é um vetor numérico.</p>
+<p>No exemplo abaixo, é criado um gráfico de 5 setores com valores de 1 a 5.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="gráficos.html#cb182-1" tabindex="-1"></a><span class="fu">pie</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p>No exemplo abaixo, é utilizado um vetor com elementos nomeados (<code>a</code> e <code>b</code>), quando geramos um vetor com a função <code>table</code> temos o mesmo resultado, e com isso os setores no gráfico também são nomeadas.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="gráficos.html#cb183-1" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;b&quot;</span> <span class="ot">=</span> <span class="dv">4</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p>É importante lembrar que isso não se aplica a objetos de tipo lista, como no código abaixo.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="gráficos.html#cb184-1" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">list</span>(<span class="st">&quot;a&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;b&quot;</span> <span class="ot">=</span> <span class="dv">4</span>))</span></code></pre></div>
+<p>Da mesma forma que com gráficos de barras, podemos utilizar tabelas para gerar o gráfico de setores.</p>
+<p>No gráfico de setores também é possível modificar o raio do círculo com o argumento <code>radius</code>.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="gráficos.html#cb185-1" tabindex="-1"></a>tabela <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;alpha&quot;</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">&quot;beta&quot;</span>, <span class="dv">4</span>)))</span>
+<span id="cb185-2"><a href="gráficos.html#cb185-2" tabindex="-1"></a>tabela</span></code></pre></div>
+<pre><code>## 
+## alpha  beta 
+##     2     4</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="gráficos.html#cb187-1" tabindex="-1"></a><span class="fu">pie</span>(tabela, <span class="at">radius =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>Também é possível utilizar <code>data.frame</code>’s para gerar o gráfico.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="gráficos.html#cb188-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">letra =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;g&quot;</span>))</span>
+<span id="cb188-2"><a href="gráficos.html#cb188-2" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(dados<span class="sc">$</span>letra))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p>Com gráficos de barras, foi visto como nomear as colunas, no gráfico de setores, também é possível atribuir nomes aos setores utilizando o argumento <code>labels</code>.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="gráficos.html#cb189-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">letra =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;h&quot;</span>), <span class="at">numero =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">9</span>))</span>
+<span id="cb189-2"><a href="gráficos.html#cb189-2" tabindex="-1"></a>dados</span></code></pre></div>
+<pre><code>##   letra numero
+## 1     f      6
+## 2     g      2
+## 3     h      9</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="gráficos.html#cb191-1" tabindex="-1"></a><span class="fu">pie</span>(dados<span class="sc">$</span>numero, <span class="at">labels =</span> dados<span class="sc">$</span>numero)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+</div>
+<div id="representando-tabelas-de-contingencia" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Representando tabelas de contingencia<a href="gráficos.html#representando-tabelas-de-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Podemos fazer gráficos de barras para representar tabelas de contingência, para isso, utilizamos uma tabela de contingência dentro da função barplot.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="gráficos.html#cb192-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(mtcars<span class="sc">$</span>gear, mtcars<span class="sc">$</span>carb))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p>Utilizando a opção <code>beside = TRUE</code> as barras ficam lado a lado.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="gráficos.html#cb193-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(mtcars<span class="sc">$</span>gear, mtcars<span class="sc">$</span>carb), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+</div>
+</div>
+<div id="gráficos-para-variáveis-contínuas" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Gráficos para variáveis contínuas<a href="gráficos.html#gráficos-para-variáveis-contínuas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="histograma" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Histograma<a href="gráficos.html#histograma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A forma mais utilizada para se representar variáveis quantitativas contínuas é através do histograma.</p>
+<p>São dados os comandos abaixo para a construção de um histograma.</p>
+<p><code>hist(variável)</code></p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="gráficos.html#cb194-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb194-2"><a href="gráficos.html#cb194-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb194-3"><a href="gráficos.html#cb194-3" tabindex="-1"></a><span class="fu">hist</span>(dados)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</div>
+<div id="polígono-de-frequência" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Polígono de frequência<a href="gráficos.html#polígono-de-frequência" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para construirmos o polígono de frequência vamos utilizar outras funções gráficas: A função lines() sobrepõe o gráfico com alguma linha, para a qual daremos as coordenadas x e y. No caso x são os pontos médios do histograma e y é a frequência absoluta.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="gráficos.html#cb195-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb195-2"><a href="gráficos.html#cb195-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb195-3"><a href="gráficos.html#cb195-3" tabindex="-1"></a>histograma <span class="ot">&lt;-</span> <span class="fu">hist</span>(dados)</span>
+<span id="cb195-4"><a href="gráficos.html#cb195-4" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(histograma<span class="sc">$</span>breaks[<span class="dv">1</span>], histograma<span class="sc">$</span>mids, histograma<span class="sc">$</span>breaks[<span class="fu">length</span>(histograma<span class="sc">$</span>breaks)]),</span>
+<span id="cb195-5"><a href="gráficos.html#cb195-5" tabindex="-1"></a>      <span class="at">y=</span><span class="fu">c</span>(<span class="dv">0</span>, histograma<span class="sc">$</span>counts,<span class="dv">0</span>), <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p>Note que atribuímos o histograma a um objeto para conseguir acessar as informações mids (pontos médios) , counts (frequência absoluta) e breaks (intervalos de classe).</p>
+<p><em>OBS:</em> Um polígono de frequência deve começar na primeira classe e terminar na última, portando o X está variando do primeiro elemento do vetor <code>histogram$breaks</code> até o último elemento desse mesmo vetor.
+O argumento col= informa a cor e lwd= informa a espessura da linha.</p>
+</div>
+<div id="gráfico-de-bastões-hastes" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Gráfico de bastões (hastes)<a href="gráficos.html#gráfico-de-bastões-hastes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para se representar variáveis de natureza quantitativa discreta é comum utilizarmos o gráfico de bastões ou hastes. Para fazê-lo basta utilizar a função genérica <code>plot()</code> nos dados em forma de tabela e ajustar alguns argumentos.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="gráficos.html#cb196-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb196-2"><a href="gráficos.html#cb196-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dv">100</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb196-3"><a href="gráficos.html#cb196-3" tabindex="-1"></a>tabela <span class="ot">&lt;-</span> <span class="fu">table</span>(dados)</span>
+<span id="cb196-4"><a href="gráficos.html#cb196-4" tabindex="-1"></a><span class="fu">plot</span>(tabela, <span class="at">type =</span> <span class="st">&quot;h&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/teste1-1.png" width="672" /></p>
+<p>A opção type= informa o tipo de gráfico que queremos. Nesse caso, h é o tipo bastão. Entraremos em mais detalhes sobre isso em breve.</p>
+</div>
+<div id="gráfico-de-dispersão" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Gráfico de Dispersão<a href="gráficos.html#gráfico-de-dispersão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quando tratamos de duas variáveis quantitativas é interessante observar o comportamento conjunto entre elas. A maneira mais usual para se verificar esse comportamento é o gráfico de dispersão. Para construirmos esse gráfico basta utilizarmos a função genérica plot() do R, dessa forma o comando fica:</p>
+<p><code>plot(variável1, variável2)</code></p>
+<p>Exemplo</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="gráficos.html#cb197-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb197-2"><a href="gráficos.html#cb197-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb197-3"><a href="gráficos.html#cb197-3" tabindex="-1"></a>dados1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb197-4"><a href="gráficos.html#cb197-4" tabindex="-1"></a><span class="fu">plot</span>(dados, dados1)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-caixas-box-plot" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Gráfico de caixas (Box-plot)<a href="gráficos.html#gráfico-de-caixas-box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quando tratamos de variáveis quantitativas é interessante observar, a distribuição dos dados de um modo geral. Uma forma de se verificar isso é pelo gráfico de Caixas, em que conseguimos visualizar os quartis, mediana, limites superior e inferior e outliers.</p>
+<p>Para construirmos esse gráfico basta utilizarmos a função:</p>
+<p><code>boxplot(variável)</code></p>
+<p>Exemplos:</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="gráficos.html#cb198-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb198-2"><a href="gráficos.html#cb198-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">b =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dv">100</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb198-3"><a href="gráficos.html#cb198-3" tabindex="-1"></a></span>
+<span id="cb198-4"><a href="gráficos.html#cb198-4" tabindex="-1"></a><span class="fu">boxplot</span>(dados<span class="sc">$</span>a)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="gráficos.html#cb199-1" tabindex="-1"></a><span class="co"># Criando um Box-plot para a variável altura conforme a variável Sexo.</span></span>
+<span id="cb199-2"><a href="gráficos.html#cb199-2" tabindex="-1"></a></span>
+<span id="cb199-3"><a href="gráficos.html#cb199-3" tabindex="-1"></a><span class="fu">boxplot</span>(dados<span class="sc">$</span>a<span class="sc">~</span>dados<span class="sc">$</span>b)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-64-2.png" width="672" /></p>
+</div>
+</div>
+<div id="ajustes-gráficos" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Ajustes Gráficos<a href="gráficos.html#ajustes-gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="principais-ajustes" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Principais Ajustes<a href="gráficos.html#principais-ajustes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As funções gráficas do <code>R</code> base, por padrão, tem opções em comum. Estas São:</p>
+<ul>
+<li><code>main</code> Define o título do gráfico</li>
+<li><code>sub</code> Define um subtítulo do gráfico</li>
+<li><code>xlab</code> e <code>ylab</code> Trocam as legendas dos eixos</li>
+<li><code>xlim</code> e <code>ylim</code> Trocam os limites dos eixos</li>
+<li><code>col</code> Define a cor do gráfico</li>
+</ul>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="gráficos.html#cb200-1" tabindex="-1"></a><span class="fu">plot</span>(iris<span class="sc">$</span>Petal.Width, iris<span class="sc">$</span>Petal.Length,</span>
+<span id="cb200-2"><a href="gráficos.html#cb200-2" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Gráfico de dispersão&quot;</span>,</span>
+<span id="cb200-3"><a href="gráficos.html#cb200-3" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">&quot;Dispersão do comprimento por largura das pétalas das flores&quot;</span>,</span>
+<span id="cb200-4"><a href="gráficos.html#cb200-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Largura da pétala&quot;</span>,</span>
+<span id="cb200-5"><a href="gráficos.html#cb200-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Comprimento da pétala&quot;</span>,</span>
+<span id="cb200-6"><a href="gráficos.html#cb200-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>),</span>
+<span id="cb200-7"><a href="gráficos.html#cb200-7" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;royalblue2&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/exemplo_ajustes_principais-1.png" width="672" /></p>
+</div>
+<div id="tipos-de-gráficos" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Tipos de gráficos<a href="gráficos.html#tipos-de-gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A função <code>plot</code> pode gerar diversos tipos diferentes de gráficos, estes tipos podem ser definidos com o argumento <code>type</code>.</p>
+<p>Como por exemplo na seguinte sintaxe <code>plot(x, y, type = "p")</code>, que gera um gráfico de pontos.</p>
+<p>Abaixo estão listadas todos os tipos de gráficos q a função <code>plot</code> pode gerar:</p>
+<ul>
+<li><code>p</code> <strong>P</strong>ontos,</li>
+<li><code>l</code> <strong>L</strong>inhas,</li>
+<li><code>b</code> Pontos e Linhas (<strong>B</strong>oth),</li>
+<li><code>c</code> Somente as linhas da opção <code>b</code>,</li>
+<li><code>o</code> Pontos e Linhas com sobreposição (<strong>o</strong>verplotted),</li>
+<li><code>h</code> Linhas verticais como <strong>h</strong>istogramas,</li>
+<li><code>s</code> Gráfico tipo e<strong>s</strong>cada (movendo primeiro horizontalmente),</li>
+<li><code>S</code> Gráfico tipo e<strong>S</strong>cada (movendo primeiro verticalmente),</li>
+<li><code>n</code> <strong>N</strong>enhum gráfico.</li>
+</ul>
+<p>No exemplo abaixo temos todos os tipos de gráficos representados.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="gráficos.html#cb201-1" tabindex="-1"></a>tipos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;p&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;o&quot;</span>, <span class="st">&quot;h&quot;</span>, <span class="st">&quot;s&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb201-2"><a href="gráficos.html#cb201-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb201-3"><a href="gráficos.html#cb201-3" tabindex="-1"></a><span class="cf">for</span>(tipo <span class="cf">in</span> tipos)</span>
+<span id="cb201-4"><a href="gráficos.html#cb201-4" tabindex="-1"></a>{</span>
+<span id="cb201-5"><a href="gráficos.html#cb201-5" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">type =</span> tipo, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;tipo =&quot;</span>, tipo))</span>
+<span id="cb201-6"><a href="gráficos.html#cb201-6" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/exemplo_tipos_graficos-1.png" width="672" /></p>
+<p>A função <code>par</code> utilizada no exemplo acima será explicada na seção <a href="gráficos.html#funcao-par">3.3.6</a>.</p>
+</div>
+<div id="sobreposição-de-gráficos" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Sobreposição de Gráficos<a href="gráficos.html#sobreposição-de-gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No <code>R</code> existem funções que permitem sobrepor gráficos já feitos. Algumas delas são:</p>
+<ul>
+<li><code>lines()</code>: Cria uma linha contínua sobrepondo o gráfico</li>
+<li><code>points()</code>: Cria pontos sobrepondo o gráfico</li>
+<li><code>polygon()</code>: Cria polígonos sobrepondo o gráfico</li>
+</ul>
+<p>Exemplo utilizando <code>lines</code></p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="gráficos.html#cb202-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb202-2"><a href="gráficos.html#cb202-2" tabindex="-1"></a><span class="fu">lines</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p>Exemplo utilizando <code>points</code></p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="gráficos.html#cb203-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">table</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)))</span>
+<span id="cb203-2"><a href="gráficos.html#cb203-2" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p>Exemplo utilizando <code>polygon</code></p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="gráficos.html#cb204-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">table</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)))</span>
+<span id="cb204-2"><a href="gráficos.html#cb204-2" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">1</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+</div>
+<div id="símbolos-e-tipos-de-linhas" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Símbolos e Tipos de Linhas<a href="gráficos.html#símbolos-e-tipos-de-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quando são gerados gráficos de pontos dentro do <code>R</code>, é possível modificar os simbolos usados como pontos utilizando o argumento <code>pch</code> dentro de funções que gerem gráficos com pontos.</p>
+<p>Quando o parâmetro <code>pch</code> é definido, ele deve ser um número dentro da tabela de símbolos descrita abaixo (números de 0 a 25), ou uma string com um único símbolo.</p>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>Exemplo de pontos usando números de <code>pch</code></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="gráficos.html#cb205-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span>, <span class="at">pch =</span> <span class="dv">11</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>Exemplo de pontos utilizando strings de <code>pch</code></p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="gráficos.html#cb206-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span>, <span class="at">pch =</span> <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>Da mesma forma que podemos definir símbolos para gráficos de pontos, podemos definir tipos de linhas para gráficos de linhas, para isso, é utilizado o argumento <code>lty</code> dentro de funções que gerem gráficos de linhas.</p>
+<p>Quando o parâmetro <code>lty</code> é definido, ele deve ser um número dentro da tabela de símbolos descrita abaixo (números de 0 a 5), ou strings de seus respectivos nomes.</p>
+<p><img src="apostila_r_files/figure-html/plot_linhas-1.png" width="672" /></p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="gráficos.html#cb207-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+</div>
+<div id="texto-e-legendas" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Texto e Legendas<a href="gráficos.html#texto-e-legendas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Texto</em></p>
+<p>Para adicionar um texto ao gráfico, utiliza-se a função <code>text()</code>.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="gráficos.html#cb208-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">table</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)), <span class="at">ann =</span> F)</span>
+<span id="cb208-2"><a href="gráficos.html#cb208-2" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb208-3"><a href="gráficos.html#cb208-3" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">labels =</span> <span class="st">&quot;Exemplo de texto&quot;</span>, <span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">font =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p><em>Observação</em>: o comando <code>cex =</code> informa o tamanho do texto e <code>font =</code>especifica o tipo de letra. Ambos são explicados mais detalhadamente no tópico [3.3.6][#funcao-par]</p>
+<p><em>Legenda</em></p>
+<p>Para adicionar legenda ao gráfico, utiliza-se a função <code>legend()</code>, sendo informadas as seguintes características:</p>
+<ul>
+<li>A posição da legenda referente ao gráfico (X e Y)</li>
+<li>O texto das legendas</li>
+<li>Cores da legenda</li>
+<li>Outras opções (cor, tamanho, etc)</li>
+</ul>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="gráficos.html#cb209-1" tabindex="-1"></a><span class="co"># exemplo com gráfico de barras</span></span>
+<span id="cb209-2"><a href="gráficos.html#cb209-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;M&quot;</span>, <span class="dv">211</span>), <span class="fu">rep</span>(<span class="st">&quot;F&quot;</span>, <span class="dv">42</span>))</span>
+<span id="cb209-3"><a href="gráficos.html#cb209-3" tabindex="-1"></a></span>
+<span id="cb209-4"><a href="gráficos.html#cb209-4" tabindex="-1"></a><span class="co"># criando legenda para o gráfico de barras</span></span>
+<span id="cb209-5"><a href="gráficos.html#cb209-5" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dados), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">250</span>))</span>
+<span id="cb209-6"><a href="gráficos.html#cb209-6" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">0.3</span>, <span class="at">y =</span> <span class="dv">230</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span>, <span class="st">&quot;Masculino&quot;</span>), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="gráficos.html#cb210-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dados), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">250</span>))</span>
+<span id="cb210-2"><a href="gráficos.html#cb210-2" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fl">0.3</span>, <span class="at">y =</span> <span class="dv">230</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span>, <span class="st">&quot;Masculino&quot;</span>), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">bty =</span> <span class="st">&quot;o&quot;</span>, <span class="at">bg =</span> <span class="dv">1</span>, <span class="at">text.col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">text.font =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-73-2.png" width="672" /></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="gráficos.html#cb211-1" tabindex="-1"></a><span class="co"># exemplo com polígono de frequência</span></span>
+<span id="cb211-2"><a href="gráficos.html#cb211-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">75</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb211-3"><a href="gráficos.html#cb211-3" tabindex="-1"></a>histograma<span class="ot">&lt;-</span><span class="fu">hist</span>(dados)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-73-3.png" width="672" /></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="gráficos.html#cb212-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">2</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">110</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">150</span>),<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">ann=</span>F)</span>
+<span id="cb212-2"><a href="gráficos.html#cb212-2" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(histograma<span class="sc">$</span>breaks[<span class="dv">1</span>],</span>
+<span id="cb212-3"><a href="gráficos.html#cb212-3" tabindex="-1"></a>          histograma<span class="sc">$</span>mids,<span class="fu">tail</span>(histograma<span class="sc">$</span>breaks,<span class="at">n=</span><span class="dv">1</span>)), </span>
+<span id="cb212-4"><a href="gráficos.html#cb212-4" tabindex="-1"></a>      <span class="at">y=</span><span class="fu">c</span>(<span class="dv">0</span>,histograma<span class="sc">$</span>counts,<span class="dv">0</span>),<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">&quot;o&quot;</span>)</span>
+<span id="cb212-5"><a href="gráficos.html#cb212-5" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(histograma<span class="sc">$</span>breaks[<span class="dv">1</span>],histograma<span class="sc">$</span>mids,<span class="fu">tail</span>(histograma<span class="sc">$</span>breaks,<span class="at">n=</span><span class="dv">1</span>)),</span>
+<span id="cb212-6"><a href="gráficos.html#cb212-6" tabindex="-1"></a>      <span class="at">y=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">cumsum</span>(histograma<span class="sc">$</span>counts),<span class="fu">tail</span>(<span class="fu">cumsum</span>(histograma<span class="sc">$</span>counts),<span class="at">n=</span><span class="dv">1</span>)),</span>
+<span id="cb212-7"><a href="gráficos.html#cb212-7" tabindex="-1"></a>      <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb212-8"><a href="gráficos.html#cb212-8" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="dv">40</span>,<span class="at">y=</span><span class="dv">120</span>,<span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;freq acumulada&quot;</span>,<span class="st">&quot;freq absoluta&quot;</span>),<span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb212-9"><a href="gráficos.html#cb212-9" tabindex="-1"></a>       ,<span class="at">cex=</span><span class="fl">0.8</span>,<span class="at">lwd=</span><span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-73-4.png" width="672" /></p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="gráficos.html#cb213-1" tabindex="-1"></a><span class="co"># mudando estilo</span></span>
+<span id="cb213-2"><a href="gráficos.html#cb213-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">2</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">110</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">150</span>),<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">ann=</span>F)</span>
+<span id="cb213-3"><a href="gráficos.html#cb213-3" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(histograma<span class="sc">$</span>breaks[<span class="dv">1</span>],</span>
+<span id="cb213-4"><a href="gráficos.html#cb213-4" tabindex="-1"></a>          histograma<span class="sc">$</span>mids,<span class="fu">tail</span>(histograma<span class="sc">$</span>breaks,<span class="at">n=</span><span class="dv">1</span>)), </span>
+<span id="cb213-5"><a href="gráficos.html#cb213-5" tabindex="-1"></a>      <span class="at">y=</span><span class="fu">c</span>(<span class="dv">0</span>,histograma<span class="sc">$</span>counts,<span class="dv">0</span>),<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">type=</span><span class="st">&quot;o&quot;</span>)</span>
+<span id="cb213-6"><a href="gráficos.html#cb213-6" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(histograma<span class="sc">$</span>breaks[<span class="dv">1</span>],histograma<span class="sc">$</span>mids,<span class="fu">tail</span>(histograma<span class="sc">$</span>breaks,<span class="at">n=</span><span class="dv">1</span>)),</span>
+<span id="cb213-7"><a href="gráficos.html#cb213-7" tabindex="-1"></a>      <span class="at">y=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">cumsum</span>(histograma<span class="sc">$</span>counts),<span class="fu">tail</span>(<span class="fu">cumsum</span>(histograma<span class="sc">$</span>counts),<span class="at">n=</span><span class="dv">1</span>)),</span>
+<span id="cb213-8"><a href="gráficos.html#cb213-8" tabindex="-1"></a>      <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb213-9"><a href="gráficos.html#cb213-9" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="dv">40</span>,<span class="at">y=</span><span class="dv">120</span>,<span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;freq acumulada&quot;</span>,<span class="st">&quot;freq absoluta&quot;</span>),<span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb213-10"><a href="gráficos.html#cb213-10" tabindex="-1"></a>       ,<span class="at">cex=</span><span class="fl">0.8</span>,<span class="at">lwd=</span><span class="fl">1.2</span>,<span class="at">bty=</span><span class="st">&quot;o&quot;</span>,<span class="at">bg=</span><span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;white&quot;</span>,<span class="at">text.col =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb213-11"><a href="gráficos.html#cb213-11" tabindex="-1"></a>       ,<span class="at">text.font =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-73-5.png" width="672" /></p>
+</div>
+<div id="funcao-par" class="section level3 hasAnchor" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Função par<a href="gráficos.html#funcao-par" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A função <code>par</code> define os parâmetros dos gráficos a serem gerados, abaixo mostraremos todas as opções dentro da função:</p>
+<pre><code>xlog, ylog, adj, ann, ask, bg, bty, cex, cex.axis, cex.lab, cex.main, cex.sub, cin, col, col.axis, col.lab, col.main, col.sub, cra, crt, csi, cxy, din, err, family, fg, fig, fin, font, font.axis, font.lab, font.main, font.sub, lab, las, lend, lheight, ljoin, lmitre, lty, lwd, mai, mar, mex, mfcol, mfg, mfrow, mgp, mkh, new, oma, omd, omi, page, pch, pin, plt, ps, pty, smo, srt, tck, tcl, usr, xaxp, xaxs, xaxt, xpd, yaxp, yaxs, yaxt, ylbias</code></pre>
+<p>Como mostrado acima, existem diversos parâmetros gráficos a serem definidos, porém, neste curso serão apresentadas aplicações de todas as opções.</p>
+<div id="concatenando-gráficos" class="section level4 hasAnchor" number="3.3.6.1">
+<h4><span class="header-section-number">3.3.6.1</span> Concatenando gráficos<a href="gráficos.html#concatenando-gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Utilizando as opções <code>mfrow</code> ou <code>mfcol</code>, os <a href="gráficos.html#dispositivos-graficos">dispositivos gráficos</a> são divididos em uma matriz, onde cada elemento será preenchido por um novo gráfico gerado.</p>
+<p>Quando chamamos uma dessas duas funções, definimos o tamanho da matriz a ser gerada, e está será preenchida por linha quando se utiliza a função <code>mfrow</code>, e por coluna quando se utiliza <code>mfcol</code>.</p>
+<p>Exemplo utilizando <code>mfrow</code></p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="gráficos.html#cb215-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb215-2"><a href="gráficos.html#cb215-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">col =</span> i)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>Exemplo utilizando <code>mfcol</code></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="gráficos.html#cb216-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfcol =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb216-2"><a href="gráficos.html#cb216-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">col =</span> i)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p>Note que a única diferença na saída das duas funções é a ordem em que os gráficos são posicionados.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="gráficos.html#cb217-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Semente para reproducibilidade do código</span></span>
+<span id="cb217-2"><a href="gráficos.html#cb217-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfcol =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb217-3"><a href="gráficos.html#cb217-3" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb217-4"><a href="gráficos.html#cb217-4" tabindex="-1"></a><span class="fu">hist</span>(dados)</span>
+<span id="cb217-5"><a href="gráficos.html#cb217-5" tabindex="-1"></a><span class="fu">boxplot</span>(dados, <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+</div>
+<div id="definindo-margens" class="section level4 hasAnchor" number="3.3.6.2">
+<h4><span class="header-section-number">3.3.6.2</span> Definindo margens<a href="gráficos.html#definindo-margens" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Utilizando a opção <code>mar</code>, podemos definir o tamanho das margens de cada gráfico a ser feito.</p>
+<p>O parâmetro <code>mar</code> recebe um vetor númerico com 4 elementos, onde o primeiroa representa a margem inferior, o segundo a margem esquerda, o terceiro e margem de cima e por último a margem da direita, como mostrado a seguir: <code>par(mar = c(baixo, esquerda, cima, direita))</code></p>
+<p>Exemplo</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="gráficos.html#cb218-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb218-2"><a href="gráficos.html#cb218-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb218-3"><a href="gráficos.html#cb218-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>, <span class="fl">2.1</span>))</span>
+<span id="cb218-4"><a href="gráficos.html#cb218-4" tabindex="-1"></a><span class="fu">hist</span>(dados)</span>
+<span id="cb218-5"><a href="gráficos.html#cb218-5" tabindex="-1"></a><span class="fu">boxplot</span>(dados, <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+</div>
+<div id="orientação-dos-eixos" class="section level4 hasAnchor" number="3.3.6.3">
+<h4><span class="header-section-number">3.3.6.3</span> Orientação dos eixos<a href="gráficos.html#orientação-dos-eixos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Utilizando o parâmetro <code>las</code>, é possível definir a orientação do texto nos eixos x e y. Este recebe um número de 0 a 3 para definir tal orientação.</p>
+<p>Exemplo descrevendo todas as opções</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="gráficos.html#cb219-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb219-2"><a href="gráficos.html#cb219-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb219-3"><a href="gráficos.html#cb219-3" tabindex="-1"></a>{</span>
+<span id="cb219-4"><a href="gráficos.html#cb219-4" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">las =</span> i)</span>
+<span id="cb219-5"><a href="gráficos.html#cb219-5" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;las =&quot;</span>, i))</span>
+<span id="cb219-6"><a href="gráficos.html#cb219-6" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+</div>
+<div id="escala-de-texto" class="section level4 hasAnchor" number="3.3.6.4">
+<h4><span class="header-section-number">3.3.6.4</span> Escala de texto<a href="gráficos.html#escala-de-texto" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Utilizando o parâmetro <code>cex</code>, é possível mudar o tamanho de todo o texto presente no gráfico. Além da opção <code>cex</code>, existem quatro outra opções para mudar a escala do texto de partes específicas do gráfico. Essas são:</p>
+<ul>
+<li><code>cex.axis</code>: Escala do texto dos eixos</li>
+<li><code>cex.lab</code>: Escala do texto dos nomes dos eixos</li>
+<li><code>cex.main</code>: Escala do texto do título</li>
+<li><code>cex.sub</code>: Escala do texto do subtítulo</li>
+</ul>
+<p>Exemplos</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="gráficos.html#cb220-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb220-2"><a href="gráficos.html#cb220-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="gráficos.html#cb221-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex =</span> <span class="dv">1</span>, <span class="at">cex.axis =</span> <span class="dv">2</span>, <span class="at">cex.lab =</span> <span class="fl">0.8</span>, <span class="at">cex.main =</span> <span class="fl">0.5</span>, <span class="at">cex.sub =</span> <span class="fl">1.5</span>)</span>
+<span id="cb221-2"><a href="gráficos.html#cb221-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">main =</span> <span class="st">&quot;Título&quot;</span>, <span class="at">sub =</span> <span class="st">&quot;Subtítulo&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+</div>
+<div id="definindo-cores" class="section level4 hasAnchor" number="3.3.6.5">
+<h4><span class="header-section-number">3.3.6.5</span> Definindo cores<a href="gráficos.html#definindo-cores" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Utilizando o parâmetro <code>col</code> é possível definir as cores dos próximos gráficos a serem feitos. Como no tópico anterior, temos opções separadas para definir a cor de diferentes partes do gráfico, porém, as opção <code>col</code> não define cores para os textos do gráfico, define somente para o gráfico em si (bordas, pontos, linhas, etc.). Portanto todas as opções para definição de cores são:</p>
+<ul>
+<li><code>col</code>: Define a cor do gráfico</li>
+<li><code>col.axis</code>: Define a cor do texto dos eixos</li>
+<li><code>col.lab</code>: Define a cor do texto dos nomes dos eixos</li>
+<li><code>col.main</code>: Define a cor do título</li>
+<li><code>col.sub</code>: Define a cor do subtítulo</li>
+</ul>
+<p>Exemplo</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="gráficos.html#cb222-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">col.axis =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">col.lab =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb222-2"><a href="gráficos.html#cb222-2" tabindex="-1"></a>    <span class="at">col.main =</span> <span class="st">&quot;brown&quot;</span>, <span class="at">col.sub =</span> <span class="st">&quot;green&quot;</span>, col)</span></code></pre></div>
+<pre><code>## Warning in par(col = &quot;red&quot;, col.axis = &quot;yellow&quot;, col.lab = &quot;blue&quot;,
+## col.main = &quot;brown&quot;, : argument 6 does not name a graphical parameter</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="gráficos.html#cb224-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">main =</span> <span class="st">&quot;Título&quot;</span>, <span class="at">sub =</span> <span class="st">&quot;Subtítulo&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+<div id="tipos-de-fonte" class="section level4 hasAnchor" number="3.3.6.6">
+<h4><span class="header-section-number">3.3.6.6</span> Tipos de fonte<a href="gráficos.html#tipos-de-fonte" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Utilizando o parâmetro <code>font</code>, é possível definir o tipo de texto a ser usado no gráfico. Todos os argumentos <code>font.*</code> recebem um número de 1 a 5, onde esses números representam:</p>
+<ol style="list-style-type: decimal">
+<li>Texto padrão</li>
+<li>Texto Negrito</li>
+<li>Texto Italico</li>
+<li>Texto Negrito Italico</li>
+<li>Codificação de Símbolos Adobe</li>
+</ol>
+<p>Como nos tópicos anteriores, temos opções específicas para diferentes partes do gráfico, estas são:</p>
+<ul>
+<li><code>font</code>: Define a fonte do gráfico</li>
+<li><code>font.axis</code>: Define a fonte do texto dos eixos</li>
+<li><code>font.lab</code>: Define a fonte do texto dos nomes dos eixos</li>
+<li><code>font.main</code>: Define a fonte do título</li>
+<li><code>font.sub</code>: Define a fonte do subtítulo</li>
+</ul>
+<p>Exemplo</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="gráficos.html#cb225-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">font =</span> <span class="dv">4</span>)</span>
+<span id="cb225-2"><a href="gráficos.html#cb225-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="gráficos.html#cb226-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">font =</span> <span class="dv">1</span>, <span class="at">font.axis =</span> <span class="dv">2</span>, <span class="at">font.main =</span> <span class="dv">3</span>, <span class="at">font.sub =</span> <span class="dv">4</span>, <span class="at">font.lab =</span> <span class="dv">5</span>)</span>
+<span id="cb226-2"><a href="gráficos.html#cb226-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">xlab =</span> <span class="st">&quot;\160&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Título&quot;</span>, <span class="at">sub =</span> <span class="st">&quot;Subtítulo&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+</div>
+</div>
+<div id="cores" class="section level3 hasAnchor" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Cores<a href="gráficos.html#cores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para listar todas as cores existentes do R, usa-se o comando <code>colors()</code>.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="gráficos.html#cb227-1" tabindex="-1"></a><span class="co"># printando as 10 primeiras cores do R</span></span>
+<span id="cb227-2"><a href="gráficos.html#cb227-2" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">colors</span>(), <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;white&quot;         &quot;aliceblue&quot;     &quot;antiquewhite&quot;  &quot;antiquewhite1&quot;
+##  [5] &quot;antiquewhite2&quot; &quot;antiquewhite3&quot; &quot;antiquewhite4&quot; &quot;aquamarine&quot;   
+##  [9] &quot;aquamarine1&quot;   &quot;aquamarine2&quot;</code></pre>
+<p><em>Escalas de cores padrões do R</em>
+No R existem escalas de cores padrões para faciliar a escolha de cores nos gráficos.</p>
+<p>Exemplo de escalas de cores:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="gráficos.html#cb229-1" tabindex="-1"></a><span class="co"># rainbow</span></span>
+<span id="cb229-2"><a href="gráficos.html#cb229-2" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">15</span>), <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="dv">15</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="gráficos.html#cb230-1" tabindex="-1"></a><span class="co"># heat.colors</span></span>
+<span id="cb230-2"><a href="gráficos.html#cb230-2" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">15</span>), <span class="at">col =</span> <span class="fu">heat.colors</span>(<span class="dv">15</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-85-2.png" width="672" /></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="gráficos.html#cb231-1" tabindex="-1"></a><span class="co"># terrain.colors</span></span>
+<span id="cb231-2"><a href="gráficos.html#cb231-2" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">15</span>), <span class="at">col =</span> <span class="fu">terrain.colors</span>(<span class="dv">15</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-85-3.png" width="672" /></p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="gráficos.html#cb232-1" tabindex="-1"></a><span class="co"># topo.colors</span></span>
+<span id="cb232-2"><a href="gráficos.html#cb232-2" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">15</span>), <span class="at">col =</span> <span class="fu">topo.colors</span>(<span class="dv">15</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-85-4.png" width="672" /></p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="gráficos.html#cb233-1" tabindex="-1"></a><span class="co"># cm.colors</span></span>
+<span id="cb233-2"><a href="gráficos.html#cb233-2" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">15</span>), <span class="at">col =</span> <span class="fu">cm.colors</span>(<span class="dv">15</span>))</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-85-5.png" width="672" /></p>
+<p><em>Função RGB</em></p>
+<p>A função <code>rgb(red, green, blue, alpha)</code> retrona um valor de cor com base na escala RGB, ou seja, combinando um conjunto de componentes vermelho, verde e azul. Também é possível definir a opacidade(alpha) através dessa função.</p>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="gráficos.html#cb234-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">table</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)), <span class="at">ann =</span> F, <span class="at">lwd =</span> <span class="dv">5</span>)</span>
+<span id="cb234-2"><a href="gráficos.html#cb234-2" tabindex="-1"></a><span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">1</span>), <span class="at">lwd =</span> <span class="fl">0.1</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">4</span>), <span class="at">border =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+</div>
+<div id="representando-funções-matemáticas" class="section level3 hasAnchor" number="3.3.8">
+<h3><span class="header-section-number">3.3.8</span> Representando funções matemáticas<a href="gráficos.html#representando-funções-matemáticas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>É possível representar funções matemáticas no <code>R</code> utilizando a função <code>curve</code>.
+Como foi visto na seção <a href="princípios-básicos.html#funcoes">1.5</a>, podemos criar funções dentro do <code>R</code>, e essas funções serão utilizadas para que possamos representar funções matemáticas.
+É importante frisar que a função que será inserida no comando <code>curve</code> deve estar em função de uma variável <code>x</code>.</p>
+<p>Por exemplo:</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="gráficos.html#cb235-1" tabindex="-1"></a>fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb235-2"><a href="gráficos.html#cb235-2" tabindex="-1"></a><span class="fu">curve</span>(fun)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p>Vemos no gráfico acima que o gráfico da função foi feito utilizando o valor <code>x</code> entre 0 e 1. Na função <code>curve</code>, podemos definir os argumentos <code>from</code> e <code>to</code>, que vão definir os valores iniciais e finais de <code>x</code>a serem representados no gráfico.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="gráficos.html#cb236-1" tabindex="-1"></a>fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb236-2"><a href="gráficos.html#cb236-2" tabindex="-1"></a><span class="fu">curve</span>(fun, <span class="at">from =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">to =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>Além dos arumentos <code>from</code> e <code>to</code>, a função <code>curve</code> pode receber o argumento <code>n</code> que representa o número de pontos a serem representados no gráfico (por padrão <code>n = 101</code>), além de receber também as opções descritas nas <a href="gráficos.html#principais-ajustes">seções anteriores</a>.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="gráficos.html#cb237-1" tabindex="-1"></a>fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) (<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb237-2"><a href="gráficos.html#cb237-2" tabindex="-1"></a><span class="fu">curve</span>(fun, <span class="at">from =</span> <span class="sc">-</span><span class="dv">3</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">n =</span> <span class="dv">30</span>, <span class="at">type =</span> <span class="st">&quot;o&quot;</span>, <span class="at">pch =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="dv">2</span>,</span>
+<span id="cb237-3"><a href="gráficos.html#cb237-3" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">&quot;Distribuição normal padronizada&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_r_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+</div>
+<div id="dispositivos-graficos" class="section level3 hasAnchor" number="3.3.9">
+<h3><span class="header-section-number">3.3.9</span> Dispositivos Gráficos<a href="gráficos.html#dispositivos-graficos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dispositivos gráficos, são interfaces onde os gráficos gerados são exibidos, seja esse um dispositivo gráfico integrado na sua IDE, como por exemplo Rstudio, ou uma janela gráfica aberta no seu sistema operacional, ou até mesmo um arquivo no seu computador.
+No <code>R</code>, quando chamamos uma função que gera um gráfico, automaticamente é criado um dispositivo gráfico padrão, que varia de acordo com a plataforma que você está utilizando. Em sistemas operacionais baseados em Unix o dispositivo gráfico padrão é <code>X11()</code>, no sistema operacional Microsoft Windows o dispositivo gráfico padrão é <code>windows()</code>, e independente do sistema operacional quando utilizamos Rstudio o dispositivo gráfico padrão é o <code>RStudioGD()</code>, que é a janela integrada para gráficos.
+Ambos <code>X11()</code> e <code>windows()</code> podem ser chamados a qualquer momento dentro de uma sessão do <code>R</code> para criar uma janela externa onde serão exibidos os gráficos.
+Por padrão, é comum o uso da função <code>X11()</code> para criar novas janelas gráficas para a visualização de mais de um gráfico simultaneamente, como mostrado na imagem abaixo.</p>
+<p><img src="img/x11.png" width="478" /></p>
+</div>
+<div id="exportando-gráficos" class="section level3 hasAnchor" number="3.3.10">
+<h3><span class="header-section-number">3.3.10</span> Exportando gráficos<a href="gráficos.html#exportando-gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para exportarmos gráficos utilizando o <code>R</code>, é possível utilizar o botão de exportação de gráficos integrado na IDE Rstudio, porém é recomendado utilizar dispositivos gráficos para a geração de arquivos. Utilizando os dispositivos gráficos é possível configurar o gráfico que será exportado, como com o tamanho ou quantidade de pixels.</p>
+<p>Abaixo são descritos os tipos de dispositivos gráficos para geração de arquivos:</p>
+<ul>
+<li><code>pdf</code></li>
+<li><code>postscript</code></li>
+<li><code>xfig</code></li>
+<li><code>bitmap</code></li>
+<li><code>pictex</code></li>
+<li><code>svg</code></li>
+<li><code>png</code></li>
+<li><code>jpeg</code></li>
+<li><code>bmp</code></li>
+<li><code>tiff</code></li>
+</ul>
+<p>O uso básico das funções citadas funcionam de forma parecida, a sintaxe das funções funcionam da seguinte forma:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="gráficos.html#cb238-1" tabindex="-1"></a><span class="fu">jpeg</span>(filename, width, height, units, pointsize, quality, bg)</span>
+<span id="cb238-2"><a href="gráficos.html#cb238-2" tabindex="-1"></a>codigo do grafico</span>
+<span id="cb238-3"><a href="gráficos.html#cb238-3" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>A função <code>dev.off()</code> é utilizada para encerrar um dispositivo gráfico, e é essencial para a criação de imagens, a imagem não será exportada corretamente enquanto o dispositivo gráfico não for encerrado. A função <code>dev.off()</code> também pode ser usada para fechar janelas gráficas.</p>
+<p>Abaixo será exibido um exemplo com a função <code>jpeg</code> criando imagens jpg.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="gráficos.html#cb239-1" tabindex="-1"></a><span class="fu">jpeg</span>(<span class="st">&quot;exemplo.jpg&quot;</span>, <span class="dv">480</span>, <span class="dv">480</span>, <span class="st">&quot;px&quot;</span>, <span class="dv">12</span>, <span class="dv">75</span>, <span class="st">&quot;white&quot;</span>)</span>
+<span id="cb239-2"><a href="gráficos.html#cb239-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb239-3"><a href="gráficos.html#cb239-3" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## png 
+##   2</code></pre>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estatística-básica.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="noções-de-probabilidade.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["apostila_r.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
