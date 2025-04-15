@@ -5,31 +5,31 @@ Livro e Aplicativo de questões de Estatística Básica
 https://des.uem.br/grad/pastademaiscursos/9755.pdf
 
 ## Livros-Base:
-Slides do Diego
-Probabilidade: Um Curso Introdutório Dantas
-https://www.ime.usp.br/~rvicente/JMPMemoria_Historia_Estatistica.pdf
-Estatística Básica - Bussab e Morrettin
-Probabilidade - Sheldon Ross
+- Slides do Diego
+- Probabilidade: Um Curso Introdutório Dantas
+- https://www.ime.usp.br/~rvicente/JMPMemoria_Historia_Estatistica.pdf
+- Estatística Básica - Bussab e Morrettin
+- Probabilidade - Sheldon Ross
 
 ## Links Importantes:
 
-https://www.geogebra.org/m/efgyt97j ditribuições
-https://www.youtube.com/watch?v=zeJD6dqJ5lo
-https://www.geogebra.org/m/kn2xsnsd#material/ernqbw4e exemplo
-https://www.youtube.com/watch?v=2_fnmPRwhWs
-https://www.youtube.com/watch?v=14mkCpJ7tKs
-https://lineu96.github.io/npest/index.html
-https://ia600506.us.archive.org/14/items/estatistica-basica-9ed-bussab-e-morettin/Estat%C3%ADstica%20B%C3%A1sica%20%289ed%29%20-%20Bussab%20e%20Morettin.pdf
-https://seeing-theory.brown.edu/probability-distributions/index.html#section3
-https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html?=&t=o-que-e
+- https://www.geogebra.org/m/efgyt97j ditribuições
+- https://www.youtube.com/watch?v=zeJD6dqJ5lo
+- https://www.geogebra.org/m/kn2xsnsd#material/ernqbw4e exemplo
+- https://www.youtube.com/watch?v=2_fnmPRwhWs
+- https://www.youtube.com/watch?v=14mkCpJ7tKs
+- https://lineu96.github.io/npest/index.html
+- https://ia600506.us.archive.org/14/items/estatistica-basica-9ed-bussab-e-morettin/Estat%C3%ADstica%20B%C3%A1sica%20%289ed%29%20-%20Bussab%20e%20Morettin.pdf
+- https://seeing-theory.brown.edu/probability-distributions/index.html#section3
+- https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html?=&t=o-que-e
 
 ## Ideias
 
-dividir cada tópico em: introdução, corpo do texto (definição, exemplo, exercício de fixação, fundamentação teórica), aplicações computacionais em R e Python, , exercícios computacionais, exercícios no papel
-no final do capítulo: resumo e tópicos aprendidos
-Utilizar Manim para visualizações
-Fazer o banco de questões com a lógica do duolingo
-Entrevistar todos os professores do Departamento para saber os tópicos mais abordados na disciplina, obter suas listas e 
+- dividir cada tópico em: introdução, corpo do texto (definição, exemplo, exercício de fixação, fundamentação teórica), aplicações computacionais em R e Python, , exercícios computacionais, exercícios no papel
+- no final do capítulo: resumo e tópicos aprendidos
+- Utilizar Manim para visualizações
+- Fazer o banco de questões com a lógica do duolingo
+-Entrevistar todos os professores do Departamento para saber os tópicos mais abordados na disciplina, obter suas listas e 
 
 ## Possíveis Aplicações
 
