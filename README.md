@@ -9,6 +9,7 @@ Slides do Diego
 Probabilidade: Um Curso Introdutório Dantas
 https://www.ime.usp.br/~rvicente/JMPMemoria_Historia_Estatistica.pdf
 Estatística Básica - Bussab e Morrettin
+Probabilidade - Sheldon Ross
 
 ## Links Importantes:
 
@@ -19,6 +20,8 @@ https://www.youtube.com/watch?v=2_fnmPRwhWs
 https://www.youtube.com/watch?v=14mkCpJ7tKs
 https://lineu96.github.io/npest/index.html
 https://ia600506.us.archive.org/14/items/estatistica-basica-9ed-bussab-e-morettin/Estat%C3%ADstica%20B%C3%A1sica%20%289ed%29%20-%20Bussab%20e%20Morettin.pdf
+https://seeing-theory.brown.edu/probability-distributions/index.html#section3
+https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html?=&t=o-que-e
 
 ## Ideias
 
