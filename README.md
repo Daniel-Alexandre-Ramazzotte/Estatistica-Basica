@@ -1,20 +1,20 @@
 # Introdução Interativa a Estatística
-### PROPET DataSci — Ação 11: Ensino de Estatística | UEM
+**PROPET DataSci — Ação 11: Ensino de Estatística | UEM**
 
 Livro-texto interativo de Estatística Básica com banco de questões, aplicações em R e Python, e identidade visual PROPET DataSci.
 
 ---
 
-## 🗺️ Por onde começar?
+## Por onde começar?
 
 > **Leia primeiro o relatório técnico:**
-> [`relatorio_tecnico_Estatistica-Basica.pdf`](./relatorio_tecnico_Estatistica-Basica.pdf)
+> [`docs/relatorio_tecnico_Estatistica-Basica.pdf`](./docs/relatorio_tecnico_Estatistica-Basica.pdf)
 >
 > Ele é um guia completo de implementação do projeto: estrutura de arquivos, como colaborar, comandos de build, stack tecnológica e o que já foi feito.
 
 ---
 
-## 📚 Acessar o Livro
+## Acessar o Livro
 
 O livro renderizado está em:
 
@@ -24,30 +24,29 @@ livro/_book/index.html
 
 Abra esse arquivo no navegador para ler o livro completo com todos os capítulos, fórmulas e exemplos de código.
 
-> Se o diretório `_book/` não existir, [renderize o livro](#-renderizar-o-livro) primeiro.
+> Se `_book/` não existir, [renderize o livro](#renderizar-o-livro) primeiro.
 
 ---
 
-## 🔗 Notion do Projeto
+## Notion do Projeto
 
 Documentação, acompanhamento de tarefas e notas de reunião:
 
-👉 [PROPET DataSci — Ação 11 no Notion](https://blossom-stranger-2e0.notion.site/PROPET-DataSci-Acao-11-Apostila-Estatistica-Basica-3280009068a9816f82c6c48065ebe429?pvs=74)
+[https://blossom-stranger-2e0.notion.site/PROPET-DataSci-Acao-11-Apostila-Estatistica-Basica-3280009068a9816f82c6c48065ebe429](https://blossom-stranger-2e0.notion.site/PROPET-DataSci-Acao-11-Apostila-Estatistica-Basica-3280009068a9816f82c6c48065ebe429?pvs=74)
 
 ---
 
-## ⬇️ Clonar o Repositório
+## Clonar o Repositório
 
 ### Via RStudio
 
 1. Abra o RStudio
 2. Vá em **File → New Project → Version Control → Git**
-3. Cole a URL do repositório:
+3. Cole a URL:
    ```
    https://github.com/Daniel-Alexandre-Ramazzotte/Estatistica-Basica.git
    ```
 4. Escolha o diretório local e clique em **Create Project**
-5. O projeto abre direto com o `.Rproj` configurado
 
 ### Via terminal
 
@@ -58,53 +57,56 @@ cd Estatistica-Basica
 
 ---
 
-## 🛠️ Renderizar o Livro
+## Renderizar o Livro
 
 Pré-requisito: [Quarto](https://quarto.org/docs/get-started/) instalado.
 
 ```bash
 cd livro
 quarto render
-```
+# Abra livro/_book/index.html no navegador
 
-O livro gerado fica em `livro/_book/index.html`. Abra no navegador.
-
-```bash
-# Ou com preview automático no navegador:
+# Ou com preview automático:
 quarto preview
 ```
 
-> **Sem R instalado?** Sem problema — o projeto usa `freeze: auto`, então os resultados de código já estão cacheados em `_freeze/`. O `quarto render` funciona sem executar nenhum código R.
+> **Sem R instalado?** O projeto usa `freeze: auto` — os resultados de código já estão cacheados em `_freeze/`. O `quarto render` funciona sem nenhum R instalado.
 
 ---
 
-## 📁 Estrutura Resumida
+## Estrutura do Repositório
 
 ```
 Estatistica-Basica/
-├── relatorio_tecnico_Estatistica-Basica.pdf   ← comece por aqui
-├── livro/                                      ← Quarto Book (fonte)
-│   ├── _book/                                  ← livro renderizado (abrir no browser)
-│   ├── 01-descritiva.qmd                       ← capítulos
+├── livro/                          ← Quarto Book (fonte dos capítulos)
+│   ├── _book/                      ← livro renderizado (abrir no navegador)
+│   ├── 01-descritiva.qmd
 │   ├── 02-probabilidade.qmd
 │   ├── 03-inferencia.qmd
 │   ├── 04-regressao.qmd
-│   └── A-intro-r.qmd ... E-creditos.qmd        ← apêndices
-├── banco_questoes/                             ← 356 questões em SQLite
-│   ├── questoes.db                             ← abrir com DB Browser
-│   └── parse_questoes.py                       ← parser .md → SQL
-└── docs/spec/                                  ← documentação de acompanhamento
+│   └── A-intro-r.qmd ... E-creditos.qmd
+├── banco_questoes/                 ← 356 questões em SQLite + parser
+│   ├── questoes.db                 ← abrir com DB Browser for SQLite
+│   ├── parse_questoes.py           ← parser .md → SQL
+│   └── Banco-de-questões-*.md      ← fonte das questões
+├── docs/                           ← documentação e relatórios
+│   ├── relatorio_tecnico_*.pdf     ← relatório técnico (comece aqui)
+│   ├── Ação 11 - Ensino Estatística.docx
+│   ├── identidade-visual/          ← logos, banners, manuais PROPET
+│   └── spec/                       ← roadmap, tracking, specs
+├── notebooks/                      ← notebooks de testes e experimentos
+└── legacy/                         ← versões anteriores (não editar)
 ```
 
 ---
 
-## 🗄️ Banco de Questões
+## Banco de Questões
 
 O banco SQLite com 356 questões está em `banco_questoes/questoes.db`.
 
-**Abrir visualmente:** instale o [DB Browser for SQLite](https://sqlitebrowser.org/) e abra o arquivo.
+Abrir visualmente: [DB Browser for SQLite](https://sqlitebrowser.org/)
 
-**Regenerar o banco:**
+Regenerar o banco:
 ```bash
 cd banco_questoes
 python parse_questoes.py
@@ -112,7 +114,7 @@ python parse_questoes.py
 
 ---
 
-## 📖 Conteúdo do Livro
+## Conteúdo do Livro
 
 | Capítulo | Conteúdo |
 |----------|----------|
@@ -127,6 +129,10 @@ python parse_questoes.py
 
 ---
 
-## 📬 Contato
+## Contato
 
 **Daniel Alexandre Ramazzotte** — PROPET DataSci / Departamento de Estatística — UEM
+
+- Email pessoal: d.ramazzotte@gmail.com
+- Email UEM: ra132955@uem.br
+- WhatsApp: (44) 99876-5543

@@ -22,7 +22,7 @@ from typing import Optional
 # Configuração de caminhos
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
-MD_FILE = SCRIPT_DIR.parent / "Banco-de-questões-PROPET-DATASCI--1-.md"
+MD_FILE = SCRIPT_DIR / "Banco-de-questões-PROPET-DATASCI--1-.md"
 SQLITE_SCHEMA = SCRIPT_DIR / "schema_sqlite.sql"
 OUTPUT_SQL = SCRIPT_DIR / "questoes_insert.sql"
 OUTPUT_DB = SCRIPT_DIR / "questoes.db"
