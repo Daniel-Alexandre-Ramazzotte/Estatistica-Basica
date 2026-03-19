@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Appendix C — Dicas de Geracao de Codigo com IA – Introdução Interativa a Estatística</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./D-quarto-git-tutorial.html" rel="next">
+<link href="./B-intro-python.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b3f80ded633a4b03819b857cd65b3e20.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-1a3689cc98e0e4eddf3991c613569ec9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A-intro-r.html">Appendices</a></li><li class="breadcrumb-item"><a href="./C-dicas-ia.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Dicas de Geracao de Codigo com IA</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introdução Interativa a Estatística</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/danielramazzotte/Estatistica-Basica" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Estatística Descritiva</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-probabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probabilidade</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferência Estatística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-regressao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão Linear Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A-intro-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Introducao ao R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./B-intro-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Introducao ao Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./C-dicas-ia.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Dicas de Geracao de Codigo com IA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./D-quarto-git-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Tutorial: Quarto, Git e Claude Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./E-creditos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Créditos e Agradecimentos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#por-que-usar-ia-para-programacao-estatistica" id="toc-por-que-usar-ia-para-programacao-estatistica" class="nav-link active" data-scroll-target="#por-que-usar-ia-para-programacao-estatistica"><span class="header-section-number">C.1</span> Por que usar IA para programacao estatistica?</a></li>
+  <li><a href="#como-escrever-bons-prompts-para-codigo-estatistico" id="toc-como-escrever-bons-prompts-para-codigo-estatistico" class="nav-link" data-scroll-target="#como-escrever-bons-prompts-para-codigo-estatistico"><span class="header-section-number">C.2</span> Como escrever bons prompts para codigo estatistico</a>
+  <ul>
+  <li><a href="#seja-especifico-sobre-o-contexto" id="toc-seja-especifico-sobre-o-contexto" class="nav-link" data-scroll-target="#seja-especifico-sobre-o-contexto"><span class="header-section-number">C.2.1</span> 1. Seja especifico sobre o contexto</a></li>
+  <li><a href="#especifique-a-linguagem-e-as-bibliotecas" id="toc-especifique-a-linguagem-e-as-bibliotecas" class="nav-link" data-scroll-target="#especifique-a-linguagem-e-as-bibliotecas"><span class="header-section-number">C.2.2</span> 2. Especifique a linguagem e as bibliotecas</a></li>
+  <li><a href="#forneca-o-formato-dos-dados" id="toc-forneca-o-formato-dos-dados" class="nav-link" data-scroll-target="#forneca-o-formato-dos-dados"><span class="header-section-number">C.2.3</span> 3. Forneca o formato dos dados</a></li>
+  <li><a href="#peca-explicacoes" id="toc-peca-explicacoes" class="nav-link" data-scroll-target="#peca-explicacoes"><span class="header-section-number">C.2.4</span> 4. Peca explicacoes</a></li>
+  <li><a href="#itere-sobre-a-resposta" id="toc-itere-sobre-a-resposta" class="nav-link" data-scroll-target="#itere-sobre-a-resposta"><span class="header-section-number">C.2.5</span> 5. Itere sobre a resposta</a></li>
+  </ul></li>
+  <li><a href="#exemplos-praticos" id="toc-exemplos-praticos" class="nav-link" data-scroll-target="#exemplos-praticos"><span class="header-section-number">C.3</span> Exemplos praticos</a>
+  <ul>
+  <li><a href="#exemplo-1-gerar-tabela-de-frequencias-em-r" id="toc-exemplo-1-gerar-tabela-de-frequencias-em-r" class="nav-link" data-scroll-target="#exemplo-1-gerar-tabela-de-frequencias-em-r"><span class="header-section-number">C.3.1</span> Exemplo 1: Gerar tabela de frequencias em R</a></li>
+  <li><a href="#exemplo-2-regressao-linear-em-python" id="toc-exemplo-2-regressao-linear-em-python" class="nav-link" data-scroll-target="#exemplo-2-regressao-linear-em-python"><span class="header-section-number">C.3.2</span> Exemplo 2: Regressao linear em Python</a></li>
+  <li><a href="#exemplo-3-teste-de-hipotese-com-interpretacao" id="toc-exemplo-3-teste-de-hipotese-com-interpretacao" class="nav-link" data-scroll-target="#exemplo-3-teste-de-hipotese-com-interpretacao"><span class="header-section-number">C.3.3</span> Exemplo 3: Teste de hipotese com interpretacao</a></li>
+  </ul></li>
+  <li><a href="#ciladas-comuns-quando-a-ia-erra" id="toc-ciladas-comuns-quando-a-ia-erra" class="nav-link" data-scroll-target="#ciladas-comuns-quando-a-ia-erra"><span class="header-section-number">C.4</span> Ciladas comuns: quando a IA erra</a>
+  <ul>
+  <li><a href="#alucinacoes" id="toc-alucinacoes" class="nav-link" data-scroll-target="#alucinacoes"><span class="header-section-number">C.4.1</span> Alucinacoes</a></li>
+  <li><a href="#resultados-numericos-incorretos" id="toc-resultados-numericos-incorretos" class="nav-link" data-scroll-target="#resultados-numericos-incorretos"><span class="header-section-number">C.4.2</span> Resultados numericos incorretos</a></li>
+  <li><a href="#codigo-funcional-mas-ineficiente" id="toc-codigo-funcional-mas-ineficiente" class="nav-link" data-scroll-target="#codigo-funcional-mas-ineficiente"><span class="header-section-number">C.4.3</span> Codigo funcional mas ineficiente</a></li>
+  </ul></li>
+  <li><a href="#ferramentas-recomendadas" id="toc-ferramentas-recomendadas" class="nav-link" data-scroll-target="#ferramentas-recomendadas"><span class="header-section-number">C.5</span> Ferramentas recomendadas</a></li>
+  <li><a href="#etica-e-integridade-academica" id="toc-etica-e-integridade-academica" class="nav-link" data-scroll-target="#etica-e-integridade-academica"><span class="header-section-number">C.6</span> Etica e integridade academica</a>
+  <ul>
+  <li><a href="#o-que-e-aceitavel" id="toc-o-que-e-aceitavel" class="nav-link" data-scroll-target="#o-que-e-aceitavel"><span class="header-section-number">C.6.1</span> O que e aceitavel</a></li>
+  <li><a href="#o-que-exige-cuidado" id="toc-o-que-exige-cuidado" class="nav-link" data-scroll-target="#o-que-exige-cuidado"><span class="header-section-number">C.6.2</span> O que exige cuidado</a></li>
+  <li><a href="#recomendacoes-gerais" id="toc-recomendacoes-gerais" class="nav-link" data-scroll-target="#recomendacoes-gerais"><span class="header-section-number">C.6.3</span> Recomendacoes gerais</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A-intro-r.html">Appendices</a></li><li class="breadcrumb-item"><a href="./C-dicas-ia.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Dicas de Geracao de Codigo com IA</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="apendice-ia" class="quarto-section-identifier">Appendix C — Dicas de Geracao de Codigo com IA</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>As IAs sao ferramentas extremamente uteis e validas no contexto da programacao. Primeiramente, nenhuma IA fara milagres — voce precisa ser claro e evidente nas suas perguntas. Como diria algum matematico: “Uma pergunta bem formulada ja esta respondida.”</p>
+<p>Existem tarefas de programacao que ate o mais experiente dos programadores tera que ler a documentacao de varias bibliotecas e raciocinar muito tempo para executar. A IA facilita esse trabalho, gerando o codigo pesado enquanto voce foca na logica do problema.</p>
+<p>Como diriam muitos programadores, a tarefa de gerar codigo e a mais trivial. O importante e juntar aqueles codigos em algo que faca sentido. Outra coisa que dizem e que se passa muito mais tempo <strong>debugando</strong> (corrigindo) um codigo do que gerando ele em si: primeiro se pensa a logica, depois os problemas sao solucionados um a um. E e ai que a IA entra como aliada. A IA tem o papel de gerar codigo e nos temos o papel de checar se ele faz sentido.</p>
+<section id="por-que-usar-ia-para-programacao-estatistica" class="level2" data-number="C.1">
+<h2 data-number="C.1" class="anchored" data-anchor-id="por-que-usar-ia-para-programacao-estatistica"><span class="header-section-number">C.1</span> Por que usar IA para programacao estatistica?</h2>
+<p>Na pratica estatistica, voce frequentemente precisa:</p>
+<ul>
+<li>Lembrar a sintaxe exata de uma funcao que usa raramente</li>
+<li>Converter formulas matematicas em codigo funcional</li>
+<li>Criar visualizacoes que exigem muita configuracao</li>
+<li>Adaptar codigo de um formato para outro (ex: R para Python)</li>
+<li>Tratar dados com formatos inconsistentes</li>
+</ul>
+<p>Para todas essas tarefas, uma IA generativa pode economizar horas de trabalho. Mas o ponto chave e: <strong>voce precisa entender o que o codigo faz</strong> para verificar se esta correto.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Principio fundamental
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A IA e uma ferramenta de <strong>produtividade</strong>, nao de <strong>substituicao</strong>. Voce precisa ter conhecimento suficiente para avaliar criticamente o que ela produz.</p>
+</div>
+</div>
+</section>
+<section id="como-escrever-bons-prompts-para-codigo-estatistico" class="level2" data-number="C.2">
+<h2 data-number="C.2" class="anchored" data-anchor-id="como-escrever-bons-prompts-para-codigo-estatistico"><span class="header-section-number">C.2</span> Como escrever bons prompts para codigo estatistico</h2>
+<p>A qualidade do codigo gerado depende diretamente da qualidade do seu prompt (pergunta/instrucao). Aqui estao diretrizes praticas:</p>
+<section id="seja-especifico-sobre-o-contexto" class="level3" data-number="C.2.1">
+<h3 data-number="C.2.1" class="anchored" data-anchor-id="seja-especifico-sobre-o-contexto"><span class="header-section-number">C.2.1</span> 1. Seja especifico sobre o contexto</h3>
+<p><strong>Ruim:</strong> &gt; “Faca um grafico dos meus dados.”</p>
+<p><strong>Bom:</strong> &gt; “Tenho um DataFrame em R chamado <code>dados</code> com as colunas <code>idade</code> (numerica), <code>salario</code> (numerica) e <code>setor</code> (categorica com 3 niveis: ‘Industria’, ‘Comercio’, ‘Servicos’). Quero um grafico de dispersao de idade vs.&nbsp;salario, colorido por setor, usando ggplot2, com titulo e rotulos em portugues.”</p>
+</section>
+<section id="especifique-a-linguagem-e-as-bibliotecas" class="level3" data-number="C.2.2">
+<h3 data-number="C.2.2" class="anchored" data-anchor-id="especifique-a-linguagem-e-as-bibliotecas"><span class="header-section-number">C.2.2</span> 2. Especifique a linguagem e as bibliotecas</h3>
+<p><strong>Ruim:</strong> &gt; “Como faco um teste t?”</p>
+<p><strong>Bom:</strong> &gt; “Em R, usando a funcao t.test(), como faco um teste t para duas amostras independentes comparando o vetor <code>grupo_a</code> com o vetor <code>grupo_b</code>, assumindo variancias desiguais? Mostre como interpretar a saida.”</p>
+</section>
+<section id="forneca-o-formato-dos-dados" class="level3" data-number="C.2.3">
+<h3 data-number="C.2.3" class="anchored" data-anchor-id="forneca-o-formato-dos-dados"><span class="header-section-number">C.2.3</span> 3. Forneca o formato dos dados</h3>
+<p>Quando possivel, mostre um exemplo dos seus dados:</p>
+<blockquote class="blockquote">
+<p>“Meus dados CSV tem este formato:</p>
+<pre><code>nome;idade;nota;aprovado
+Ana;22;8.5;sim
+Bruno;25;6.0;nao</code></pre>
+<p>O separador e ponto e virgula e o decimal e ponto. Como importo isso em Python com Pandas e calculo a media das notas por status de aprovacao?”</p>
+</blockquote>
+</section>
+<section id="peca-explicacoes" class="level3" data-number="C.2.4">
+<h3 data-number="C.2.4" class="anchored" data-anchor-id="peca-explicacoes"><span class="header-section-number">C.2.4</span> 4. Peca explicacoes</h3>
+<blockquote class="blockquote">
+<p>“Faca um intervalo de confianca de 95% para a media em R e <strong>explique cada linha do codigo</strong> para que eu entenda o que esta acontecendo.”</p>
+</blockquote>
+</section>
+<section id="itere-sobre-a-resposta" class="level3" data-number="C.2.5">
+<h3 data-number="C.2.5" class="anchored" data-anchor-id="itere-sobre-a-resposta"><span class="header-section-number">C.2.5</span> 5. Itere sobre a resposta</h3>
+<p>Se o primeiro resultado nao for perfeito, refine:</p>
+<blockquote class="blockquote">
+<p>“O codigo funcionou, mas quero que o grafico use as cores #448EE3 e #2D4188 e que o eixo Y comece em zero.”</p>
+</blockquote>
+</section>
+</section>
+<section id="exemplos-praticos" class="level2" data-number="C.3">
+<h2 data-number="C.3" class="anchored" data-anchor-id="exemplos-praticos"><span class="header-section-number">C.3</span> Exemplos praticos</h2>
+<section id="exemplo-1-gerar-tabela-de-frequencias-em-r" class="level3" data-number="C.3.1">
+<h3 data-number="C.3.1" class="anchored" data-anchor-id="exemplo-1-gerar-tabela-de-frequencias-em-r"><span class="header-section-number">C.3.1</span> Exemplo 1: Gerar tabela de frequencias em R</h3>
+<p><strong>Prompt:</strong> &gt; “Em R, tenho um vetor chamado <code>notas</code> com 30 valores numericos entre 0 e 10. Quero criar uma tabela de distribuicao de frequencias com 5 classes de amplitude igual, contendo: limite inferior, limite superior, frequencia absoluta, frequencia relativa e frequencia acumulada. Use apenas funcoes basicas do R.”</p>
+</section>
+<section id="exemplo-2-regressao-linear-em-python" class="level3" data-number="C.3.2">
+<h3 data-number="C.3.2" class="anchored" data-anchor-id="exemplo-2-regressao-linear-em-python"><span class="header-section-number">C.3.2</span> Exemplo 2: Regressao linear em Python</h3>
+<p><strong>Prompt:</strong> &gt; “Em Python, usando statsmodels, tenho um DataFrame <code>df</code> com colunas <code>preco</code> e <code>area</code>. Quero ajustar uma regressao linear simples (preco ~ area), exibir o resumo (summary), e criar um grafico de dispersao com a reta ajustada usando matplotlib. Inclua a equacao e o R-quadrado no grafico.”</p>
+</section>
+<section id="exemplo-3-teste-de-hipotese-com-interpretacao" class="level3" data-number="C.3.3">
+<h3 data-number="C.3.3" class="anchored" data-anchor-id="exemplo-3-teste-de-hipotese-com-interpretacao"><span class="header-section-number">C.3.3</span> Exemplo 3: Teste de hipotese com interpretacao</h3>
+<p><strong>Prompt:</strong> &gt; “Em R, tenho dois vetores: <code>antes</code> e <code>depois</code>, que representam medidas do mesmo grupo de 20 pacientes antes e depois de um tratamento. Faca um teste t pareado com nivel de significancia de 5%, mostre o codigo completo e escreva uma interpretacao textual do resultado no formato de um relatorio.”</p>
+</section>
+</section>
+<section id="ciladas-comuns-quando-a-ia-erra" class="level2" data-number="C.4">
+<h2 data-number="C.4" class="anchored" data-anchor-id="ciladas-comuns-quando-a-ia-erra"><span class="header-section-number">C.4</span> Ciladas comuns: quando a IA erra</h2>
+<section id="alucinacoes" class="level3" data-number="C.4.1">
+<h3 data-number="C.4.1" class="anchored" data-anchor-id="alucinacoes"><span class="header-section-number">C.4.1</span> Alucinacoes</h3>
+<p>A IA pode inventar funcoes que nao existem, parametros incorretos ou bibliotecas ficticias. Isso e chamado de <strong>alucinacao</strong>.</p>
+<p><strong>Como detectar:</strong></p>
+<ul>
+<li>Se uma funcao parece muito conveniente e voce nunca ouviu falar dela, verifique na documentacao oficial</li>
+<li>Execute o codigo — se der erro de “funcao nao encontrada”, provavelmente foi inventada</li>
+<li>Desconfie de bibliotecas com nomes muito especificos que voce nao conhece</li>
+</ul>
+</section>
+<section id="resultados-numericos-incorretos" class="level3" data-number="C.4.2">
+<h3 data-number="C.4.2" class="anchored" data-anchor-id="resultados-numericos-incorretos"><span class="header-section-number">C.4.2</span> Resultados numericos incorretos</h3>
+<p>A IA pode aplicar a formula errada ou usar parametros estatisticos trocados (ex: usar desvio padrao populacional quando deveria ser amostral).</p>
+<p><strong>Como verificar:</strong></p>
+<ul>
+<li>Calcule exemplos simples na mao e compare com o resultado do codigo</li>
+<li>Verifique se a funcao usa <code>ddof=1</code> (Python) ou <code>na.rm = TRUE</code> (R) quando necessario</li>
+<li>Confira a interpretacao dos resultados com o material do curso</li>
+</ul>
+</section>
+<section id="codigo-funcional-mas-ineficiente" class="level3" data-number="C.4.3">
+<h3 data-number="C.4.3" class="anchored" data-anchor-id="codigo-funcional-mas-ineficiente"><span class="header-section-number">C.4.3</span> Codigo funcional mas ineficiente</h3>
+<p>A IA pode gerar codigo que funciona, mas que usa loops desnecessarios onde operacoes vetorizadas seriam mais apropriadas. Isso e especialmente relevante em R e Python com grandes volumes de dados.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Regra de ouro
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sempre execute o codigo gerado pela IA e verifique os resultados antes de usa-los em qualquer trabalho ou relatorio.</strong> Nunca confie cegamente na saida de uma IA.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="ferramentas-recomendadas" class="level2" data-number="C.5">
+<h2 data-number="C.5" class="anchored" data-anchor-id="ferramentas-recomendadas"><span class="header-section-number">C.5</span> Ferramentas recomendadas</h2>
+<table class="table-striped table-hover caption-top table">
+<caption>Ferramentas de IA para Programacao</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Ferramenta</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Acesso</th>
+<th style="text-align: left;">Melhor para</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>ChatGPT</strong> (OpenAI)</td>
+<td style="text-align: left;">Chatbot</td>
+<td style="text-align: left;">Web / App</td>
+<td style="text-align: left;">Perguntas gerais, explicacoes, geracao de codigo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Claude</strong> (Anthropic)</td>
+<td style="text-align: left;">Chatbot</td>
+<td style="text-align: left;">Web / App / API</td>
+<td style="text-align: left;">Analise detalhada, codigo longo, raciocinio estatistico</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Claude Code</strong></td>
+<td style="text-align: left;">CLI</td>
+<td style="text-align: left;">Terminal</td>
+<td style="text-align: left;">Projetos maiores, edicao de arquivos, automacao</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GitHub Copilot</strong></td>
+<td style="text-align: left;">Autocompletar</td>
+<td style="text-align: left;">VS Code / RStudio</td>
+<td style="text-align: left;">Sugestoes em tempo real enquanto programa</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Google Gemini</strong></td>
+<td style="text-align: left;">Chatbot</td>
+<td style="text-align: left;">Web / Colab</td>
+<td style="text-align: left;">Integracao com Google Colab e dados Google</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para estudantes, o <strong>ChatGPT</strong> e o <strong>Claude</strong> oferecem versoes gratuitas que sao mais do que suficientes para as tarefas deste livro. O <strong>GitHub Copilot</strong> e gratuito para estudantes com o <a href="https://education.github.com/pack">GitHub Student Developer Pack</a>.</p>
+</div>
+</div>
+</section>
+<section id="etica-e-integridade-academica" class="level2" data-number="C.6">
+<h2 data-number="C.6" class="anchored" data-anchor-id="etica-e-integridade-academica"><span class="header-section-number">C.6</span> Etica e integridade academica</h2>
+<p>O uso de IA na vida academica levanta questoes importantes que voce deve considerar:</p>
+<section id="o-que-e-aceitavel" class="level3" data-number="C.6.1">
+<h3 data-number="C.6.1" class="anchored" data-anchor-id="o-que-e-aceitavel"><span class="header-section-number">C.6.1</span> O que e aceitavel</h3>
+<ul>
+<li>Usar IA para <strong>aprender</strong>: pedir explicacoes, exemplos, analogias</li>
+<li>Usar IA para <strong>depurar</strong>: encontrar erros no seu codigo</li>
+<li>Usar IA para <strong>consultar sintaxe</strong>: lembrar como usar uma funcao especifica</li>
+<li>Usar IA como <strong>ponto de partida</strong>: gerar um esqueleto de codigo que voce entende e modifica</li>
+</ul>
+</section>
+<section id="o-que-exige-cuidado" class="level3" data-number="C.6.2">
+<h3 data-number="C.6.2" class="anchored" data-anchor-id="o-que-exige-cuidado"><span class="header-section-number">C.6.2</span> O que exige cuidado</h3>
+<ul>
+<li><strong>Copiar codigo sem entender</strong>: se voce nao consegue explicar o que cada linha faz, voce nao aprendeu</li>
+<li><strong>Nao citar o uso de IA</strong>: em trabalhos academicos, seja transparente sobre o uso de ferramentas de IA</li>
+<li><strong>Usar IA em avaliacoes</strong>: respeite as regras do seu professor e da sua instituicao — cada disciplina pode ter politicas diferentes</li>
+<li><strong>Confiar cegamente</strong>: resultados de IA podem estar errados, especialmente em interpretacoes estatisticas</li>
+</ul>
+</section>
+<section id="recomendacoes-gerais" class="level3" data-number="C.6.3">
+<h3 data-number="C.6.3" class="anchored" data-anchor-id="recomendacoes-gerais"><span class="header-section-number">C.6.3</span> Recomendacoes gerais</h3>
+<ol type="1">
+<li><strong>Transparencia</strong>: sempre informe ao professor quando usar IA em trabalhos</li>
+<li><strong>Compreensao</strong>: so use codigo que voce consegue explicar</li>
+<li><strong>Verificacao</strong>: sempre confira os resultados com calculos manuais ou fontes confiaveis</li>
+<li><strong>Aprendizado</strong>: use a IA como <strong>tutora</strong>, nao como <strong>substituta</strong></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sobre este livro
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este proprio livro foi desenvolvido com o auxilio de IA (Claude Code), demonstrando na pratica o uso etico e produtivo dessas ferramentas. Todo o conteudo foi revisado e validado pelo autor, que utilizou a IA como ferramenta de produtividade para redigir, formatar e organizar o material, sempre mantendo o controle sobre o conteudo tecnico e pedagogico.</p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./B-intro-python.html" class="pagination-link" aria-label="Introducao ao Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Introducao ao Python</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./D-quarto-git-tutorial.html" class="pagination-link" aria-label="Tutorial: Quarto, Git e Claude Code">
+        <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Tutorial: Quarto, Git e Claude Code</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu"># Dicas de Geracao de Codigo com IA {#apendice-ia}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>As IAs sao ferramentas extremamente uteis e validas no contexto da programacao. Primeiramente, nenhuma IA fara milagres --- voce precisa ser claro e evidente nas suas perguntas. Como diria algum matematico: "Uma pergunta bem formulada ja esta respondida."</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>Existem tarefas de programacao que ate o mais experiente dos programadores tera que ler a documentacao de varias bibliotecas e raciocinar muito tempo para executar. A IA facilita esse trabalho, gerando o codigo pesado enquanto voce foca na logica do problema.</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>Como diriam muitos programadores, a tarefa de gerar codigo e a mais trivial. O importante e juntar aqueles codigos em algo que faca sentido. Outra coisa que dizem e que se passa muito mais tempo **debugando** (corrigindo) um codigo do que gerando ele em si: primeiro se pensa a logica, depois os problemas sao solucionados um a um. E e ai que a IA entra como aliada. A IA tem o papel de gerar codigo e nos temos o papel de checar se ele faz sentido.</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">## Por que usar IA para programacao estatistica?</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a>Na pratica estatistica, voce frequentemente precisa:</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="ss">- </span>Lembrar a sintaxe exata de uma funcao que usa raramente</span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="ss">- </span>Converter formulas matematicas em codigo funcional</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="ss">- </span>Criar visualizacoes que exigem muita configuracao</span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="ss">- </span>Adaptar codigo de um formato para outro (ex: R para Python)</span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="ss">- </span>Tratar dados com formatos inconsistentes</span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a>Para todas essas tarefas, uma IA generativa pode economizar horas de trabalho. Mas o ponto chave e: **voce precisa entender o que o codigo faz** para verificar se esta correto.</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>::: {.callout-important}</span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="fu">## Principio fundamental</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>A IA e uma ferramenta de **produtividade**, nao de **substituicao**. Voce precisa ter conhecimento suficiente para avaliar criticamente o que ela produz.</span>
+<span id="cb2-24"><a href="#cb2-24"></a>:::</span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">## Como escrever bons prompts para codigo estatistico</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a></span>
+<span id="cb2-28"><a href="#cb2-28"></a>A qualidade do codigo gerado depende diretamente da qualidade do seu prompt (pergunta/instrucao). Aqui estao diretrizes praticas:</span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="fu">### 1. Seja especifico sobre o contexto</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a></span>
+<span id="cb2-32"><a href="#cb2-32"></a>**Ruim:**</span>
+<span id="cb2-33"><a href="#cb2-33"></a><span class="at">&gt; "Faca um grafico dos meus dados."</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a></span>
+<span id="cb2-35"><a href="#cb2-35"></a>**Bom:**</span>
+<span id="cb2-36"><a href="#cb2-36"></a><span class="at">&gt; "Tenho um DataFrame em R chamado </span><span class="in">`dados`</span><span class="at"> com as colunas </span><span class="in">`idade`</span><span class="at"> (numerica), </span><span class="in">`salario`</span><span class="at"> (numerica) e </span><span class="in">`setor`</span><span class="at"> (categorica com 3 niveis: 'Industria', 'Comercio', 'Servicos'). Quero um grafico de dispersao de idade vs. salario, colorido por setor, usando ggplot2, com titulo e rotulos em portugues."</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="fu">### 2. Especifique a linguagem e as bibliotecas</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a></span>
+<span id="cb2-40"><a href="#cb2-40"></a>**Ruim:**</span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="at">&gt; "Como faco um teste t?"</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a></span>
+<span id="cb2-43"><a href="#cb2-43"></a>**Bom:**</span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="at">&gt; "Em R, usando a funcao t.test(), como faco um teste t para duas amostras independentes comparando o vetor </span><span class="in">`grupo_a`</span><span class="at"> com o vetor </span><span class="in">`grupo_b`</span><span class="at">, assumindo variancias desiguais? Mostre como interpretar a saida."</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a></span>
+<span id="cb2-46"><a href="#cb2-46"></a><span class="fu">### 3. Forneca o formato dos dados</span></span>
+<span id="cb2-47"><a href="#cb2-47"></a></span>
+<span id="cb2-48"><a href="#cb2-48"></a>Quando possivel, mostre um exemplo dos seus dados:</span>
+<span id="cb2-49"><a href="#cb2-49"></a></span>
+<span id="cb2-50"><a href="#cb2-50"></a><span class="at">&gt; "Meus dados CSV tem este formato:</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a><span class="at">&gt; ```</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a><span class="at">&gt; nome;idade;nota;aprovado</span></span>
+<span id="cb2-53"><a href="#cb2-53"></a><span class="at">&gt; Ana;22;8.5;sim</span></span>
+<span id="cb2-54"><a href="#cb2-54"></a><span class="at">&gt; Bruno;25;6.0;nao</span></span>
+<span id="cb2-55"><a href="#cb2-55"></a><span class="at">&gt; ```</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a><span class="at">&gt; O separador e ponto e virgula e o decimal e ponto. Como importo isso em Python com Pandas e calculo a media das notas por status de aprovacao?"</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a></span>
+<span id="cb2-58"><a href="#cb2-58"></a><span class="fu">### 4. Peca explicacoes</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a></span>
+<span id="cb2-60"><a href="#cb2-60"></a><span class="at">&gt; "Faca um intervalo de confianca de 95% para a media em R e **explique cada linha do codigo** para que eu entenda o que esta acontecendo."</span></span>
+<span id="cb2-61"><a href="#cb2-61"></a></span>
+<span id="cb2-62"><a href="#cb2-62"></a><span class="fu">### 5. Itere sobre a resposta</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a></span>
+<span id="cb2-64"><a href="#cb2-64"></a>Se o primeiro resultado nao for perfeito, refine:</span>
+<span id="cb2-65"><a href="#cb2-65"></a></span>
+<span id="cb2-66"><a href="#cb2-66"></a><span class="at">&gt; "O codigo funcionou, mas quero que o grafico use as cores #448EE3 e #2D4188 e que o eixo Y comece em zero."</span></span>
+<span id="cb2-67"><a href="#cb2-67"></a></span>
+<span id="cb2-68"><a href="#cb2-68"></a><span class="fu">## Exemplos praticos</span></span>
+<span id="cb2-69"><a href="#cb2-69"></a></span>
+<span id="cb2-70"><a href="#cb2-70"></a><span class="fu">### Exemplo 1: Gerar tabela de frequencias em R</span></span>
+<span id="cb2-71"><a href="#cb2-71"></a></span>
+<span id="cb2-72"><a href="#cb2-72"></a>**Prompt:**</span>
+<span id="cb2-73"><a href="#cb2-73"></a><span class="at">&gt; "Em R, tenho um vetor chamado </span><span class="in">`notas`</span><span class="at"> com 30 valores numericos entre 0 e 10. Quero criar uma tabela de distribuicao de frequencias com 5 classes de amplitude igual, contendo: limite inferior, limite superior, frequencia absoluta, frequencia relativa e frequencia acumulada. Use apenas funcoes basicas do R."</span></span>
+<span id="cb2-74"><a href="#cb2-74"></a></span>
+<span id="cb2-75"><a href="#cb2-75"></a><span class="fu">### Exemplo 2: Regressao linear em Python</span></span>
+<span id="cb2-76"><a href="#cb2-76"></a></span>
+<span id="cb2-77"><a href="#cb2-77"></a>**Prompt:**</span>
+<span id="cb2-78"><a href="#cb2-78"></a><span class="at">&gt; "Em Python, usando statsmodels, tenho um DataFrame </span><span class="in">`df`</span><span class="at"> com colunas </span><span class="in">`preco`</span><span class="at"> e </span><span class="in">`area`</span><span class="at">. Quero ajustar uma regressao linear simples (preco ~ area), exibir o resumo (summary), e criar um grafico de dispersao com a reta ajustada usando matplotlib. Inclua a equacao e o R-quadrado no grafico."</span></span>
+<span id="cb2-79"><a href="#cb2-79"></a></span>
+<span id="cb2-80"><a href="#cb2-80"></a><span class="fu">### Exemplo 3: Teste de hipotese com interpretacao</span></span>
+<span id="cb2-81"><a href="#cb2-81"></a></span>
+<span id="cb2-82"><a href="#cb2-82"></a>**Prompt:**</span>
+<span id="cb2-83"><a href="#cb2-83"></a><span class="at">&gt; "Em R, tenho dois vetores: </span><span class="in">`antes`</span><span class="at"> e </span><span class="in">`depois`</span><span class="at">, que representam medidas do mesmo grupo de 20 pacientes antes e depois de um tratamento. Faca um teste t pareado com nivel de significancia de 5%, mostre o codigo completo e escreva uma interpretacao textual do resultado no formato de um relatorio."</span></span>
+<span id="cb2-84"><a href="#cb2-84"></a></span>
+<span id="cb2-85"><a href="#cb2-85"></a><span class="fu">## Ciladas comuns: quando a IA erra</span></span>
+<span id="cb2-86"><a href="#cb2-86"></a></span>
+<span id="cb2-87"><a href="#cb2-87"></a><span class="fu">### Alucinacoes</span></span>
+<span id="cb2-88"><a href="#cb2-88"></a></span>
+<span id="cb2-89"><a href="#cb2-89"></a>A IA pode inventar funcoes que nao existem, parametros incorretos ou bibliotecas ficticias. Isso e chamado de **alucinacao**.</span>
+<span id="cb2-90"><a href="#cb2-90"></a></span>
+<span id="cb2-91"><a href="#cb2-91"></a>**Como detectar:**</span>
+<span id="cb2-92"><a href="#cb2-92"></a></span>
+<span id="cb2-93"><a href="#cb2-93"></a><span class="ss">- </span>Se uma funcao parece muito conveniente e voce nunca ouviu falar dela, verifique na documentacao oficial</span>
+<span id="cb2-94"><a href="#cb2-94"></a><span class="ss">- </span>Execute o codigo --- se der erro de "funcao nao encontrada", provavelmente foi inventada</span>
+<span id="cb2-95"><a href="#cb2-95"></a><span class="ss">- </span>Desconfie de bibliotecas com nomes muito especificos que voce nao conhece</span>
+<span id="cb2-96"><a href="#cb2-96"></a></span>
+<span id="cb2-97"><a href="#cb2-97"></a><span class="fu">### Resultados numericos incorretos</span></span>
+<span id="cb2-98"><a href="#cb2-98"></a></span>
+<span id="cb2-99"><a href="#cb2-99"></a>A IA pode aplicar a formula errada ou usar parametros estatisticos trocados (ex: usar desvio padrao populacional quando deveria ser amostral).</span>
+<span id="cb2-100"><a href="#cb2-100"></a></span>
+<span id="cb2-101"><a href="#cb2-101"></a>**Como verificar:**</span>
+<span id="cb2-102"><a href="#cb2-102"></a></span>
+<span id="cb2-103"><a href="#cb2-103"></a><span class="ss">- </span>Calcule exemplos simples na mao e compare com o resultado do codigo</span>
+<span id="cb2-104"><a href="#cb2-104"></a><span class="ss">- </span>Verifique se a funcao usa <span class="in">`ddof=1`</span> (Python) ou <span class="in">`na.rm = TRUE`</span> (R) quando necessario</span>
+<span id="cb2-105"><a href="#cb2-105"></a><span class="ss">- </span>Confira a interpretacao dos resultados com o material do curso</span>
+<span id="cb2-106"><a href="#cb2-106"></a></span>
+<span id="cb2-107"><a href="#cb2-107"></a><span class="fu">### Codigo funcional mas ineficiente</span></span>
+<span id="cb2-108"><a href="#cb2-108"></a></span>
+<span id="cb2-109"><a href="#cb2-109"></a>A IA pode gerar codigo que funciona, mas que usa loops desnecessarios onde operacoes vetorizadas seriam mais apropriadas. Isso e especialmente relevante em R e Python com grandes volumes de dados.</span>
+<span id="cb2-110"><a href="#cb2-110"></a></span>
+<span id="cb2-111"><a href="#cb2-111"></a>::: {.callout-warning}</span>
+<span id="cb2-112"><a href="#cb2-112"></a><span class="fu">## Regra de ouro</span></span>
+<span id="cb2-113"><a href="#cb2-113"></a>**Sempre execute o codigo gerado pela IA e verifique os resultados antes de usa-los em qualquer trabalho ou relatorio.** Nunca confie cegamente na saida de uma IA.</span>
+<span id="cb2-114"><a href="#cb2-114"></a>:::</span>
+<span id="cb2-115"><a href="#cb2-115"></a></span>
+<span id="cb2-116"><a href="#cb2-116"></a><span class="fu">## Ferramentas recomendadas</span></span>
+<span id="cb2-117"><a href="#cb2-117"></a></span>
+<span id="cb2-118"><a href="#cb2-118"></a><span class="pp">|</span> Ferramenta <span class="pp">|</span> Tipo <span class="pp">|</span> Acesso <span class="pp">|</span> Melhor para <span class="pp">|</span></span>
+<span id="cb2-119"><a href="#cb2-119"></a><span class="pp">|:-----------|:-----|:-------|:------------|</span></span>
+<span id="cb2-120"><a href="#cb2-120"></a><span class="pp">|</span> **ChatGPT** (OpenAI) <span class="pp">|</span> Chatbot <span class="pp">|</span> Web / App <span class="pp">|</span> Perguntas gerais, explicacoes, geracao de codigo <span class="pp">|</span></span>
+<span id="cb2-121"><a href="#cb2-121"></a><span class="pp">|</span> **Claude** (Anthropic) <span class="pp">|</span> Chatbot <span class="pp">|</span> Web / App / API <span class="pp">|</span> Analise detalhada, codigo longo, raciocinio estatistico <span class="pp">|</span></span>
+<span id="cb2-122"><a href="#cb2-122"></a><span class="pp">|</span> **Claude Code** <span class="pp">|</span> CLI <span class="pp">|</span> Terminal <span class="pp">|</span> Projetos maiores, edicao de arquivos, automacao <span class="pp">|</span></span>
+<span id="cb2-123"><a href="#cb2-123"></a><span class="pp">|</span> **GitHub Copilot** <span class="pp">|</span> Autocompletar <span class="pp">|</span> VS Code / RStudio <span class="pp">|</span> Sugestoes em tempo real enquanto programa <span class="pp">|</span></span>
+<span id="cb2-124"><a href="#cb2-124"></a><span class="pp">|</span> **Google Gemini** <span class="pp">|</span> Chatbot <span class="pp">|</span> Web / Colab <span class="pp">|</span> Integracao com Google Colab e dados Google <span class="pp">|</span></span>
+<span id="cb2-125"><a href="#cb2-125"></a></span>
+<span id="cb2-126"><a href="#cb2-126"></a>: Ferramentas de IA para Programacao {.striped .hover}</span>
+<span id="cb2-127"><a href="#cb2-127"></a></span>
+<span id="cb2-128"><a href="#cb2-128"></a>::: {.callout-tip}</span>
+<span id="cb2-129"><a href="#cb2-129"></a><span class="fu">## Dica</span></span>
+<span id="cb2-130"><a href="#cb2-130"></a>Para estudantes, o **ChatGPT** e o **Claude** oferecem versoes gratuitas que sao mais do que suficientes para as tarefas deste livro. O **GitHub Copilot** e gratuito para estudantes com o <span class="co">[</span><span class="ot">GitHub Student Developer Pack</span><span class="co">](https://education.github.com/pack)</span>.</span>
+<span id="cb2-131"><a href="#cb2-131"></a>:::</span>
+<span id="cb2-132"><a href="#cb2-132"></a></span>
+<span id="cb2-133"><a href="#cb2-133"></a><span class="fu">## Etica e integridade academica</span></span>
+<span id="cb2-134"><a href="#cb2-134"></a></span>
+<span id="cb2-135"><a href="#cb2-135"></a>O uso de IA na vida academica levanta questoes importantes que voce deve considerar:</span>
+<span id="cb2-136"><a href="#cb2-136"></a></span>
+<span id="cb2-137"><a href="#cb2-137"></a><span class="fu">### O que e aceitavel</span></span>
+<span id="cb2-138"><a href="#cb2-138"></a></span>
+<span id="cb2-139"><a href="#cb2-139"></a><span class="ss">- </span>Usar IA para **aprender**: pedir explicacoes, exemplos, analogias</span>
+<span id="cb2-140"><a href="#cb2-140"></a><span class="ss">- </span>Usar IA para **depurar**: encontrar erros no seu codigo</span>
+<span id="cb2-141"><a href="#cb2-141"></a><span class="ss">- </span>Usar IA para **consultar sintaxe**: lembrar como usar uma funcao especifica</span>
+<span id="cb2-142"><a href="#cb2-142"></a><span class="ss">- </span>Usar IA como **ponto de partida**: gerar um esqueleto de codigo que voce entende e modifica</span>
+<span id="cb2-143"><a href="#cb2-143"></a></span>
+<span id="cb2-144"><a href="#cb2-144"></a><span class="fu">### O que exige cuidado</span></span>
+<span id="cb2-145"><a href="#cb2-145"></a></span>
+<span id="cb2-146"><a href="#cb2-146"></a><span class="ss">- </span>**Copiar codigo sem entender**: se voce nao consegue explicar o que cada linha faz, voce nao aprendeu</span>
+<span id="cb2-147"><a href="#cb2-147"></a><span class="ss">- </span>**Nao citar o uso de IA**: em trabalhos academicos, seja transparente sobre o uso de ferramentas de IA</span>
+<span id="cb2-148"><a href="#cb2-148"></a><span class="ss">- </span>**Usar IA em avaliacoes**: respeite as regras do seu professor e da sua instituicao --- cada disciplina pode ter politicas diferentes</span>
+<span id="cb2-149"><a href="#cb2-149"></a><span class="ss">- </span>**Confiar cegamente**: resultados de IA podem estar errados, especialmente em interpretacoes estatisticas</span>
+<span id="cb2-150"><a href="#cb2-150"></a></span>
+<span id="cb2-151"><a href="#cb2-151"></a><span class="fu">### Recomendacoes gerais</span></span>
+<span id="cb2-152"><a href="#cb2-152"></a></span>
+<span id="cb2-153"><a href="#cb2-153"></a><span class="ss">1. </span>**Transparencia**: sempre informe ao professor quando usar IA em trabalhos</span>
+<span id="cb2-154"><a href="#cb2-154"></a><span class="ss">2. </span>**Compreensao**: so use codigo que voce consegue explicar</span>
+<span id="cb2-155"><a href="#cb2-155"></a><span class="ss">3. </span>**Verificacao**: sempre confira os resultados com calculos manuais ou fontes confiaveis</span>
+<span id="cb2-156"><a href="#cb2-156"></a><span class="ss">4. </span>**Aprendizado**: use a IA como **tutora**, nao como **substituta**</span>
+<span id="cb2-157"><a href="#cb2-157"></a></span>
+<span id="cb2-158"><a href="#cb2-158"></a>::: {.callout-note}</span>
+<span id="cb2-159"><a href="#cb2-159"></a><span class="fu">## Sobre este livro</span></span>
+<span id="cb2-160"><a href="#cb2-160"></a>Este proprio livro foi desenvolvido com o auxilio de IA (Claude Code), demonstrando na pratica o uso etico e produtivo dessas ferramentas. Todo o conteudo foi revisado e validado pelo autor, que utilizou a IA como ferramenta de produtividade para redigir, formatar e organizar o material, sempre mantendo o controle sobre o conteudo tecnico e pedagogico.</span>
+<span id="cb2-161"><a href="#cb2-161"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

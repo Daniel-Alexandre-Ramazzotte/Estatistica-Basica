@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Appendix D — Tutorial: Quarto, Git e Claude Code – Introdução Interativa a Estatística</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./E-creditos.html" rel="next">
+<link href="./C-dicas-ia.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b3f80ded633a4b03819b857cd65b3e20.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-1a3689cc98e0e4eddf3991c613569ec9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A-intro-r.html">Appendices</a></li><li class="breadcrumb-item"><a href="./D-quarto-git-tutorial.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Tutorial: Quarto, Git e Claude Code</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introdução Interativa a Estatística</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/danielramazzotte/Estatistica-Basica" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Estatística Descritiva</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-probabilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probabilidade</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferência Estatística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-regressao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão Linear Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A-intro-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Introducao ao R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./B-intro-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Introducao ao Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./C-dicas-ia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Dicas de Geracao de Codigo com IA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./D-quarto-git-tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Tutorial: Quarto, Git e Claude Code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./E-creditos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Créditos e Agradecimentos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-e-quarto" id="toc-o-que-e-quarto" class="nav-link active" data-scroll-target="#o-que-e-quarto"><span class="header-section-number">D.1</span> O que e Quarto?</a>
+  <ul>
+  <li><a href="#por-que-usar-quarto" id="toc-por-que-usar-quarto" class="nav-link" data-scroll-target="#por-que-usar-quarto"><span class="header-section-number">D.1.1</span> Por que usar Quarto?</a></li>
+  <li><a href="#arquivos-.qmd" id="toc-arquivos-.qmd" class="nav-link" data-scroll-target="#arquivos-.qmd"><span class="header-section-number">D.1.2</span> Arquivos <code>.qmd</code></a></li>
+  <li><a href="#yaml-front-matter" id="toc-yaml-front-matter" class="nav-link" data-scroll-target="#yaml-front-matter"><span class="header-section-number">D.1.3</span> YAML front matter</a></li>
+  <li><a href="#code-chunks-blocos-de-codigo" id="toc-code-chunks-blocos-de-codigo" class="nav-link" data-scroll-target="#code-chunks-blocos-de-codigo"><span class="header-section-number">D.1.4</span> Code chunks (blocos de codigo)</a></li>
+  <li><a href="#comandos-essenciais" id="toc-comandos-essenciais" class="nav-link" data-scroll-target="#comandos-essenciais"><span class="header-section-number">D.1.5</span> Comandos essenciais</a></li>
+  <li><a href="#instalacao" id="toc-instalacao" class="nav-link" data-scroll-target="#instalacao"><span class="header-section-number">D.1.6</span> Instalacao</a></li>
+  </ul></li>
+  <li><a href="#o-que-e-git" id="toc-o-que-e-git" class="nav-link" data-scroll-target="#o-que-e-git"><span class="header-section-number">D.2</span> O que e Git?</a>
+  <ul>
+  <li><a href="#por-que-usar-git" id="toc-por-que-usar-git" class="nav-link" data-scroll-target="#por-que-usar-git"><span class="header-section-number">D.2.1</span> Por que usar Git?</a></li>
+  <li><a href="#conceitos-fundamentais" id="toc-conceitos-fundamentais" class="nav-link" data-scroll-target="#conceitos-fundamentais"><span class="header-section-number">D.2.2</span> Conceitos fundamentais</a></li>
+  </ul></li>
+  <li><a href="#workflow-basico-do-git" id="toc-workflow-basico-do-git" class="nav-link" data-scroll-target="#workflow-basico-do-git"><span class="header-section-number">D.3</span> Workflow Basico do Git</a>
+  <ul>
+  <li><a href="#instalacao-1" id="toc-instalacao-1" class="nav-link" data-scroll-target="#instalacao-1"><span class="header-section-number">D.3.1</span> Instalacao</a></li>
+  <li><a href="#iniciando-um-repositorio" id="toc-iniciando-um-repositorio" class="nav-link" data-scroll-target="#iniciando-um-repositorio"><span class="header-section-number">D.3.2</span> Iniciando um repositorio</a></li>
+  <li><a href="#o-ciclo-basico-add-commit" id="toc-o-ciclo-basico-add-commit" class="nav-link" data-scroll-target="#o-ciclo-basico-add-commit"><span class="header-section-number">D.3.3</span> O ciclo basico: add, commit</a></li>
+  <li><a href="#verificando-o-historico" id="toc-verificando-o-historico" class="nav-link" data-scroll-target="#verificando-o-historico"><span class="header-section-number">D.3.4</span> Verificando o historico</a></li>
+  <li><a href="#enviando-e-recebendo-do-remoto" id="toc-enviando-e-recebendo-do-remoto" class="nav-link" data-scroll-target="#enviando-e-recebendo-do-remoto"><span class="header-section-number">D.3.5</span> Enviando e recebendo do remoto</a></li>
+  <li><a href="#o-arquivo-.gitignore" id="toc-o-arquivo-.gitignore" class="nav-link" data-scroll-target="#o-arquivo-.gitignore"><span class="header-section-number">D.3.6</span> O arquivo <code>.gitignore</code></a></li>
+  </ul></li>
+  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches"><span class="header-section-number">D.4</span> Branches</a>
+  <ul>
+  <li><a href="#o-que-sao-branches" id="toc-o-que-sao-branches" class="nav-link" data-scroll-target="#o-que-sao-branches"><span class="header-section-number">D.4.1</span> O que sao branches?</a></li>
+  <li><a href="#comandos-essenciais-1" id="toc-comandos-essenciais-1" class="nav-link" data-scroll-target="#comandos-essenciais-1"><span class="header-section-number">D.4.2</span> Comandos essenciais</a></li>
+  <li><a href="#quando-usar-branches" id="toc-quando-usar-branches" class="nav-link" data-scroll-target="#quando-usar-branches"><span class="header-section-number">D.4.3</span> Quando usar branches?</a></li>
+  </ul></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">D.5</span> GitHub</a>
+  <ul>
+  <li><a href="#criando-um-repositorio-no-github" id="toc-criando-um-repositorio-no-github" class="nav-link" data-scroll-target="#criando-um-repositorio-no-github"><span class="header-section-number">D.5.1</span> Criando um repositorio no GitHub</a></li>
+  <li><a href="#conectando-o-repositorio-local-ao-remoto" id="toc-conectando-o-repositorio-local-ao-remoto" class="nav-link" data-scroll-target="#conectando-o-repositorio-local-ao-remoto"><span class="header-section-number">D.5.2</span> Conectando o repositorio local ao remoto</a></li>
+  <li><a href="#pull-requests" id="toc-pull-requests" class="nav-link" data-scroll-target="#pull-requests"><span class="header-section-number">D.5.3</span> Pull Requests</a></li>
+  </ul></li>
+  <li><a href="#o-que-e-claude-code" id="toc-o-que-e-claude-code" class="nav-link" data-scroll-target="#o-que-e-claude-code"><span class="header-section-number">D.6</span> O que e Claude Code?</a>
+  <ul>
+  <li><a href="#por-que-usar-claude-code" id="toc-por-que-usar-claude-code" class="nav-link" data-scroll-target="#por-que-usar-claude-code"><span class="header-section-number">D.6.1</span> Por que usar Claude Code?</a></li>
+  <li><a href="#instalacao-2" id="toc-instalacao-2" class="nav-link" data-scroll-target="#instalacao-2"><span class="header-section-number">D.6.2</span> Instalacao</a></li>
+  <li><a href="#uso-basico" id="toc-uso-basico" class="nav-link" data-scroll-target="#uso-basico"><span class="header-section-number">D.6.3</span> Uso basico</a></li>
+  <li><a href="#exemplos-de-prompts-para-tarefas-estatisticas" id="toc-exemplos-de-prompts-para-tarefas-estatisticas" class="nav-link" data-scroll-target="#exemplos-de-prompts-para-tarefas-estatisticas"><span class="header-section-number">D.6.4</span> Exemplos de prompts para tarefas estatisticas</a></li>
+  <li><a href="#boas-praticas-com-claude-code" id="toc-boas-praticas-com-claude-code" class="nav-link" data-scroll-target="#boas-praticas-com-claude-code"><span class="header-section-number">D.6.5</span> Boas praticas com Claude Code</a></li>
+  </ul></li>
+  <li><a href="#como-este-livro-foi-feito" id="toc-como-este-livro-foi-feito" class="nav-link" data-scroll-target="#como-este-livro-foi-feito"><span class="header-section-number">D.7</span> Como este livro foi feito</a>
+  <ul>
+  <li><a href="#estrutura-do-projeto" id="toc-estrutura-do-projeto" class="nav-link" data-scroll-target="#estrutura-do-projeto"><span class="header-section-number">D.7.1</span> Estrutura do projeto</a></li>
+  <li><a href="#identidade-visual" id="toc-identidade-visual" class="nav-link" data-scroll-target="#identidade-visual"><span class="header-section-number">D.7.2</span> Identidade visual</a></li>
+  <li><a href="#banco-de-questoes" id="toc-banco-de-questoes" class="nav-link" data-scroll-target="#banco-de-questoes"><span class="header-section-number">D.7.3</span> Banco de questoes</a></li>
+  <li><a href="#o-papel-do-claude-code" id="toc-o-papel-do-claude-code" class="nav-link" data-scroll-target="#o-papel-do-claude-code"><span class="header-section-number">D.7.4</span> O papel do Claude Code</a></li>
+  <li><a href="#seu-proximo-projeto" id="toc-seu-proximo-projeto" class="nav-link" data-scroll-target="#seu-proximo-projeto"><span class="header-section-number">D.7.5</span> Seu proximo projeto</a></li>
+  <li><a href="#recursos-adicionais" id="toc-recursos-adicionais" class="nav-link" data-scroll-target="#recursos-adicionais"><span class="header-section-number">D.7.6</span> Recursos adicionais</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./A-intro-r.html">Appendices</a></li><li class="breadcrumb-item"><a href="./D-quarto-git-tutorial.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Tutorial: Quarto, Git e Claude Code</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="apendice-tutorial" class="quarto-section-identifier">Appendix D — Tutorial: Quarto, Git e Claude Code</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Este apendice apresenta as tres ferramentas fundamentais usadas na construcao deste livro: <strong>Quarto</strong> (publicacao cientifica), <strong>Git</strong> (controle de versao) e <strong>Claude Code</strong> (assistencia de IA via terminal). O objetivo e que voce, estudante, possa usar essas mesmas ferramentas nos seus proprios projetos academicos e profissionais.</p>
+<section id="o-que-e-quarto" class="level2" data-number="D.1">
+<h2 data-number="D.1" class="anchored" data-anchor-id="o-que-e-quarto"><span class="header-section-number">D.1</span> O que e Quarto?</h2>
+<p>Quarto e um sistema de publicacao cientifica e tecnica de codigo aberto, desenvolvido pela Posit (antiga RStudio). Ele permite que voce escreva documentos que combinam <strong>texto</strong>, <strong>formulas matematicas</strong> e <strong>codigo executavel</strong> em um unico arquivo.</p>
+<section id="por-que-usar-quarto" class="level3" data-number="D.1.1">
+<h3 data-number="D.1.1" class="anchored" data-anchor-id="por-que-usar-quarto"><span class="header-section-number">D.1.1</span> Por que usar Quarto?</h3>
+<ul>
+<li><strong>Reprodutibilidade</strong>: o documento e o codigo vivem juntos, garantindo que qualquer pessoa consiga reproduzir suas analises.</li>
+<li><strong>Multiplos formatos</strong>: a partir de um unico arquivo fonte, voce pode gerar HTML, PDF, Word, slides e ate livros inteiros.</li>
+<li><strong>Multiplas linguagens</strong>: suporta R, Python, Julia e Observable JS.</li>
+<li><strong>Gratuito e de codigo aberto</strong>: disponivel em <a href="https://quarto.org">quarto.org</a>.</li>
+</ul>
+</section>
+<section id="arquivos-.qmd" class="level3" data-number="D.1.2">
+<h3 data-number="D.1.2" class="anchored" data-anchor-id="arquivos-.qmd"><span class="header-section-number">D.1.2</span> Arquivos <code>.qmd</code></h3>
+<p>Os arquivos Quarto tem a extensao <code>.qmd</code> (Quarto Markdown). Eles combinam tres elementos:</p>
+<ol type="1">
+<li><strong>YAML front matter</strong> — metadados no topo do arquivo</li>
+<li><strong>Markdown</strong> — texto formatado</li>
+<li><strong>Code chunks</strong> — blocos de codigo executavel</li>
+</ol>
+<p>Veja um exemplo minimo de arquivo <code>.qmd</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> "Minha Analise"</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="an">author:</span><span class="co"> "Seu Nome"</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">## Introducao</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>Este e um documento Quarto. Podemos incluir **negrito**, *italico* e formulas como $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$.</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="in">```{r}</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># Codigo em R</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">mean</span>(dados)</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="in">```</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="in">```{python}</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># Codigo em Python</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-20"><a href="#cb1-20"></a>dados <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="bu">print</span>(np.mean(dados))</span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="yaml-front-matter" class="level3" data-number="D.1.3">
+<h3 data-number="D.1.3" class="anchored" data-anchor-id="yaml-front-matter"><span class="header-section-number">D.1.3</span> YAML front matter</h3>
+<p>O bloco YAML fica entre <code>---</code> no topo do arquivo e define configuracoes do documento:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Titulo do Documento"</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Seu Nome"</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-03-18"</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Algumas opcoes uteis:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Opcao</th>
+<th>Descricao</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>title</code></td>
+<td>Titulo do documento</td>
+</tr>
+<tr class="even">
+<td><code>author</code></td>
+<td>Autor(es)</td>
+</tr>
+<tr class="odd">
+<td><code>format</code></td>
+<td>Formato de saida (<code>html</code>, <code>pdf</code>, <code>docx</code>)</td>
+</tr>
+<tr class="even">
+<td><code>toc</code></td>
+<td>Gera sumario automatico</td>
+</tr>
+<tr class="odd">
+<td><code>number-sections</code></td>
+<td>Numera as secoes</td>
+</tr>
+<tr class="even">
+<td><code>code-fold</code></td>
+<td>Permite esconder/mostrar codigo</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="code-chunks-blocos-de-codigo" class="level3" data-number="D.1.4">
+<h3 data-number="D.1.4" class="anchored" data-anchor-id="code-chunks-blocos-de-codigo"><span class="header-section-number">D.1.4</span> Code chunks (blocos de codigo)</h3>
+<p>Para inserir um bloco de codigo executavel, use tres crases seguidas do nome da linguagem entre chaves:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># Este bloco sera executado em R</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">summary</span>(iris)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># Este bloco sera executado em Python</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-4"><a href="#cb4-4"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"dados.csv"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>df.describe()</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Voce tambem pode adicionar opcoes ao bloco:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#| label: fig-histograma</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#| fig-cap: "Distribuicao das idades"</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#| echo: true</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="fu">hist</span>(dados<span class="sc">$</span>idade, <span class="at">main =</span> <span class="st">"Histograma"</span>, <span class="at">xlab =</span> <span class="st">"Idade"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Opcoes uteis para code chunks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>#| echo: false</code> — esconde o codigo, mostra so o resultado</li>
+<li><code>#| eval: false</code> — mostra o codigo, mas nao executa</li>
+<li><code>#| warning: false</code> — suprime avisos</li>
+<li><code>#| fig-width: 8</code> — largura da figura em polegadas</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="comandos-essenciais" class="level3" data-number="D.1.5">
+<h3 data-number="D.1.5" class="anchored" data-anchor-id="comandos-essenciais"><span class="header-section-number">D.1.5</span> Comandos essenciais</h3>
+<p>Para <strong>renderizar</strong> o documento (gerar a saida HTML, PDF, etc.):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">quarto</span> render meu_documento.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para abrir uma <strong>pre-visualizacao</strong> que atualiza automaticamente enquanto voce edita:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">quarto</span> preview meu_documento.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para renderizar <strong>executando</strong> todos os blocos de codigo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">quarto</span> render meu_documento.qmd <span class="at">--execute</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="instalacao" class="level3" data-number="D.1.6">
+<h3 data-number="D.1.6" class="anchored" data-anchor-id="instalacao"><span class="header-section-number">D.1.6</span> Instalacao</h3>
+<ol type="1">
+<li>Acesse <a href="https://quarto.org/docs/get-started/">quarto.org/docs/get-started</a></li>
+<li>Baixe o instalador para o seu sistema operacional</li>
+<li>Siga as instrucoes de instalacao</li>
+<li>Verifique a instalacao no terminal:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Editores recomendados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O Quarto funciona bem com <strong>RStudio</strong>, <strong>VS Code</strong> (com a extensao Quarto) e ate editores de texto simples. Para quem ja usa R, o RStudio oferece a experiencia mais integrada.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-que-e-git" class="level2" data-number="D.2">
+<h2 data-number="D.2" class="anchored" data-anchor-id="o-que-e-git"><span class="header-section-number">D.2</span> O que e Git?</h2>
+<p>Git e um <strong>sistema de controle de versao</strong> — uma ferramenta que registra todas as alteracoes feitas nos seus arquivos ao longo do tempo. Pense nele como o “historico de versoes” do Google Docs, mas muito mais poderoso e projetado para projetos de codigo e texto.</p>
+<section id="por-que-usar-git" class="level3" data-number="D.2.1">
+<h3 data-number="D.2.1" class="anchored" data-anchor-id="por-que-usar-git"><span class="header-section-number">D.2.1</span> Por que usar Git?</h3>
+<ul>
+<li><strong>Historico completo</strong>: cada alteracao fica registrada. Voce pode voltar a qualquer versao anterior do projeto.</li>
+<li><strong>Colaboracao</strong>: varias pessoas podem trabalhar no mesmo projeto sem sobrescrever o trabalho umas das outras.</li>
+<li><strong>Backup distribuido</strong>: seu projeto pode existir em multiplos computadores e servidores (como o GitHub).</li>
+<li><strong>Experimentacao segura</strong>: voce pode criar “branches” para testar ideias sem afetar o projeto principal.</li>
+</ul>
+</section>
+<section id="conceitos-fundamentais" class="level3" data-number="D.2.2">
+<h3 data-number="D.2.2" class="anchored" data-anchor-id="conceitos-fundamentais"><span class="header-section-number">D.2.2</span> Conceitos fundamentais</h3>
+<p>Antes de usar os comandos, e importante entender alguns conceitos:</p>
+<dl>
+<dt><strong>Repositorio (repo)</strong></dt>
+<dd>
+Uma pasta do seu computador que esta sendo monitorada pelo Git. Contem todos os arquivos do projeto e o historico de alteracoes.
+</dd>
+<dt><strong>Commit</strong></dt>
+<dd>
+Um “ponto de salvamento” no historico. Cada commit registra quais arquivos mudaram, o que mudou, quem fez a mudanca e quando.
+</dd>
+<dt><strong>Branch (ramificacao)</strong></dt>
+<dd>
+Uma linha paralela de desenvolvimento. Permite que voce trabalhe em algo novo sem alterar a versao principal.
+</dd>
+<dt><strong>Remote (remoto)</strong></dt>
+<dd>
+Uma copia do repositorio em um servidor externo, como o GitHub. Serve para backup e colaboracao.
+</dd>
+<dt><strong>Staging area (area de preparacao)</strong></dt>
+<dd>
+Um espaco intermediario onde voce seleciona quais alteracoes farao parte do proximo commit.
+</dd>
+</dl>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Analogia: salvamento de jogo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pense no Git como um sistema de salvamento de um jogo de video game. Cada <strong>commit</strong> e um save. Voce pode ter saves em momentos diferentes, voltar a qualquer um deles e ate criar caminhos paralelos (branches) para explorar opcoes diferentes.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="workflow-basico-do-git" class="level2" data-number="D.3">
+<h2 data-number="D.3" class="anchored" data-anchor-id="workflow-basico-do-git"><span class="header-section-number">D.3</span> Workflow Basico do Git</h2>
+<section id="instalacao-1" class="level3" data-number="D.3.1">
+<h3 data-number="D.3.1" class="anchored" data-anchor-id="instalacao-1"><span class="header-section-number">D.3.1</span> Instalacao</h3>
+<ul>
+<li><strong>Windows</strong>: baixe em <a href="https://git-scm.com">git-scm.com</a> e instale</li>
+<li><strong>Mac</strong>: execute <code>xcode-select --install</code> no terminal ou baixe em <a href="https://git-scm.com">git-scm.com</a></li>
+<li><strong>Linux</strong>: <code>sudo apt install git</code> (Ubuntu/Debian) ou <code>sudo dnf install git</code> (Fedora)</li>
+</ul>
+<p>Apos instalar, configure seu nome e e-mail:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Seu Nome"</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"seu.email@exemplo.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="iniciando-um-repositorio" class="level3" data-number="D.3.2">
+<h3 data-number="D.3.2" class="anchored" data-anchor-id="iniciando-um-repositorio"><span class="header-section-number">D.3.2</span> Iniciando um repositorio</h3>
+<p>Para transformar uma pasta comum em um repositorio Git:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">mkdir</span> meu-projeto</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">cd</span> meu-projeto</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Voce vera a mensagem: <code>Initialized empty Git repository in .../meu-projeto/.git/</code></p>
+</section>
+<section id="o-ciclo-basico-add-commit" class="level3" data-number="D.3.3">
+<h3 data-number="D.3.3" class="anchored" data-anchor-id="o-ciclo-basico-add-commit"><span class="header-section-number">D.3.3</span> O ciclo basico: add, commit</h3>
+<p>O fluxo de trabalho mais comum no Git segue tres passos:</p>
+<ol type="1">
+<li><strong>Modificar</strong> arquivos normalmente</li>
+<li><strong>Adicionar</strong> as mudancas a area de preparacao (<code>git add</code>)</li>
+<li><strong>Confirmar</strong> as mudancas com uma mensagem (<code>git commit</code>)</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># 1. Verificar o estado atual</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">git</span> status</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># 2. Adicionar arquivos especificos</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">git</span> add analise.qmd dados.csv</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co"># Ou adicionar todos os arquivos modificados</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="fu">git</span> add .</span>
+<span id="cb12-9"><a href="#cb12-9"></a></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="co"># 3. Criar um commit com mensagem descritiva</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adiciona analise descritiva dos dados de vendas"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Boas mensagens de commit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Escreva mensagens que expliquem <strong>o que</strong> e <strong>por que</strong> voce fez a alteracao. Compare:</p>
+<ul>
+<li><strong>Ruim</strong>: <code>"alteracoes"</code>, <code>"update"</code>, <code>"fix"</code></li>
+<li><strong>Bom</strong>: <code>"Adiciona grafico de dispersao no capitulo 4"</code>, <code>"Corrige formula da variancia na secao 1.3"</code></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="verificando-o-historico" class="level3" data-number="D.3.4">
+<h3 data-number="D.3.4" class="anchored" data-anchor-id="verificando-o-historico"><span class="header-section-number">D.3.4</span> Verificando o historico</h3>
+<p>Para ver o estado atual dos arquivos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para ver o historico de commits:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">git</span> log</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co"># Versao compacta (uma linha por commit)</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="fu">git</span> log <span class="at">--oneline</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co"># Com grafico de branches</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="enviando-e-recebendo-do-remoto" class="level3" data-number="D.3.5">
+<h3 data-number="D.3.5" class="anchored" data-anchor-id="enviando-e-recebendo-do-remoto"><span class="header-section-number">D.3.5</span> Enviando e recebendo do remoto</h3>
+<p>Para enviar seus commits para o GitHub (ou outro servidor remoto):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Para baixar as alteracoes mais recentes do remoto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">git</span> pull origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="o-arquivo-.gitignore" class="level3" data-number="D.3.6">
+<h3 data-number="D.3.6" class="anchored" data-anchor-id="o-arquivo-.gitignore"><span class="header-section-number">D.3.6</span> O arquivo <code>.gitignore</code></h3>
+<p>O arquivo <code>.gitignore</code> diz ao Git quais arquivos e pastas ele deve <strong>ignorar</strong> — ou seja, nao rastrear. Isso e util para arquivos temporarios, dados sensiveis ou arquivos gerados automaticamente.</p>
+<p>Crie um arquivo chamado <code>.gitignore</code> na raiz do projeto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb17-1"><a href="#cb17-1"></a># Arquivos gerados pelo Quarto</span>
+<span id="cb17-2"><a href="#cb17-2"></a>_book/</span>
+<span id="cb17-3"><a href="#cb17-3"></a>_freeze/</span>
+<span id="cb17-4"><a href="#cb17-4"></a>*.html</span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a># Arquivos temporarios do R</span>
+<span id="cb17-7"><a href="#cb17-7"></a>.Rhistory</span>
+<span id="cb17-8"><a href="#cb17-8"></a>.RData</span>
+<span id="cb17-9"><a href="#cb17-9"></a>.Rproj.user/</span>
+<span id="cb17-10"><a href="#cb17-10"></a></span>
+<span id="cb17-11"><a href="#cb17-11"></a># Arquivos do sistema</span>
+<span id="cb17-12"><a href="#cb17-12"></a>.DS_Store</span>
+<span id="cb17-13"><a href="#cb17-13"></a>Thumbs.db</span>
+<span id="cb17-14"><a href="#cb17-14"></a></span>
+<span id="cb17-15"><a href="#cb17-15"></a># Dados sensiveis</span>
+<span id="cb17-16"><a href="#cb17-16"></a>.env</span>
+<span id="cb17-17"><a href="#cb17-17"></a>senhas.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Regra de ouro do <code>.gitignore</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nunca versione arquivos que podem ser <strong>gerados automaticamente</strong> (como <code>_book/</code>) ou que contem <strong>informacoes sensiveis</strong> (como senhas e tokens de API).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="branches" class="level2" data-number="D.4">
+<h2 data-number="D.4" class="anchored" data-anchor-id="branches"><span class="header-section-number">D.4</span> Branches</h2>
+<section id="o-que-sao-branches" class="level3" data-number="D.4.1">
+<h3 data-number="D.4.1" class="anchored" data-anchor-id="o-que-sao-branches"><span class="header-section-number">D.4.1</span> O que sao branches?</h3>
+<p>Branches (ramificacoes) permitem que voce desenvolva funcionalidades novas em paralelo, sem afetar o codigo principal. Imagine que a branch <code>main</code> e a versao “oficial” do projeto. Voce cria uma branch separada para trabalhar em algo novo e, quando terminar, junta tudo de volta.</p>
+</section>
+<section id="comandos-essenciais-1" class="level3" data-number="D.4.2">
+<h3 data-number="D.4.2" class="anchored" data-anchor-id="comandos-essenciais-1"><span class="header-section-number">D.4.2</span> Comandos essenciais</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Ver todas as branches</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">git</span> branch</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="co"># Criar uma nova branch</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">git</span> branch minha-feature</span>
+<span id="cb18-6"><a href="#cb18-6"></a></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="co"># Mudar para a nova branch</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="fu">git</span> checkout minha-feature</span>
+<span id="cb18-9"><a href="#cb18-9"></a></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="co"># Atalho: criar e mudar ao mesmo tempo</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="fu">git</span> checkout <span class="at">-b</span> minha-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Apos fazer seus commits na branch, voce pode juntar (merge) com a branch principal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Voltar para a main</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">git</span> checkout main</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># Juntar a branch</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="fu">git</span> merge minha-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="quando-usar-branches" class="level3" data-number="D.4.3">
+<h3 data-number="D.4.3" class="anchored" data-anchor-id="quando-usar-branches"><span class="header-section-number">D.4.3</span> Quando usar branches?</h3>
+<ul>
+<li>Ao desenvolver uma <strong>nova funcionalidade</strong> (ex: um novo capitulo do livro)</li>
+<li>Ao fazer uma <strong>correcao de bug</strong> que pode demorar</li>
+<li>Ao <strong>experimentar</strong> algo que talvez nao va pro projeto final</li>
+<li>Ao <strong>colaborar</strong>: cada pessoa trabalha em sua branch</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Nomes de branches
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use nomes descritivos e curtos, separados por hifen:</p>
+<ul>
+<li><code>capitulo-05-anova</code></li>
+<li><code>corrige-formulas-cap3</code></li>
+<li><code>melhora-graficos</code></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="github" class="level2" data-number="D.5">
+<h2 data-number="D.5" class="anchored" data-anchor-id="github"><span class="header-section-number">D.5</span> GitHub</h2>
+<p>O <a href="https://github.com">GitHub</a> e uma plataforma online que hospeda repositorios Git. Ele funciona como um “Google Drive para codigo”, mas com todas as vantagens do Git integradas.</p>
+<section id="criando-um-repositorio-no-github" class="level3" data-number="D.5.1">
+<h3 data-number="D.5.1" class="anchored" data-anchor-id="criando-um-repositorio-no-github"><span class="header-section-number">D.5.1</span> Criando um repositorio no GitHub</h3>
+<ol type="1">
+<li>Faca login em <a href="https://github.com">github.com</a></li>
+<li>Clique em <strong>“New repository”</strong> (ou o botao <strong>+</strong> no canto superior direito)</li>
+<li>Escolha um nome (ex: <code>minha-analise-estatistica</code>)</li>
+<li>Escolha entre publico ou privado</li>
+<li>Clique em <strong>“Create repository”</strong></li>
+</ol>
+</section>
+<section id="conectando-o-repositorio-local-ao-remoto" class="level3" data-number="D.5.2">
+<h3 data-number="D.5.2" class="anchored" data-anchor-id="conectando-o-repositorio-local-ao-remoto"><span class="header-section-number">D.5.2</span> Conectando o repositorio local ao remoto</h3>
+<p>Se voce ja tem um repositorio local e criou um repositorio vazio no GitHub:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Adicionar o GitHub como remoto</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">git</span> remote add origin https://github.com/seu-usuario/seu-repo.git</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># Enviar os commits pela primeira vez</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se voce quer <strong>baixar</strong> um repositorio que ja existe no GitHub:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">git</span> clone https://github.com/usuario/repositorio.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="pull-requests" class="level3" data-number="D.5.3">
+<h3 data-number="D.5.3" class="anchored" data-anchor-id="pull-requests"><span class="header-section-number">D.5.3</span> Pull Requests</h3>
+<p>Quando voce trabalha em uma branch e quer incorporar suas mudancas na branch principal, voce pode criar um <strong>Pull Request</strong> (PR) no GitHub. O PR permite que outras pessoas revisem seu codigo antes de aceita-lo.</p>
+<p>O fluxo e:</p>
+<ol type="1">
+<li>Crie uma branch e faca seus commits</li>
+<li>Envie a branch para o GitHub: <code>git push origin minha-branch</code></li>
+<li>No GitHub, clique em <strong>“Compare &amp; pull request”</strong></li>
+<li>Descreva suas alteracoes e solicite revisao</li>
+<li>Apos aprovacao, faca o <strong>merge</strong> pelo GitHub</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>GitHub para estudantes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O GitHub oferece o <a href="https://education.github.com/pack">GitHub Student Developer Pack</a>, que inclui repositorios privados ilimitados e diversas ferramentas gratuitas para estudantes. Basta se cadastrar com seu e-mail academico.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="o-que-e-claude-code" class="level2" data-number="D.6">
+<h2 data-number="D.6" class="anchored" data-anchor-id="o-que-e-claude-code"><span class="header-section-number">D.6</span> O que e Claude Code?</h2>
+<p>Claude Code e uma ferramenta de <strong>assistencia de IA via linha de comando</strong> desenvolvida pela Anthropic. Diferente de interfaces web de chat, o Claude Code opera diretamente no seu terminal, com acesso ao sistema de arquivos e ao contexto do seu projeto.</p>
+<section id="por-que-usar-claude-code" class="level3" data-number="D.6.1">
+<h3 data-number="D.6.1" class="anchored" data-anchor-id="por-que-usar-claude-code"><span class="header-section-number">D.6.1</span> Por que usar Claude Code?</h3>
+<ul>
+<li><strong>Contexto do projeto</strong>: ele pode ler seus arquivos e entender a estrutura do projeto como um todo.</li>
+<li><strong>Execucao de comandos</strong>: pode rodar comandos no terminal (com sua permissao) para testar, compilar ou verificar o codigo.</li>
+<li><strong>Edicao de arquivos</strong>: pode criar e modificar arquivos diretamente, agilizando tarefas repetitivas.</li>
+<li><strong>Assistencia contextual</strong>: como ele enxerga todo o projeto, as sugestoes sao mais precisas do que em um chat generico.</li>
+</ul>
+</section>
+<section id="instalacao-2" class="level3" data-number="D.6.2">
+<h3 data-number="D.6.2" class="anchored" data-anchor-id="instalacao-2"><span class="header-section-number">D.6.2</span> Instalacao</h3>
+<p>Para instalar o Claude Code, voce precisa do Node.js (versao 18 ou superior):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Instalar o Claude Code globalmente</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co"># Verificar a instalacao</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="ex">claude</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="uso-basico" class="level3" data-number="D.6.3">
+<h3 data-number="D.6.3" class="anchored" data-anchor-id="uso-basico"><span class="header-section-number">D.6.3</span> Uso basico</h3>
+<p>Navegue ate a pasta do seu projeto e inicie o Claude Code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">cd</span> meu-projeto</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ao iniciar, o Claude Code le o contexto do projeto (incluindo um arquivo <code>CLAUDE.md</code>, se existir) e esta pronto para receber instrucoes.</p>
+</section>
+<section id="exemplos-de-prompts-para-tarefas-estatisticas" class="level3" data-number="D.6.4">
+<h3 data-number="D.6.4" class="anchored" data-anchor-id="exemplos-de-prompts-para-tarefas-estatisticas"><span class="header-section-number">D.6.4</span> Exemplos de prompts para tarefas estatisticas</h3>
+<p>Aqui estao exemplos de como pedir ajuda ao Claude Code em tarefas de programacao estatistica:</p>
+<p><strong>Criar um grafico:</strong></p>
+<pre><code>&gt; Crie um grafico de dispersao com os dados do arquivo dados/vendas.csv,
+  usando ggplot2, com titulo em portugues e a identidade visual PROPET.</code></pre>
+<p><strong>Escrever uma funcao:</strong></p>
+<pre><code>&gt; Escreva uma funcao em R que calcule o intervalo de confianca para a
+  media de uma amostra, recebendo o vetor de dados e o nivel de confianca.</code></pre>
+<p><strong>Depurar um erro:</strong></p>
+<pre><code>&gt; O chunk de R no arquivo 03-inferencia.qmd esta dando erro na linha 145.
+  Pode verificar o que esta errado?</code></pre>
+<p><strong>Converter codigo:</strong></p>
+<pre><code>&gt; Converta o codigo R do chunk "analise-descritiva" no capitulo 1
+  para Python usando pandas e matplotlib.</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>O arquivo <code>CLAUDE.md</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Crie um arquivo <code>CLAUDE.md</code> na raiz do seu projeto com instrucoes sobre a estrutura do projeto, comandos de build e convencoes. O Claude Code le esse arquivo automaticamente e usa as informacoes para dar respostas mais precisas.</p>
+</div>
+</div>
+</section>
+<section id="boas-praticas-com-claude-code" class="level3" data-number="D.6.5">
+<h3 data-number="D.6.5" class="anchored" data-anchor-id="boas-praticas-com-claude-code"><span class="header-section-number">D.6.5</span> Boas praticas com Claude Code</h3>
+<ol type="1">
+<li><strong>Seja especifico</strong>: quanto mais contexto voce fornecer, melhor a resposta.</li>
+<li><strong>Revise o codigo gerado</strong>: sempre confira se o resultado faz sentido estatisticamente.</li>
+<li><strong>Use iterativamente</strong>: comece com algo simples e va refinando com novas instrucoes.</li>
+<li><strong>Aproveite o contexto do projeto</strong>: referencia arquivos e funcoes pelo nome — o Claude Code consegue encontra-los.</li>
+</ol>
+</section>
+</section>
+<section id="como-este-livro-foi-feito" class="level2" data-number="D.7">
+<h2 data-number="D.7" class="anchored" data-anchor-id="como-este-livro-foi-feito"><span class="header-section-number">D.7</span> Como este livro foi feito</h2>
+<p>Este livro — <em>Introducao Interativa a Estatistica</em> — foi construido combinando as tres ferramentas apresentadas neste apendice. Entender como ele foi feito pode inspirar voce a criar seus proprios materiais.</p>
+<section id="estrutura-do-projeto" class="level3" data-number="D.7.1">
+<h3 data-number="D.7.1" class="anchored" data-anchor-id="estrutura-do-projeto"><span class="header-section-number">D.7.1</span> Estrutura do projeto</h3>
+<p>O livro e um <strong>Quarto Book</strong>, um formato especial do Quarto para documentos longos com multiplos capitulos. A configuracao fica no arquivo <code>_quarto.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="fu">book</span><span class="kw">:</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Introducao Interativa a Estatistica"</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="at">  </span><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Daniel Alexandre Ramazzotte"</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a><span class="at">    </span><span class="kw">-</span><span class="at"> 01-descritiva.qmd</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a><span class="at">    </span><span class="kw">-</span><span class="at"> 02-probabilidade.qmd</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a><span class="at">    </span><span class="kw">-</span><span class="at"> 03-inferencia.qmd</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="at">    </span><span class="kw">-</span><span class="at"> 04-regressao.qmd</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a><span class="at">  </span><span class="fu">appendices</span><span class="kw">:</span></span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> A-intro-r.qmd</span></span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="at">    </span><span class="kw">-</span><span class="at"> B-intro-python.qmd</span></span>
+<span id="cb28-16"><a href="#cb28-16"></a><span class="at">    </span><span class="kw">-</span><span class="at"> C-dicas-ia.qmd</span></span>
+<span id="cb28-17"><a href="#cb28-17"></a><span class="at">    </span><span class="kw">-</span><span class="at"> D-quarto-git-tutorial.qmd</span></span>
+<span id="cb28-18"><a href="#cb28-18"></a><span class="at">    </span><span class="kw">-</span><span class="at"> E-creditos.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cada capitulo e um arquivo <code>.qmd</code> independente, o que facilita a organizacao e a colaboracao.</p>
+</section>
+<section id="identidade-visual" class="level3" data-number="D.7.2">
+<h3 data-number="D.7.2" class="anchored" data-anchor-id="identidade-visual"><span class="header-section-number">D.7.2</span> Identidade visual</h3>
+<p>A identidade visual do PROPET DataSci foi aplicada via um arquivo <code>custom.scss</code> que personaliza cores, fontes e espacamentos:</p>
+<ul>
+<li><strong>Azul primario</strong>: <code>#448EE3</code></li>
+<li><strong>Azul escuro</strong>: <code>#2D4188</code></li>
+<li><strong>Texto claro</strong>: <code>#FCFCFC</code></li>
+<li><strong>Texto escuro</strong>: <code>#000000</code></li>
+</ul>
+<p>Esse arquivo SCSS e referenciado no <code>_quarto.yml</code> e aplicado automaticamente em toda a renderizacao HTML.</p>
+</section>
+<section id="banco-de-questoes" class="level3" data-number="D.7.3">
+<h3 data-number="D.7.3" class="anchored" data-anchor-id="banco-de-questoes"><span class="header-section-number">D.7.3</span> Banco de questoes</h3>
+<p>As 358 questoes de fixacao do livro foram organizadas em um <strong>banco de questoes estruturado</strong>. O fluxo foi:</p>
+<ol type="1">
+<li>As questoes foram escritas em um documento Markdown</li>
+<li>Um script Python (<code>parse_questoes.py</code>) fez o parsing do Markdown e gerou comandos SQL</li>
+<li>O banco de dados (MySQL/SQLite) armazena as questoes com metadados: capitulo, tema, dificuldade, tipo e alternativas</li>
+</ol>
+<p>Isso permite filtrar, sortear e reutilizar questoes de forma sistematica.</p>
+</section>
+<section id="o-papel-do-claude-code" class="level3" data-number="D.7.4">
+<h3 data-number="D.7.4" class="anchored" data-anchor-id="o-papel-do-claude-code"><span class="header-section-number">D.7.4</span> O papel do Claude Code</h3>
+<p>O Claude Code foi uma ferramenta central na construcao deste livro. Ele auxiliou em diversas tarefas:</p>
+<ul>
+<li><strong>Escrita e organizacao</strong> dos capitulos, mantendo consistencia de estilo e terminologia</li>
+<li><strong>Geracao de codigo</strong> R e Python para os exemplos e exercicios</li>
+<li><strong>Criacao do parser</strong> de questoes (Markdown para SQL)</li>
+<li><strong>Depuracao</strong> de erros no Quarto e nos scripts</li>
+<li><strong>Revisao</strong> de formulas e explicacoes estatisticas</li>
+</ul>
+<p>Isso nao significa que a IA fez o trabalho sozinha — todas as decisoes pedagogicas, a selecao de conteudo e a verificacao de corretude foram feitas pelo autor. O Claude Code funcionou como um <strong>assistente qualificado</strong> que acelerou o processo.</p>
+</section>
+<section id="seu-proximo-projeto" class="level3" data-number="D.7.5">
+<h3 data-number="D.7.5" class="anchored" data-anchor-id="seu-proximo-projeto"><span class="header-section-number">D.7.5</span> Seu proximo projeto</h3>
+<p>Agora que voce conhece essas ferramentas, aqui vai uma sugestao de como comecar seu proprio projeto:</p>
+<ol type="1">
+<li><strong>Instale</strong> o Quarto, o Git e o Claude Code</li>
+<li><strong>Crie</strong> um repositorio Git para o seu projeto</li>
+<li><strong>Inicie</strong> um documento <code>.qmd</code> com sua analise</li>
+<li><strong>Faca commits</strong> frequentes, com mensagens descritivas</li>
+<li><strong>Suba</strong> o repositorio para o GitHub</li>
+<li><strong>Use</strong> o Claude Code para ajudar com codigo e depuracao</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Comece simples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Voce nao precisa dominar tudo de uma vez. Comece com um unico arquivo <code>.qmd</code>, aprenda a renderizar, depois va adicionando Git e Claude Code conforme a necessidade. A pratica leva a fluencia.</p>
+</div>
+</div>
+</section>
+<section id="recursos-adicionais" class="level3" data-number="D.7.6">
+<h3 data-number="D.7.6" class="anchored" data-anchor-id="recursos-adicionais"><span class="header-section-number">D.7.6</span> Recursos adicionais</h3>
+<ul>
+<li><strong>Quarto</strong>: <a href="https://quarto.org/docs/guide/">quarto.org/docs/guide</a> — documentacao oficial</li>
+<li><strong>Git</strong>: <a href="https://git-scm.com/book/pt-br/">git-scm.com/book/pt-br</a> — livro Pro Git em portugues</li>
+<li><strong>GitHub</strong>: <a href="https://docs.github.com">docs.github.com</a> — documentacao oficial</li>
+<li><strong>Claude Code</strong>: <a href="https://docs.anthropic.com">docs.anthropic.com</a> — documentacao da Anthropic</li>
+<li><strong>R Markdown / Quarto</strong>: <a href="https://r4ds.hadley.nz">r4ds.hadley.nz</a> — R for Data Science (usa Quarto)</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./C-dicas-ia.html" class="pagination-link" aria-label="Dicas de Geracao de Codigo com IA">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Dicas de Geracao de Codigo com IA</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./E-creditos.html" class="pagination-link" aria-label="Créditos e Agradecimentos">
+        <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Créditos e Agradecimentos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu"># Tutorial: Quarto, Git e Claude Code {#apendice-tutorial}</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>Este apendice apresenta as tres ferramentas fundamentais usadas na construcao deste livro: **Quarto** (publicacao cientifica), **Git** (controle de versao) e **Claude Code** (assistencia de IA via terminal). O objetivo e que voce, estudante, possa usar essas mesmas ferramentas nos seus proprios projetos academicos e profissionais.</span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">## O que e Quarto?</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a></span>
+<span id="cb29-7"><a href="#cb29-7"></a>Quarto e um sistema de publicacao cientifica e tecnica de codigo aberto, desenvolvido pela Posit (antiga RStudio). Ele permite que voce escreva documentos que combinam **texto**, **formulas matematicas** e **codigo executavel** em um unico arquivo.</span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="fu">### Por que usar Quarto?</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a></span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="ss">- </span>**Reprodutibilidade**: o documento e o codigo vivem juntos, garantindo que qualquer pessoa consiga reproduzir suas analises.</span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="ss">- </span>**Multiplos formatos**: a partir de um unico arquivo fonte, voce pode gerar HTML, PDF, Word, slides e ate livros inteiros.</span>
+<span id="cb29-13"><a href="#cb29-13"></a><span class="ss">- </span>**Multiplas linguagens**: suporta R, Python, Julia e Observable JS.</span>
+<span id="cb29-14"><a href="#cb29-14"></a><span class="ss">- </span>**Gratuito e de codigo aberto**: disponivel em <span class="co">[</span><span class="ot">quarto.org</span><span class="co">](https://quarto.org)</span>.</span>
+<span id="cb29-15"><a href="#cb29-15"></a></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="fu">### Arquivos `.qmd`</span></span>
+<span id="cb29-17"><a href="#cb29-17"></a></span>
+<span id="cb29-18"><a href="#cb29-18"></a>Os arquivos Quarto tem a extensao <span class="in">`.qmd`</span> (Quarto Markdown). Eles combinam tres elementos:</span>
+<span id="cb29-19"><a href="#cb29-19"></a></span>
+<span id="cb29-20"><a href="#cb29-20"></a><span class="ss">1. </span>**YAML front matter** --- metadados no topo do arquivo</span>
+<span id="cb29-21"><a href="#cb29-21"></a><span class="ss">2. </span>**Markdown** --- texto formatado</span>
+<span id="cb29-22"><a href="#cb29-22"></a><span class="ss">3. </span>**Code chunks** --- blocos de codigo executavel</span>
+<span id="cb29-23"><a href="#cb29-23"></a></span>
+<span id="cb29-24"><a href="#cb29-24"></a>Veja um exemplo minimo de arquivo <span class="in">`.qmd`</span>:</span>
+<span id="cb29-25"><a href="#cb29-25"></a></span>
+<span id="cb29-26"><a href="#cb29-26"></a><span class="in">````markdown</span></span>
+<span id="cb29-27"><a href="#cb29-27"></a>---</span>
+<span id="cb29-28"><a href="#cb29-28"></a>title: "Minha Analise"</span>
+<span id="cb29-29"><a href="#cb29-29"></a>author: "Seu Nome"</span>
+<span id="cb29-30"><a href="#cb29-30"></a>format: html</span>
+<span id="cb29-31"><a href="#cb29-31"></a>---</span>
+<span id="cb29-32"><a href="#cb29-32"></a></span>
+<span id="cb29-33"><a href="#cb29-33"></a><span class="fu">## Introducao</span></span>
+<span id="cb29-34"><a href="#cb29-34"></a></span>
+<span id="cb29-35"><a href="#cb29-35"></a>Este e um documento Quarto. Podemos incluir **negrito**, *italico* e formulas como $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$.</span>
+<span id="cb29-36"><a href="#cb29-36"></a></span>
+<span id="cb29-37"><a href="#cb29-37"></a><span class="in">```{r}</span></span>
+<span id="cb29-38"><a href="#cb29-38"></a><span class="co"># Codigo em R</span></span>
+<span id="cb29-39"><a href="#cb29-39"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb29-40"><a href="#cb29-40"></a><span class="fu">mean</span>(dados)</span>
+<span id="cb29-41"><a href="#cb29-41"></a><span class="in">```</span></span>
+<span id="cb29-42"><a href="#cb29-42"></a></span>
+<span id="cb29-43"><a href="#cb29-43"></a><span class="in">```{python}</span></span>
+<span id="cb29-44"><a href="#cb29-44"></a><span class="co"># Codigo em Python</span></span>
+<span id="cb29-45"><a href="#cb29-45"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-46"><a href="#cb29-46"></a>dados <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
+<span id="cb29-47"><a href="#cb29-47"></a><span class="bu">print</span>(np.mean(dados))</span>
+<span id="cb29-48"><a href="#cb29-48"></a><span class="in">```</span></span>
+<span id="cb29-49"><a href="#cb29-49"></a><span class="in">````</span></span>
+<span id="cb29-50"><a href="#cb29-50"></a></span>
+<span id="cb29-51"><a href="#cb29-51"></a><span class="fu">### YAML front matter</span></span>
+<span id="cb29-52"><a href="#cb29-52"></a></span>
+<span id="cb29-53"><a href="#cb29-53"></a>O bloco YAML fica entre <span class="in">`---`</span> no topo do arquivo e define configuracoes do documento:</span>
+<span id="cb29-54"><a href="#cb29-54"></a></span>
+<span id="cb29-55"><a href="#cb29-55"></a><span class="in">```yaml</span></span>
+<span id="cb29-56"><a href="#cb29-56"></a><span class="pp">---</span></span>
+<span id="cb29-57"><a href="#cb29-57"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Titulo do Documento"</span></span>
+<span id="cb29-58"><a href="#cb29-58"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Seu Nome"</span></span>
+<span id="cb29-59"><a href="#cb29-59"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-03-18"</span></span>
+<span id="cb29-60"><a href="#cb29-60"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb29-61"><a href="#cb29-61"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb29-62"><a href="#cb29-62"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb29-63"><a href="#cb29-63"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb29-64"><a href="#cb29-64"></a><span class="pp">---</span></span>
+<span id="cb29-65"><a href="#cb29-65"></a><span class="in">```</span></span>
+<span id="cb29-66"><a href="#cb29-66"></a></span>
+<span id="cb29-67"><a href="#cb29-67"></a>Algumas opcoes uteis:</span>
+<span id="cb29-68"><a href="#cb29-68"></a></span>
+<span id="cb29-69"><a href="#cb29-69"></a><span class="pp">|</span> Opcao <span class="pp">|</span> Descricao <span class="pp">|</span></span>
+<span id="cb29-70"><a href="#cb29-70"></a><span class="pp">|-------|-----------|</span></span>
+<span id="cb29-71"><a href="#cb29-71"></a><span class="pp">|</span> <span class="in">`title`</span> <span class="pp">|</span> Titulo do documento <span class="pp">|</span></span>
+<span id="cb29-72"><a href="#cb29-72"></a><span class="pp">|</span> <span class="in">`author`</span> <span class="pp">|</span> Autor(es) <span class="pp">|</span></span>
+<span id="cb29-73"><a href="#cb29-73"></a><span class="pp">|</span> <span class="in">`format`</span> <span class="pp">|</span> Formato de saida (<span class="in">`html`</span>, <span class="in">`pdf`</span>, <span class="in">`docx`</span>) <span class="pp">|</span></span>
+<span id="cb29-74"><a href="#cb29-74"></a><span class="pp">|</span> <span class="in">`toc`</span> <span class="pp">|</span> Gera sumario automatico <span class="pp">|</span></span>
+<span id="cb29-75"><a href="#cb29-75"></a><span class="pp">|</span> <span class="in">`number-sections`</span> <span class="pp">|</span> Numera as secoes <span class="pp">|</span></span>
+<span id="cb29-76"><a href="#cb29-76"></a><span class="pp">|</span> <span class="in">`code-fold`</span> <span class="pp">|</span> Permite esconder/mostrar codigo <span class="pp">|</span></span>
+<span id="cb29-77"><a href="#cb29-77"></a></span>
+<span id="cb29-78"><a href="#cb29-78"></a><span class="fu">### Code chunks (blocos de codigo)</span></span>
+<span id="cb29-79"><a href="#cb29-79"></a></span>
+<span id="cb29-80"><a href="#cb29-80"></a>Para inserir um bloco de codigo executavel, use tres crases seguidas do nome da linguagem entre chaves:</span>
+<span id="cb29-81"><a href="#cb29-81"></a></span>
+<span id="cb29-82"><a href="#cb29-82"></a><span class="in">````markdown</span></span>
+<span id="cb29-83"><a href="#cb29-83"></a><span class="in">```{r}</span></span>
+<span id="cb29-84"><a href="#cb29-84"></a><span class="co"># Este bloco sera executado em R</span></span>
+<span id="cb29-85"><a href="#cb29-85"></a><span class="fu">summary</span>(iris)</span>
+<span id="cb29-86"><a href="#cb29-86"></a><span class="in">```</span></span>
+<span id="cb29-87"><a href="#cb29-87"></a><span class="in">````</span></span>
+<span id="cb29-88"><a href="#cb29-88"></a></span>
+<span id="cb29-89"><a href="#cb29-89"></a><span class="in">````markdown</span></span>
+<span id="cb29-90"><a href="#cb29-90"></a><span class="in">```{python}</span></span>
+<span id="cb29-91"><a href="#cb29-91"></a><span class="co"># Este bloco sera executado em Python</span></span>
+<span id="cb29-92"><a href="#cb29-92"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-93"><a href="#cb29-93"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"dados.csv"</span>)</span>
+<span id="cb29-94"><a href="#cb29-94"></a>df.describe()</span>
+<span id="cb29-95"><a href="#cb29-95"></a><span class="in">```</span></span>
+<span id="cb29-96"><a href="#cb29-96"></a><span class="in">````</span></span>
+<span id="cb29-97"><a href="#cb29-97"></a></span>
+<span id="cb29-98"><a href="#cb29-98"></a>Voce tambem pode adicionar opcoes ao bloco:</span>
+<span id="cb29-99"><a href="#cb29-99"></a></span>
+<span id="cb29-100"><a href="#cb29-100"></a><span class="in">````markdown</span></span>
+<span id="cb29-101"><a href="#cb29-101"></a><span class="in">```{r}</span></span>
+<span id="cb29-102"><a href="#cb29-102"></a><span class="co">#| label: fig-histograma</span></span>
+<span id="cb29-103"><a href="#cb29-103"></a><span class="co">#| fig-cap: "Distribuicao das idades"</span></span>
+<span id="cb29-104"><a href="#cb29-104"></a><span class="co">#| echo: true</span></span>
+<span id="cb29-105"><a href="#cb29-105"></a></span>
+<span id="cb29-106"><a href="#cb29-106"></a><span class="fu">hist</span>(dados<span class="sc">$</span>idade, <span class="at">main =</span> <span class="st">"Histograma"</span>, <span class="at">xlab =</span> <span class="st">"Idade"</span>)</span>
+<span id="cb29-107"><a href="#cb29-107"></a><span class="in">```</span></span>
+<span id="cb29-108"><a href="#cb29-108"></a><span class="in">````</span></span>
+<span id="cb29-109"><a href="#cb29-109"></a></span>
+<span id="cb29-110"><a href="#cb29-110"></a>::: {.callout-tip}</span>
+<span id="cb29-111"><a href="#cb29-111"></a><span class="fu">## Opcoes uteis para code chunks</span></span>
+<span id="cb29-112"><a href="#cb29-112"></a><span class="ss">- </span><span class="in">`#| echo: false`</span> --- esconde o codigo, mostra so o resultado</span>
+<span id="cb29-113"><a href="#cb29-113"></a><span class="ss">- </span><span class="in">`#| eval: false`</span> --- mostra o codigo, mas nao executa</span>
+<span id="cb29-114"><a href="#cb29-114"></a><span class="ss">- </span><span class="in">`#| warning: false`</span> --- suprime avisos</span>
+<span id="cb29-115"><a href="#cb29-115"></a><span class="ss">- </span><span class="in">`#| fig-width: 8`</span> --- largura da figura em polegadas</span>
+<span id="cb29-116"><a href="#cb29-116"></a>:::</span>
+<span id="cb29-117"><a href="#cb29-117"></a></span>
+<span id="cb29-118"><a href="#cb29-118"></a><span class="fu">### Comandos essenciais</span></span>
+<span id="cb29-119"><a href="#cb29-119"></a></span>
+<span id="cb29-120"><a href="#cb29-120"></a>Para **renderizar** o documento (gerar a saida HTML, PDF, etc.):</span>
+<span id="cb29-121"><a href="#cb29-121"></a></span>
+<span id="cb29-122"><a href="#cb29-122"></a><span class="in">```bash</span></span>
+<span id="cb29-123"><a href="#cb29-123"></a><span class="ex">quarto</span> render meu_documento.qmd</span>
+<span id="cb29-124"><a href="#cb29-124"></a><span class="in">```</span></span>
+<span id="cb29-125"><a href="#cb29-125"></a></span>
+<span id="cb29-126"><a href="#cb29-126"></a>Para abrir uma **pre-visualizacao** que atualiza automaticamente enquanto voce edita:</span>
+<span id="cb29-127"><a href="#cb29-127"></a></span>
+<span id="cb29-128"><a href="#cb29-128"></a><span class="in">```bash</span></span>
+<span id="cb29-129"><a href="#cb29-129"></a><span class="ex">quarto</span> preview meu_documento.qmd</span>
+<span id="cb29-130"><a href="#cb29-130"></a><span class="in">```</span></span>
+<span id="cb29-131"><a href="#cb29-131"></a></span>
+<span id="cb29-132"><a href="#cb29-132"></a>Para renderizar **executando** todos os blocos de codigo:</span>
+<span id="cb29-133"><a href="#cb29-133"></a></span>
+<span id="cb29-134"><a href="#cb29-134"></a><span class="in">```bash</span></span>
+<span id="cb29-135"><a href="#cb29-135"></a><span class="ex">quarto</span> render meu_documento.qmd <span class="at">--execute</span></span>
+<span id="cb29-136"><a href="#cb29-136"></a><span class="in">```</span></span>
+<span id="cb29-137"><a href="#cb29-137"></a></span>
+<span id="cb29-138"><a href="#cb29-138"></a><span class="fu">### Instalacao</span></span>
+<span id="cb29-139"><a href="#cb29-139"></a></span>
+<span id="cb29-140"><a href="#cb29-140"></a><span class="ss">1. </span>Acesse <span class="co">[</span><span class="ot">quarto.org/docs/get-started</span><span class="co">](https://quarto.org/docs/get-started/)</span></span>
+<span id="cb29-141"><a href="#cb29-141"></a><span class="ss">2. </span>Baixe o instalador para o seu sistema operacional</span>
+<span id="cb29-142"><a href="#cb29-142"></a><span class="ss">3. </span>Siga as instrucoes de instalacao</span>
+<span id="cb29-143"><a href="#cb29-143"></a><span class="ss">4. </span>Verifique a instalacao no terminal:</span>
+<span id="cb29-144"><a href="#cb29-144"></a></span>
+<span id="cb29-145"><a href="#cb29-145"></a><span class="in">```bash</span></span>
+<span id="cb29-146"><a href="#cb29-146"></a><span class="ex">quarto</span> <span class="at">--version</span></span>
+<span id="cb29-147"><a href="#cb29-147"></a><span class="in">```</span></span>
+<span id="cb29-148"><a href="#cb29-148"></a></span>
+<span id="cb29-149"><a href="#cb29-149"></a>::: {.callout-tip}</span>
+<span id="cb29-150"><a href="#cb29-150"></a><span class="fu">## Editores recomendados</span></span>
+<span id="cb29-151"><a href="#cb29-151"></a>O Quarto funciona bem com **RStudio**, **VS Code** (com a extensao Quarto) e ate editores de texto simples. Para quem ja usa R, o RStudio oferece a experiencia mais integrada.</span>
+<span id="cb29-152"><a href="#cb29-152"></a>:::</span>
+<span id="cb29-153"><a href="#cb29-153"></a></span>
+<span id="cb29-154"><a href="#cb29-154"></a><span class="fu">## O que e Git?</span></span>
+<span id="cb29-155"><a href="#cb29-155"></a></span>
+<span id="cb29-156"><a href="#cb29-156"></a>Git e um **sistema de controle de versao** --- uma ferramenta que registra todas as alteracoes feitas nos seus arquivos ao longo do tempo. Pense nele como o "historico de versoes" do Google Docs, mas muito mais poderoso e projetado para projetos de codigo e texto.</span>
+<span id="cb29-157"><a href="#cb29-157"></a></span>
+<span id="cb29-158"><a href="#cb29-158"></a><span class="fu">### Por que usar Git?</span></span>
+<span id="cb29-159"><a href="#cb29-159"></a></span>
+<span id="cb29-160"><a href="#cb29-160"></a><span class="ss">- </span>**Historico completo**: cada alteracao fica registrada. Voce pode voltar a qualquer versao anterior do projeto.</span>
+<span id="cb29-161"><a href="#cb29-161"></a><span class="ss">- </span>**Colaboracao**: varias pessoas podem trabalhar no mesmo projeto sem sobrescrever o trabalho umas das outras.</span>
+<span id="cb29-162"><a href="#cb29-162"></a><span class="ss">- </span>**Backup distribuido**: seu projeto pode existir em multiplos computadores e servidores (como o GitHub).</span>
+<span id="cb29-163"><a href="#cb29-163"></a><span class="ss">- </span>**Experimentacao segura**: voce pode criar "branches" para testar ideias sem afetar o projeto principal.</span>
+<span id="cb29-164"><a href="#cb29-164"></a></span>
+<span id="cb29-165"><a href="#cb29-165"></a><span class="fu">### Conceitos fundamentais</span></span>
+<span id="cb29-166"><a href="#cb29-166"></a></span>
+<span id="cb29-167"><a href="#cb29-167"></a>Antes de usar os comandos, e importante entender alguns conceitos:</span>
+<span id="cb29-168"><a href="#cb29-168"></a></span>
+<span id="cb29-169"><a href="#cb29-169"></a>**Repositorio (repo)**</span>
+<span id="cb29-170"><a href="#cb29-170"></a>: Uma pasta do seu computador que esta sendo monitorada pelo Git. Contem todos os arquivos do projeto e o historico de alteracoes.</span>
+<span id="cb29-171"><a href="#cb29-171"></a></span>
+<span id="cb29-172"><a href="#cb29-172"></a>**Commit**</span>
+<span id="cb29-173"><a href="#cb29-173"></a>: Um "ponto de salvamento" no historico. Cada commit registra quais arquivos mudaram, o que mudou, quem fez a mudanca e quando.</span>
+<span id="cb29-174"><a href="#cb29-174"></a></span>
+<span id="cb29-175"><a href="#cb29-175"></a>**Branch (ramificacao)**</span>
+<span id="cb29-176"><a href="#cb29-176"></a>: Uma linha paralela de desenvolvimento. Permite que voce trabalhe em algo novo sem alterar a versao principal.</span>
+<span id="cb29-177"><a href="#cb29-177"></a></span>
+<span id="cb29-178"><a href="#cb29-178"></a>**Remote (remoto)**</span>
+<span id="cb29-179"><a href="#cb29-179"></a>: Uma copia do repositorio em um servidor externo, como o GitHub. Serve para backup e colaboracao.</span>
+<span id="cb29-180"><a href="#cb29-180"></a></span>
+<span id="cb29-181"><a href="#cb29-181"></a>**Staging area (area de preparacao)**</span>
+<span id="cb29-182"><a href="#cb29-182"></a>: Um espaco intermediario onde voce seleciona quais alteracoes farao parte do proximo commit.</span>
+<span id="cb29-183"><a href="#cb29-183"></a></span>
+<span id="cb29-184"><a href="#cb29-184"></a>::: {.callout-tip}</span>
+<span id="cb29-185"><a href="#cb29-185"></a><span class="fu">## Analogia: salvamento de jogo</span></span>
+<span id="cb29-186"><a href="#cb29-186"></a>Pense no Git como um sistema de salvamento de um jogo de video game. Cada **commit** e um save. Voce pode ter saves em momentos diferentes, voltar a qualquer um deles e ate criar caminhos paralelos (branches) para explorar opcoes diferentes.</span>
+<span id="cb29-187"><a href="#cb29-187"></a>:::</span>
+<span id="cb29-188"><a href="#cb29-188"></a></span>
+<span id="cb29-189"><a href="#cb29-189"></a><span class="fu">## Workflow Basico do Git</span></span>
+<span id="cb29-190"><a href="#cb29-190"></a></span>
+<span id="cb29-191"><a href="#cb29-191"></a><span class="fu">### Instalacao</span></span>
+<span id="cb29-192"><a href="#cb29-192"></a></span>
+<span id="cb29-193"><a href="#cb29-193"></a><span class="ss">- </span>**Windows**: baixe em <span class="co">[</span><span class="ot">git-scm.com</span><span class="co">](https://git-scm.com)</span> e instale</span>
+<span id="cb29-194"><a href="#cb29-194"></a><span class="ss">- </span>**Mac**: execute <span class="in">`xcode-select --install`</span> no terminal ou baixe em <span class="co">[</span><span class="ot">git-scm.com</span><span class="co">](https://git-scm.com)</span></span>
+<span id="cb29-195"><a href="#cb29-195"></a><span class="ss">- </span>**Linux**: <span class="in">`sudo apt install git`</span> (Ubuntu/Debian) ou <span class="in">`sudo dnf install git`</span> (Fedora)</span>
+<span id="cb29-196"><a href="#cb29-196"></a></span>
+<span id="cb29-197"><a href="#cb29-197"></a>Apos instalar, configure seu nome e e-mail:</span>
+<span id="cb29-198"><a href="#cb29-198"></a></span>
+<span id="cb29-199"><a href="#cb29-199"></a><span class="in">```bash</span></span>
+<span id="cb29-200"><a href="#cb29-200"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Seu Nome"</span></span>
+<span id="cb29-201"><a href="#cb29-201"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"seu.email@exemplo.com"</span></span>
+<span id="cb29-202"><a href="#cb29-202"></a><span class="in">```</span></span>
+<span id="cb29-203"><a href="#cb29-203"></a></span>
+<span id="cb29-204"><a href="#cb29-204"></a><span class="fu">### Iniciando um repositorio</span></span>
+<span id="cb29-205"><a href="#cb29-205"></a></span>
+<span id="cb29-206"><a href="#cb29-206"></a>Para transformar uma pasta comum em um repositorio Git:</span>
+<span id="cb29-207"><a href="#cb29-207"></a></span>
+<span id="cb29-208"><a href="#cb29-208"></a><span class="in">```bash</span></span>
+<span id="cb29-209"><a href="#cb29-209"></a><span class="fu">mkdir</span> meu-projeto</span>
+<span id="cb29-210"><a href="#cb29-210"></a><span class="bu">cd</span> meu-projeto</span>
+<span id="cb29-211"><a href="#cb29-211"></a><span class="fu">git</span> init</span>
+<span id="cb29-212"><a href="#cb29-212"></a><span class="in">```</span></span>
+<span id="cb29-213"><a href="#cb29-213"></a></span>
+<span id="cb29-214"><a href="#cb29-214"></a>Voce vera a mensagem: <span class="in">`Initialized empty Git repository in .../meu-projeto/.git/`</span></span>
+<span id="cb29-215"><a href="#cb29-215"></a></span>
+<span id="cb29-216"><a href="#cb29-216"></a><span class="fu">### O ciclo basico: add, commit</span></span>
+<span id="cb29-217"><a href="#cb29-217"></a></span>
+<span id="cb29-218"><a href="#cb29-218"></a>O fluxo de trabalho mais comum no Git segue tres passos:</span>
+<span id="cb29-219"><a href="#cb29-219"></a></span>
+<span id="cb29-220"><a href="#cb29-220"></a><span class="ss">1. </span>**Modificar** arquivos normalmente</span>
+<span id="cb29-221"><a href="#cb29-221"></a><span class="ss">2. </span>**Adicionar** as mudancas a area de preparacao (<span class="in">`git add`</span>)</span>
+<span id="cb29-222"><a href="#cb29-222"></a><span class="ss">3. </span>**Confirmar** as mudancas com uma mensagem (<span class="in">`git commit`</span>)</span>
+<span id="cb29-223"><a href="#cb29-223"></a></span>
+<span id="cb29-224"><a href="#cb29-224"></a><span class="in">```bash</span></span>
+<span id="cb29-225"><a href="#cb29-225"></a><span class="co"># 1. Verificar o estado atual</span></span>
+<span id="cb29-226"><a href="#cb29-226"></a><span class="fu">git</span> status</span>
+<span id="cb29-227"><a href="#cb29-227"></a></span>
+<span id="cb29-228"><a href="#cb29-228"></a><span class="co"># 2. Adicionar arquivos especificos</span></span>
+<span id="cb29-229"><a href="#cb29-229"></a><span class="fu">git</span> add analise.qmd dados.csv</span>
+<span id="cb29-230"><a href="#cb29-230"></a></span>
+<span id="cb29-231"><a href="#cb29-231"></a><span class="co"># Ou adicionar todos os arquivos modificados</span></span>
+<span id="cb29-232"><a href="#cb29-232"></a><span class="fu">git</span> add .</span>
+<span id="cb29-233"><a href="#cb29-233"></a></span>
+<span id="cb29-234"><a href="#cb29-234"></a><span class="co"># 3. Criar um commit com mensagem descritiva</span></span>
+<span id="cb29-235"><a href="#cb29-235"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Adiciona analise descritiva dos dados de vendas"</span></span>
+<span id="cb29-236"><a href="#cb29-236"></a><span class="in">```</span></span>
+<span id="cb29-237"><a href="#cb29-237"></a></span>
+<span id="cb29-238"><a href="#cb29-238"></a>::: {.callout-tip}</span>
+<span id="cb29-239"><a href="#cb29-239"></a><span class="fu">## Boas mensagens de commit</span></span>
+<span id="cb29-240"><a href="#cb29-240"></a>Escreva mensagens que expliquem **o que** e **por que** voce fez a alteracao. Compare:</span>
+<span id="cb29-241"><a href="#cb29-241"></a></span>
+<span id="cb29-242"><a href="#cb29-242"></a><span class="ss">- </span>**Ruim**: <span class="in">`"alteracoes"`</span>, <span class="in">`"update"`</span>, <span class="in">`"fix"`</span></span>
+<span id="cb29-243"><a href="#cb29-243"></a><span class="ss">- </span>**Bom**: <span class="in">`"Adiciona grafico de dispersao no capitulo 4"`</span>, <span class="in">`"Corrige formula da variancia na secao 1.3"`</span></span>
+<span id="cb29-244"><a href="#cb29-244"></a>:::</span>
+<span id="cb29-245"><a href="#cb29-245"></a></span>
+<span id="cb29-246"><a href="#cb29-246"></a><span class="fu">### Verificando o historico</span></span>
+<span id="cb29-247"><a href="#cb29-247"></a></span>
+<span id="cb29-248"><a href="#cb29-248"></a>Para ver o estado atual dos arquivos:</span>
+<span id="cb29-249"><a href="#cb29-249"></a></span>
+<span id="cb29-250"><a href="#cb29-250"></a><span class="in">```bash</span></span>
+<span id="cb29-251"><a href="#cb29-251"></a><span class="fu">git</span> status</span>
+<span id="cb29-252"><a href="#cb29-252"></a><span class="in">```</span></span>
+<span id="cb29-253"><a href="#cb29-253"></a></span>
+<span id="cb29-254"><a href="#cb29-254"></a>Para ver o historico de commits:</span>
+<span id="cb29-255"><a href="#cb29-255"></a></span>
+<span id="cb29-256"><a href="#cb29-256"></a><span class="in">```bash</span></span>
+<span id="cb29-257"><a href="#cb29-257"></a><span class="fu">git</span> log</span>
+<span id="cb29-258"><a href="#cb29-258"></a></span>
+<span id="cb29-259"><a href="#cb29-259"></a><span class="co"># Versao compacta (uma linha por commit)</span></span>
+<span id="cb29-260"><a href="#cb29-260"></a><span class="fu">git</span> log <span class="at">--oneline</span></span>
+<span id="cb29-261"><a href="#cb29-261"></a></span>
+<span id="cb29-262"><a href="#cb29-262"></a><span class="co"># Com grafico de branches</span></span>
+<span id="cb29-263"><a href="#cb29-263"></a><span class="fu">git</span> log <span class="at">--oneline</span> <span class="at">--graph</span></span>
+<span id="cb29-264"><a href="#cb29-264"></a><span class="in">```</span></span>
+<span id="cb29-265"><a href="#cb29-265"></a></span>
+<span id="cb29-266"><a href="#cb29-266"></a><span class="fu">### Enviando e recebendo do remoto</span></span>
+<span id="cb29-267"><a href="#cb29-267"></a></span>
+<span id="cb29-268"><a href="#cb29-268"></a>Para enviar seus commits para o GitHub (ou outro servidor remoto):</span>
+<span id="cb29-269"><a href="#cb29-269"></a></span>
+<span id="cb29-270"><a href="#cb29-270"></a><span class="in">```bash</span></span>
+<span id="cb29-271"><a href="#cb29-271"></a><span class="fu">git</span> push origin main</span>
+<span id="cb29-272"><a href="#cb29-272"></a><span class="in">```</span></span>
+<span id="cb29-273"><a href="#cb29-273"></a></span>
+<span id="cb29-274"><a href="#cb29-274"></a>Para baixar as alteracoes mais recentes do remoto:</span>
+<span id="cb29-275"><a href="#cb29-275"></a></span>
+<span id="cb29-276"><a href="#cb29-276"></a><span class="in">```bash</span></span>
+<span id="cb29-277"><a href="#cb29-277"></a><span class="fu">git</span> pull origin main</span>
+<span id="cb29-278"><a href="#cb29-278"></a><span class="in">```</span></span>
+<span id="cb29-279"><a href="#cb29-279"></a></span>
+<span id="cb29-280"><a href="#cb29-280"></a><span class="fu">### O arquivo `.gitignore`</span></span>
+<span id="cb29-281"><a href="#cb29-281"></a></span>
+<span id="cb29-282"><a href="#cb29-282"></a>O arquivo <span class="in">`.gitignore`</span> diz ao Git quais arquivos e pastas ele deve **ignorar** --- ou seja, nao rastrear. Isso e util para arquivos temporarios, dados sensiveis ou arquivos gerados automaticamente.</span>
+<span id="cb29-283"><a href="#cb29-283"></a></span>
+<span id="cb29-284"><a href="#cb29-284"></a>Crie um arquivo chamado <span class="in">`.gitignore`</span> na raiz do projeto:</span>
+<span id="cb29-285"><a href="#cb29-285"></a></span>
+<span id="cb29-286"><a href="#cb29-286"></a><span class="in">```text</span></span>
+<span id="cb29-287"><a href="#cb29-287"></a><span class="in"># Arquivos gerados pelo Quarto</span></span>
+<span id="cb29-288"><a href="#cb29-288"></a><span class="in">_book/</span></span>
+<span id="cb29-289"><a href="#cb29-289"></a><span class="in">_freeze/</span></span>
+<span id="cb29-290"><a href="#cb29-290"></a><span class="in">*.html</span></span>
+<span id="cb29-291"><a href="#cb29-291"></a></span>
+<span id="cb29-292"><a href="#cb29-292"></a><span class="in"># Arquivos temporarios do R</span></span>
+<span id="cb29-293"><a href="#cb29-293"></a><span class="in">.Rhistory</span></span>
+<span id="cb29-294"><a href="#cb29-294"></a><span class="in">.RData</span></span>
+<span id="cb29-295"><a href="#cb29-295"></a><span class="in">.Rproj.user/</span></span>
+<span id="cb29-296"><a href="#cb29-296"></a></span>
+<span id="cb29-297"><a href="#cb29-297"></a><span class="in"># Arquivos do sistema</span></span>
+<span id="cb29-298"><a href="#cb29-298"></a><span class="in">.DS_Store</span></span>
+<span id="cb29-299"><a href="#cb29-299"></a><span class="in">Thumbs.db</span></span>
+<span id="cb29-300"><a href="#cb29-300"></a></span>
+<span id="cb29-301"><a href="#cb29-301"></a><span class="in"># Dados sensiveis</span></span>
+<span id="cb29-302"><a href="#cb29-302"></a><span class="in">.env</span></span>
+<span id="cb29-303"><a href="#cb29-303"></a><span class="in">senhas.txt</span></span>
+<span id="cb29-304"><a href="#cb29-304"></a><span class="in">```</span></span>
+<span id="cb29-305"><a href="#cb29-305"></a></span>
+<span id="cb29-306"><a href="#cb29-306"></a>::: {.callout-tip}</span>
+<span id="cb29-307"><a href="#cb29-307"></a><span class="fu">## Regra de ouro do `.gitignore`</span></span>
+<span id="cb29-308"><a href="#cb29-308"></a>Nunca versione arquivos que podem ser **gerados automaticamente** (como `_book/`) ou que contem **informacoes sensiveis** (como senhas e tokens de API).</span>
+<span id="cb29-309"><a href="#cb29-309"></a>:::</span>
+<span id="cb29-310"><a href="#cb29-310"></a></span>
+<span id="cb29-311"><a href="#cb29-311"></a><span class="fu">## Branches</span></span>
+<span id="cb29-312"><a href="#cb29-312"></a></span>
+<span id="cb29-313"><a href="#cb29-313"></a><span class="fu">### O que sao branches?</span></span>
+<span id="cb29-314"><a href="#cb29-314"></a></span>
+<span id="cb29-315"><a href="#cb29-315"></a>Branches (ramificacoes) permitem que voce desenvolva funcionalidades novas em paralelo, sem afetar o codigo principal. Imagine que a branch <span class="in">`main`</span> e a versao "oficial" do projeto. Voce cria uma branch separada para trabalhar em algo novo e, quando terminar, junta tudo de volta.</span>
+<span id="cb29-316"><a href="#cb29-316"></a></span>
+<span id="cb29-317"><a href="#cb29-317"></a><span class="fu">### Comandos essenciais</span></span>
+<span id="cb29-318"><a href="#cb29-318"></a></span>
+<span id="cb29-319"><a href="#cb29-319"></a><span class="in">```bash</span></span>
+<span id="cb29-320"><a href="#cb29-320"></a><span class="co"># Ver todas as branches</span></span>
+<span id="cb29-321"><a href="#cb29-321"></a><span class="fu">git</span> branch</span>
+<span id="cb29-322"><a href="#cb29-322"></a></span>
+<span id="cb29-323"><a href="#cb29-323"></a><span class="co"># Criar uma nova branch</span></span>
+<span id="cb29-324"><a href="#cb29-324"></a><span class="fu">git</span> branch minha-feature</span>
+<span id="cb29-325"><a href="#cb29-325"></a></span>
+<span id="cb29-326"><a href="#cb29-326"></a><span class="co"># Mudar para a nova branch</span></span>
+<span id="cb29-327"><a href="#cb29-327"></a><span class="fu">git</span> checkout minha-feature</span>
+<span id="cb29-328"><a href="#cb29-328"></a></span>
+<span id="cb29-329"><a href="#cb29-329"></a><span class="co"># Atalho: criar e mudar ao mesmo tempo</span></span>
+<span id="cb29-330"><a href="#cb29-330"></a><span class="fu">git</span> checkout <span class="at">-b</span> minha-feature</span>
+<span id="cb29-331"><a href="#cb29-331"></a><span class="in">```</span></span>
+<span id="cb29-332"><a href="#cb29-332"></a></span>
+<span id="cb29-333"><a href="#cb29-333"></a>Apos fazer seus commits na branch, voce pode juntar (merge) com a branch principal:</span>
+<span id="cb29-334"><a href="#cb29-334"></a></span>
+<span id="cb29-335"><a href="#cb29-335"></a><span class="in">```bash</span></span>
+<span id="cb29-336"><a href="#cb29-336"></a><span class="co"># Voltar para a main</span></span>
+<span id="cb29-337"><a href="#cb29-337"></a><span class="fu">git</span> checkout main</span>
+<span id="cb29-338"><a href="#cb29-338"></a></span>
+<span id="cb29-339"><a href="#cb29-339"></a><span class="co"># Juntar a branch</span></span>
+<span id="cb29-340"><a href="#cb29-340"></a><span class="fu">git</span> merge minha-feature</span>
+<span id="cb29-341"><a href="#cb29-341"></a><span class="in">```</span></span>
+<span id="cb29-342"><a href="#cb29-342"></a></span>
+<span id="cb29-343"><a href="#cb29-343"></a><span class="fu">### Quando usar branches?</span></span>
+<span id="cb29-344"><a href="#cb29-344"></a></span>
+<span id="cb29-345"><a href="#cb29-345"></a><span class="ss">- </span>Ao desenvolver uma **nova funcionalidade** (ex: um novo capitulo do livro)</span>
+<span id="cb29-346"><a href="#cb29-346"></a><span class="ss">- </span>Ao fazer uma **correcao de bug** que pode demorar</span>
+<span id="cb29-347"><a href="#cb29-347"></a><span class="ss">- </span>Ao **experimentar** algo que talvez nao va pro projeto final</span>
+<span id="cb29-348"><a href="#cb29-348"></a><span class="ss">- </span>Ao **colaborar**: cada pessoa trabalha em sua branch</span>
+<span id="cb29-349"><a href="#cb29-349"></a></span>
+<span id="cb29-350"><a href="#cb29-350"></a>::: {.callout-tip}</span>
+<span id="cb29-351"><a href="#cb29-351"></a><span class="fu">## Nomes de branches</span></span>
+<span id="cb29-352"><a href="#cb29-352"></a>Use nomes descritivos e curtos, separados por hifen:</span>
+<span id="cb29-353"><a href="#cb29-353"></a></span>
+<span id="cb29-354"><a href="#cb29-354"></a><span class="ss">- </span><span class="in">`capitulo-05-anova`</span></span>
+<span id="cb29-355"><a href="#cb29-355"></a><span class="ss">- </span><span class="in">`corrige-formulas-cap3`</span></span>
+<span id="cb29-356"><a href="#cb29-356"></a><span class="ss">- </span><span class="in">`melhora-graficos`</span></span>
+<span id="cb29-357"><a href="#cb29-357"></a>:::</span>
+<span id="cb29-358"><a href="#cb29-358"></a></span>
+<span id="cb29-359"><a href="#cb29-359"></a><span class="fu">## GitHub</span></span>
+<span id="cb29-360"><a href="#cb29-360"></a></span>
+<span id="cb29-361"><a href="#cb29-361"></a>O <span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com)</span> e uma plataforma online que hospeda repositorios Git. Ele funciona como um "Google Drive para codigo", mas com todas as vantagens do Git integradas.</span>
+<span id="cb29-362"><a href="#cb29-362"></a></span>
+<span id="cb29-363"><a href="#cb29-363"></a><span class="fu">### Criando um repositorio no GitHub</span></span>
+<span id="cb29-364"><a href="#cb29-364"></a></span>
+<span id="cb29-365"><a href="#cb29-365"></a><span class="ss">1. </span>Faca login em <span class="co">[</span><span class="ot">github.com</span><span class="co">](https://github.com)</span></span>
+<span id="cb29-366"><a href="#cb29-366"></a><span class="ss">2. </span>Clique em **"New repository"** (ou o botao **+** no canto superior direito)</span>
+<span id="cb29-367"><a href="#cb29-367"></a><span class="ss">3. </span>Escolha um nome (ex: <span class="in">`minha-analise-estatistica`</span>)</span>
+<span id="cb29-368"><a href="#cb29-368"></a><span class="ss">4. </span>Escolha entre publico ou privado</span>
+<span id="cb29-369"><a href="#cb29-369"></a><span class="ss">5. </span>Clique em **"Create repository"**</span>
+<span id="cb29-370"><a href="#cb29-370"></a></span>
+<span id="cb29-371"><a href="#cb29-371"></a><span class="fu">### Conectando o repositorio local ao remoto</span></span>
+<span id="cb29-372"><a href="#cb29-372"></a></span>
+<span id="cb29-373"><a href="#cb29-373"></a>Se voce ja tem um repositorio local e criou um repositorio vazio no GitHub:</span>
+<span id="cb29-374"><a href="#cb29-374"></a></span>
+<span id="cb29-375"><a href="#cb29-375"></a><span class="in">```bash</span></span>
+<span id="cb29-376"><a href="#cb29-376"></a><span class="co"># Adicionar o GitHub como remoto</span></span>
+<span id="cb29-377"><a href="#cb29-377"></a><span class="fu">git</span> remote add origin https://github.com/seu-usuario/seu-repo.git</span>
+<span id="cb29-378"><a href="#cb29-378"></a></span>
+<span id="cb29-379"><a href="#cb29-379"></a><span class="co"># Enviar os commits pela primeira vez</span></span>
+<span id="cb29-380"><a href="#cb29-380"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span>
+<span id="cb29-381"><a href="#cb29-381"></a><span class="in">```</span></span>
+<span id="cb29-382"><a href="#cb29-382"></a></span>
+<span id="cb29-383"><a href="#cb29-383"></a>Se voce quer **baixar** um repositorio que ja existe no GitHub:</span>
+<span id="cb29-384"><a href="#cb29-384"></a></span>
+<span id="cb29-385"><a href="#cb29-385"></a><span class="in">```bash</span></span>
+<span id="cb29-386"><a href="#cb29-386"></a><span class="fu">git</span> clone https://github.com/usuario/repositorio.git</span>
+<span id="cb29-387"><a href="#cb29-387"></a><span class="in">```</span></span>
+<span id="cb29-388"><a href="#cb29-388"></a></span>
+<span id="cb29-389"><a href="#cb29-389"></a><span class="fu">### Pull Requests</span></span>
+<span id="cb29-390"><a href="#cb29-390"></a></span>
+<span id="cb29-391"><a href="#cb29-391"></a>Quando voce trabalha em uma branch e quer incorporar suas mudancas na branch principal, voce pode criar um **Pull Request** (PR) no GitHub. O PR permite que outras pessoas revisem seu codigo antes de aceita-lo.</span>
+<span id="cb29-392"><a href="#cb29-392"></a></span>
+<span id="cb29-393"><a href="#cb29-393"></a>O fluxo e:</span>
+<span id="cb29-394"><a href="#cb29-394"></a></span>
+<span id="cb29-395"><a href="#cb29-395"></a><span class="ss">1. </span>Crie uma branch e faca seus commits</span>
+<span id="cb29-396"><a href="#cb29-396"></a><span class="ss">2. </span>Envie a branch para o GitHub: <span class="in">`git push origin minha-branch`</span></span>
+<span id="cb29-397"><a href="#cb29-397"></a><span class="ss">3. </span>No GitHub, clique em **"Compare &amp; pull request"**</span>
+<span id="cb29-398"><a href="#cb29-398"></a><span class="ss">4. </span>Descreva suas alteracoes e solicite revisao</span>
+<span id="cb29-399"><a href="#cb29-399"></a><span class="ss">5. </span>Apos aprovacao, faca o **merge** pelo GitHub</span>
+<span id="cb29-400"><a href="#cb29-400"></a></span>
+<span id="cb29-401"><a href="#cb29-401"></a>::: {.callout-tip}</span>
+<span id="cb29-402"><a href="#cb29-402"></a><span class="fu">## GitHub para estudantes</span></span>
+<span id="cb29-403"><a href="#cb29-403"></a>O GitHub oferece o <span class="co">[</span><span class="ot">GitHub Student Developer Pack</span><span class="co">](https://education.github.com/pack)</span>, que inclui repositorios privados ilimitados e diversas ferramentas gratuitas para estudantes. Basta se cadastrar com seu e-mail academico.</span>
+<span id="cb29-404"><a href="#cb29-404"></a>:::</span>
+<span id="cb29-405"><a href="#cb29-405"></a></span>
+<span id="cb29-406"><a href="#cb29-406"></a><span class="fu">## O que e Claude Code?</span></span>
+<span id="cb29-407"><a href="#cb29-407"></a></span>
+<span id="cb29-408"><a href="#cb29-408"></a>Claude Code e uma ferramenta de **assistencia de IA via linha de comando** desenvolvida pela Anthropic. Diferente de interfaces web de chat, o Claude Code opera diretamente no seu terminal, com acesso ao sistema de arquivos e ao contexto do seu projeto.</span>
+<span id="cb29-409"><a href="#cb29-409"></a></span>
+<span id="cb29-410"><a href="#cb29-410"></a><span class="fu">### Por que usar Claude Code?</span></span>
+<span id="cb29-411"><a href="#cb29-411"></a></span>
+<span id="cb29-412"><a href="#cb29-412"></a><span class="ss">- </span>**Contexto do projeto**: ele pode ler seus arquivos e entender a estrutura do projeto como um todo.</span>
+<span id="cb29-413"><a href="#cb29-413"></a><span class="ss">- </span>**Execucao de comandos**: pode rodar comandos no terminal (com sua permissao) para testar, compilar ou verificar o codigo.</span>
+<span id="cb29-414"><a href="#cb29-414"></a><span class="ss">- </span>**Edicao de arquivos**: pode criar e modificar arquivos diretamente, agilizando tarefas repetitivas.</span>
+<span id="cb29-415"><a href="#cb29-415"></a><span class="ss">- </span>**Assistencia contextual**: como ele enxerga todo o projeto, as sugestoes sao mais precisas do que em um chat generico.</span>
+<span id="cb29-416"><a href="#cb29-416"></a></span>
+<span id="cb29-417"><a href="#cb29-417"></a><span class="fu">### Instalacao</span></span>
+<span id="cb29-418"><a href="#cb29-418"></a></span>
+<span id="cb29-419"><a href="#cb29-419"></a>Para instalar o Claude Code, voce precisa do Node.js (versao 18 ou superior):</span>
+<span id="cb29-420"><a href="#cb29-420"></a></span>
+<span id="cb29-421"><a href="#cb29-421"></a><span class="in">```bash</span></span>
+<span id="cb29-422"><a href="#cb29-422"></a><span class="co"># Instalar o Claude Code globalmente</span></span>
+<span id="cb29-423"><a href="#cb29-423"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span>
+<span id="cb29-424"><a href="#cb29-424"></a></span>
+<span id="cb29-425"><a href="#cb29-425"></a><span class="co"># Verificar a instalacao</span></span>
+<span id="cb29-426"><a href="#cb29-426"></a><span class="ex">claude</span> <span class="at">--version</span></span>
+<span id="cb29-427"><a href="#cb29-427"></a><span class="in">```</span></span>
+<span id="cb29-428"><a href="#cb29-428"></a></span>
+<span id="cb29-429"><a href="#cb29-429"></a><span class="fu">### Uso basico</span></span>
+<span id="cb29-430"><a href="#cb29-430"></a></span>
+<span id="cb29-431"><a href="#cb29-431"></a>Navegue ate a pasta do seu projeto e inicie o Claude Code:</span>
+<span id="cb29-432"><a href="#cb29-432"></a></span>
+<span id="cb29-433"><a href="#cb29-433"></a><span class="in">```bash</span></span>
+<span id="cb29-434"><a href="#cb29-434"></a><span class="bu">cd</span> meu-projeto</span>
+<span id="cb29-435"><a href="#cb29-435"></a><span class="ex">claude</span></span>
+<span id="cb29-436"><a href="#cb29-436"></a><span class="in">```</span></span>
+<span id="cb29-437"><a href="#cb29-437"></a></span>
+<span id="cb29-438"><a href="#cb29-438"></a>Ao iniciar, o Claude Code le o contexto do projeto (incluindo um arquivo <span class="in">`CLAUDE.md`</span>, se existir) e esta pronto para receber instrucoes.</span>
+<span id="cb29-439"><a href="#cb29-439"></a></span>
+<span id="cb29-440"><a href="#cb29-440"></a><span class="fu">### Exemplos de prompts para tarefas estatisticas</span></span>
+<span id="cb29-441"><a href="#cb29-441"></a></span>
+<span id="cb29-442"><a href="#cb29-442"></a>Aqui estao exemplos de como pedir ajuda ao Claude Code em tarefas de programacao estatistica:</span>
+<span id="cb29-443"><a href="#cb29-443"></a></span>
+<span id="cb29-444"><a href="#cb29-444"></a>**Criar um grafico:**</span>
+<span id="cb29-445"><a href="#cb29-445"></a><span class="in">```</span></span>
+<span id="cb29-446"><a href="#cb29-446"></a><span class="in">&gt; Crie um grafico de dispersao com os dados do arquivo dados/vendas.csv,</span></span>
+<span id="cb29-447"><a href="#cb29-447"></a><span class="in">  usando ggplot2, com titulo em portugues e a identidade visual PROPET.</span></span>
+<span id="cb29-448"><a href="#cb29-448"></a><span class="in">```</span></span>
+<span id="cb29-449"><a href="#cb29-449"></a></span>
+<span id="cb29-450"><a href="#cb29-450"></a>**Escrever uma funcao:**</span>
+<span id="cb29-451"><a href="#cb29-451"></a><span class="in">```</span></span>
+<span id="cb29-452"><a href="#cb29-452"></a><span class="in">&gt; Escreva uma funcao em R que calcule o intervalo de confianca para a</span></span>
+<span id="cb29-453"><a href="#cb29-453"></a><span class="in">  media de uma amostra, recebendo o vetor de dados e o nivel de confianca.</span></span>
+<span id="cb29-454"><a href="#cb29-454"></a><span class="in">```</span></span>
+<span id="cb29-455"><a href="#cb29-455"></a></span>
+<span id="cb29-456"><a href="#cb29-456"></a>**Depurar um erro:**</span>
+<span id="cb29-457"><a href="#cb29-457"></a><span class="in">```</span></span>
+<span id="cb29-458"><a href="#cb29-458"></a><span class="in">&gt; O chunk de R no arquivo 03-inferencia.qmd esta dando erro na linha 145.</span></span>
+<span id="cb29-459"><a href="#cb29-459"></a><span class="in">  Pode verificar o que esta errado?</span></span>
+<span id="cb29-460"><a href="#cb29-460"></a><span class="in">```</span></span>
+<span id="cb29-461"><a href="#cb29-461"></a></span>
+<span id="cb29-462"><a href="#cb29-462"></a>**Converter codigo:**</span>
+<span id="cb29-463"><a href="#cb29-463"></a><span class="in">```</span></span>
+<span id="cb29-464"><a href="#cb29-464"></a><span class="in">&gt; Converta o codigo R do chunk "analise-descritiva" no capitulo 1</span></span>
+<span id="cb29-465"><a href="#cb29-465"></a><span class="in">  para Python usando pandas e matplotlib.</span></span>
+<span id="cb29-466"><a href="#cb29-466"></a><span class="in">```</span></span>
+<span id="cb29-467"><a href="#cb29-467"></a></span>
+<span id="cb29-468"><a href="#cb29-468"></a>::: {.callout-tip}</span>
+<span id="cb29-469"><a href="#cb29-469"></a><span class="fu">## O arquivo `CLAUDE.md`</span></span>
+<span id="cb29-470"><a href="#cb29-470"></a>Crie um arquivo <span class="in">`CLAUDE.md`</span> na raiz do seu projeto com instrucoes sobre a estrutura do projeto, comandos de build e convencoes. O Claude Code le esse arquivo automaticamente e usa as informacoes para dar respostas mais precisas.</span>
+<span id="cb29-471"><a href="#cb29-471"></a>:::</span>
+<span id="cb29-472"><a href="#cb29-472"></a></span>
+<span id="cb29-473"><a href="#cb29-473"></a><span class="fu">### Boas praticas com Claude Code</span></span>
+<span id="cb29-474"><a href="#cb29-474"></a></span>
+<span id="cb29-475"><a href="#cb29-475"></a><span class="ss">1. </span>**Seja especifico**: quanto mais contexto voce fornecer, melhor a resposta.</span>
+<span id="cb29-476"><a href="#cb29-476"></a><span class="ss">2. </span>**Revise o codigo gerado**: sempre confira se o resultado faz sentido estatisticamente.</span>
+<span id="cb29-477"><a href="#cb29-477"></a><span class="ss">3. </span>**Use iterativamente**: comece com algo simples e va refinando com novas instrucoes.</span>
+<span id="cb29-478"><a href="#cb29-478"></a><span class="ss">4. </span>**Aproveite o contexto do projeto**: referencia arquivos e funcoes pelo nome --- o Claude Code consegue encontra-los.</span>
+<span id="cb29-479"><a href="#cb29-479"></a></span>
+<span id="cb29-480"><a href="#cb29-480"></a><span class="fu">## Como este livro foi feito</span></span>
+<span id="cb29-481"><a href="#cb29-481"></a></span>
+<span id="cb29-482"><a href="#cb29-482"></a>Este livro --- *Introducao Interativa a Estatistica* --- foi construido combinando as tres ferramentas apresentadas neste apendice. Entender como ele foi feito pode inspirar voce a criar seus proprios materiais.</span>
+<span id="cb29-483"><a href="#cb29-483"></a></span>
+<span id="cb29-484"><a href="#cb29-484"></a><span class="fu">### Estrutura do projeto</span></span>
+<span id="cb29-485"><a href="#cb29-485"></a></span>
+<span id="cb29-486"><a href="#cb29-486"></a>O livro e um **Quarto Book**, um formato especial do Quarto para documentos longos com multiplos capitulos. A configuracao fica no arquivo <span class="in">`_quarto.yml`</span>:</span>
+<span id="cb29-487"><a href="#cb29-487"></a></span>
+<span id="cb29-488"><a href="#cb29-488"></a><span class="in">```yaml</span></span>
+<span id="cb29-489"><a href="#cb29-489"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb29-490"><a href="#cb29-490"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
+<span id="cb29-491"><a href="#cb29-491"></a></span>
+<span id="cb29-492"><a href="#cb29-492"></a><span class="fu">book</span><span class="kw">:</span></span>
+<span id="cb29-493"><a href="#cb29-493"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Introducao Interativa a Estatistica"</span></span>
+<span id="cb29-494"><a href="#cb29-494"></a><span class="at">  </span><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Daniel Alexandre Ramazzotte"</span></span>
+<span id="cb29-495"><a href="#cb29-495"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb29-496"><a href="#cb29-496"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>index.qmd</span>
+<span id="cb29-497"><a href="#cb29-497"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>01-descritiva.qmd</span>
+<span id="cb29-498"><a href="#cb29-498"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>02-probabilidade.qmd</span>
+<span id="cb29-499"><a href="#cb29-499"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>03-inferencia.qmd</span>
+<span id="cb29-500"><a href="#cb29-500"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>04-regressao.qmd</span>
+<span id="cb29-501"><a href="#cb29-501"></a><span class="at">  </span><span class="fu">appendices</span><span class="kw">:</span></span>
+<span id="cb29-502"><a href="#cb29-502"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>A-intro-r.qmd</span>
+<span id="cb29-503"><a href="#cb29-503"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>B-intro-python.qmd</span>
+<span id="cb29-504"><a href="#cb29-504"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>C-dicas-ia.qmd</span>
+<span id="cb29-505"><a href="#cb29-505"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>D-quarto-git-tutorial.qmd</span>
+<span id="cb29-506"><a href="#cb29-506"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span>E-creditos.qmd</span>
+<span id="cb29-507"><a href="#cb29-507"></a><span class="in">```</span></span>
+<span id="cb29-508"><a href="#cb29-508"></a></span>
+<span id="cb29-509"><a href="#cb29-509"></a>Cada capitulo e um arquivo <span class="in">`.qmd`</span> independente, o que facilita a organizacao e a colaboracao.</span>
+<span id="cb29-510"><a href="#cb29-510"></a></span>
+<span id="cb29-511"><a href="#cb29-511"></a><span class="fu">### Identidade visual</span></span>
+<span id="cb29-512"><a href="#cb29-512"></a></span>
+<span id="cb29-513"><a href="#cb29-513"></a>A identidade visual do PROPET DataSci foi aplicada via um arquivo <span class="in">`custom.scss`</span> que personaliza cores, fontes e espacamentos:</span>
+<span id="cb29-514"><a href="#cb29-514"></a></span>
+<span id="cb29-515"><a href="#cb29-515"></a><span class="ss">- </span>**Azul primario**: <span class="in">`#448EE3`</span></span>
+<span id="cb29-516"><a href="#cb29-516"></a><span class="ss">- </span>**Azul escuro**: <span class="in">`#2D4188`</span></span>
+<span id="cb29-517"><a href="#cb29-517"></a><span class="ss">- </span>**Texto claro**: <span class="in">`#FCFCFC`</span></span>
+<span id="cb29-518"><a href="#cb29-518"></a><span class="ss">- </span>**Texto escuro**: <span class="in">`#000000`</span></span>
+<span id="cb29-519"><a href="#cb29-519"></a></span>
+<span id="cb29-520"><a href="#cb29-520"></a>Esse arquivo SCSS e referenciado no <span class="in">`_quarto.yml`</span> e aplicado automaticamente em toda a renderizacao HTML.</span>
+<span id="cb29-521"><a href="#cb29-521"></a></span>
+<span id="cb29-522"><a href="#cb29-522"></a><span class="fu">### Banco de questoes</span></span>
+<span id="cb29-523"><a href="#cb29-523"></a></span>
+<span id="cb29-524"><a href="#cb29-524"></a>As 358 questoes de fixacao do livro foram organizadas em um **banco de questoes estruturado**. O fluxo foi:</span>
+<span id="cb29-525"><a href="#cb29-525"></a></span>
+<span id="cb29-526"><a href="#cb29-526"></a><span class="ss">1. </span>As questoes foram escritas em um documento Markdown</span>
+<span id="cb29-527"><a href="#cb29-527"></a><span class="ss">2. </span>Um script Python (<span class="in">`parse_questoes.py`</span>) fez o parsing do Markdown e gerou comandos SQL</span>
+<span id="cb29-528"><a href="#cb29-528"></a><span class="ss">3. </span>O banco de dados (MySQL/SQLite) armazena as questoes com metadados: capitulo, tema, dificuldade, tipo e alternativas</span>
+<span id="cb29-529"><a href="#cb29-529"></a></span>
+<span id="cb29-530"><a href="#cb29-530"></a>Isso permite filtrar, sortear e reutilizar questoes de forma sistematica.</span>
+<span id="cb29-531"><a href="#cb29-531"></a></span>
+<span id="cb29-532"><a href="#cb29-532"></a><span class="fu">### O papel do Claude Code</span></span>
+<span id="cb29-533"><a href="#cb29-533"></a></span>
+<span id="cb29-534"><a href="#cb29-534"></a>O Claude Code foi uma ferramenta central na construcao deste livro. Ele auxiliou em diversas tarefas:</span>
+<span id="cb29-535"><a href="#cb29-535"></a></span>
+<span id="cb29-536"><a href="#cb29-536"></a><span class="ss">- </span>**Escrita e organizacao** dos capitulos, mantendo consistencia de estilo e terminologia</span>
+<span id="cb29-537"><a href="#cb29-537"></a><span class="ss">- </span>**Geracao de codigo** R e Python para os exemplos e exercicios</span>
+<span id="cb29-538"><a href="#cb29-538"></a><span class="ss">- </span>**Criacao do parser** de questoes (Markdown para SQL)</span>
+<span id="cb29-539"><a href="#cb29-539"></a><span class="ss">- </span>**Depuracao** de erros no Quarto e nos scripts</span>
+<span id="cb29-540"><a href="#cb29-540"></a><span class="ss">- </span>**Revisao** de formulas e explicacoes estatisticas</span>
+<span id="cb29-541"><a href="#cb29-541"></a></span>
+<span id="cb29-542"><a href="#cb29-542"></a>Isso nao significa que a IA fez o trabalho sozinha --- todas as decisoes pedagogicas, a selecao de conteudo e a verificacao de corretude foram feitas pelo autor. O Claude Code funcionou como um **assistente qualificado** que acelerou o processo.</span>
+<span id="cb29-543"><a href="#cb29-543"></a></span>
+<span id="cb29-544"><a href="#cb29-544"></a><span class="fu">### Seu proximo projeto</span></span>
+<span id="cb29-545"><a href="#cb29-545"></a></span>
+<span id="cb29-546"><a href="#cb29-546"></a>Agora que voce conhece essas ferramentas, aqui vai uma sugestao de como comecar seu proprio projeto:</span>
+<span id="cb29-547"><a href="#cb29-547"></a></span>
+<span id="cb29-548"><a href="#cb29-548"></a><span class="ss">1. </span>**Instale** o Quarto, o Git e o Claude Code</span>
+<span id="cb29-549"><a href="#cb29-549"></a><span class="ss">2. </span>**Crie** um repositorio Git para o seu projeto</span>
+<span id="cb29-550"><a href="#cb29-550"></a><span class="ss">3. </span>**Inicie** um documento <span class="in">`.qmd`</span> com sua analise</span>
+<span id="cb29-551"><a href="#cb29-551"></a><span class="ss">4. </span>**Faca commits** frequentes, com mensagens descritivas</span>
+<span id="cb29-552"><a href="#cb29-552"></a><span class="ss">5. </span>**Suba** o repositorio para o GitHub</span>
+<span id="cb29-553"><a href="#cb29-553"></a><span class="ss">6. </span>**Use** o Claude Code para ajudar com codigo e depuracao</span>
+<span id="cb29-554"><a href="#cb29-554"></a></span>
+<span id="cb29-555"><a href="#cb29-555"></a>::: {.callout-tip}</span>
+<span id="cb29-556"><a href="#cb29-556"></a><span class="fu">## Comece simples</span></span>
+<span id="cb29-557"><a href="#cb29-557"></a>Voce nao precisa dominar tudo de uma vez. Comece com um unico arquivo <span class="in">`.qmd`</span>, aprenda a renderizar, depois va adicionando Git e Claude Code conforme a necessidade. A pratica leva a fluencia.</span>
+<span id="cb29-558"><a href="#cb29-558"></a>:::</span>
+<span id="cb29-559"><a href="#cb29-559"></a></span>
+<span id="cb29-560"><a href="#cb29-560"></a><span class="fu">### Recursos adicionais</span></span>
+<span id="cb29-561"><a href="#cb29-561"></a></span>
+<span id="cb29-562"><a href="#cb29-562"></a><span class="ss">- </span>**Quarto**: <span class="co">[</span><span class="ot">quarto.org/docs/guide</span><span class="co">](https://quarto.org/docs/guide/)</span> --- documentacao oficial</span>
+<span id="cb29-563"><a href="#cb29-563"></a><span class="ss">- </span>**Git**: <span class="co">[</span><span class="ot">git-scm.com/book/pt-br</span><span class="co">](https://git-scm.com/book/pt-br/)</span> --- livro Pro Git em portugues</span>
+<span id="cb29-564"><a href="#cb29-564"></a><span class="ss">- </span>**GitHub**: <span class="co">[</span><span class="ot">docs.github.com</span><span class="co">](https://docs.github.com)</span> --- documentacao oficial</span>
+<span id="cb29-565"><a href="#cb29-565"></a><span class="ss">- </span>**Claude Code**: <span class="co">[</span><span class="ot">docs.anthropic.com</span><span class="co">](https://docs.anthropic.com)</span> --- documentacao da Anthropic</span>
+<span id="cb29-566"><a href="#cb29-566"></a><span class="ss">- </span>**R Markdown / Quarto**: <span class="co">[</span><span class="ot">r4ds.hadley.nz</span><span class="co">](https://r4ds.hadley.nz)</span> --- R for Data Science (usa Quarto)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
