@@ -1,0 +1,810 @@
+# Introducao ao Python {#apendice-python}
+
+Python e uma das linguagens de programacao mais populares do mundo, especialmente nas areas de ciencia de dados, aprendizado de maquina e estatistica. Neste apendice, apresentamos os fundamentos necessarios para aplicar conceitos estatisticos em Python, com foco nas bibliotecas mais utilizadas para analise de dados.
+
+::: {.callout-tip}
+## Por que Python?
+Python e gratuito, possui uma comunidade imensa e e amplamente utilizado na industria e na academia. Saber R **e** Python torna voce um profissional muito mais completo na area de dados.
+:::
+
+## Google Colab: Programar sem instalar nada
+
+O [Google Colab](https://colab.research.google.com/) e uma plataforma gratuita que permite escrever e executar codigo Python diretamente no navegador, sem necessidade de instalacao. Ele funciona como um caderno (notebook) interativo.
+
+### Como comecar
+
+1. Acesse <https://colab.research.google.com/>
+2. Faca login com sua conta Google
+3. Clique em **"Novo notebook"**
+4. Escreva codigo nas celulas e pressione `Shift + Enter` para executar
+
+### Vantagens do Colab
+
+- Zero instalacao --- tudo roda na nuvem
+- Ja vem com as bibliotecas mais comuns pre-instaladas (NumPy, Pandas, Matplotlib, etc.)
+- Salva automaticamente no Google Drive
+- Permite compartilhar notebooks facilmente
+- Oferece acesso gratuito a GPUs para computacao pesada
+
+::: {.callout-note}
+## Instalando bibliotecas no Colab
+Se precisar de uma biblioteca que nao esta pre-instalada, use:
+```{python}
+#| echo: true
+#| eval: false
+# No Colab, use ! antes de comandos do terminal
+# !pip install nome_da_biblioteca
+```
+:::
+
+## Sintaxe basica, variaveis e tipos
+
+### Variaveis e atribuicao
+
+Em Python, o operador de atribuicao e `=`. Nao e necessario declarar o tipo da variavel --- Python infere automaticamente.
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Numericos
+x = 10          # int (inteiro)
+y = 3.14        # float (decimal)
+z = 2 + 3j      # complex (numero complexo)
+
+# Strings (texto)
+nome = "Maria"
+frase = 'Ola, mundo!'
+texto_longo = """Este texto
+pode ter varias linhas"""
+
+# Booleanos (logicos)
+ativo = True
+falha = False
+
+# Verificar o tipo de uma variavel
+type(x)      # <class 'int'>
+type(nome)   # <class 'str'>
+type(ativo)  # <class 'bool'>
+```
+
+### Estruturas de dados basicas
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Lista: colecao ordenada e mutavel (equivalente a vetor em R)
+numeros = [1, 2, 3, 4, 5]
+nomes = ["Ana", "Bruno", "Carla"]
+mista = [1, "texto", True, 3.14]  # Pode misturar tipos
+
+# Acessar elementos (indice comeca em 0!)
+numeros[0]    # 1 (primeiro elemento)
+numeros[-1]   # 5 (ultimo elemento)
+numeros[1:3]  # [2, 3] (fatiamento: do indice 1 ao 2)
+
+# Tupla: colecao ordenada e imutavel
+coordenadas = (10.5, 20.3)
+dias_semana = ("seg", "ter", "qua", "qui", "sex")
+
+# Dicionario: pares chave-valor (equivalente a lista nomeada em R)
+aluno = {
+    "nome": "Joao",
+    "idade": 22,
+    "nota": 8.5
+}
+aluno["nome"]   # "Joao"
+aluno["nota"]   # 8.5
+
+# Conjunto: colecao sem duplicatas
+valores = {1, 2, 3, 2, 1}  # {1, 2, 3}
+```
+
+### Operacoes basicas
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Aritmeticas
+10 + 3    # 13 (adicao)
+10 - 3    # 7 (subtracao)
+10 * 3    # 30 (multiplicacao)
+10 / 3    # 3.333... (divisao)
+10 // 3   # 3 (divisao inteira)
+10 % 3    # 1 (modulo/resto)
+10 ** 3   # 1000 (potenciacao)
+
+# Comparacao
+5 == 5    # True
+5 != 3    # True
+5 > 3     # True
+5 <= 3    # False
+
+# Logicas
+True and False   # False
+True or False    # True
+not True         # False
+```
+
+### Estruturas de controle
+
+```{python}
+#| echo: true
+#| eval: false
+
+# if/elif/else (note: Python usa indentacao, nao chaves!)
+x = 7
+if x < 5:
+    print("x e menor que 5")
+elif x < 10:
+    print("x esta entre 5 e 10")
+else:
+    print("x e 10 ou maior")
+
+# for loop
+for i in range(5):       # 0, 1, 2, 3, 4
+    print(i)
+
+for nome in ["Ana", "Bruno", "Carla"]:
+    print(f"Ola, {nome}!")  # f-string: formatacao elegante
+
+# while loop
+contador = 5
+while contador > 0:
+    print(contador)
+    contador -= 1
+
+# List comprehension (forma compacta de criar listas)
+quadrados = [x**2 for x in range(1, 11)]
+# [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+pares = [x for x in range(1, 21) if x % 2 == 0]
+# [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+```
+
+### Funcoes
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Definir uma funcao
+def saudacao(nome):
+    """Retorna uma mensagem de saudacao."""
+    return f"Ola, {nome}! Bem-vindo(a) ao Python."
+
+saudacao("Maria")  # "Ola, Maria! Bem-vindo(a) ao Python."
+
+# Funcao com valor padrao
+def calcular_imc(peso, altura, arredondar=2):
+    imc = peso / (altura ** 2)
+    return round(imc, arredondar)
+
+calcular_imc(70, 1.75)     # 22.86
+calcular_imc(70, 1.75, 4)  # 22.8571
+
+# Funcao com multiplos retornos
+def estatisticas(dados):
+    import numpy as np
+    return {
+        "media": np.mean(dados),
+        "mediana": np.median(dados),
+        "desvio": np.std(dados, ddof=1)
+    }
+
+resultado = estatisticas([7.5, 8.0, 6.5, 9.0, 7.0])
+resultado["media"]  # 7.6
+```
+
+## NumPy: Computacao numerica
+
+[NumPy](https://numpy.org/) e a biblioteca fundamental para computacao numerica em Python. Ela fornece arrays multidimensionais eficientes e funcoes matematicas.
+
+```{python}
+#| echo: true
+#| eval: false
+
+import numpy as np
+
+# Criar arrays
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([10, 20, 30, 40, 50])
+
+# Operacoes vetorizadas (elemento a elemento)
+a + b       # array([11, 22, 33, 44, 55])
+a * b       # array([ 10,  40,  90, 160, 250])
+a ** 2      # array([ 1,  4,  9, 16, 25])
+
+# Funcoes estatisticas
+np.mean(a)     # 3.0 (media)
+np.median(a)   # 3.0 (mediana)
+np.std(a)      # 1.414 (desvio padrao populacional)
+np.std(a, ddof=1)  # 1.581 (desvio padrao amostral)
+np.var(a)      # 2.0 (variancia)
+np.sum(a)      # 15 (soma)
+np.min(a)      # 1
+np.max(a)      # 5
+
+# Sequencias
+np.arange(0, 10, 2)        # array([0, 2, 4, 6, 8])
+np.linspace(0, 1, 5)       # array([0., 0.25, 0.5, 0.75, 1.])
+
+# Numeros aleatorios
+np.random.seed(42)                   # Para reprodutibilidade
+np.random.normal(0, 1, 1000)         # 1000 valores da Normal(0,1)
+np.random.uniform(0, 10, 100)        # 100 valores da Uniforme(0,10)
+np.random.choice([1,2,3,4,5], 10)    # 10 sorteios com reposicao
+
+# Matrizes
+matriz = np.array([[1, 2, 3],
+                   [4, 5, 6]])
+matriz.shape    # (2, 3) - 2 linhas, 3 colunas
+matriz.T        # Transposta
+np.dot(matriz, matriz.T)  # Multiplicacao matricial
+```
+
+## Pandas: Analise de dados
+
+[Pandas](https://pandas.pydata.org/) e a principal biblioteca para manipulacao e analise de dados tabulares em Python. O objeto central e o **DataFrame**, equivalente ao `data.frame` do R.
+
+### Criar e importar DataFrames
+
+```{python}
+#| echo: true
+#| eval: false
+
+import pandas as pd
+
+# Criar um DataFrame manualmente
+dados = pd.DataFrame({
+    "nome": ["Ana", "Bruno", "Carla", "Diego", "Eva"],
+    "idade": [22, 25, 23, 28, 21],
+    "nota": [8.5, 7.0, 9.2, 6.5, 8.0],
+    "cidade": ["Maringa", "Curitiba", "Maringa", "Londrina", "Curitiba"]
+})
+
+print(dados)
+
+# Importar CSV
+dados = pd.read_csv("caminho/para/arquivo.csv")
+
+# CSV com separador brasileiro (ponto e virgula)
+dados = pd.read_csv("arquivo.csv", sep=";", decimal=",")
+
+# CSV com encoding especifico
+dados = pd.read_csv("arquivo.csv", encoding="utf-8")
+dados = pd.read_csv("arquivo.csv", encoding="latin1")
+
+# Importar Excel
+dados = pd.read_excel("arquivo.xlsx")
+dados = pd.read_excel("arquivo.xlsx", sheet_name="Planilha2")
+```
+
+### Explorar os dados
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Primeiras e ultimas linhas
+dados.head()        # 5 primeiras linhas
+dados.head(10)      # 10 primeiras
+dados.tail()        # 5 ultimas
+
+# Informacoes gerais
+dados.info()        # Tipos de cada coluna, valores nulos
+dados.describe()    # Estatisticas descritivas das colunas numericas
+dados.shape         # (linhas, colunas)
+dados.columns       # Nomes das colunas
+dados.dtypes        # Tipo de cada coluna
+```
+
+### Selecionar e filtrar
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Selecionar colunas
+dados["nome"]                    # Uma coluna (retorna Series)
+dados[["nome", "nota"]]          # Varias colunas (retorna DataFrame)
+
+# Filtrar linhas
+dados[dados["nota"] > 8]                        # Nota maior que 8
+dados[dados["cidade"] == "Maringa"]              # Cidade = Maringa
+dados[(dados["nota"] > 7) & (dados["idade"] < 25)]  # Condicoes combinadas
+
+# Filtrar com isin (equivalente a %in% do R)
+dados[dados["cidade"].isin(["Maringa", "Curitiba"])]
+
+# Selecionar por posicao
+dados.iloc[0]        # Primeira linha
+dados.iloc[0:3]      # Linhas 0, 1, 2
+dados.iloc[:, 0:2]   # Todas as linhas, colunas 0 e 1
+
+# Selecionar por nome
+dados.loc[0, "nome"]            # Valor especifico
+dados.loc[:, ["nome", "nota"]]  # Todas as linhas, colunas especificas
+```
+
+### Criar e modificar colunas
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Criar nova coluna
+dados["aprovado"] = dados["nota"] >= 7
+
+# Criar com condicao (equivalente a ifelse do R)
+import numpy as np
+dados["status"] = np.where(dados["nota"] >= 7, "Aprovado", "Reprovado")
+
+# Modificar coluna existente
+dados["nota"] = dados["nota"].round(1)
+
+# Renomear colunas
+dados = dados.rename(columns={"nome": "aluno", "nota": "nota_final"})
+```
+
+### Agrupar e resumir (groupby)
+
+O `groupby` do Pandas e equivalente ao `group_by` + `summarise` do dplyr.
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Agrupar por cidade e calcular estatisticas
+resumo = dados.groupby("cidade").agg(
+    media_nota=("nota", "mean"),
+    desvio_nota=("nota", "std"),
+    contagem=("nota", "count")
+).reset_index()
+
+print(resumo)
+
+# Formas alternativas
+dados.groupby("cidade")["nota"].mean()      # Media por cidade
+dados.groupby("cidade")["nota"].describe()  # Descritivo completo
+
+# Agrupar por varias colunas
+dados.groupby(["cidade", "aprovado"])["nota"].mean()
+
+# Contar ocorrencias (equivalente a count do dplyr)
+dados["cidade"].value_counts()
+```
+
+### Ordenar e remover duplicatas
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Ordenar
+dados.sort_values("nota")                          # Crescente
+dados.sort_values("nota", ascending=False)         # Decrescente
+dados.sort_values(["cidade", "nota"], ascending=[True, False])  # Multiplas colunas
+
+# Remover duplicatas
+dados.drop_duplicates()                    # Todas as colunas
+dados.drop_duplicates(subset=["cidade"])   # Baseado em coluna(s)
+```
+
+### Lidar com valores ausentes
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Verificar valores nulos
+dados.isnull().sum()         # Contagem de nulos por coluna
+
+# Remover linhas com valores nulos
+dados.dropna()               # Remove qualquer linha com nulo
+dados.dropna(subset=["nota"])  # Remove se nota for nula
+
+# Preencher valores nulos
+dados["nota"].fillna(0)                     # Preencher com zero
+dados["nota"].fillna(dados["nota"].mean())  # Preencher com a media
+```
+
+## Visualizacao com Matplotlib e Seaborn
+
+[Matplotlib](https://matplotlib.org/) e a biblioteca base de visualizacao, enquanto [Seaborn](https://seaborn.pydata.org/) e construida sobre ela com estilos mais bonitos e funcoes estatisticas integradas.
+
+```{python}
+#| echo: true
+#| eval: false
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Configurar estilo
+sns.set_theme(style="whitegrid")
+```
+
+### Histograma
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Com Matplotlib
+plt.figure(figsize=(8, 5))
+plt.hist(dados["nota"], bins=10, color="#448EE3", edgecolor="white")
+plt.title("Distribuicao das Notas")
+plt.xlabel("Nota")
+plt.ylabel("Frequencia")
+plt.show()
+
+# Com Seaborn (mais elegante)
+plt.figure(figsize=(8, 5))
+sns.histplot(dados["nota"], bins=10, kde=True, color="#448EE3")
+plt.title("Distribuicao das Notas com Curva de Densidade")
+plt.xlabel("Nota")
+plt.ylabel("Frequencia")
+plt.show()
+```
+
+### Boxplot
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Boxplot simples
+plt.figure(figsize=(8, 5))
+sns.boxplot(x="cidade", y="nota", data=dados, palette="Blues")
+plt.title("Distribuicao das Notas por Cidade")
+plt.xlabel("Cidade")
+plt.ylabel("Nota")
+plt.show()
+
+# Boxplot com pontos individuais
+plt.figure(figsize=(8, 5))
+sns.boxplot(x="cidade", y="nota", data=dados, palette="Blues", width=0.5)
+sns.stripplot(x="cidade", y="nota", data=dados, color="black", alpha=0.5, jitter=True)
+plt.title("Notas por Cidade (com pontos)")
+plt.show()
+```
+
+### Grafico de dispersao (scatter)
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Scatter simples
+plt.figure(figsize=(8, 5))
+plt.scatter(dados["idade"], dados["nota"], color="#448EE3", s=80, alpha=0.7)
+plt.title("Idade vs. Nota")
+plt.xlabel("Idade")
+plt.ylabel("Nota")
+plt.show()
+
+# Scatter com cores por grupo
+plt.figure(figsize=(8, 5))
+sns.scatterplot(x="idade", y="nota", hue="cidade", data=dados, s=100)
+plt.title("Idade vs. Nota por Cidade")
+plt.show()
+
+# Scatter com linha de regressao
+plt.figure(figsize=(8, 5))
+sns.regplot(x="idade", y="nota", data=dados, color="#2D4188",
+            scatter_kws={"s": 80}, line_kws={"color": "red"})
+plt.title("Idade vs. Nota com Regressao")
+plt.show()
+```
+
+### Grafico de barras
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Contagem por categoria
+plt.figure(figsize=(8, 5))
+sns.countplot(x="cidade", data=dados, palette="Blues")
+plt.title("Quantidade de Alunos por Cidade")
+plt.xlabel("Cidade")
+plt.ylabel("Contagem")
+plt.show()
+
+# Media por categoria
+resumo = dados.groupby("cidade")["nota"].mean().reset_index()
+plt.figure(figsize=(8, 5))
+sns.barplot(x="cidade", y="nota", data=resumo, palette="Blues")
+plt.title("Nota Media por Cidade")
+plt.xlabel("Cidade")
+plt.ylabel("Nota Media")
+plt.show()
+```
+
+### Salvar graficos
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Salvar o grafico atual
+plt.savefig("meu_grafico.png", dpi=300, bbox_inches="tight")
+plt.savefig("meu_grafico.pdf", bbox_inches="tight")  # Vetorial
+```
+
+## scipy.stats: Distribuicoes de probabilidade
+
+O modulo `scipy.stats` fornece funcoes para trabalhar com distribuicoes de probabilidade, testes de hipoteses e muito mais.
+
+```{python}
+#| echo: true
+#| eval: false
+
+from scipy import stats
+import numpy as np
+```
+
+### Distribuicao Normal
+
+```{python}
+#| echo: true
+#| eval: false
+
+from scipy.stats import norm
+
+# Criar uma distribuicao Normal com media=0 e desvio=1 (padrao)
+dist_normal = norm(loc=0, scale=1)
+
+# Calcular probabilidades
+dist_normal.cdf(1.96)     # P(Z <= 1.96) = 0.975
+dist_normal.cdf(0)        # P(Z <= 0) = 0.5
+
+# Quantis (inverso da CDF)
+dist_normal.ppf(0.975)    # z tal que P(Z <= z) = 0.975 -> 1.96
+dist_normal.ppf(0.025)    # z tal que P(Z <= z) = 0.025 -> -1.96
+
+# Funcao de densidade (PDF)
+dist_normal.pdf(0)        # f(0) = 0.3989
+
+# Gerar amostras aleatorias
+amostra = dist_normal.rvs(size=1000, random_state=42)
+
+# Distribuicao Normal com outros parametros
+salarios = norm(loc=5000, scale=1200)  # Media 5000, desvio 1200
+salarios.cdf(7000)     # P(Salario <= 7000)
+1 - salarios.cdf(7000) # P(Salario > 7000)
+```
+
+### Distribuicao Binomial
+
+```{python}
+#| echo: true
+#| eval: false
+
+from scipy.stats import binom
+
+# Binomial com n=10 tentativas e p=0.3 de sucesso
+dist_binom = binom(n=10, p=0.3)
+
+# P(X = 3) - probabilidade exata
+dist_binom.pmf(3)       # 0.2668
+
+# P(X <= 3) - probabilidade acumulada
+dist_binom.cdf(3)       # 0.6496
+
+# P(X > 3) = 1 - P(X <= 3)
+1 - dist_binom.cdf(3)   # 0.3504
+
+# Media e variancia teoricas
+dist_binom.mean()   # 3.0 (n * p)
+dist_binom.var()    # 2.1 (n * p * (1-p))
+
+# Gerar amostras
+amostra = dist_binom.rvs(size=1000, random_state=42)
+```
+
+### Distribuicao t de Student
+
+```{python}
+#| echo: true
+#| eval: false
+
+from scipy.stats import t
+
+# t de Student com 10 graus de liberdade
+dist_t = t(df=10)
+
+# Quantis (valores criticos)
+dist_t.ppf(0.975)     # t_critico para IC 95% bilateral
+dist_t.ppf(0.95)      # t_critico para IC 90% bilateral
+
+# Probabilidades
+dist_t.cdf(2.228)     # P(T <= 2.228) com 10 gl
+```
+
+### Testes de hipoteses
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Teste t para uma amostra
+amostra = [23, 25, 28, 22, 27, 26, 24, 29, 21, 25]
+resultado = stats.ttest_1samp(amostra, popmean=25)
+print(f"Estatistica t: {resultado.statistic:.4f}")
+print(f"p-valor: {resultado.pvalue:.4f}")
+
+# Teste t para duas amostras independentes
+grupo_a = [85, 90, 78, 92, 88, 76, 95, 89]
+grupo_b = [72, 68, 80, 75, 71, 77, 69, 74]
+resultado = stats.ttest_ind(grupo_a, grupo_b)
+print(f"Estatistica t: {resultado.statistic:.4f}")
+print(f"p-valor: {resultado.pvalue:.4f}")
+
+# Teste qui-quadrado de independencia
+tabela = np.array([[30, 10],
+                   [20, 40]])
+chi2, p_valor, gl, esperado = stats.chi2_contingency(tabela)
+print(f"Qui-quadrado: {chi2:.4f}")
+print(f"p-valor: {p_valor:.4f}")
+print(f"Graus de liberdade: {gl}")
+
+# Teste de normalidade (Shapiro-Wilk)
+amostra = np.random.normal(0, 1, 100)
+stat, p_valor = stats.shapiro(amostra)
+print(f"Estatistica W: {stat:.4f}, p-valor: {p_valor:.4f}")
+```
+
+## statsmodels: Regressao Linear
+
+O [statsmodels](https://www.statsmodels.org/) e a principal biblioteca Python para modelos estatisticos, com saidas detalhadas semelhantes a softwares estatisticos tradicionais.
+
+```{python}
+#| echo: true
+#| eval: false
+
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import pandas as pd
+import numpy as np
+```
+
+### Regressao Linear Simples
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Dados de exemplo
+np.random.seed(42)
+n = 50
+horas_estudo = np.random.uniform(1, 10, n)
+nota = 3 + 0.8 * horas_estudo + np.random.normal(0, 1, n)
+
+dados = pd.DataFrame({
+    "horas": horas_estudo,
+    "nota": nota
+})
+
+# Metodo 1: Usando formula (semelhante ao R!)
+modelo = smf.ols("nota ~ horas", data=dados).fit()
+
+# Ver os resultados completos
+print(modelo.summary())
+
+# Acessar coeficientes
+print(f"Intercepto: {modelo.params['Intercept']:.4f}")
+print(f"Coeficiente (horas): {modelo.params['horas']:.4f}")
+print(f"R-quadrado: {modelo.rsquared:.4f}")
+print(f"R-quadrado ajustado: {modelo.rsquared_adj:.4f}")
+
+# Metodo 2: Usando matrizes (mais explicito)
+X = sm.add_constant(dados["horas"])  # Adicionar coluna de 1s (intercepto)
+modelo2 = sm.OLS(dados["nota"], X).fit()
+print(modelo2.summary())
+```
+
+### Interpretar a saida
+
+```{python}
+#| echo: true
+#| eval: false
+
+# Coeficientes e seus p-valores
+print(modelo.params)       # Coeficientes estimados
+print(modelo.pvalues)      # p-valores
+print(modelo.conf_int())   # Intervalos de confianca (95%)
+
+# Diagnostico
+print(modelo.resid)        # Residuos
+print(modelo.fittedvalues) # Valores ajustados
+
+# Fazer previsoes
+novas_horas = pd.DataFrame({"horas": [5, 7, 10]})
+previsao = modelo.predict(novas_horas)
+print(previsao)
+```
+
+### Visualizar a regressao
+
+```{python}
+#| echo: true
+#| eval: false
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Grafico com linha de regressao
+plt.figure(figsize=(8, 5))
+sns.regplot(x="horas", y="nota", data=dados,
+            scatter_kws={"color": "#448EE3", "s": 60, "alpha": 0.7},
+            line_kws={"color": "#2D4188"})
+plt.title("Regressao: Horas de Estudo vs. Nota")
+plt.xlabel("Horas de Estudo")
+plt.ylabel("Nota")
+
+# Adicionar equacao no grafico
+b0 = modelo.params['Intercept']
+b1 = modelo.params['horas']
+r2 = modelo.rsquared
+plt.text(2, 10, f"y = {b0:.2f} + {b1:.2f}x\nR² = {r2:.3f}",
+         fontsize=12, bbox=dict(boxstyle="round", facecolor="wheat"))
+plt.show()
+
+# Grafico de residuos
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# Residuos vs valores ajustados
+axes[0].scatter(modelo.fittedvalues, modelo.resid, color="#448EE3", alpha=0.7)
+axes[0].axhline(y=0, color="red", linestyle="--")
+axes[0].set_title("Residuos vs Valores Ajustados")
+axes[0].set_xlabel("Valores Ajustados")
+axes[0].set_ylabel("Residuos")
+
+# QQ-plot dos residuos
+sm.qqplot(modelo.resid, line="s", ax=axes[1])
+axes[1].set_title("QQ-Plot dos Residuos")
+
+plt.tight_layout()
+plt.show()
+```
+
+## Tabela de equivalencia: R vs Python
+
+| Tarefa | R | Python |
+|:-------|:--|:-------|
+| **Importar CSV** | `read.csv("arquivo.csv")` | `pd.read_csv("arquivo.csv")` |
+| **Ver primeiras linhas** | `head(dados)` | `dados.head()` |
+| **Estrutura dos dados** | `str(dados)` | `dados.info()` |
+| **Resumo estatistico** | `summary(dados)` | `dados.describe()` |
+| **Dimensoes** | `dim(dados)` | `dados.shape` |
+| **Media** | `mean(x)` | `np.mean(x)` ou `dados["x"].mean()` |
+| **Mediana** | `median(x)` | `np.median(x)` ou `dados["x"].median()` |
+| **Desvio padrao** | `sd(x)` | `np.std(x, ddof=1)` ou `dados["x"].std()` |
+| **Filtrar linhas** | `filter(dados, x > 5)` | `dados[dados["x"] > 5]` |
+| **Selecionar colunas** | `select(dados, x, y)` | `dados[["x", "y"]]` |
+| **Criar coluna** | `mutate(dados, z = x + y)` | `dados["z"] = dados["x"] + dados["y"]` |
+| **Agrupar e resumir** | `group_by(dados, g) %>% summarise(m = mean(x))` | `dados.groupby("g")["x"].mean()` |
+| **Ordenar** | `arrange(dados, x)` | `dados.sort_values("x")` |
+| **Histograma** | `hist(x)` ou `geom_histogram()` | `plt.hist(x)` ou `sns.histplot(x)` |
+| **Boxplot** | `boxplot(x ~ g)` ou `geom_boxplot()` | `sns.boxplot(x="g", y="x")` |
+| **Dispersao** | `plot(x, y)` ou `geom_point()` | `plt.scatter(x, y)` ou `sns.scatterplot()` |
+| **Regressao linear** | `lm(y ~ x, data=dados)` | `smf.ols("y ~ x", data=dados).fit()` |
+| **Teste t** | `t.test(x, mu=0)` | `stats.ttest_1samp(x, 0)` |
+| **Normal: P(X<=x)** | `pnorm(x)` | `norm.cdf(x)` |
+| **Normal: quantil** | `qnorm(p)` | `norm.ppf(p)` |
+| **Normal: amostras** | `rnorm(n)` | `norm.rvs(size=n)` |
+| **Binomial: P(X=k)** | `dbinom(k, n, p)` | `binom.pmf(k, n, p)` |
+
+: Equivalencia R vs Python para Tarefas Estatisticas Comuns {.striped .hover}
+
+::: {.callout-tip}
+## Dica final
+Para aprofundar seus conhecimentos em Python para ciencia de dados, recomendamos:
+
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) (Jake VanderPlas) --- gratuito e online
+- [Pandas Documentation](https://pandas.pydata.org/docs/) --- documentacao oficial
+- [Seaborn Tutorial](https://seaborn.pydata.org/tutorial.html) --- galeria de exemplos
+:::

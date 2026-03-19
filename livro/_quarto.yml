@@ -1,0 +1,40 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Introdução Interativa a Estatística"
+  author: "Daniel Alexandre Ramazzotte"
+  date: "2026"
+  search: true
+  repo-url: https://github.com/danielramazzotte/Estatistica-Basica
+  chapters:
+    - index.qmd
+    - 01-descritiva.qmd
+    - 02-probabilidade.qmd
+    - 03-inferencia.qmd
+    - 04-regressao.qmd
+  appendices:
+    - A-intro-r.qmd
+    - B-intro-python.qmd
+    - C-dicas-ia.qmd
+    - D-quarto-git-tutorial.qmd
+    - E-creditos.qmd
+
+format:
+  html:
+    theme: [cosmo, custom.scss]
+    page-layout: full
+    toc: true
+    toc-depth: 4
+    number-sections: true
+    code-tools: true
+    code-fold: false
+    code-line-numbers: true
+    code-overflow: wrap
+    code-copy: true
+    code-link: true
+    highlight-style: pygments
+
+execute:
+  freeze: auto

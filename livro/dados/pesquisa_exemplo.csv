@@ -1,0 +1,51 @@
+id,idade,renda,escolaridade,regiao,genero,satisfacao,horas_estudo,nota_final
+1,19,1200,Ensino Médio,Sul,Feminino,Satisfeito,8,7.5
+2,22,2500,Superior Incompleto,Sudeste,Masculino,Muito Satisfeito,12,8.2
+3,20,1800,Superior Incompleto,Sul,Feminino,Neutro,6,6.0
+4,25,3500,Superior Completo,Nordeste,Masculino,Satisfeito,10,7.8
+5,18,950,Ensino Médio,Norte,Feminino,Insatisfeito,4,5.2
+6,23,2800,Superior Incompleto,Sudeste,Masculino,Satisfeito,9,7.0
+7,21,1500,Superior Incompleto,Sul,Feminino,Muito Satisfeito,14,9.1
+8,30,5200,Pós-Graduação,Centro-Oeste,Masculino,Satisfeito,5,6.8
+9,19,1100,Ensino Médio,Nordeste,Feminino,Neutro,7,6.5
+10,24,3200,Superior Completo,Sudeste,Masculino,Satisfeito,11,8.0
+11,20,1400,Superior Incompleto,Sul,Feminino,Insatisfeito,3,4.8
+12,27,4100,Superior Completo,Sudeste,Feminino,Muito Satisfeito,13,8.9
+13,22,2200,Superior Incompleto,Norte,Masculino,Neutro,8,7.2
+14,18,900,Ensino Médio,Nordeste,Feminino,Satisfeito,6,6.3
+15,26,3800,Superior Completo,Sul,Masculino,Satisfeito,10,7.6
+16,21,1700,Superior Incompleto,Centro-Oeste,Feminino,Neutro,7,6.7
+17,23,2600,Superior Incompleto,Sudeste,Masculino,Muito Satisfeito,15,9.5
+18,19,1000,Ensino Médio,Norte,Feminino,Insatisfeito,5,5.5
+19,28,4500,Pós-Graduação,Sul,Masculino,Satisfeito,9,7.4
+20,20,1600,Superior Incompleto,Nordeste,Feminino,Satisfeito,8,7.0
+21,24,3000,Superior Completo,Sudeste,Masculino,Neutro,6,6.2
+22,22,2100,Superior Incompleto,Sul,Feminino,Satisfeito,11,8.1
+23,31,5500,Pós-Graduação,Sudeste,Masculino,Muito Satisfeito,7,7.3
+24,19,1050,Ensino Médio,Centro-Oeste,Feminino,Neutro,9,7.1
+25,25,3400,Superior Completo,Nordeste,Masculino,Satisfeito,10,7.7
+26,20,1350,Superior Incompleto,Sul,Feminino,Insatisfeito,4,5.0
+27,23,2700,Superior Incompleto,Sudeste,Masculino,Satisfeito,12,8.4
+28,18,850,Ensino Médio,Norte,Feminino,Neutro,6,6.1
+29,29,4800,Pós-Graduação,Sul,Feminino,Muito Satisfeito,8,7.6
+30,21,1900,Superior Incompleto,Nordeste,Masculino,Satisfeito,10,7.5
+31,26,3600,Superior Completo,Sudeste,Feminino,Satisfeito,11,8.0
+32,20,1250,Ensino Médio,Centro-Oeste,Masculino,Neutro,7,6.6
+33,22,2300,Superior Incompleto,Sul,Feminino,Satisfeito,9,7.3
+34,24,3100,Superior Completo,Norte,Masculino,Muito Satisfeito,13,8.7
+35,19,1150,Ensino Médio,Nordeste,Feminino,Insatisfeito,5,5.4
+36,27,4200,Superior Completo,Sudeste,Masculino,Satisfeito,8,7.2
+37,21,1800,Superior Incompleto,Sul,Feminino,Neutro,7,6.8
+38,23,2500,Superior Incompleto,Centro-Oeste,Masculino,Satisfeito,10,7.9
+39,18,950,Ensino Médio,Norte,Feminino,Neutro,6,6.0
+40,25,3300,Superior Completo,Sul,Masculino,Satisfeito,12,8.3
+41,20,1500,Superior Incompleto,Nordeste,Feminino,Satisfeito,8,7.1
+42,32,5800,Pós-Graduação,Sudeste,Masculino,Muito Satisfeito,6,7.0
+43,22,2000,Superior Incompleto,Sul,Feminino,Neutro,9,7.4
+44,19,1100,Ensino Médio,Centro-Oeste,Masculino,Insatisfeito,4,5.1
+45,28,4600,Pós-Graduação,Nordeste,Feminino,Satisfeito,10,7.8
+46,21,1700,Superior Incompleto,Sudeste,Masculino,Satisfeito,11,8.0
+47,24,3000,Superior Completo,Sul,Feminino,Muito Satisfeito,14,9.0
+48,20,1400,Superior Incompleto,Norte,Masculino,Neutro,7,6.5
+49,23,2400,Superior Incompleto,Sudeste,Feminino,Satisfeito,9,7.3
+50,26,3700,Superior Completo,Centro-Oeste,Masculino,Satisfeito,10,7.7

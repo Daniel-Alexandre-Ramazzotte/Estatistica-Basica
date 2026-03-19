@@ -1,0 +1,108 @@
+/*-- scss:defaults --*/
+
+// Cores PROPET DataSci - Ação 11
+$propet-azul-primario: #448EE3;
+$propet-azul-escuro: #2D4188;
+$propet-texto-claro: #FCFCFC;
+$propet-texto-escuro: #000000;
+
+// Bootstrap overrides
+$primary: $propet-azul-primario;
+$link-color: $propet-azul-primario;
+$navbar-bg: $propet-azul-escuro;
+$sidebar-bg: #f8f9fa;
+
+// Typography
+$headings-color: $propet-azul-escuro;
+$font-family-sans-serif: "Source Sans Pro", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "Fira Code", "Source Code Pro", Consolas, monospace;
+
+/*-- scss:rules --*/
+
+// Navbar styling
+.navbar {
+  background-color: $propet-azul-escuro !important;
+
+  .navbar-brand {
+    color: $propet-texto-claro !important;
+    font-weight: 700;
+  }
+
+  .nav-link {
+    color: rgba($propet-texto-claro, 0.85) !important;
+
+    &:hover {
+      color: $propet-texto-claro !important;
+    }
+  }
+}
+
+// Sidebar links
+.sidebar .sidebar-item a {
+  color: $propet-azul-escuro;
+
+  &:hover, &.active {
+    color: $propet-azul-primario;
+    font-weight: 600;
+  }
+}
+
+// Chapter headings
+h1, h2, h3 {
+  color: $propet-azul-escuro;
+}
+
+h1 {
+  border-bottom: 3px solid $propet-azul-primario;
+  padding-bottom: 0.5rem;
+}
+
+// Code blocks
+div.sourceCode {
+  border-left: 4px solid $propet-azul-primario;
+}
+
+// Callout boxes
+.callout-note {
+  border-left-color: $propet-azul-primario;
+}
+
+.callout-tip {
+  border-left-color: #28a745;
+}
+
+.callout-warning {
+  border-left-color: #ffc107;
+}
+
+.callout-important {
+  border-left-color: #dc3545;
+}
+
+// Cover image styling
+.quarto-title-banner {
+  background-color: $propet-azul-escuro;
+}
+
+// Responsive table styling
+table {
+  font-size: 0.9rem;
+}
+
+// Exercise boxes
+.exercise {
+  background-color: lighten($propet-azul-primario, 40%);
+  border: 1px solid $propet-azul-primario;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+// Definition boxes
+.definition {
+  background-color: #f0f4ff;
+  border-left: 4px solid $propet-azul-escuro;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0 8px 8px 0;
+}

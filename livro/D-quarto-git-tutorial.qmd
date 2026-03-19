@@ -1,0 +1,566 @@
+# Tutorial: Quarto, Git e Claude Code {#apendice-tutorial}
+
+Este apendice apresenta as tres ferramentas fundamentais usadas na construcao deste livro: **Quarto** (publicacao cientifica), **Git** (controle de versao) e **Claude Code** (assistencia de IA via terminal). O objetivo e que voce, estudante, possa usar essas mesmas ferramentas nos seus proprios projetos academicos e profissionais.
+
+## O que e Quarto?
+
+Quarto e um sistema de publicacao cientifica e tecnica de codigo aberto, desenvolvido pela Posit (antiga RStudio). Ele permite que voce escreva documentos que combinam **texto**, **formulas matematicas** e **codigo executavel** em um unico arquivo.
+
+### Por que usar Quarto?
+
+- **Reprodutibilidade**: o documento e o codigo vivem juntos, garantindo que qualquer pessoa consiga reproduzir suas analises.
+- **Multiplos formatos**: a partir de um unico arquivo fonte, voce pode gerar HTML, PDF, Word, slides e ate livros inteiros.
+- **Multiplas linguagens**: suporta R, Python, Julia e Observable JS.
+- **Gratuito e de codigo aberto**: disponivel em [quarto.org](https://quarto.org).
+
+### Arquivos `.qmd`
+
+Os arquivos Quarto tem a extensao `.qmd` (Quarto Markdown). Eles combinam tres elementos:
+
+1. **YAML front matter** --- metadados no topo do arquivo
+2. **Markdown** --- texto formatado
+3. **Code chunks** --- blocos de codigo executavel
+
+Veja um exemplo minimo de arquivo `.qmd`:
+
+````markdown
+---
+title: "Minha Analise"
+author: "Seu Nome"
+format: html
+---
+
+## Introducao
+
+Este e um documento Quarto. Podemos incluir **negrito**, *italico* e formulas como $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$.
+
+```{{r}}
+# Codigo em R
+dados <- c(2, 4, 6, 8, 10)
+mean(dados)
+```
+
+```{{python}}
+# Codigo em Python
+import numpy as np
+dados = np.array([2, 4, 6, 8, 10])
+print(np.mean(dados))
+```
+````
+
+### YAML front matter
+
+O bloco YAML fica entre `---` no topo do arquivo e define configuracoes do documento:
+
+```yaml
+---
+title: "Titulo do Documento"
+author: "Seu Nome"
+date: "2026-03-18"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+```
+
+Algumas opcoes uteis:
+
+| Opcao | Descricao |
+|-------|-----------|
+| `title` | Titulo do documento |
+| `author` | Autor(es) |
+| `format` | Formato de saida (`html`, `pdf`, `docx`) |
+| `toc` | Gera sumario automatico |
+| `number-sections` | Numera as secoes |
+| `code-fold` | Permite esconder/mostrar codigo |
+
+### Code chunks (blocos de codigo)
+
+Para inserir um bloco de codigo executavel, use tres crases seguidas do nome da linguagem entre chaves:
+
+````markdown
+```{{r}}
+# Este bloco sera executado em R
+summary(iris)
+```
+````
+
+````markdown
+```{{python}}
+# Este bloco sera executado em Python
+import pandas as pd
+df = pd.read_csv("dados.csv")
+df.describe()
+```
+````
+
+Voce tambem pode adicionar opcoes ao bloco:
+
+````markdown
+```{{r}}
+#| label: fig-histograma
+#| fig-cap: "Distribuicao das idades"
+#| echo: true
+
+hist(dados$idade, main = "Histograma", xlab = "Idade")
+```
+````
+
+::: {.callout-tip}
+## Opcoes uteis para code chunks
+- `#| echo: false` --- esconde o codigo, mostra so o resultado
+- `#| eval: false` --- mostra o codigo, mas nao executa
+- `#| warning: false` --- suprime avisos
+- `#| fig-width: 8` --- largura da figura em polegadas
+:::
+
+### Comandos essenciais
+
+Para **renderizar** o documento (gerar a saida HTML, PDF, etc.):
+
+```bash
+quarto render meu_documento.qmd
+```
+
+Para abrir uma **pre-visualizacao** que atualiza automaticamente enquanto voce edita:
+
+```bash
+quarto preview meu_documento.qmd
+```
+
+Para renderizar **executando** todos os blocos de codigo:
+
+```bash
+quarto render meu_documento.qmd --execute
+```
+
+### Instalacao
+
+1. Acesse [quarto.org/docs/get-started](https://quarto.org/docs/get-started/)
+2. Baixe o instalador para o seu sistema operacional
+3. Siga as instrucoes de instalacao
+4. Verifique a instalacao no terminal:
+
+```bash
+quarto --version
+```
+
+::: {.callout-tip}
+## Editores recomendados
+O Quarto funciona bem com **RStudio**, **VS Code** (com a extensao Quarto) e ate editores de texto simples. Para quem ja usa R, o RStudio oferece a experiencia mais integrada.
+:::
+
+## O que e Git?
+
+Git e um **sistema de controle de versao** --- uma ferramenta que registra todas as alteracoes feitas nos seus arquivos ao longo do tempo. Pense nele como o "historico de versoes" do Google Docs, mas muito mais poderoso e projetado para projetos de codigo e texto.
+
+### Por que usar Git?
+
+- **Historico completo**: cada alteracao fica registrada. Voce pode voltar a qualquer versao anterior do projeto.
+- **Colaboracao**: varias pessoas podem trabalhar no mesmo projeto sem sobrescrever o trabalho umas das outras.
+- **Backup distribuido**: seu projeto pode existir em multiplos computadores e servidores (como o GitHub).
+- **Experimentacao segura**: voce pode criar "branches" para testar ideias sem afetar o projeto principal.
+
+### Conceitos fundamentais
+
+Antes de usar os comandos, e importante entender alguns conceitos:
+
+**Repositorio (repo)**
+: Uma pasta do seu computador que esta sendo monitorada pelo Git. Contem todos os arquivos do projeto e o historico de alteracoes.
+
+**Commit**
+: Um "ponto de salvamento" no historico. Cada commit registra quais arquivos mudaram, o que mudou, quem fez a mudanca e quando.
+
+**Branch (ramificacao)**
+: Uma linha paralela de desenvolvimento. Permite que voce trabalhe em algo novo sem alterar a versao principal.
+
+**Remote (remoto)**
+: Uma copia do repositorio em um servidor externo, como o GitHub. Serve para backup e colaboracao.
+
+**Staging area (area de preparacao)**
+: Um espaco intermediario onde voce seleciona quais alteracoes farao parte do proximo commit.
+
+::: {.callout-tip}
+## Analogia: salvamento de jogo
+Pense no Git como um sistema de salvamento de um jogo de video game. Cada **commit** e um save. Voce pode ter saves em momentos diferentes, voltar a qualquer um deles e ate criar caminhos paralelos (branches) para explorar opcoes diferentes.
+:::
+
+## Workflow Basico do Git
+
+### Instalacao
+
+- **Windows**: baixe em [git-scm.com](https://git-scm.com) e instale
+- **Mac**: execute `xcode-select --install` no terminal ou baixe em [git-scm.com](https://git-scm.com)
+- **Linux**: `sudo apt install git` (Ubuntu/Debian) ou `sudo dnf install git` (Fedora)
+
+Apos instalar, configure seu nome e e-mail:
+
+```bash
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@exemplo.com"
+```
+
+### Iniciando um repositorio
+
+Para transformar uma pasta comum em um repositorio Git:
+
+```bash
+mkdir meu-projeto
+cd meu-projeto
+git init
+```
+
+Voce vera a mensagem: `Initialized empty Git repository in .../meu-projeto/.git/`
+
+### O ciclo basico: add, commit
+
+O fluxo de trabalho mais comum no Git segue tres passos:
+
+1. **Modificar** arquivos normalmente
+2. **Adicionar** as mudancas a area de preparacao (`git add`)
+3. **Confirmar** as mudancas com uma mensagem (`git commit`)
+
+```bash
+# 1. Verificar o estado atual
+git status
+
+# 2. Adicionar arquivos especificos
+git add analise.qmd dados.csv
+
+# Ou adicionar todos os arquivos modificados
+git add .
+
+# 3. Criar um commit com mensagem descritiva
+git commit -m "Adiciona analise descritiva dos dados de vendas"
+```
+
+::: {.callout-tip}
+## Boas mensagens de commit
+Escreva mensagens que expliquem **o que** e **por que** voce fez a alteracao. Compare:
+
+- **Ruim**: `"alteracoes"`, `"update"`, `"fix"`
+- **Bom**: `"Adiciona grafico de dispersao no capitulo 4"`, `"Corrige formula da variancia na secao 1.3"`
+:::
+
+### Verificando o historico
+
+Para ver o estado atual dos arquivos:
+
+```bash
+git status
+```
+
+Para ver o historico de commits:
+
+```bash
+git log
+
+# Versao compacta (uma linha por commit)
+git log --oneline
+
+# Com grafico de branches
+git log --oneline --graph
+```
+
+### Enviando e recebendo do remoto
+
+Para enviar seus commits para o GitHub (ou outro servidor remoto):
+
+```bash
+git push origin main
+```
+
+Para baixar as alteracoes mais recentes do remoto:
+
+```bash
+git pull origin main
+```
+
+### O arquivo `.gitignore`
+
+O arquivo `.gitignore` diz ao Git quais arquivos e pastas ele deve **ignorar** --- ou seja, nao rastrear. Isso e util para arquivos temporarios, dados sensiveis ou arquivos gerados automaticamente.
+
+Crie um arquivo chamado `.gitignore` na raiz do projeto:
+
+```text
+# Arquivos gerados pelo Quarto
+_book/
+_freeze/
+*.html
+
+# Arquivos temporarios do R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Dados sensiveis
+.env
+senhas.txt
+```
+
+::: {.callout-tip}
+## Regra de ouro do `.gitignore`
+Nunca versione arquivos que podem ser **gerados automaticamente** (como `_book/`) ou que contem **informacoes sensiveis** (como senhas e tokens de API).
+:::
+
+## Branches
+
+### O que sao branches?
+
+Branches (ramificacoes) permitem que voce desenvolva funcionalidades novas em paralelo, sem afetar o codigo principal. Imagine que a branch `main` e a versao "oficial" do projeto. Voce cria uma branch separada para trabalhar em algo novo e, quando terminar, junta tudo de volta.
+
+### Comandos essenciais
+
+```bash
+# Ver todas as branches
+git branch
+
+# Criar uma nova branch
+git branch minha-feature
+
+# Mudar para a nova branch
+git checkout minha-feature
+
+# Atalho: criar e mudar ao mesmo tempo
+git checkout -b minha-feature
+```
+
+Apos fazer seus commits na branch, voce pode juntar (merge) com a branch principal:
+
+```bash
+# Voltar para a main
+git checkout main
+
+# Juntar a branch
+git merge minha-feature
+```
+
+### Quando usar branches?
+
+- Ao desenvolver uma **nova funcionalidade** (ex: um novo capitulo do livro)
+- Ao fazer uma **correcao de bug** que pode demorar
+- Ao **experimentar** algo que talvez nao va pro projeto final
+- Ao **colaborar**: cada pessoa trabalha em sua branch
+
+::: {.callout-tip}
+## Nomes de branches
+Use nomes descritivos e curtos, separados por hifen:
+
+- `capitulo-05-anova`
+- `corrige-formulas-cap3`
+- `melhora-graficos`
+:::
+
+## GitHub
+
+O [GitHub](https://github.com) e uma plataforma online que hospeda repositorios Git. Ele funciona como um "Google Drive para codigo", mas com todas as vantagens do Git integradas.
+
+### Criando um repositorio no GitHub
+
+1. Faca login em [github.com](https://github.com)
+2. Clique em **"New repository"** (ou o botao **+** no canto superior direito)
+3. Escolha um nome (ex: `minha-analise-estatistica`)
+4. Escolha entre publico ou privado
+5. Clique em **"Create repository"**
+
+### Conectando o repositorio local ao remoto
+
+Se voce ja tem um repositorio local e criou um repositorio vazio no GitHub:
+
+```bash
+# Adicionar o GitHub como remoto
+git remote add origin https://github.com/seu-usuario/seu-repo.git
+
+# Enviar os commits pela primeira vez
+git push -u origin main
+```
+
+Se voce quer **baixar** um repositorio que ja existe no GitHub:
+
+```bash
+git clone https://github.com/usuario/repositorio.git
+```
+
+### Pull Requests
+
+Quando voce trabalha em uma branch e quer incorporar suas mudancas na branch principal, voce pode criar um **Pull Request** (PR) no GitHub. O PR permite que outras pessoas revisem seu codigo antes de aceita-lo.
+
+O fluxo e:
+
+1. Crie uma branch e faca seus commits
+2. Envie a branch para o GitHub: `git push origin minha-branch`
+3. No GitHub, clique em **"Compare & pull request"**
+4. Descreva suas alteracoes e solicite revisao
+5. Apos aprovacao, faca o **merge** pelo GitHub
+
+::: {.callout-tip}
+## GitHub para estudantes
+O GitHub oferece o [GitHub Student Developer Pack](https://education.github.com/pack), que inclui repositorios privados ilimitados e diversas ferramentas gratuitas para estudantes. Basta se cadastrar com seu e-mail academico.
+:::
+
+## O que e Claude Code?
+
+Claude Code e uma ferramenta de **assistencia de IA via linha de comando** desenvolvida pela Anthropic. Diferente de interfaces web de chat, o Claude Code opera diretamente no seu terminal, com acesso ao sistema de arquivos e ao contexto do seu projeto.
+
+### Por que usar Claude Code?
+
+- **Contexto do projeto**: ele pode ler seus arquivos e entender a estrutura do projeto como um todo.
+- **Execucao de comandos**: pode rodar comandos no terminal (com sua permissao) para testar, compilar ou verificar o codigo.
+- **Edicao de arquivos**: pode criar e modificar arquivos diretamente, agilizando tarefas repetitivas.
+- **Assistencia contextual**: como ele enxerga todo o projeto, as sugestoes sao mais precisas do que em um chat generico.
+
+### Instalacao
+
+Para instalar o Claude Code, voce precisa do Node.js (versao 18 ou superior):
+
+```bash
+# Instalar o Claude Code globalmente
+npm install -g @anthropic-ai/claude-code
+
+# Verificar a instalacao
+claude --version
+```
+
+### Uso basico
+
+Navegue ate a pasta do seu projeto e inicie o Claude Code:
+
+```bash
+cd meu-projeto
+claude
+```
+
+Ao iniciar, o Claude Code le o contexto do projeto (incluindo um arquivo `CLAUDE.md`, se existir) e esta pronto para receber instrucoes.
+
+### Exemplos de prompts para tarefas estatisticas
+
+Aqui estao exemplos de como pedir ajuda ao Claude Code em tarefas de programacao estatistica:
+
+**Criar um grafico:**
+```
+> Crie um grafico de dispersao com os dados do arquivo dados/vendas.csv,
+  usando ggplot2, com titulo em portugues e a identidade visual PROPET.
+```
+
+**Escrever uma funcao:**
+```
+> Escreva uma funcao em R que calcule o intervalo de confianca para a
+  media de uma amostra, recebendo o vetor de dados e o nivel de confianca.
+```
+
+**Depurar um erro:**
+```
+> O chunk de R no arquivo 03-inferencia.qmd esta dando erro na linha 145.
+  Pode verificar o que esta errado?
+```
+
+**Converter codigo:**
+```
+> Converta o codigo R do chunk "analise-descritiva" no capitulo 1
+  para Python usando pandas e matplotlib.
+```
+
+::: {.callout-tip}
+## O arquivo `CLAUDE.md`
+Crie um arquivo `CLAUDE.md` na raiz do seu projeto com instrucoes sobre a estrutura do projeto, comandos de build e convencoes. O Claude Code le esse arquivo automaticamente e usa as informacoes para dar respostas mais precisas.
+:::
+
+### Boas praticas com Claude Code
+
+1. **Seja especifico**: quanto mais contexto voce fornecer, melhor a resposta.
+2. **Revise o codigo gerado**: sempre confira se o resultado faz sentido estatisticamente.
+3. **Use iterativamente**: comece com algo simples e va refinando com novas instrucoes.
+4. **Aproveite o contexto do projeto**: referencia arquivos e funcoes pelo nome --- o Claude Code consegue encontra-los.
+
+## Como este livro foi feito
+
+Este livro --- *Introducao Interativa a Estatistica* --- foi construido combinando as tres ferramentas apresentadas neste apendice. Entender como ele foi feito pode inspirar voce a criar seus proprios materiais.
+
+### Estrutura do projeto
+
+O livro e um **Quarto Book**, um formato especial do Quarto para documentos longos com multiplos capitulos. A configuracao fica no arquivo `_quarto.yml`:
+
+```yaml
+project:
+  type: book
+
+book:
+  title: "Introducao Interativa a Estatistica"
+  author: "Daniel Alexandre Ramazzotte"
+  chapters:
+    - index.qmd
+    - 01-descritiva.qmd
+    - 02-probabilidade.qmd
+    - 03-inferencia.qmd
+    - 04-regressao.qmd
+  appendices:
+    - A-intro-r.qmd
+    - B-intro-python.qmd
+    - C-dicas-ia.qmd
+    - D-quarto-git-tutorial.qmd
+    - E-creditos.qmd
+```
+
+Cada capitulo e um arquivo `.qmd` independente, o que facilita a organizacao e a colaboracao.
+
+### Identidade visual
+
+A identidade visual do PROPET DataSci foi aplicada via um arquivo `custom.scss` que personaliza cores, fontes e espacamentos:
+
+- **Azul primario**: `#448EE3`
+- **Azul escuro**: `#2D4188`
+- **Texto claro**: `#FCFCFC`
+- **Texto escuro**: `#000000`
+
+Esse arquivo SCSS e referenciado no `_quarto.yml` e aplicado automaticamente em toda a renderizacao HTML.
+
+### Banco de questoes
+
+As 358 questoes de fixacao do livro foram organizadas em um **banco de questoes estruturado**. O fluxo foi:
+
+1. As questoes foram escritas em um documento Markdown
+2. Um script Python (`parse_questoes.py`) fez o parsing do Markdown e gerou comandos SQL
+3. O banco de dados (MySQL/SQLite) armazena as questoes com metadados: capitulo, tema, dificuldade, tipo e alternativas
+
+Isso permite filtrar, sortear e reutilizar questoes de forma sistematica.
+
+### O papel do Claude Code
+
+O Claude Code foi uma ferramenta central na construcao deste livro. Ele auxiliou em diversas tarefas:
+
+- **Escrita e organizacao** dos capitulos, mantendo consistencia de estilo e terminologia
+- **Geracao de codigo** R e Python para os exemplos e exercicios
+- **Criacao do parser** de questoes (Markdown para SQL)
+- **Depuracao** de erros no Quarto e nos scripts
+- **Revisao** de formulas e explicacoes estatisticas
+
+Isso nao significa que a IA fez o trabalho sozinha --- todas as decisoes pedagogicas, a selecao de conteudo e a verificacao de corretude foram feitas pelo autor. O Claude Code funcionou como um **assistente qualificado** que acelerou o processo.
+
+### Seu proximo projeto
+
+Agora que voce conhece essas ferramentas, aqui vai uma sugestao de como comecar seu proprio projeto:
+
+1. **Instale** o Quarto, o Git e o Claude Code
+2. **Crie** um repositorio Git para o seu projeto
+3. **Inicie** um documento `.qmd` com sua analise
+4. **Faca commits** frequentes, com mensagens descritivas
+5. **Suba** o repositorio para o GitHub
+6. **Use** o Claude Code para ajudar com codigo e depuracao
+
+::: {.callout-tip}
+## Comece simples
+Voce nao precisa dominar tudo de uma vez. Comece com um unico arquivo `.qmd`, aprenda a renderizar, depois va adicionando Git e Claude Code conforme a necessidade. A pratica leva a fluencia.
+:::
+
+### Recursos adicionais
+
+- **Quarto**: [quarto.org/docs/guide](https://quarto.org/docs/guide/) --- documentacao oficial
+- **Git**: [git-scm.com/book/pt-br](https://git-scm.com/book/pt-br/) --- livro Pro Git em portugues
+- **GitHub**: [docs.github.com](https://docs.github.com) --- documentacao oficial
+- **Claude Code**: [docs.anthropic.com](https://docs.anthropic.com) --- documentacao da Anthropic
+- **R Markdown / Quarto**: [r4ds.hadley.nz](https://r4ds.hadley.nz) --- R for Data Science (usa Quarto)

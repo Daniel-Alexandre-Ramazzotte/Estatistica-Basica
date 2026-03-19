@@ -1,0 +1,45 @@
+# Prefácio {.unnumbered}
+
+![](imagens/banner-acao-11.png){fig-align="center" width="80%"}
+
+::: {.callout-note appearance="minimal"}
+**PROPET DataSci — Ação 11: Ensino de Estatística**
+
+Este material foi desenvolvido no âmbito do Programa de Educação Tutorial (PROPET) DataSci da Universidade Estadual de Maringá.
+:::
+
+## Sobre este livro {.unnumbered}
+
+Este livro é uma introdução interativa à Estatística, destinado a estudantes de graduação que estão tendo o primeiro contato com a disciplina. O material cobre:
+
+- **Estatística Descritiva**: organização, resumo e visualização de dados
+- **Teoria da Probabilidade**: base teórica para a inferência estatística
+- **Inferência Estatística**: estimação e testes de hipóteses
+- **Regressão Linear Simples**: modelagem da relação entre variáveis
+
+Cada capítulo contém definições, exemplos, exercícios de fixação e aplicações computacionais em **R**, **Python** e **planilhas eletrônicas**.
+
+## Como usar este livro {.unnumbered}
+
+Os blocos de código R são executáveis e interativos. O leitor é **fortemente encorajado** a reproduzir os exemplos em sua própria máquina. Os apêndices contêm tutoriais de instalação e uso das ferramentas.
+
+As questões de fixação estão classificadas por nível de dificuldade:
+
+| Símbolo | Nível | Descrição |
+|---------|-------|-----------|
+| ⭐ | 1 | Aplicação direta de fórmulas |
+| ⭐⭐ | 2 | Requer interpretação e raciocínio |
+| ⭐⭐⭐ | 3 | Questões desafiadoras e integradoras |
+
+## Referências Bibliográficas {.unnumbered}
+
+- BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**. 9ª ed. São Paulo: Saraiva, 2017.
+- ROSS, S. **Probabilidade: Um Curso Moderno com Aplicações**. 8ª ed. Porto Alegre: Bookman, 2010.
+- DANTAS, C. A. B. **Probabilidade: Um Curso Introdutório**. 3ª ed. São Paulo: Edusp, 2004.
+- MOORE, D. S.; McCABE, G. P.; CRAIG, B. A. **Introduction to the Practice of Statistics**. 9ª ed. W.H. Freeman, 2017.
+
+## Currículo base {.unnumbered}
+
+Este material segue a ementa de Estatística Básica do Departamento de Estatística da UEM: <https://des.uem.br/grad/pastademaiscursos/9755.pdf>
+
+![](imagens/logo-acao-11.png){fig-align="center" width="25%"}

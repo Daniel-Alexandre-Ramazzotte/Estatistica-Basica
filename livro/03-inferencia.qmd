@@ -1,0 +1,700 @@
+# Inferência Estatística {#cap-inferencia}
+
+No capítulo anterior, estudamos as bases da **Teoria da Probabilidade**, que nos permite quantificar a incerteza. Agora, utilizaremos essas ferramentas para responder a uma das perguntas mais importantes da Estatística: **o que podemos afirmar sobre uma população inteira a partir de uma amostra?**
+
+Este capítulo aborda os fundamentos da **Inferência Estatística**, incluindo estimação pontual, intervalos de confiança e testes de hipóteses — os pilares da análise estatística moderna.
+
+## Introdução à Inferência Estatística
+
+Na prática, quase nunca temos acesso a toda a população de interesse. Um instituto de pesquisa não entrevista todos os eleitores do país; um controle de qualidade não inspeciona todas as peças produzidas; um pesquisador não mede a pressão arterial de todos os brasileiros. O que fazemos é coletar uma **amostra** — um subconjunto representativo da população — e, a partir dela, tirar conclusões sobre o todo.
+
+::: {.callout-note title="Definição"}
+**Inferência Estatística** é o conjunto de técnicas que permitem **generalizar** conclusões obtidas a partir de uma amostra para a população da qual ela foi extraída, quantificando o grau de incerteza dessas conclusões.
+:::
+
+A Inferência Estatística se divide em dois grandes ramos:
+
+1. **Estimação**: atribuir valores a parâmetros populacionais desconhecidos (pontual ou por intervalos).
+2. **Testes de Hipóteses**: avaliar se uma afirmação sobre a população é compatível com os dados observados na amostra.
+
+Ambos dependem fundamentalmente do conceito de **amostragem aleatória** — a amostra deve ser coletada de forma que cada elemento da população tenha uma chance conhecida de ser selecionado. Sem isso, os resultados da inferência podem ser gravemente enviesados.
+
+### Por que a inferência funciona?
+
+A inferência funciona porque a **aleatoriedade da amostragem** gera padrões previsíveis. Quando coletamos amostras repetidas de uma mesma população, as estatísticas amostrais (como a média) variam de amostra para amostra, mas essa variação segue uma **distribuição de probabilidade conhecida**. É isso que nos permite quantificar a incerteza.
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.1** ⭐
+
+Classifique cada situação como problema de **estimação** ou **teste de hipóteses**:
+
+a) Determinar a renda média dos moradores de uma cidade a partir de uma pesquisa amostral.
+b) Verificar se um novo medicamento reduz a pressão arterial mais do que o medicamento atual.
+c) Calcular a proporção de eleitores que pretendem votar no candidato A.
+d) Avaliar se a taxa de defeitos de uma fábrica é inferior a 2%.
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.2** ⭐
+
+Um pesquisador deseja estimar a altura média dos alunos de uma universidade. Ele mede a altura dos 30 alunos que estão sentados na primeira fila de um auditório. Essa amostra é adequada para fazer inferência sobre todos os alunos da universidade? Justifique.
+:::
+
+## Parâmetros, Estimadores e Estimativas
+
+Para falar de inferência com precisão, precisamos distinguir três conceitos fundamentais.
+
+::: {.callout-note title="Definição"}
+- **Parâmetro**: valor fixo (geralmente desconhecido) que descreve uma característica da **população**. Notação: letras gregas ($\mu$, $\sigma$, $p$).
+- **Estimador**: fórmula (função dos dados amostrais) usada para calcular uma aproximação do parâmetro. É uma **variável aleatória**.
+- **Estimativa**: valor numérico obtido ao aplicar o estimador a uma amostra específica.
+:::
+
+**Exemplo**: se queremos estimar a renda média ($\mu$) de uma população, o estimador natural é a média amostral $\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$. Se aplicarmos essa fórmula a uma amostra e obtivermos $\bar{x} = 2.450$, esse valor é a estimativa.
+
+### Notação: população vs. amostra
+
+A tabela abaixo resume a notação convencional:
+
+| Característica | Parâmetro (população) | Estimador/Estimativa (amostra) |
+|---|---|---|
+| Média | $\mu$ | $\bar{x}$ |
+| Variância | $\sigma^2$ | $s^2$ |
+| Desvio padrão | $\sigma$ | $s$ |
+| Proporção | $p$ | $\hat{p}$ |
+| Tamanho | $N$ | $n$ |
+
+### Propriedades desejáveis de um estimador
+
+Nem todo estimador é igualmente bom. As três propriedades mais importantes são:
+
+**1. Não-Viés (ou Não-Tendenciosidade)**
+
+Um estimador $\hat{\theta}$ é **não-viesado** (ou não-tendencioso) para o parâmetro $\theta$ se:
+
+$$
+E(\hat{\theta}) = \theta
+$$
+
+Isso significa que, em média, o estimador acerta o valor do parâmetro. A média amostral $\bar{X}$ é um estimador não-viesado de $\mu$. Já a variância amostral calculada com divisor $n$ (em vez de $n-1$) é viesada — por isso usamos $s^2 = \frac{1}{n-1}\sum(X_i - \bar{X})^2$.
+
+**2. Consistência**
+
+Um estimador é **consistente** se, à medida que o tamanho da amostra cresce ($n \to \infty$), ele converge em probabilidade para o verdadeiro valor do parâmetro:
+
+$$
+\hat{\theta}_n \xrightarrow{P} \theta \quad \text{quando } n \to \infty
+$$
+
+Na prática: amostras maiores produzem estimativas mais confiáveis.
+
+**3. Eficiência**
+
+Entre dois estimadores não-viesados de $\theta$, o mais **eficiente** é aquele com menor variância:
+
+$$
+\text{Se } E(\hat{\theta}_1) = E(\hat{\theta}_2) = \theta, \text{ preferimos aquele com menor } \text{Var}(\hat{\theta}).
+$$
+
+A média amostral, por exemplo, é mais eficiente que a mediana amostral para estimar $\mu$ em populações normais.
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.3** ⭐⭐
+
+Considere duas fórmulas para estimar a média populacional $\mu$ a partir de uma amostra de tamanho $n = 3$, com observações $X_1, X_2, X_3$:
+
+- Estimador A: $\hat{\mu}_A = \frac{X_1 + X_2 + X_3}{3}$
+- Estimador B: $\hat{\mu}_B = \frac{X_1 + 2X_2 + X_3}{4}$
+
+a) Verifique se cada estimador é não-viesado.
+b) Supondo que $\text{Var}(X_i) = \sigma^2$ para todo $i$, calcule a variância de cada estimador.
+c) Qual dos dois é preferível? Justifique.
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.4** ⭐
+
+Em uma pesquisa, coletou-se uma amostra de $n = 100$ estudantes e obteve-se renda média amostral $\bar{x} = 1.850$ reais. Identifique: (a) o parâmetro de interesse, (b) o estimador utilizado, (c) a estimativa obtida.
+:::
+
+## Distribuições Amostrais
+
+O conceito de **distribuição amostral** é a ponte que conecta a amostra à população. Ele responde à pergunta: "se eu repetisse a amostragem muitas vezes, como as estatísticas amostrais se comportariam?"
+
+::: {.callout-note title="Definição"}
+**Distribuição amostral** de uma estatística é a distribuição de probabilidade dessa estatística, considerando todas as possíveis amostras de tamanho $n$ extraídas da população.
+:::
+
+### Distribuição amostral da média
+
+Suponha que uma população tenha média $\mu$ e variância $\sigma^2$. Se extrairmos amostras aleatórias de tamanho $n$ e calcularmos a média $\bar{X}$ de cada uma, então:
+
+$$
+E(\bar{X}) = \mu \qquad \text{e} \qquad \text{Var}(\bar{X}) = \frac{\sigma^2}{n}
+$$
+
+O **erro padrão** da média é:
+
+$$
+\text{EP}(\bar{X}) = \frac{\sigma}{\sqrt{n}}
+$$
+
+Observações fundamentais:
+
+- A média amostral é **não-viesada**: $E(\bar{X}) = \mu$.
+- A variabilidade de $\bar{X}$ **diminui** com o aumento de $n$. Amostras maiores produzem estimativas mais precisas.
+- Se a população for **normal**, então $\bar{X}$ também será **exatamente normal** para qualquer $n$.
+- Se a população **não for normal**, pelo Teorema Central do Limite, $\bar{X}$ será **aproximadamente normal** para $n$ grande.
+
+**Caso normal com variância conhecida:**
+
+$$
+\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right) \quad \Rightarrow \quad Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0, 1)
+$$
+
+### Distribuição amostral da proporção
+
+Quando a variável de interesse é categórica (sucesso/fracasso), o estimador natural da proporção populacional $p$ é a proporção amostral:
+
+$$
+\hat{p} = \frac{X}{n}
+$$
+
+onde $X$ é o número de "sucessos" na amostra. Para $n$ grande:
+
+$$
+E(\hat{p}) = p \qquad \text{e} \qquad \text{Var}(\hat{p}) = \frac{p(1-p)}{n}
+$$
+
+Pelo Teorema Central do Limite, para $n$ suficientemente grande (regra prática: $np \geq 5$ e $n(1-p) \geq 5$):
+
+$$
+\hat{p} \approx N\left(p, \frac{p(1-p)}{n}\right)
+$$
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.5** ⭐⭐
+
+Uma população tem média $\mu = 50$ e desvio padrão $\sigma = 10$. São retiradas amostras aleatórias de tamanho $n = 25$.
+
+a) Qual é a média e o erro padrão da distribuição amostral de $\bar{X}$?
+b) Qual é a probabilidade de obter uma média amostral superior a 54? (Assuma normalidade.)
+c) Se aumentarmos a amostra para $n = 100$, o que acontece com essa probabilidade? Calcule.
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.6** ⭐⭐
+
+Em uma cidade, 60% dos moradores são favoráveis a uma nova política pública. Uma pesquisa entrevista $n = 200$ moradores aleatoriamente.
+
+a) Qual a média e o erro padrão da proporção amostral $\hat{p}$?
+b) Qual a probabilidade de a pesquisa encontrar uma proporção amostral entre 55% e 65%?
+:::
+
+## Teorema Central do Limite
+
+O **Teorema Central do Limite** (TCL) é, sem exagero, um dos resultados mais importantes de toda a Estatística. Ele explica por que a distribuição normal aparece com tanta frequência na prática.
+
+::: {.callout-note title="Definição"}
+**Teorema Central do Limite (TCL)**: Seja $X_1, X_2, \ldots, X_n$ uma amostra aleatória de uma população com média $\mu$ e variância finita $\sigma^2$. Então, para $n$ suficientemente grande, a distribuição da média amostral padronizada converge para a normal padrão:
+
+$$
+Z_n = \frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \xrightarrow{d} N(0, 1) \quad \text{quando } n \to \infty
+$$
+
+Equivalentemente, $\bar{X}_n \approx N\left(\mu, \frac{\sigma^2}{n}\right)$ para $n$ grande.
+:::
+
+### Condições e considerações
+
+- **Independência**: as observações devem ser independentes (satisfeito em amostragem aleatória).
+- **Variância finita**: a população deve ter variância finita $\sigma^2 < \infty$.
+- **Tamanho da amostra**: em geral, $n \geq 30$ é suficiente. Se a população for muito assimétrica, pode ser necessário $n$ maior. Se a população for normal, o TCL vale exatamente para qualquer $n$.
+
+### Por que o TCL é tão importante?
+
+1. **Permite usar a distribuição normal** mesmo quando a população original não é normal.
+2. **Fundamenta os intervalos de confiança e testes de hipóteses** que veremos adiante.
+3. **Explica** por que tantos fenômenos naturais seguem aproximadamente uma distribuição normal (eles são somas de muitos efeitos pequenos e independentes).
+
+### Simulação em R: visualizando o TCL
+
+O código a seguir demonstra o TCL em ação. Geramos amostras de uma distribuição **Exponencial** (que é muito assimétrica) e observamos como a distribuição das médias amostrais se torna normal à medida que $n$ cresce.
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: fig-tcl-simulacao
+#| fig-cap: "Simulação do Teorema Central do Limite: médias amostrais de uma distribuição Exponencial(1) para diferentes tamanhos de amostra."
+
+set.seed(42)
+num_amostras <- 10000
+tamanhos <- c(1, 5, 30, 100)
+
+par(mfrow = c(2, 2), mar = c(4, 4, 3, 1))
+
+for (n in tamanhos) {
+  medias <- replicate(num_amostras, mean(rexp(n, rate = 1)))
+  hist(medias,
+       breaks = 50,
+       probability = TRUE,
+       main = paste("n =", n),
+       xlab = "Média amostral",
+       ylab = "Densidade",
+       col = "#448EE3",
+       border = "white")
+
+  # Sobrepor a curva normal teórica
+  x_seq <- seq(min(medias), max(medias), length.out = 200)
+  lines(x_seq,
+        dnorm(x_seq, mean = 1, sd = 1/sqrt(n)),
+        col = "#2D4188",
+        lwd = 2)
+}
+```
+
+**Interpretação**: para $n = 1$, a distribuição é claramente exponencial (assimétrica à direita). Já para $n = 30$, a distribuição das médias é praticamente indistinguível de uma normal — exatamente como prevê o TCL.
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.7** ⭐⭐
+
+Uma variável aleatória $X$ segue uma distribuição Uniforme no intervalo $[0, 12]$, com $\mu = 6$ e $\sigma^2 = 12$.
+
+a) Amostras de tamanho $n = 36$ são coletadas. Qual é a distribuição aproximada de $\bar{X}$? Justifique.
+b) Calcule $P(\bar{X} > 6.5)$.
+c) Modifique o código R acima para simular essa situação (use `runif(n, 0, 12)` em vez de `rexp`).
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.8** ⭐
+
+Verdadeiro ou Falso? Justifique.
+
+a) O TCL garante que qualquer amostra grande terá distribuição normal.
+b) O TCL se aplica à distribuição da **média amostral**, não aos dados individuais.
+c) Se a população já é normal, o TCL é desnecessário para garantir que $\bar{X}$ é normal.
+d) O TCL exige que a variância da população seja finita.
+:::
+
+## Intervalos de Confiança
+
+A estimação pontual fornece um único valor para o parâmetro, mas não informa o quanto essa estimativa pode estar errada. Os **intervalos de confiança** resolvem esse problema, fornecendo uma faixa de valores plausíveis para o parâmetro.
+
+::: {.callout-note title="Definição"}
+Um **Intervalo de Confiança (IC)** de nível $(1 - \alpha) \times 100\%$ para um parâmetro $\theta$ é um intervalo $[L, U]$ construído a partir da amostra tal que, em $(1 - \alpha) \times 100\%$ das vezes que o procedimento for repetido, o intervalo conterá o verdadeiro valor de $\theta$.
+:::
+
+### Interpretação correta
+
+A interpretação de um IC de 95% é frequentemente mal compreendida. Veja:
+
+- **Correto**: "Se repetíssemos a amostragem e construíssemos o IC muitas vezes, 95% dos intervalos construídos conteriam o verdadeiro valor de $\mu$."
+- **Incorreto**: "Há 95% de probabilidade de $\mu$ estar neste intervalo." (O parâmetro é fixo; o intervalo é que é aleatório.)
+
+### IC para a média com $\sigma$ conhecido (distribuição Z)
+
+Quando a variância populacional $\sigma^2$ é conhecida (situação rara na prática, mas importante conceitualmente), o IC para $\mu$ é:
+
+$$
+\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
+$$
+
+onde $z_{\alpha/2}$ é o quantil da distribuição normal padrão. Para os níveis de confiança mais comuns:
+
+| Nível de confiança | $\alpha$ | $z_{\alpha/2}$ |
+|---|---|---|
+| 90% | 0,10 | 1,645 |
+| 95% | 0,05 | 1,960 |
+| 99% | 0,01 | 2,576 |
+
+**Exemplo**: Uma amostra de $n = 64$ estudantes tem média de notas $\bar{x} = 7{,}2$. Sabendo que $\sigma = 1{,}6$, o IC de 95% para $\mu$ é:
+
+$$
+7{,}2 \pm 1{,}96 \cdot \frac{1{,}6}{\sqrt{64}} = 7{,}2 \pm 1{,}96 \cdot 0{,}2 = 7{,}2 \pm 0{,}392 = [6{,}808;\; 7{,}592]
+$$
+
+### IC para a média com $\sigma$ desconhecido (distribuição t)
+
+Na maioria das aplicações reais, $\sigma$ é desconhecido e deve ser estimado por $s$ (desvio padrão amostral). Nesse caso, usamos a **distribuição t de Student** com $n - 1$ graus de liberdade:
+
+$$
+\bar{x} \pm t_{\alpha/2,\; n-1} \cdot \frac{s}{\sqrt{n}}
+$$
+
+A distribuição $t$ tem caudas mais pesadas que a normal, refletindo a incerteza adicional na estimação de $\sigma$. À medida que $n$ cresce, a distribuição $t$ converge para a normal padrão.
+
+### IC para a proporção
+
+Para proporções, com $n$ grande ($n\hat{p} \geq 5$ e $n(1-\hat{p}) \geq 5$):
+
+$$
+\hat{p} \pm z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}
+$$
+
+### Margem de erro e tamanho da amostra
+
+A **margem de erro** $E$ é a metade da amplitude do IC:
+
+$$
+E = z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
+$$
+
+Resolvendo para $n$, obtemos o **tamanho de amostra necessário** para uma margem de erro desejada:
+
+$$
+n = \left(\frac{z_{\alpha/2} \cdot \sigma}{E}\right)^2
+$$
+
+### Aplicação em R
+
+Vamos usar o conjunto de dados `pesquisa_exemplo.csv` para construir intervalos de confiança.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Carregar dados
+dados <- read.csv("dados/pesquisa_exemplo.csv")
+
+# IC para a média de nota_final usando t.test()
+resultado <- t.test(dados$nota_final, conf.level = 0.95)
+cat("Média amostral:", round(resultado$estimate, 3), "\n")
+cat("IC 95% para a média:", round(resultado$conf.int, 3), "\n")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+# IC manual para a média (demonstração passo a passo)
+x <- dados$nota_final
+n <- length(x)
+media <- mean(x)
+s <- sd(x)
+erro_padrao <- s / sqrt(n)
+t_crit <- qt(0.975, df = n - 1)  # quantil t para 95%
+margem <- t_crit * erro_padrao
+
+cat("n =", n, "\n")
+cat("Média =", round(media, 3), "\n")
+cat("Desvio padrão =", round(s, 3), "\n")
+cat("Erro padrão =", round(erro_padrao, 3), "\n")
+cat("t crítico =", round(t_crit, 3), "\n")
+cat("Margem de erro =", round(margem, 3), "\n")
+cat("IC 95%: [", round(media - margem, 3), ";", round(media + margem, 3), "]\n")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+# IC para a proporção de "Satisfeito" na variável satisfacao
+satisfeitos <- sum(dados$satisfacao == "Satisfeito")
+n <- nrow(dados)
+p_chapeu <- satisfeitos / n
+
+cat("Proporção amostral (Satisfeito):", round(p_chapeu, 3), "\n")
+
+# Teste de proporção (inclui IC)
+prop.test(satisfeitos, n, conf.level = 0.95)
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Efeito do tamanho da amostra na largura do IC
+set.seed(123)
+populacao <- rnorm(10000, mean = 50, sd = 10)
+
+tamanhos_n <- c(10, 30, 50, 100, 500)
+resultados <- data.frame(n = integer(), LI = numeric(), LS = numeric())
+
+for (n in tamanhos_n) {
+  amostra <- sample(populacao, n)
+  ic <- t.test(amostra, conf.level = 0.95)$conf.int
+  resultados <- rbind(resultados, data.frame(n = n, LI = ic[1], LS = ic[2]))
+}
+
+resultados$Amplitude <- resultados$LS - resultados$LI
+print(resultados)
+```
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.9** ⭐⭐
+
+Uma amostra de $n = 40$ peças fabricadas por uma máquina tem peso médio $\bar{x} = 52{,}3$ g e desvio padrão $s = 3{,}1$ g.
+
+a) Construa um IC de 95% para o peso médio populacional.
+b) Construa um IC de 99% para o peso médio populacional.
+c) Compare as amplitudes dos dois intervalos. Qual é mais largo e por quê?
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.10** ⭐⭐
+
+Em uma pesquisa eleitoral, 540 de 1.000 entrevistados declararam intenção de voto no candidato A.
+
+a) Calcule o IC de 95% para a proporção populacional que pretende votar no candidato A.
+b) Com base nesse intervalo, é possível afirmar que o candidato A venceria a eleição (i.e., que $p > 0{,}50$)?
+c) Qual seria o tamanho de amostra necessário para que a margem de erro fosse de no máximo 2 pontos percentuais (0,02)?
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.11** ⭐
+
+Usando o R e o conjunto de dados `pesquisa_exemplo.csv`, construa:
+
+a) Um IC de 90% para a média de `idade`.
+b) Um IC de 99% para a média de `renda`.
+c) Interprete cada intervalo no contexto do problema.
+:::
+
+## Testes de Hipóteses
+
+Os **testes de hipóteses** são o segundo pilar da inferência estatística. Enquanto os intervalos de confiança estimam o valor de um parâmetro, os testes avaliam se uma afirmação específica sobre o parâmetro é sustentada pelos dados.
+
+### Estrutura de um teste de hipóteses
+
+Todo teste de hipóteses envolve duas hipóteses complementares:
+
+::: {.callout-note title="Definição"}
+- **Hipótese nula ($H_0$)**: afirmação conservadora, que representa o *status quo* ou a ausência de efeito. É a hipótese que se assume verdadeira até que haja evidência suficiente contra ela.
+- **Hipótese alternativa ($H_1$ ou $H_a$)**: afirmação que o pesquisador deseja testar; representa o efeito, diferença ou mudança.
+:::
+
+**Exemplos:**
+
+| Situação | $H_0$ | $H_1$ |
+|---|---|---|
+| Novo medicamento | $\mu_{\text{novo}} = \mu_{\text{atual}}$ | $\mu_{\text{novo}} \neq \mu_{\text{atual}}$ |
+| Defeitos na fábrica | $p = 0{,}02$ | $p > 0{,}02$ |
+| Programa de treinamento | $\mu_{\text{depois}} - \mu_{\text{antes}} = 0$ | $\mu_{\text{depois}} - \mu_{\text{antes}} > 0$ |
+
+Os testes podem ser:
+
+- **Bilateral** (bicaudal): $H_1: \theta \neq \theta_0$
+- **Unilateral à direita**: $H_1: \theta > \theta_0$
+- **Unilateral à esquerda**: $H_1: \theta < \theta_0$
+
+### Nível de significância e valor-p
+
+::: {.callout-note title="Definição"}
+- **Nível de significância ($\alpha$)**: probabilidade máxima de rejeitar $H_0$ quando ela é verdadeira. Valores comuns: 0,05 (5%) e 0,01 (1%).
+- **Valor-p (p-value)**: probabilidade de obter um resultado tão ou mais extremo que o observado, supondo que $H_0$ é verdadeira. Quanto menor o valor-p, mais forte a evidência contra $H_0$.
+:::
+
+**Regra de decisão**: rejeitar $H_0$ se valor-p $< \alpha$.
+
+### Erros Tipo I e Tipo II
+
+Ao tomar uma decisão com base em dados amostrais, estamos sujeitos a erros:
+
+|  | $H_0$ é verdadeira | $H_0$ é falsa |
+|---|---|---|
+| **Não rejeitar $H_0$** | Decisão correta | **Erro Tipo II** ($\beta$) |
+| **Rejeitar $H_0$** | **Erro Tipo I** ($\alpha$) | Decisão correta (**Poder**) |
+
+- **Erro Tipo I**: rejeitar $H_0$ quando ela é verdadeira (falso positivo). Probabilidade = $\alpha$.
+- **Erro Tipo II**: não rejeitar $H_0$ quando ela é falsa (falso negativo). Probabilidade = $\beta$.
+- **Poder do teste**: $1 - \beta$ = probabilidade de rejeitar $H_0$ quando ela é realmente falsa.
+
+Na prática, controlamos $\alpha$ diretamente (ao fixar o nível de significância). Para um $\alpha$ fixo, podemos reduzir $\beta$ (aumentar o poder) aumentando o tamanho da amostra.
+
+### Etapas de um teste de hipóteses
+
+1. Definir $H_0$ e $H_1$.
+2. Fixar o nível de significância $\alpha$.
+3. Coletar a amostra e calcular a estatística de teste.
+4. Calcular o valor-p.
+5. Tomar a decisão: rejeitar ou não rejeitar $H_0$.
+6. Interpretar o resultado no contexto do problema.
+
+### Teste Z para a média ($\sigma$ conhecido)
+
+Quando $\sigma$ é conhecido e a amostra é grande (ou a população é normal):
+
+$$
+Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
+$$
+
+**Exemplo**: Uma fábrica afirma que suas barras de chocolate pesam em média $\mu_0 = 200$ g. Uma amostra de $n = 49$ barras tem média $\bar{x} = 197$ g. O desvio padrão populacional é $\sigma = 7$ g. Ao nível de 5%, há evidência de que o peso médio é diferente de 200 g?
+
+- $H_0: \mu = 200$ vs. $H_1: \mu \neq 200$
+- $Z = \frac{197 - 200}{7/\sqrt{49}} = \frac{-3}{1} = -3{,}0$
+- Valor-p $= 2 \times P(Z < -3) = 2 \times 0{,}0013 = 0{,}0027$
+- Como $0{,}0027 < 0{,}05$, rejeitamos $H_0$. Há evidência significativa de que o peso médio difere de 200 g.
+
+### Teste t para a média ($\sigma$ desconhecido)
+
+Quando $\sigma$ é desconhecido (caso mais comum), usamos a estatística $t$:
+
+$$
+t = \frac{\bar{X} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}
+$$
+
+Este é o teste implementado pela função `t.test()` do R.
+
+### Teste para a proporção
+
+Para testar $H_0: p = p_0$ com $n$ grande:
+
+$$
+Z = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}}
+$$
+
+### Aplicação em R
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Carregar dados
+dados <- read.csv("dados/pesquisa_exemplo.csv")
+
+# Teste t: a nota final média é diferente de 7.0?
+# H0: mu = 7.0   vs   H1: mu != 7.0
+t.test(dados$nota_final, mu = 7.0)
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Interpretando o resultado
+resultado <- t.test(dados$nota_final, mu = 7.0)
+
+cat("Estatística t:", round(resultado$statistic, 3), "\n")
+cat("Graus de liberdade:", resultado$parameter, "\n")
+cat("Valor-p:", round(resultado$p.value, 4), "\n")
+cat("IC 95%:", round(resultado$conf.int, 3), "\n")
+cat("Média amostral:", round(resultado$estimate, 3), "\n")
+
+if (resultado$p.value < 0.05) {
+  cat("\nConclusão: Rejeitamos H0 ao nível de 5%.\n")
+  cat("Há evidência de que a média de nota_final difere de 7.0.\n")
+} else {
+  cat("\nConclusão: Não rejeitamos H0 ao nível de 5%.\n")
+  cat("Não há evidência suficiente de que a média de nota_final difere de 7.0.\n")
+}
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Teste unilateral: a média de horas_estudo é maior que 7?
+# H0: mu = 7   vs   H1: mu > 7
+t.test(dados$horas_estudo, mu = 7, alternative = "greater")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Teste de proporção: a proporção de mulheres difere de 50%?
+n_feminino <- sum(dados$genero == "Feminino")
+n_total <- nrow(dados)
+
+cat("Proporção amostral (Feminino):", round(n_feminino/n_total, 3), "\n\n")
+
+# H0: p = 0.5   vs   H1: p != 0.5
+prop.test(n_feminino, n_total, p = 0.5)
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Comparando médias de nota_final entre gêneros
+# Teste t para duas amostras independentes
+notas_fem <- dados$nota_final[dados$genero == "Feminino"]
+notas_masc <- dados$nota_final[dados$genero == "Masculino"]
+
+cat("Média Feminino:", round(mean(notas_fem), 3), "\n")
+cat("Média Masculino:", round(mean(notas_masc), 3), "\n\n")
+
+# H0: mu_F = mu_M   vs   H1: mu_F != mu_M
+t.test(notas_fem, notas_masc)
+```
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.12** ⭐⭐
+
+Uma empresa afirma que seus pacotes de café contêm, em média, 500 g. Um fiscal coleta uma amostra de $n = 36$ pacotes e obtém $\bar{x} = 496$ g e $s = 12$ g.
+
+a) Formule as hipóteses $H_0$ e $H_1$ (bilateral).
+b) Calcule a estatística $t$ e o valor-p.
+c) Ao nível de 5%, o que você conclui?
+d) Refaça o teste como unilateral ($H_1: \mu < 500$). O resultado muda?
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.13** ⭐⭐
+
+Em uma pesquisa com 400 eleitores, 224 afirmaram aprovar o governo.
+
+a) Teste se a proporção de aprovação é diferente de 50% ($\alpha = 0{,}05$).
+b) Teste se a proporção de aprovação é maior que 50% ($\alpha = 0{,}05$).
+c) Compare os dois resultados e explique a diferença.
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.14** ⭐
+
+Classifique cada situação como Erro Tipo I ou Erro Tipo II:
+
+a) Um réu inocente é condenado.
+b) Um medicamento eficaz não é aprovado nos testes clínicos.
+c) Um alarme de incêndio dispara sem haver fogo.
+d) Um teste de COVID-19 dá negativo para uma pessoa infectada.
+:::
+
+::: {.callout-tip title="Exercício de Fixação"}
+**Exercício 3.15** ⭐⭐⭐
+
+Usando o R e o conjunto de dados `pesquisa_exemplo.csv`:
+
+a) Teste se a renda média é significativamente diferente de R$ 2.500 ($\alpha = 0{,}05$).
+b) Teste se a proporção de pessoas da região Sudeste é diferente de 30%.
+c) Compare a nota final média entre pessoas com escolaridade "Ensino Médio" e "Superior Completo". Há diferença significativa?
+
+Para cada teste, apresente: hipóteses, estatística de teste, valor-p e conclusão.
+:::
+
+## Resumo
+
+Neste capítulo, estudamos os fundamentos da **Inferência Estatística**, que permite generalizar conclusões de uma amostra para a população.
+
+**Conceitos-chave:**
+
+- **Parâmetros** ($\mu$, $\sigma$, $p$) são valores fixos da população; **estimadores** ($\bar{X}$, $s$, $\hat{p}$) são funções da amostra usadas para aproximá-los.
+- Um bom estimador deve ser **não-viesado**, **consistente** e **eficiente**.
+- A **distribuição amostral** descreve o comportamento de uma estatística ao longo de todas as possíveis amostras.
+- O **Teorema Central do Limite** garante que a distribuição da média amostral se aproxima de uma normal para $n$ grande, independentemente da distribuição original.
+- **Intervalos de Confiança** fornecem uma faixa de valores plausíveis para o parâmetro, com nível de confiança especificado.
+  - Média com $\sigma$ conhecido: $\bar{x} \pm z_{\alpha/2} \cdot \sigma/\sqrt{n}$
+  - Média com $\sigma$ desconhecido: $\bar{x} \pm t_{\alpha/2, n-1} \cdot s/\sqrt{n}$
+  - Proporção: $\hat{p} \pm z_{\alpha/2} \cdot \sqrt{\hat{p}(1-\hat{p})/n}$
+- **Testes de Hipóteses** avaliam se os dados são compatíveis com uma afirmação sobre o parâmetro.
+  - Estrutura: $H_0$ (nula) vs. $H_1$ (alternativa).
+  - Decisão baseada no **valor-p**: rejeitar $H_0$ se valor-p $< \alpha$.
+  - **Erro Tipo I** ($\alpha$): rejeitar $H_0$ verdadeira. **Erro Tipo II** ($\beta$): não rejeitar $H_0$ falsa.
+
+**Funções R essenciais:**
+
+| Função | Finalidade |
+|---|---|
+| `t.test()` | Teste t e IC para a média |
+| `prop.test()` | Teste e IC para proporção |
+| `qt()`, `qnorm()` | Quantis das distribuições t e normal |
+| `pt()`, `pnorm()` | Probabilidades acumuladas |
+
+No próximo capítulo, aplicaremos os conceitos de inferência para estudar a relação entre variáveis por meio da **Regressão Linear Simples**.
+
+::: {.callout-note title="Leitura complementar"}
+Para aprofundamento, consulte:
+
+- BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**, Caps. 10–13.
+- MOORE, D. S.; McCABE, G. P. **Introduction to the Practice of Statistics**, Caps. 6–7.
+:::

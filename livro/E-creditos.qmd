@@ -1,0 +1,53 @@
+# Créditos e Agradecimentos {#creditos}
+
+## Autor
+
+- **Daniel Alexandre Ramazzotte**
+
+## Programa
+
+- **PROPET DataSci — Ação 11: Ensino de Estatística**
+- Universidade Estadual de Maringá (UEM)
+- Departamento de Estatística (DES)
+
+## Agradecimentos
+
+- **Prof. Diego** — pelos slides e material de apoio que serviram de base para diversas seções deste livro.
+- **Equipe PROPET DataSci** — pelo trabalho colaborativo, revisões e sugestões ao longo do projeto.
+- **Universidade Estadual de Maringá** — pelo suporte institucional e pela oportunidade de desenvolver este material didático.
+
+## Referências Bibliográficas
+
+- BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**. 9ª ed. São Paulo: Saraiva, 2017.
+- ROSS, S. **Probabilidade: Um Curso Moderno com Aplicações**. 8ª ed. Porto Alegre: Bookman, 2010.
+- DANTAS, C. A. B. **Probabilidade: Um Curso Introdutório**. 3ª ed. São Paulo: Edusp, 2004.
+- MOORE, D. S.; McCABE, G. P.; CRAIG, B. A. **Introduction to the Practice of Statistics**. 9ª ed. W.H. Freeman, 2017.
+- WICKHAM, H.; GROLEMUND, G. **R para Ciência de Dados**. O'Reilly, 2017.
+
+## Ferramentas Utilizadas
+
+- **R** e **RStudio** — análise estatística e visualização de dados.
+- **Python** — análise complementar e automação.
+- **Quarto** — sistema de publicação científica e técnica.
+- **Git/GitHub** — controle de versão e colaboração.
+- **Claude Code** — assistente de programação com inteligência artificial.
+
+## Currículo Base
+
+Este livro foi elaborado com base na ementa da disciplina de Estatística Básica do Departamento de Estatística da UEM:
+
+<https://des.uem.br/grad/pastademaiscursos/9755.pdf>
+
+## Licença
+
+Este material é disponibilizado sob a licença **Creative Commons BY-NC-SA 4.0** — você pode compartilhar e adaptar, desde que atribua crédito, não use para fins comerciais, e compartilhe sob a mesma licença.
+
+::: {.callout-note appearance="minimal"}
+Para mais informações sobre a licença, acesse: <https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br>
+:::
+
+---
+
+::: {.text-center}
+![](imagens/logo-acao-11.png){fig-align="center" width="20%"}
+:::

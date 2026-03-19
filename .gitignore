@@ -1,4 +1,37 @@
+# R
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Quarto
+_book/
+_freeze/
+.quarto/
+*_cache/
+*_files/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Databases (gerados localmente)
+banco_questoes/questoes.db
+banco_questoes/seed_*.sql
+
+# Docx artifacts (originais mantidos, mas não rastrear temporários)
+~$*.docx
+
+# Claude Code (configuração pessoal)
+.claude/

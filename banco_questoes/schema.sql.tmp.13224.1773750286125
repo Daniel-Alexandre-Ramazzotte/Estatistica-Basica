@@ -1,0 +1,121 @@
+-- =============================================================
+-- Banco de Questoes - MySQL Schema
+-- Estatistica Basica / Probabilidade / Inferencia Estatistica
+-- =============================================================
+
+CREATE TABLE IF NOT EXISTS chapters (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    slug VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS topics (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    chapter_id INT NOT NULL,
+    name VARCHAR(200) NOT NULL,
+    FOREIGN KEY (chapter_id) REFERENCES chapters(id)
+);
+
+CREATE TABLE IF NOT EXISTS sources (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200) NOT NULL,
+    year INT
+);
+
+CREATE TABLE IF NOT EXISTS questions (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    original_id VARCHAR(50),
+    chapter_id INT,
+    topic_id INT,
+    source_id INT,
+    difficulty TINYINT CHECK (difficulty BETWEEN 1 AND 3),
+    statement TEXT NOT NULL,
+    has_image BOOLEAN DEFAULT FALSE,
+    image_path VARCHAR(500),
+    needs_fix BOOLEAN DEFAULT FALSE,
+    answer_key CHAR(1),
+    explanation TEXT,
+    FOREIGN KEY (chapter_id) REFERENCES chapters(id),
+    FOREIGN KEY (topic_id) REFERENCES topics(id),
+    FOREIGN KEY (source_id) REFERENCES sources(id)
+);
+
+CREATE TABLE IF NOT EXISTS alternatives (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT NOT NULL,
+    letter CHAR(1) NOT NULL,
+    text TEXT NOT NULL,
+    is_correct BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (question_id) REFERENCES questions(id)
+);
+
+-- =============================================================
+-- Seed: Chapters
+-- =============================================================
+
+INSERT INTO chapters (name, slug) VALUES
+    ('Estatistica Basica', 'estatistica-basica'),
+    ('Probabilidade', 'probabilidade'),
+    ('Inferencia Estatistica', 'inferencia');
+
+-- =============================================================
+-- Seed: Topics - Estatistica Basica (chapter_id = 1)
+-- =============================================================
+
+INSERT INTO topics (chapter_id, name) VALUES
+    (1, 'Medidas de Posicao (Media, Mediana, Moda)'),
+    (1, 'Medidas de Dispersao (Variancia, Desvio Padrao, Amplitude)'),
+    (1, 'Frequencia e Distribuicao de Frequencia'),
+    (1, 'Graficos e Tabelas'),
+    (1, 'Populacao e Amostra'),
+    (1, 'Media Ponderada'),
+    (1, 'Porcentagem e Proporcao'),
+    (1, 'Analise Combinatoria Basica'),
+    (1, 'Tipos de Variaveis'),
+    (1, 'Quartis e Percentis'),
+    (1, 'Correlacao e Regressao'),
+    (1, 'Estatistica Basica - Geral');
+
+-- =============================================================
+-- Seed: Topics - Probabilidade (chapter_id = 2)
+-- =============================================================
+
+INSERT INTO topics (chapter_id, name) VALUES
+    (2, 'Probabilidade Classica (Equiprovavel)'),
+    (2, 'Probabilidade Condicional'),
+    (2, 'Teorema de Bayes'),
+    (2, 'Eventos Independentes'),
+    (2, 'Distribuicao Binomial'),
+    (2, 'Distribuicao de Poisson'),
+    (2, 'Distribuicao Normal'),
+    (2, 'Distribuicao Uniforme'),
+    (2, 'Esperanca e Variancia de V.A.'),
+    (2, 'Espaco Amostral e Eventos'),
+    (2, 'Probabilidade da Uniao e Intersecao'),
+    (2, 'Permutacao, Arranjo e Combinacao'),
+    (2, 'Probabilidade - Geral');
+
+-- =============================================================
+-- Seed: Topics - Inferencia Estatistica (chapter_id = 3)
+-- =============================================================
+
+INSERT INTO topics (chapter_id, name) VALUES
+    (3, 'Teste de Hipotese'),
+    (3, 'Intervalo de Confianca'),
+    (3, 'Teorema Limite Central'),
+    (3, 'Distribuicao Amostral'),
+    (3, 'Estimacao Pontual'),
+    (3, 'Qui-Quadrado'),
+    (3, 'ANOVA'),
+    (3, 'Regressao Linear'),
+    (3, 'Inferencia - Geral');
+
+-- =============================================================
+-- Indexes
+-- =============================================================
+
+CREATE INDEX idx_questions_chapter ON questions(chapter_id);
+CREATE INDEX idx_questions_topic ON questions(topic_id);
+CREATE INDEX idx_questions_difficulty ON questions(difficulty);
+CREATE INDEX idx_questions_needs_fix ON questions(needs_fix);
+CREATE INDEX idx_alternatives_question ON alternatives(question_id);

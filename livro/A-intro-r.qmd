@@ -1,0 +1,1224 @@
+# Introducao ao R {#apendice-r}
+
+Essa sera uma breve introducao ao R para poder entender como funciona a linguagem de programacao e ja brincar com estatistica utilizando funcoes mais elementares, as mais importantes, como calcular medidas simples como media, moda, mediana, criacao de graficos e tabelas e elaboracao de regressoes simples. Para maiores discussoes sobre tipos avancados de visualizacao ver o livro [R para Ciencia de Dados](https://pt.r4ds.hadley.nz/).
+
+Sugere-se ao/a professor/a uma leitura rapida desta secao apos uma curta introducao para o/a aluno/a comecar a se familiarizar com os conceitos. Apos isso, esta secao pode servir como consulta para sintaxe e ajuda rapida.
+
+::: {.callout-tip}
+## Dica
+O aluno e encorajado a copiar e executar todos os codigos na propria maquina. A pratica e a melhor forma de aprender programacao!
+:::
+
+## Instalacao do ambiente RStudio
+
+A instalacao e trivial, basta seguir os dois passos:
+
+1. **Baixar e instalar o R**: Acesse <https://cran.rstudio.com/> e baixe a versao adequada para o seu sistema operacional (Windows, macOS ou Linux). Execute o instalador com as configuracoes padrao.
+2. **Baixar e instalar o RStudio**: Acesse <https://posit.co/download/rstudio-desktop/> e baixe a versao gratuita (RStudio Desktop). Execute o instalador.
+
+Para usar o RStudio:
+
+- Abra um novo script com `Ctrl + Shift + N`
+- Para executar codigos, selecione a linha com o mouse e tecle `Ctrl + Enter`
+- O console (parte inferior) mostra os resultados
+- O painel Environment (superior direito) mostra as variaveis criadas
+
+::: {.callout-note}
+## Video de apoio
+Para quaisquer dificuldades na instalacao, consulte: <https://www.youtube.com/watch?v=a4_0pKVY6RE&list=PLs7DH7eMtNjcfzzZT6beLu0nmSr2yIhIr&index=2>
+:::
+
+### Comentarios em R
+
+Em R, tudo que vem apos o simbolo `#` em uma linha e um **comentario** e nao sera executado. Comentarios sao essenciais para documentar o codigo e explicar o que cada trecho faz.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Isto e um comentario - o R ignora esta linha
+x <- 10  # Isto tambem e um comentario, apos o codigo
+
+# Boas praticas:
+# - Comente o "por que", nao o "o que"
+# - Use comentarios para separar secoes do codigo
+# - Mantenha os comentarios atualizados com o codigo
+```
+
+## Bibliotecas (Libraries)
+
+Em programacao, uma **biblioteca** (ou library) e um conjunto de codigos pre-escritos (funcoes, classes, metodos, variaveis) que podem ser reutilizados para facilitar o desenvolvimento de software. Elas sao criadas para resolver problemas especificos, evitando que os programadores tenham que "reinventar a roda" a cada projeto.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Instalar uma biblioteca (fazer apenas a primeira vez)
+install.packages("nome_da_biblioteca")  # Ex: install.packages("ggplot2")
+
+# Carregar para uso na sessao atual
+library(nome_da_biblioteca)             # Ex: library(ggplot2)
+```
+
+Exemplo (o aluno e encorajado a copiar e executar o codigo na propria maquina):
+
+```{r}
+#| echo: true
+#| eval: false
+
+# dplyr e uma biblioteca para lidar com bancos de dados
+# ggplot2 e uma biblioteca para visualizacao
+library(dplyr)
+library(ggplot2)
+
+# Filtrar dados e criar grafico
+mtcars %>%
+  filter(mpg > 20) %>%
+  ggplot(aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Relacao Peso vs. Consumo")
+```
+
+### Tabela de bibliotecas importantes
+
+| Categoria | Biblioteca | Descricao | Exemplo de Uso |
+|:----------|:-----------|:----------|:---------------|
+| Manipulacao de Dados | `dplyr` | Ferramentas para filtrar, agrupar e sumarizar dados | `dados %>% filter(coluna > 10)` |
+| Manipulacao de Dados | `tidyr` | Organizacao e limpeza de dados (pivotagem, separacao de colunas) | `pivot_longer(dados, cols = c(...))` |
+| Visualizacao | `ggplot2` | Criacao de graficos elegantes e personalizaveis | `ggplot(dados, aes(x, y)) + geom_point()` |
+| Visualizacao | `plotly` | Graficos interativos (3D, hover effects) | `plot_ly(dados, x = ~x, y = ~y)` |
+| Analise Estatistica | `stats` | Funcoes estatisticas basicas (testes t, ANOVA, regressao) | `t.test(x, y)` |
+| Analise Estatistica | `lme4` | Modelos lineares mistos (para dados hierarquicos) | `lmer(resposta ~ preditor + (1\|grupo))` |
+| Machine Learning | `caret` | Treinamento e validacao de modelos preditivos | `train(classe ~ ., data = dados, method = "rf")` |
+| Machine Learning | `randomForest` | Algoritmo de florestas aleatorias | `randomForest(y ~ ., data = dados)` |
+| Text Mining | `tm` | Mineracao e pre-processamento de textos | `Corpus(VectorSource(textos))` |
+| Text Mining | `tidytext` | Analise de texto integrada ao tidyverse | `unnest_tokens(dados, palavra, texto)` |
+| Geoprocessamento | `sf` | Manipulacao de dados espaciais (vetores) | `st_read("caminho/shapefile.shp")` |
+| Reprodutibilidade | `knitr` | Geracao de relatorios dinamicos (HTML, PDF) | `knit("documento.Rmd")` |
+| Reprodutibilidade | `rmarkdown` | Integracao de codigo, texto e visualizacoes | `render("relatorio.Rmd")` |
+
+: Principais Bibliotecas em R por Categoria {.striped .hover}
+
+## Variaveis
+
+Uma **variavel** e um **nome simbolico** que armazena um **valor** ou **dado** na memoria do computador. Em R, as variaveis sao usadas para guardar informacoes que podem ser manipuladas durante a execucao de um codigo. O operador de atribuicao em R e `<-` (embora `=` tambem funcione, a convencao da comunidade R e usar `<-`).
+
+### Numerica (numeric)
+
+Armazenam numeros (inteiros ou decimais).
+
+```{r}
+#| echo: true
+#| eval: false
+
+x <- 10.5      # Decimal
+y <- 20L       # Inteiro (com sufixo 'L')
+z <- -3.14     # Negativo
+
+x  # [1] 10.5
+y  # [1] 20
+z  # [1] -3.14
+
+class(x)  # [1] "numeric"
+class(y)  # [1] "integer"
+```
+
+### Caracteres (character ou string)
+
+Armazenam caracteres ou conjuntos de caracteres (strings). Para manipulacao avancada de strings, consulte o capitulo 14 do [R para Ciencia de Dados](https://pt.r4ds.hadley.nz/). Algumas operacoes uteis: transformar em maiusculas/minusculas, retirar acentos, separar por delimitadores, calcular tamanho da string.
+
+```{r}
+#| echo: true
+#| eval: false
+
+nome <- "Maria"
+frase <- 'Ola, mundo!'
+
+nome   # [1] "Maria"
+frase  # [1] "Ola, mundo!"
+
+class(nome)    # [1] "character"
+nchar(frase)   # [1] 11 (numero de caracteres)
+
+# Funcoes uteis para strings
+toupper(nome)           # "MARIA"
+tolower(nome)           # "maria"
+paste(nome, "Silva")    # "Maria Silva"
+```
+
+### Logicas (logical ou boolean)
+
+Armazenam valores logicos: verdadeiro (`TRUE`) ou falso (`FALSE`). Sao muito uteis para verificacoes em estruturas condicionais.
+
+```{r}
+#| echo: true
+#| eval: false
+
+ativo <- TRUE
+falha <- FALSE
+
+ativo  # [1] TRUE
+falha  # [1] FALSE
+
+class(ativo)  # [1] "logical"
+
+# Resultados de comparacoes sao logicos
+10 > 5    # [1] TRUE
+3 == 7    # [1] FALSE
+```
+
+### Fatores (factor)
+
+Sao variaveis categoricas --- equivalem as variaveis qualitativas nominais ou ordinais discutidas no capitulo de Estatistica Descritiva.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Fator nominal (sem ordem)
+grupo <- factor(c("A", "B", "A", "C"))
+grupo  # [1] A B A C -- Levels: A B C
+
+# Fator ordinal (com ordem definida)
+niveis <- factor(
+  c("Baixo", "Medio", "Alto"),
+  levels = c("Baixo", "Medio", "Alto"),  # Definir a ordem
+  ordered = TRUE                          # Indicar que e ordinal
+)
+niveis  # [1] Baixo Medio Alto -- Levels: Baixo < Medio < Alto
+```
+
+### Datas (Date ou POSIXct)
+
+Armazenam datas e horarios. Para maiores discussoes sobre datas, ver capitulo 17 do [R para Ciencia de Dados](https://pt.r4ds.hadley.nz/).
+
+```{r}
+#| echo: true
+#| eval: false
+
+hoje <- as.Date("2025-03-26")
+agora <- as.POSIXct("2025-03-26 14:30:00")
+
+hoje   # [1] "2025-03-26"
+agora  # [1] "2025-03-26 14:30:00"
+
+# Diferenca entre datas
+as.Date("2025-12-31") - as.Date("2025-01-01")  # Time difference of 364 days
+
+# Data atual
+Sys.Date()   # Data de hoje
+Sys.time()   # Data e hora atuais
+```
+
+### Vetores (vector)
+
+Colecao de elementos do **mesmo tipo**. Se voce colocar uma letra no meio dos numeros, todos os numeros serao convertidos para caracteres.
+
+```{r}
+#| echo: true
+#| eval: false
+
+numeros <- c(1, 2, 3, 4)
+letras <- c("a", "b", "c")
+numeros_como_letras <- c(1, "A", 3, 4)  # Tudo vira character!
+
+numeros              # [1] 1 2 3 4
+letras               # [1] "a" "b" "c"
+numeros_como_letras  # [1] "1" "A" "3" "4"
+
+# Acessar elementos
+numeros[1]     # Primeiro elemento: 1
+numeros[2:3]   # Segundo e terceiro: 2 3
+
+# Funcoes uteis
+length(numeros)  # Tamanho: 4
+sum(numeros)     # Soma: 10
+mean(numeros)    # Media: 2.5
+```
+
+### Listas (list)
+
+Colecao de elementos que podem ser de **tipos diferentes**. Sao muito flexiveis.
+
+```{r}
+#| echo: true
+#| eval: false
+
+dados <- list(nome = "Joao", idade = 30, ativo = TRUE)
+dados
+
+# Acessar elementos de uma lista
+dados$nome       # "Joao"
+dados[["idade"]] # 30
+dados[[3]]       # TRUE
+```
+
+### Data Frames (data.frame)
+
+A estrutura mais importante para analise de dados. E uma tabela onde cada coluna e uma variavel e cada linha e uma observacao.
+
+```{r}
+#| echo: true
+#| eval: false
+
+tabela <- data.frame(
+  nome = c("Ana", "Carlos", "Bia"),
+  idade = c(25, 30, 22),
+  cidade = c("Maringa", "Curitiba", "Londrina")
+)
+tabela
+
+# Acessar colunas
+tabela$nome          # Vetor com os nomes
+tabela[, "idade"]    # Vetor com as idades
+tabela[1, ]          # Primeira linha completa
+
+# Dimensoes
+nrow(tabela)  # Numero de linhas: 3
+ncol(tabela)  # Numero de colunas: 3
+dim(tabela)   # Dimensoes: 3 3
+str(tabela)   # Estrutura do data frame
+```
+
+### Matrizes (matrix)
+
+Estrutura bidimensional onde todos os elementos sao do **mesmo tipo**.
+
+```{r}
+#| echo: true
+#| eval: false
+
+matriz <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3)
+matriz
+#      [,1] [,2] [,3]
+# [1,]    1    3    5
+# [2,]    2    4    6
+
+# Acessar elementos
+matriz[1, 2]   # Linha 1, coluna 2: 3
+matriz[1, ]    # Toda a linha 1: 1 3 5
+matriz[, 2]    # Toda a coluna 2: 3 4
+```
+
+## Operacoes
+
+Toda linguagem de programacao tem as operacoes matematicas elementares implementadas. Vamos estudar a sintaxe em R:
+
+| Operacao | Simbolo Matematico | Sintaxe em R |
+|:---------|:------------------:|:-------------|
+| Adicao | $a + b$ | `a + b` |
+| Subtracao | $a - b$ | `a - b` |
+| Multiplicacao | $a \times b$ | `a * b` |
+| Divisao | $a \div b$ | `a / b` |
+| Potenciacao | $a^b$ | `a ^ b` ou `a ** b` |
+| Raiz quadrada | $\sqrt{a}$ | `sqrt(a)` |
+| Logaritmo natural | $\ln(a)$ | `log(a)` |
+| Logaritmo base 10 | $\log_{10}(a)$ | `log10(a)` |
+| Modulo (resto) | $a \mod b$ | `a %% b` |
+| Divisao inteira | $\lfloor a/b \rfloor$ | `a %/% b` |
+
+: Operacoes Basicas em R vs Matematica {.striped .hover}
+
+### Operadores de comparacao
+
+| Operador | Significado | Exemplo | Resultado |
+|:--------:|:------------|:--------|:---------:|
+| `==` | Igual a | `5 == 5` | `TRUE` |
+| `!=` | Diferente de | `5 != 3` | `TRUE` |
+| `>` | Maior que | `5 > 3` | `TRUE` |
+| `<` | Menor que | `5 < 3` | `FALSE` |
+| `>=` | Maior ou igual | `5 >= 5` | `TRUE` |
+| `<=` | Menor ou igual | `3 <= 5` | `TRUE` |
+
+: Operadores de Comparacao {.striped .hover}
+
+### Operadores logicos
+
+| Operador | Significado | Exemplo | Resultado |
+|:--------:|:------------|:--------|:---------:|
+| `&` | E (AND) | `TRUE & FALSE` | `FALSE` |
+| `\|` | OU (OR) | `TRUE \| FALSE` | `TRUE` |
+| `!` | NAO (NOT) | `!TRUE` | `FALSE` |
+
+: Operadores Logicos {.striped .hover}
+
+## Estruturas Condicionais
+
+As estruturas condicionais permitem que voce execute diferentes blocos de codigo com base em condicoes especificas.
+
+### if
+
+`if` em ingles significa "se". A estrutura funciona assim: **se** a condicao for verdadeira, **entao** execute o codigo.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# if (condicao) {
+#   codigo a ser executado se a condicao for TRUE
+# }
+
+# Exemplo:
+x <- 10
+if (x > 5) {
+  print("x e maior que 5")
+}
+# [1] "x e maior que 5"
+```
+
+### if/else
+
+Basicamente um "se" ou "se nao" --- permite definir o que acontece quando a condicao e falsa.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# if (condicao) {
+#   codigo se TRUE
+# } else {
+#   codigo se FALSE
+# }
+
+# Exemplo:
+x <- 3
+if (x > 5) {
+  print("x e maior que 5")
+} else {
+  print("x nao e maior que 5")
+}
+# [1] "x nao e maior que 5"
+```
+
+### if/else if/else (aninhado)
+
+Pode-se "aninhar" varias estruturas condicionais. "Aninhar" significa colocar uma apos a outra em uma hierarquia de verificacoes.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# if (condicao1) {
+#   codigo se condicao1 TRUE
+# } else if (condicao2) {
+#   codigo se condicao2 TRUE
+# } else {
+#   codigo se todas FALSE
+# }
+
+# Exemplo:
+x <- 7
+if (x < 5) {
+  print("x e menor que 5")
+} else if (x >= 5 & x < 10) {
+  print("x esta entre 5 e 10")
+} else {
+  print("x e 10 ou maior")
+}
+# [1] "x esta entre 5 e 10"
+```
+
+### ifelse vetorizado
+
+Em estatistica, operacoes vetorizadas sao muito importantes. Imagine que voce e um estatistico em uma empresa de credito e tem dados de quantos dias os clientes estao em atraso. Voce quer criar um indicador simples de inadimplencia (sim/nao), considerando inadimplente quem passa de 90 dias:
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# ifelse(condicao, valor_se_TRUE, valor_se_FALSE)
+
+# Exemplo simples:
+x <- 1:10
+ifelse(x %% 2 == 0, "par", "impar")
+# [1] "impar" "par" "impar" "par" "impar" "par" "impar" "par" "impar" "par"
+
+# Exemplo pratico - inadimplencia:
+dias_atraso <- c(15, 120, 45, 200, 90, 0, 95, 30)
+
+# Classificar como inadimplente se atraso > 90 dias
+status <- ifelse(dias_atraso > 90, "Inadimplente", "Adimplente")
+status
+# [1] "Adimplente"   "Inadimplente" "Adimplente"   "Inadimplente"
+# [5] "Adimplente"   "Adimplente"   "Inadimplente" "Adimplente"
+
+# Criar um data frame com os resultados
+clientes <- data.frame(
+  cliente = paste("Cliente", 1:8),
+  dias_atraso = dias_atraso,
+  status = status
+)
+clientes
+```
+
+### switch/case
+
+Quando e necessario escolher entre varias opcoes (como uma caixa de selecao em um formulario), pode ser ineficaz ficar aninhando varios `if` e `else`. Para isso serve a estrutura `switch`:
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# switch(expressao,
+#        caso1 = acao1,
+#        caso2 = acao2,
+#        ...,
+#        acao_padrao)
+
+# Exemplo simples:
+operacao <- "soma"
+resultado <- switch(operacao,
+  "soma"          = 5 + 3,
+  "subtracao"     = 5 - 3,
+  "multiplicacao" = 5 * 3,
+  "divisao"       = 5 / 3,
+  "operacao nao reconhecida"
+)
+print(resultado)  # [1] 8
+
+# Exemplo pratico - calcular medida estatistica:
+calcular_medida <- function(dados, medida) {
+  switch(medida,
+    "media"   = mean(dados),
+    "mediana" = median(dados),
+    "desvio"  = sd(dados),
+    "variancia" = var(dados),
+    stop("Medida nao reconhecida!")
+  )
+}
+
+notas <- c(7.5, 8.0, 6.5, 9.0, 7.0)
+calcular_medida(notas, "media")    # [1] 7.6
+calcular_medida(notas, "mediana")  # [1] 7.5
+```
+
+## Estruturas de Laco (Loops)
+
+Em programacao, muitas vezes e necessario repetir uma operacao varias vezes com base em uma condicao ou iterando por uma estrutura de dados (iterar significa percorrer sequencialmente). As duas estruturas principais sao o `for` e o `while`.
+
+### for
+
+O `for` percorre cada elemento de uma sequencia (vetor, lista, etc.) e executa um bloco de codigo para cada um.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# for (variavel in sequencia) {
+#   codigo a ser repetido
+# }
+
+# Exemplo 1: Imprimir numeros de 1 a 5
+for (i in 1:5) {
+  print(i)
+}
+
+# Exemplo 2: Iterar sobre um vetor de nomes
+nomes <- c("Ana", "Bruno", "Carla")
+for (nome in nomes) {
+  print(paste("Ola,", nome))
+}
+
+# Exemplo 3: Calcular o quadrado de cada numero
+numeros <- c(2, 4, 6, 8, 10)
+quadrados <- c()  # Vetor vazio para armazenar resultados
+
+for (n in numeros) {
+  quadrados <- c(quadrados, n^2)
+}
+quadrados  # [1]  4 16 36 64 100
+
+# Exemplo 4: Iterar sobre linhas de um data frame
+dados <- data.frame(
+  aluno = c("Maria", "Pedro", "Julia"),
+  nota = c(8.5, 6.0, 9.2)
+)
+
+for (i in 1:nrow(dados)) {
+  if (dados$nota[i] >= 7) {
+    cat(dados$aluno[i], "- Aprovado(a)\n")
+  } else {
+    cat(dados$aluno[i], "- Reprovado(a)\n")
+  }
+}
+```
+
+::: {.callout-warning}
+## Atencao
+Em R, loops `for` podem ser lentos para grandes volumes de dados. Sempre que possivel, prefira operacoes vetorizadas ou funcoes da familia `apply` (como `sapply`, `lapply`). O loop `for` e mais util para operacoes que dependem do resultado da iteracao anterior.
+:::
+
+### while
+
+O `while` (enquanto) repete um bloco de codigo **enquanto** uma condicao for verdadeira. Cuidado: se a condicao nunca se tornar falsa, o loop sera infinito!
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# while (condicao) {
+#   codigo a ser repetido
+#   # IMPORTANTE: algo deve mudar para a condicao eventualmente ser FALSE
+# }
+
+# Exemplo 1: Contagem regressiva
+contador <- 5
+while (contador > 0) {
+  print(paste("Contagem:", contador))
+  contador <- contador - 1  # Diminuir o contador
+}
+print("Lancamento!")
+
+# Exemplo 2: Dobrar um valor ate ultrapassar 1000
+valor <- 1
+iteracoes <- 0
+
+while (valor <= 1000) {
+  valor <- valor * 2
+  iteracoes <- iteracoes + 1
+}
+cat("Valor final:", valor, "\n")        # 1024
+cat("Iteracoes necessarias:", iteracoes) # 10
+
+# Exemplo 3: Simulacao - quantos lancamentos ate sair 6?
+set.seed(42)  # Para reprodutibilidade
+dado <- 0
+lancamentos <- 0
+
+while (dado != 6) {
+  dado <- sample(1:6, 1)  # Lancar um dado
+  lancamentos <- lancamentos + 1
+  cat("Lancamento", lancamentos, ":", dado, "\n")
+}
+cat("Foram necessarios", lancamentos, "lancamentos para sair 6.\n")
+```
+
+### break e next
+
+Duas palavras-chave uteis para controlar loops:
+
+```{r}
+#| echo: true
+#| eval: false
+
+# break: interrompe o loop imediatamente
+for (i in 1:100) {
+  if (i > 5) break  # Para quando i passa de 5
+  print(i)
+}
+# Imprime apenas 1, 2, 3, 4, 5
+
+# next: pula para a proxima iteracao
+for (i in 1:10) {
+  if (i %% 2 != 0) next  # Pula numeros impares
+  print(i)
+}
+# Imprime apenas 2, 4, 6, 8, 10
+```
+
+## Funcoes
+
+Funcoes sao blocos de codigo reutilizaveis que realizam uma tarefa especifica. Voce ja usou diversas funcoes do R (`print`, `mean`, `sum`, etc.). Agora vamos aprender a **criar nossas proprias funcoes**.
+
+### Criando funcoes
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Modelo:
+# nome_da_funcao <- function(argumento1, argumento2, ...) {
+#   codigo da funcao
+#   return(resultado)  # Retornar o resultado
+# }
+
+# Exemplo 1: Funcao simples - saudacao
+saudacao <- function(nome) {
+  mensagem <- paste("Ola,", nome, "! Bem-vindo(a) ao R.")
+  return(mensagem)
+}
+
+saudacao("Maria")  # [1] "Ola, Maria ! Bem-vindo(a) ao R."
+saudacao("Pedro")  # [1] "Ola, Pedro ! Bem-vindo(a) ao R."
+```
+
+### Argumentos com valores padrao
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Exemplo 2: Funcao com argumento padrao
+calcular_imc <- function(peso, altura, arredondar = 2) {
+  imc <- peso / (altura^2)
+  return(round(imc, arredondar))
+}
+
+calcular_imc(70, 1.75)           # [1] 22.86 (usa padrao arredondar = 2)
+calcular_imc(70, 1.75, 4)        # [1] 22.8571 (arredonda com 4 casas)
+```
+
+### Funcoes que retornam multiplos valores
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Exemplo 3: Retornar uma lista com varias estatisticas
+estatisticas_descritivas <- function(dados) {
+  resultado <- list(
+    media   = mean(dados),
+    mediana = median(dados),
+    desvio  = sd(dados),
+    minimo  = min(dados),
+    maximo  = max(dados),
+    n       = length(dados)
+  )
+  return(resultado)
+}
+
+notas <- c(7.5, 8.0, 6.5, 9.0, 7.0, 8.5, 5.5, 7.8)
+resumo <- estatisticas_descritivas(notas)
+
+resumo$media    # [1] 7.475
+resumo$desvio   # [1] 1.064
+resumo$n        # [1] 8
+```
+
+### Funcoes anonimas (lambda)
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Funcoes curtas podem ser definidas "inline"
+# Util com sapply, lapply, etc.
+
+numeros <- list(c(1,2,3), c(10,20), c(5,5,5,5))
+
+# Calcular a media de cada vetor na lista
+sapply(numeros, function(x) mean(x))
+# [1] 2.0 15.0  5.0
+
+# No R 4.1+, existe a sintaxe abreviada com \(x)
+sapply(numeros, \(x) mean(x))
+```
+
+### Boas praticas para funcoes
+
+::: {.callout-tip}
+## Boas praticas
+- De nomes descritivos as funcoes (ex: `calcular_media_ponderada` em vez de `f1`)
+- Documente o que a funcao faz, quais argumentos recebe e o que retorna
+- Cada funcao deve fazer **uma coisa** bem feita
+- Use valores padrao para argumentos opcionais
+- Sempre use `return()` explicitamente para clareza
+:::
+
+## Importacao de Dados
+
+Trabalhar com dados e a essencia da estatistica, entao importar dados corretamente e fundamental. Felizmente, o R tem funcoes prontas para os formatos mais comuns.
+
+### Principais formatos de arquivo
+
+| Formato | Extensao | Funcao em R | Biblioteca |
+|:--------|:--------:|:------------|:-----------|
+| CSV | `.csv` | `read.csv()` ou `read_csv()` | base / `readr` |
+| Excel | `.xlsx` | `read_excel()` | `readxl` |
+| Texto delimitado | `.txt`, `.tsv` | `read.delim()` ou `read_tsv()` | base / `readr` |
+| SPSS | `.sav` | `read_sav()` | `haven` |
+| Stata | `.dta` | `read_dta()` | `haven` |
+| JSON | `.json` | `fromJSON()` | `jsonlite` |
+| RDS (formato R) | `.rds` | `readRDS()` | base |
+
+: Principais Formatos de Dados {.striped .hover}
+
+### Importar CSV
+
+O formato CSV (Comma-Separated Values) e o mais comum. Atencao aos **delimitadores**: no padrao internacional o separador de colunas e a virgula e o decimal e o ponto. No padrao brasileiro, o separador de colunas e o ponto e virgula e o decimal e a virgula.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Padrao internacional (separador: virgula, decimal: ponto)
+dados <- read.csv("caminho/para/arquivo.csv")
+
+# Padrao brasileiro (separador: ponto e virgula, decimal: virgula)
+dados <- read.csv2("caminho/para/arquivo.csv")
+
+# Usando readr (tidyverse) - mais rapido e robusto
+library(readr)
+dados <- read_csv("caminho/para/arquivo.csv")            # Padrao internacional
+dados <- read_csv2("caminho/para/arquivo.csv")           # Padrao brasileiro
+
+# Especificando encoding (para acentos)
+dados <- read.csv("arquivo.csv", fileEncoding = "UTF-8")
+dados <- read.csv("arquivo.csv", fileEncoding = "latin1")  # Windows BR
+```
+
+::: {.callout-important}
+## Delimitadores e encoding
+Os dois problemas mais comuns ao importar dados sao:
+
+1. **Delimitador errado**: se o arquivo usa `;` e voce usa `read.csv()` (que espera `,`), tudo vira uma coluna so. Use `read.csv2()` para dados brasileiros.
+2. **Encoding errado**: se os acentos aparecem como caracteres estranhos, tente `fileEncoding = "UTF-8"` ou `fileEncoding = "latin1"`.
+:::
+
+### Importar Excel
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(readxl)
+
+# Importar a primeira planilha
+dados <- read_excel("caminho/para/arquivo.xlsx")
+
+# Importar uma planilha especifica
+dados <- read_excel("arquivo.xlsx", sheet = "Planilha2")
+dados <- read_excel("arquivo.xlsx", sheet = 2)  # Pelo numero
+
+# Pular linhas no inicio (cabecalhos extras)
+dados <- read_excel("arquivo.xlsx", skip = 3)
+
+# Definir tipos de colunas
+dados <- read_excel("arquivo.xlsx", col_types = c("text", "numeric", "date"))
+
+# Ver nomes das planilhas
+excel_sheets("arquivo.xlsx")
+```
+
+### Importar outros formatos
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Arquivo de texto com tabulacao como separador
+dados <- read.delim("arquivo.txt")
+
+# Arquivo com separador customizado
+dados <- read.table("arquivo.txt", sep = "|", header = TRUE)
+
+# Dados SPSS
+library(haven)
+dados <- read_sav("arquivo.sav")
+
+# Dados Stata
+dados <- read_dta("arquivo.dta")
+
+# Dados JSON
+library(jsonlite)
+dados <- fromJSON("arquivo.json")
+```
+
+### Verificar os dados importados
+
+Apos importar os dados, sempre verifique se a importacao foi correta:
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Primeiras linhas
+head(dados)        # 6 primeiras linhas
+head(dados, 10)    # 10 primeiras linhas
+
+# Ultimas linhas
+tail(dados)
+
+# Estrutura dos dados
+str(dados)
+
+# Resumo estatistico
+summary(dados)
+
+# Dimensoes
+dim(dados)   # linhas x colunas
+nrow(dados)  # numero de linhas
+ncol(dados)  # numero de colunas
+
+# Nomes das colunas
+names(dados)
+```
+
+## Manipulacao de Dados com dplyr
+
+O pacote `dplyr` e a principal ferramenta do R para manipulacao de dados. Ele faz parte do `tidyverse` e usa uma sintaxe intuitiva baseada em "verbos".
+
+::: {.callout-note}
+## O operador pipe (%>% ou |>)
+O **pipe** permite encadear operacoes de forma legivel, passando o resultado da esquerda como primeiro argumento da funcao da direita. Leia `%>%` como "e entao".
+
+```{r}
+#| echo: true
+#| eval: false
+# Sem pipe (dificil de ler):
+summarise(group_by(filter(dados, idade > 20), cidade), media = mean(nota))
+
+# Com pipe (legivel):
+dados %>%
+  filter(idade > 20) %>%
+  group_by(cidade) %>%
+  summarise(media = mean(nota))
+```
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(dplyr)
+
+# Vamos usar o dataset mtcars como exemplo
+dados <- mtcars
+dados$carro <- rownames(mtcars)  # Adicionar nome dos carros como coluna
+```
+
+### filter() - Filtrar linhas
+
+Seleciona linhas que atendem a uma condicao.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Carros com mais de 20 milhas por galao
+dados %>% filter(mpg > 20)
+
+# Carros com 6 cilindros E mais de 100 cavalos
+dados %>% filter(cyl == 6 & hp > 100)
+
+# Carros com 4 OU 6 cilindros
+dados %>% filter(cyl %in% c(4, 6))
+```
+
+### select() - Selecionar colunas
+
+Escolhe quais colunas manter.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Selecionar colunas especificas
+dados %>% select(carro, mpg, cyl, hp)
+
+# Remover colunas (com sinal de menos)
+dados %>% select(-vs, -am, -gear)
+
+# Selecionar por padrao
+dados %>% select(starts_with("d"))   # Colunas que comecam com "d"
+dados %>% select(ends_with("p"))     # Colunas que terminam com "p"
+```
+
+### mutate() - Criar ou modificar colunas
+
+Cria novas colunas ou modifica existentes.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Criar nova coluna: consumo em km/L
+dados %>% mutate(km_por_litro = mpg * 0.425)
+
+# Criar varias colunas de uma vez
+dados %>% mutate(
+  km_por_litro = mpg * 0.425,
+  potencia_kw  = hp * 0.7457,
+  categoria    = ifelse(mpg > 20, "Economico", "Gastao")
+)
+```
+
+### arrange() - Ordenar linhas
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Ordenar por consumo (crescente)
+dados %>% arrange(mpg)
+
+# Ordenar por consumo (decrescente)
+dados %>% arrange(desc(mpg))
+
+# Ordenar por multiplas colunas
+dados %>% arrange(cyl, desc(mpg))
+```
+
+### group_by() e summarise() - Agrupar e resumir
+
+Combinacao poderosa para calcular estatisticas por grupo.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Media de consumo por numero de cilindros
+dados %>%
+  group_by(cyl) %>%
+  summarise(
+    media_mpg = mean(mpg),
+    desvio_mpg = sd(mpg),
+    n = n()
+  )
+
+# Resultado:
+#   cyl media_mpg desvio_mpg     n
+# 1   4      26.7       4.51    11
+# 2   6      19.7       1.45     7
+# 3   8      15.1       2.56    14
+
+# Multiplos resumos
+dados %>%
+  group_by(cyl) %>%
+  summarise(
+    media_hp   = mean(hp),
+    max_hp     = max(hp),
+    min_hp     = min(hp),
+    total      = n()
+  )
+```
+
+### Combinando tudo com pipe
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Analise completa em um pipeline
+resultado <- dados %>%
+  filter(mpg > 15) %>%                          # Filtrar
+  select(carro, mpg, cyl, hp, wt) %>%           # Selecionar colunas
+  mutate(km_por_litro = mpg * 0.425) %>%         # Criar coluna
+  group_by(cyl) %>%                              # Agrupar
+  summarise(                                     # Resumir
+    media_consumo = mean(km_por_litro),
+    media_potencia = mean(hp),
+    n_carros = n()
+  ) %>%
+  arrange(desc(media_consumo))                   # Ordenar
+
+resultado
+```
+
+### Outras funcoes uteis do dplyr
+
+```{r}
+#| echo: true
+#| eval: false
+
+# rename() - renomear colunas
+dados %>% rename(consumo = mpg, cilindros = cyl)
+
+# distinct() - valores unicos
+dados %>% distinct(cyl)
+
+# count() - contar ocorrencias
+dados %>% count(cyl)
+dados %>% count(cyl, sort = TRUE)  # Ordenado
+
+# slice() - selecionar linhas por posicao
+dados %>% slice(1:5)         # Primeiras 5 linhas
+dados %>% slice_max(mpg, n = 3)  # 3 maiores consumos
+dados %>% slice_min(hp, n = 3)   # 3 menores potencias
+```
+
+## Graficos com ggplot2
+
+O `ggplot2` e o pacote mais popular do R para criacao de graficos. Ele se baseia na **Gramatica de Graficos** (Grammar of Graphics), onde cada grafico e construido em camadas.
+
+### Estrutura basica
+
+A ideia central: todo grafico tem **dados**, **mapeamento estetico** (`aes`) e **geometrias** (`geom_`).
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(ggplot2)
+
+# Estrutura basica:
+# ggplot(dados, aes(x = variavel_x, y = variavel_y)) +
+#   geom_tipo()
+
+# O "+" adiciona camadas ao grafico
+```
+
+### Grafico de dispersao (geom_point)
+
+Ideal para visualizar a relacao entre duas variaveis quantitativas.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Grafico de dispersao basico
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+
+# Com cores por grupo
+ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  geom_point(size = 3) +
+  labs(
+    title = "Peso vs. Consumo por Cilindros",
+    x = "Peso (1000 lbs)",
+    y = "Milhas por Galao",
+    color = "Cilindros"
+  )
+
+# Com linha de tendencia
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(title = "Relacao Peso vs. Consumo com Regressao Linear")
+```
+
+### Grafico de barras (geom_bar / geom_col)
+
+Ideal para variaveis categoricas.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# geom_bar: conta ocorrencias automaticamente
+ggplot(mtcars, aes(x = factor(cyl))) +
+  geom_bar(fill = "#448EE3") +
+  labs(title = "Quantidade de Carros por Cilindros",
+       x = "Numero de Cilindros", y = "Contagem")
+
+# geom_col: quando voce ja tem os valores
+resumo <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(media_mpg = mean(mpg))
+
+ggplot(resumo, aes(x = factor(cyl), y = media_mpg)) +
+  geom_col(fill = "#2D4188") +
+  labs(title = "Media de Consumo por Cilindros",
+       x = "Cilindros", y = "MPG Medio")
+
+# Barras agrupadas
+ggplot(mtcars, aes(x = factor(cyl), fill = factor(am))) +
+  geom_bar(position = "dodge") +
+  labs(title = "Cilindros por Tipo de Transmissao",
+       x = "Cilindros", fill = "Transmissao\n(0=Auto, 1=Manual)")
+```
+
+### Histograma (geom_histogram)
+
+Ideal para visualizar a distribuicao de uma variavel quantitativa.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Histograma basico
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(bins = 10, fill = "#448EE3", color = "white") +
+  labs(title = "Distribuicao do Consumo (MPG)",
+       x = "Milhas por Galao", y = "Frequencia")
+
+# Histograma com curva de densidade
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 10, fill = "#448EE3", color = "white", alpha = 0.7) +
+  geom_density(color = "red", linewidth = 1) +
+  labs(title = "Distribuicao do Consumo com Curva de Densidade")
+
+# Histogramas sobrepostos por grupo
+ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
+  geom_histogram(bins = 10, alpha = 0.6, position = "identity") +
+  labs(title = "Distribuicao do Consumo por Cilindros",
+       fill = "Cilindros")
+```
+
+### Boxplot (geom_boxplot)
+
+Ideal para comparar distribuicoes entre grupos e identificar outliers.
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Boxplot basico
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot(fill = "#448EE3", alpha = 0.7) +
+  labs(title = "Distribuicao do Consumo por Cilindros",
+       x = "Numero de Cilindros", y = "Milhas por Galao")
+
+# Boxplot com pontos individuais
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot(fill = "#448EE3", alpha = 0.5, outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha = 0.5, color = "#2D4188") +
+  labs(title = "Consumo por Cilindros (com pontos)")
+
+# Boxplot horizontal
+ggplot(mtcars, aes(x = mpg, y = factor(cyl))) +
+  geom_boxplot(fill = "#448EE3", alpha = 0.7) +
+  labs(title = "Consumo por Cilindros (horizontal)")
+```
+
+### Personalizacao de graficos
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Grafico completo com personalizacao
+ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, linetype = "dashed") +
+  labs(
+    title = "Relacao entre Peso e Consumo",
+    subtitle = "Dados do dataset mtcars",
+    x = "Peso do Carro (1000 lbs)",
+    y = "Consumo (milhas por galao)",
+    color = "Cilindros",
+    caption = "Fonte: Motor Trend US Magazine, 1974"
+  ) +
+  theme_minimal() +                    # Tema limpo
+  scale_color_manual(values = c("4" = "#448EE3",
+                                "6" = "#2D4188",
+                                "8" = "#FF6B6B"))  # Cores personalizadas
+
+# Temas disponiveis:
+# theme_minimal()   - limpo e moderno
+# theme_classic()   - fundo branco com eixos
+# theme_bw()        - preto e branco
+# theme_dark()      - fundo escuro
+# theme_void()      - sem eixos nem fundo
+```
+
+### Salvar graficos
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Salvar o ultimo grafico criado
+ggsave("meu_grafico.png", width = 8, height = 5, dpi = 300)
+
+# Salvar um grafico especifico
+p <- ggplot(mtcars, aes(x = mpg)) + geom_histogram()
+ggsave("histograma.png", plot = p, width = 8, height = 5)
+
+# Diferentes formatos
+ggsave("grafico.pdf", width = 8, height = 5)    # PDF (vetorial)
+ggsave("grafico.svg", width = 8, height = 5)    # SVG (vetorial)
+```
+
+::: {.callout-tip}
+## Dica final
+Para aprofundar seus conhecimentos em R, recomendamos fortemente o livro gratuito [R para Ciencia de Dados](https://pt.r4ds.hadley.nz/), disponivel online em portugues. Ele cobre com profundidade todos os topicos abordados neste apendice e muito mais.
+:::
