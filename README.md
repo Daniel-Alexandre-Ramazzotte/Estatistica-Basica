@@ -1,66 +1,132 @@
-# Estatística-Básica
-Livro e Aplicativo de questões de Estatística Básica
+# Introdução Interativa a Estatística
+### PROPET DataSci — Ação 11: Ensino de Estatística | UEM
 
-## Base para os tópicos:
-https://des.uem.br/grad/pastademaiscursos/9755.pdf
+Livro-texto interativo de Estatística Básica com banco de questões, aplicações em R e Python, e identidade visual PROPET DataSci.
 
-## Livros-Base:
-- Slides do Diego
-- Probabilidade: Um Curso Introdutório Dantas
-- https://www.ime.usp.br/~rvicente/JMPMemoria_Historia_Estatistica.pdf
-- Estatística Básica - Bussab e Morrettin
-- Probabilidade - Sheldon Ross
+---
 
-## Links Importantes:
+## 🗺️ Por onde começar?
 
-- https://www.geogebra.org/m/efgyt97j ditribuições
-- https://www.youtube.com/watch?v=zeJD6dqJ5lo
-- https://www.geogebra.org/m/kn2xsnsd#material/ernqbw4e exemplo
-- https://www.youtube.com/watch?v=2_fnmPRwhWs
-- https://www.youtube.com/watch?v=14mkCpJ7tKs
-- https://lineu96.github.io/npest/index.html
-- https://ia600506.us.archive.org/14/items/estatistica-basica-9ed-bussab-e-morettin/Estat%C3%ADstica%20B%C3%A1sica%20%289ed%29%20-%20Bussab%20e%20Morettin.pdf
-- https://seeing-theory.brown.edu/probability-distributions/index.html#section3
-- https://www.ibge.gov.br/estatisticas/sociais/trabalho/22827-censo-demografico-2022.html?=&t=o-que-e
+> **Leia primeiro o relatório técnico:**
+> [`relatorio_tecnico_Estatistica-Basica.pdf`](./relatorio_tecnico_Estatistica-Basica.pdf)
+>
+> Ele é um guia completo de implementação do projeto: estrutura de arquivos, como colaborar, comandos de build, stack tecnológica e o que já foi feito.
 
-## Ideias
+---
 
-- dividir cada tópico em: introdução, corpo do texto (definição, exemplo, exercício de fixação, fundamentação teórica), aplicações computacionais em R e Python, , exercícios computacionais, exercícios no papel
-- no final do capítulo: resumo e tópicos aprendidos
-- Utilizar Manim para visualizações
-- Fazer o banco de questões com a lógica do duolingo
--Entrevistar todos os professores do Departamento para saber os tópicos mais abordados na disciplina, obter suas listas e 
+## 📚 Acessar o Livro
 
-## Possíveis Aplicações
+O livro renderizado está em:
 
-- Capítulo 10: Aplicações Práticas da Estatística
-10.1 Introdução às Aplicações da Estatística
-Objetivo: Este capítulo explora como a Estatística é utilizada em diferentes campos de atuação, demonstrando o impacto das técnicas estatísticas em setores variados.
-Conteúdo: Explicação introdutória sobre a importância da Estatística na resolução de problemas práticos e no processo de tomada de decisão.
-- 10.2 Estatística na Ciência e Tecnologia
-Análise Experimental: Como experimentos em laboratórios utilizam amostragens e análise de variância para testar hipóteses e melhorar processos científicos.
-Controle de Qualidade na Produção: Utilização de gráficos de controle e testes de qualidade para monitorar e otimizar processos de fabricação.
-Inteligência Artificial e Machine Learning: Introdução ao uso de métodos probabilísticos e estatísticos no desenvolvimento de algoritmos de aprendizado de máquina, com exemplos como classificação e regressão em IA.
-- 10.3 Estatística na Saúde e Ciências Biológicas
-Ensaios Clínicos: Explicação dos métodos de amostragem, inferência e testes de hipóteses utilizados para validar medicamentos e tratamentos.
-Epidemiologia e Saúde Pública: Uso de estatísticas descritivas e inferenciais para estudar a propagação de doenças e avaliar o impacto de intervenções de saúde.
-Bioestatística: Introdução à análise de dados em experimentos biológicos e estudos genéticos, com exemplos de como a variância e correlação são aplicadas na biologia.
-- 10.4 Estatística na Economia e Finanças
-Análise de Mercado e Previsão de Demanda: Utilização de séries temporais e regressão para prever tendências econômicas e demanda de produtos.
-Gestão de Riscos e Avaliação de Investimentos: Aplicação da estatística na análise de risco, onde distribuições de probabilidade e intervalos de confiança ajudam na tomada de decisões financeiras.
-Big Data e Econometria: Uso de grandes volumes de dados econômicos para entender comportamentos de consumo, prever inflação, e modelar políticas financeiras.
-- 10.5 Estatística na Psicologia e Ciências Sociais
-Pesquisas de Opinião e Satisfação: Uso de técnicas de amostragem e análise de dados qualitativos para obter insights sobre comportamentos e opiniões.
-Psicometria e Análise de Testes: Aplicação de estatísticas para construir e validar testes psicológicos e educacionais, abordando métodos como análise de confiabilidade e validade.
-Análise de Dados em Sociologia e Antropologia: Como os métodos estatísticos ajudam a entender padrões sociais, demografia, e interações entre grupos.
-- 10.6 Estatística em Marketing e Negócios
-Segmentação e Perfis de Cliente: Uso da análise de cluster e segmentação de mercado para identificar perfis de clientes e ajustar estratégias de marketing.
-Análise de Experimentos em Marketing: Testes A/B e experimentos controlados para avaliar a efetividade de campanhas e novos produtos.
-Modelagem de Preferência e Previsão de Vendas: Regressão e modelos de preferência para entender fatores que influenciam a decisão de compra e prever vendas futuras.
-- 10.7 Estatística na Engenharia e Ciência dos Dados
-Controle Estatístico de Processos (CEP): Aplicação de gráficos de controle para monitorar e melhorar processos em áreas como engenharia química e automação.
-Ciência de Dados e Análise de Grandes Conjuntos de Dados: Como a estatística suporta o desenvolvimento de métodos para mineração de dados e descoberta de padrões em grandes volumes de dados.
-Análise de Risco em Engenharia Civil e Elétrica: Cálculo de probabilidades e simulações para avaliar a confiabilidade de sistemas e infraestrutura.
-- 10.8 Conclusão: A Relevância da Estatística em um Mundo Baseado em Dados
-Objetivo: Ressaltar como o conhecimento estatístico é essencial na sociedade atual, onde decisões baseadas em dados são cada vez mais comuns.
-Conteúdo: Reflexão final sobre a importância de aplicar estatísticas de forma ética e responsável, sublinhando o impacto positivo da Estatística na resolução de problemas complexos e na inovação tecnológica.
+```
+livro/_book/index.html
+```
+
+Abra esse arquivo no navegador para ler o livro completo com todos os capítulos, fórmulas e exemplos de código.
+
+> Se o diretório `_book/` não existir, [renderize o livro](#-renderizar-o-livro) primeiro.
+
+---
+
+## 🔗 Notion do Projeto
+
+Documentação, acompanhamento de tarefas e notas de reunião:
+
+👉 [PROPET DataSci — Ação 11 no Notion](https://blossom-stranger-2e0.notion.site/PROPET-DataSci-Acao-11-Apostila-Estatistica-Basica-3280009068a9816f82c6c48065ebe429?pvs=74)
+
+---
+
+## ⬇️ Clonar o Repositório
+
+### Via RStudio
+
+1. Abra o RStudio
+2. Vá em **File → New Project → Version Control → Git**
+3. Cole a URL do repositório:
+   ```
+   https://github.com/Daniel-Alexandre-Ramazzotte/Estatistica-Basica.git
+   ```
+4. Escolha o diretório local e clique em **Create Project**
+5. O projeto abre direto com o `.Rproj` configurado
+
+### Via terminal
+
+```bash
+git clone https://github.com/Daniel-Alexandre-Ramazzotte/Estatistica-Basica.git
+cd Estatistica-Basica
+```
+
+---
+
+## 🛠️ Renderizar o Livro
+
+Pré-requisito: [Quarto](https://quarto.org/docs/get-started/) instalado.
+
+```bash
+cd livro
+quarto render
+```
+
+O livro gerado fica em `livro/_book/index.html`. Abra no navegador.
+
+```bash
+# Ou com preview automático no navegador:
+quarto preview
+```
+
+> **Sem R instalado?** Sem problema — o projeto usa `freeze: auto`, então os resultados de código já estão cacheados em `_freeze/`. O `quarto render` funciona sem executar nenhum código R.
+
+---
+
+## 📁 Estrutura Resumida
+
+```
+Estatistica-Basica/
+├── relatorio_tecnico_Estatistica-Basica.pdf   ← comece por aqui
+├── livro/                                      ← Quarto Book (fonte)
+│   ├── _book/                                  ← livro renderizado (abrir no browser)
+│   ├── 01-descritiva.qmd                       ← capítulos
+│   ├── 02-probabilidade.qmd
+│   ├── 03-inferencia.qmd
+│   ├── 04-regressao.qmd
+│   └── A-intro-r.qmd ... E-creditos.qmd        ← apêndices
+├── banco_questoes/                             ← 356 questões em SQLite
+│   ├── questoes.db                             ← abrir com DB Browser
+│   └── parse_questoes.py                       ← parser .md → SQL
+└── docs/spec/                                  ← documentação de acompanhamento
+```
+
+---
+
+## 🗄️ Banco de Questões
+
+O banco SQLite com 356 questões está em `banco_questoes/questoes.db`.
+
+**Abrir visualmente:** instale o [DB Browser for SQLite](https://sqlitebrowser.org/) e abra o arquivo.
+
+**Regenerar o banco:**
+```bash
+cd banco_questoes
+python parse_questoes.py
+```
+
+---
+
+## 📖 Conteúdo do Livro
+
+| Capítulo | Conteúdo |
+|----------|----------|
+| 1 — Estatística Descritiva | Conceitos, frequências, medidas, gráficos, amostragem |
+| 2 — Probabilidade | Combinatória, probabilidade clássica/condicional, distribuições |
+| 3 — Inferência Estatística | Estimação, intervalos de confiança, testes de hipóteses |
+| 4 — Regressão Linear Simples | Modelo linear, OLS, resíduos, predição |
+| Apêndice A | Tutorial R |
+| Apêndice B | Tutorial Python |
+| Apêndice C | Dicas de IA |
+| Apêndice D | Tutorial Quarto, Git e Claude Code |
+
+---
+
+## 📬 Contato
+
+**Daniel Alexandre Ramazzotte** — PROPET DataSci / Departamento de Estatística — UEM
