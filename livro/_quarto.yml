@@ -37,4 +37,4 @@ format:
     highlight-style: pygments
 
 execute:
-  freeze: auto
+  freeze: true

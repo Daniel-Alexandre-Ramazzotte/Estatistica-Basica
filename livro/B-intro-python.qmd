@@ -1,3 +1,11 @@
+---
+engine: knitr
+knitr:
+  opts_chunk:
+    python.reticulate: false
+    eval: false
+---
+
 # Introducao ao Python {#apendice-python}
 
 Python e uma das linguagens de programacao mais populares do mundo, especialmente nas areas de ciencia de dados, aprendizado de maquina e estatistica. Neste apendice, apresentamos os fundamentos necessarios para aplicar conceitos estatisticos em Python, com foco nas bibliotecas mais utilizadas para analise de dados.
