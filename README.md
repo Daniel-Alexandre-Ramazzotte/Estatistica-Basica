@@ -1,7 +1,7 @@
 # Introdução Interativa a Estatística
 **PROPET DataSci — Ação 11: Ensino de Estatística | UEM**
 
-Livro-texto interativo de Estatística Básica com banco de questões, aplicações em R e Python, e identidade visual PROPET DataSci.
+Livro-texto interativo de Estatística Básica com aplicações em R e Python e identidade visual PROPET DataSci.
 
 ---
 
@@ -84,11 +84,8 @@ Estatistica-Basica/
 │   ├── 02-probabilidade.qmd
 │   ├── 03-inferencia.qmd
 │   ├── 04-regressao.qmd
+│   ├── 05-problemas-pesquisa-aplicados.qmd
 │   └── A-intro-r.qmd ... E-creditos.qmd
-├── banco_questoes/                 ← 356 questões em SQLite + parser
-│   ├── questoes.db                 ← abrir com DB Browser for SQLite
-│   ├── parse_questoes.py           ← parser .md → SQL
-│   └── Banco-de-questões-*.md      ← fonte das questões
 ├── docs/                           ← documentação e relatórios
 │   ├── relatorio_tecnico_*.pdf     ← relatório técnico (comece aqui)
 │   ├── Ação 11 - Ensino Estatística.docx
@@ -98,19 +95,7 @@ Estatistica-Basica/
 └── legacy/                         ← versões anteriores (não editar)
 ```
 
----
-
-## Banco de Questões
-
-O banco SQLite com 356 questões está em `banco_questoes/questoes.db`.
-
-Abrir visualmente: [DB Browser for SQLite](https://sqlitebrowser.org/)
-
-Regenerar o banco:
-```bash
-cd banco_questoes
-python parse_questoes.py
-```
+O banco de questões foi migrado para o projeto **Staticlass**; este repositório mantém o livro, a documentação e os ativos de apoio.
 
 ---
 
@@ -122,6 +107,7 @@ python parse_questoes.py
 | 2 — Probabilidade | Combinatória, probabilidade clássica/condicional, distribuições |
 | 3 — Inferência Estatística | Estimação, intervalos de confiança, testes de hipóteses |
 | 4 — Regressão Linear Simples | Modelo linear, OLS, resíduos, predição |
+| 5 — Problemas de Pesquisa Aplicados | Estudos guiados por problemas reais, começando por comparação de métodos em medicina |
 | Apêndice A | Tutorial R |
 | Apêndice B | Tutorial Python |
 | Apêndice C | Dicas de IA |

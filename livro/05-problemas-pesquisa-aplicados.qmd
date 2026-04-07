@@ -1,0 +1,21 @@
+# Problemas de Pesquisa Aplicados {#cap-problemas-pesquisa-aplicados}
+
+O ensino de Estatística muitas vezes começa pelo nome dos métodos: teste *t*, correlação, regressão, ANOVA, qui-quadrado. Essa ordem parece eficiente, mas cria um vício perigoso: o estudante aprende a procurar uma técnica que se encaixe nos dados antes de formular com precisão o problema de pesquisa. O resultado é uma estatística de cardápio, em que a pergunta científica é substituída por uma decisão operacional sobre qual botão apertar.
+
+Este capítulo parte de outra direção. Em vez de perguntar "qual método devo aplicar?", vamos perguntar primeiro "qual decisão de pesquisa precisa ser tomada?", "qual quantidade precisa ser estimada?", "qual tipo de erro comprometeria a conclusão?" e "o desenho do estudo permite responder isso?". A estatística entra depois, como linguagem para formalizar a incerteza, não como uma lista de receitas.
+
+Problemas aplicados raramente chegam organizados como exemplos de livro-texto. Eles misturam contexto, instrumentos, custos, vieses, variabilidade, objetivos práticos e consequências de decisão. Por isso, cada tópico deste capítulo será guiado por um caso real ou plausível, com tags de área e assunto para deixar claro o contexto de aplicação.
+
+## Comparação de métodos de medição em medicina {#sec-comparacao-metodos-medicao-medicina}
+
+**Tags:** `medicina`, `comparação-de-métodos`, `concordância`, `viés`, `repetibilidade`
+
+Este tópico é baseado no artigo "Measurement in Medicine: The Analysis of Method Comparison Studies", de D. G. Altman e J. M. Bland (1983). O problema discutido pelos autores aparece com frequência em pesquisas médicas: um pesquisador quer saber se um novo método de medição, mais barato, rápido ou simples, pode substituir um método já estabelecido. Exemplos incluem medidas de pressão arterial, idade gestacional ou volume cardíaco.
+
+A pergunta de pesquisa não é "os dois métodos estão correlacionados?". Em geral, eles devem estar correlacionados, pois tentam medir a mesma quantidade. A pergunta relevante é: **os métodos concordam o suficiente para que um possa substituir o outro no uso clínico pretendido?**
+
+Essa mudança de pergunta altera toda a análise. Comparar médias pode esconder grandes discordâncias individuais: dois métodos podem ter a mesma média e ainda assim discordar muito paciente a paciente. Calcular apenas a correlação também é insuficiente, porque a correlação depende da variabilidade entre indivíduos; uma amostra com pacientes muito diferentes pode gerar uma correlação alta mesmo quando a concordância clínica é ruim. Regressão simples, quando usada mecanicamente, desloca o foco para associação e predição, mas não responde diretamente se as diferenças entre métodos são aceitáveis.
+
+O caminho estatístico deve começar pela estrutura do problema. Primeiro, avaliar a repetibilidade de cada método: se o mesmo método medisse o mesmo paciente novamente, quanta variação seria esperada? Depois, comparar diretamente as diferenças entre os métodos para cada indivíduo. A média dessas diferenças descreve o viés relativo; a dispersão das diferenças descreve o erro de concordância. Um gráfico das diferenças contra a média das duas medidas ajuda a visualizar viés, outliers e mudanças de erro ao longo da escala de medição.
+
+O ponto central do caso é pedagógico: o método estatístico correto não nasce do formato da tabela, mas da pergunta substantiva. Em medicina, a decisão final não é se um coeficiente é significativo; é se o erro observado é pequeno o bastante para não prejudicar uma decisão clínica.

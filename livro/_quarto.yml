@@ -14,6 +14,7 @@ book:
     - 02-probabilidade.qmd
     - 03-inferencia.qmd
     - 04-regressao.qmd
+    - 05-problemas-pesquisa-aplicados.qmd
   appendices:
     - A-intro-r.qmd
     - B-intro-python.qmd
