@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.35">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>4&nbsp; Regressão Linear Simples – Introdução Interativa a Estatística</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,18 +65,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./A-intro-r.html" rel="next">
+<link href="./05-problemas-pesquisa-aplicados.html" rel="next">
 <link href="./03-inferencia.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-b3f80ded633a4b03819b857cd65b3e20.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-9947f5b9f8ad485744e1687ece241fbc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1a3689cc98e0e4eddf3991c613569ec9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-24013bc1a19c3395a314c161450e4cc6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -205,6 +203,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./04-regressao.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão Linear Simples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-problemas-pesquisa-aplicados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Problemas de Pesquisa Aplicados</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -338,6 +342,13 @@ window.Quarto = {
 <span id="cb1-8"><a href="#cb1-8"></a>     <span class="at">main =</span> <span class="st">"Relação entre Horas de Estudo e Nota Final"</span>,</span>
 <span id="cb1-9"><a href="#cb1-9"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
 <span id="cb1-10"><a href="#cb1-10"></a>     <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-regressao_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="correlação-vs.-causalidade" class="level3" data-number="4.1.2">
@@ -411,6 +422,9 @@ r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Calcular a correlação entre horas_estudo e nota_final</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>r <span class="ot">&lt;-</span> <span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final)</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="fu">cat</span>(<span class="st">"Correlação de Pearson (horas_estudo, nota_final):"</span>, <span class="fu">round</span>(r, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Correlação de Pearson (horas_estudo, nota_final): 0.9624 </code></pre>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Exercício de Fixação">
 <div class="callout-header d-flex align-content-center">
@@ -816,34 +830,70 @@ e_i = y_i - \hat{y}_i
 <section id="passo-1-exploração-visual" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="passo-1-exploração-visual"><span class="header-section-number">4.6.1</span> Passo 1: Exploração visual</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Carregar dados</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dados/pesquisa_exemplo.csv"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Estatísticas descritivas das variáveis</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">summary</span>(dados[, <span class="fu">c</span>(<span class="st">"horas_estudo"</span>, <span class="st">"nota_final"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Carregar dados</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dados/pesquisa_exemplo.csv"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Estatísticas descritivas das variáveis</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">summary</span>(dados[, <span class="fu">c</span>(<span class="st">"horas_estudo"</span>, <span class="st">"nota_final"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  horas_estudo     nota_final   
+ Min.   : 3.00   Min.   :4.800  
+ 1st Qu.: 6.25   1st Qu.:6.525  
+ Median : 8.50   Median :7.300  
+ Mean   : 8.58   Mean   :7.182  
+ 3rd Qu.:10.00   3rd Qu.:7.875  
+ Max.   :15.00   Max.   :9.500  </code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Diagrama de dispersão com reta de regressão</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>     <span class="at">main =</span> <span class="st">"Regressão: Nota Final ~ Horas de Estudo"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>     <span class="at">col =</span> <span class="st">"#448EE3"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8"></a>     <span class="at">cex =</span> <span class="fl">1.2</span>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="fu">abline</span>(<span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados),</span>
-<span id="cb4-10"><a href="#cb4-10"></a>       <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="fu">grid</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Diagrama de dispersão com reta de regressão</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>     <span class="at">main =</span> <span class="st">"Regressão: Nota Final ~ Horas de Estudo"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>     <span class="at">col =</span> <span class="st">"#448EE3"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>     <span class="at">cex =</span> <span class="fl">1.2</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="fu">abline</span>(<span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados),</span>
+<span id="cb6-10"><a href="#cb6-10"></a>       <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="fu">grid</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-regressao_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="passo-2-ajuste-do-modelo" class="level3" data-number="4.6.2">
 <h3 data-number="4.6.2" class="anchored" data-anchor-id="passo-2-ajuste-do-modelo"><span class="header-section-number">4.6.2</span> Passo 2: Ajuste do modelo</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Ajustar o modelo de regressão</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados)</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Resumo completo do modelo</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">summary</span>(modelo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Ajustar o modelo de regressão</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Resumo completo do modelo</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">summary</span>(modelo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = nota_final ~ horas_estudo, data = dados)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.49292 -0.17147 -0.04009  0.09271  0.93829 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   4.01774    0.13570   29.61   &lt;2e-16 ***
+horas_estudo  0.36880    0.01502   24.56   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3012 on 48 degrees of freedom
+Multiple R-squared:  0.9263,    Adjusted R-squared:  0.9247 
+F-statistic: 603.1 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
 </div>
 <p><strong>Interpretação da saída:</strong></p>
 <ul>
@@ -854,107 +904,166 @@ e_i = y_i - \hat{y}_i
 <li><code>F-statistic</code>: teste global do modelo (<span class="math inline">\(H_0: \beta_1 = 0\)</span>).</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Extraindo os coeficientes</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>coefs <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">cat</span>(<span class="st">"Intercepto (beta_0):"</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">cat</span>(<span class="st">"Coeficiente angular (beta_1):"</span>, <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Equação da reta: nota_final ="</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">"+"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"* horas_estudo</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Extraindo os coeficientes</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>coefs <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">cat</span>(<span class="st">"Intercepto (beta_0):"</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Intercepto (beta_0): 4.0177 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">cat</span>(<span class="st">"Coeficiente angular (beta_1):"</span>, <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Coeficiente angular (beta_1): 0.3688 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Equação da reta: nota_final ="</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">"+"</span>,</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"* horas_estudo</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Equação da reta: nota_final = 4.02 + 0.37 * horas_estudo</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># R² e correlação</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>r_quadrado <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo)<span class="sc">$</span>r.squared</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">cat</span>(<span class="st">"R²:"</span>, <span class="fu">round</span>(r_quadrado, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">cat</span>(<span class="st">"Correlação de Pearson:"</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final), <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">cat</span>(<span class="st">"Verificação: r² ="</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final)<span class="sc">^</span><span class="dv">2</span>, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># R² e correlação</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>r_quadrado <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo)<span class="sc">$</span>r.squared</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">cat</span>(<span class="st">"R²:"</span>, <span class="fu">round</span>(r_quadrado, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R²: 0.9263 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">cat</span>(<span class="st">"Correlação de Pearson:"</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final), <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Correlação de Pearson: 0.9624 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">cat</span>(<span class="st">"Verificação: r² ="</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final)<span class="sc">^</span><span class="dv">2</span>, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Verificação: r² = 0.9263 </code></pre>
+</div>
 </div>
 </section>
 <section id="passo-3-predição" class="level3" data-number="4.6.3">
 <h3 data-number="4.6.3" class="anchored" data-anchor-id="passo-3-predição"><span class="header-section-number">4.6.3</span> Passo 3: Predição</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Predição para novos valores de horas_estudo</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>novos_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>))</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Predição pontual</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados)</span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># Predição com intervalo de confiança (para a média)</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>pred_ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co"># Predição com intervalo de predição (para uma nova observação)</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>pred_ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="fu">cat</span>(<span class="st">"Predições pontuais:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="fu">data.frame</span>(<span class="at">horas =</span> novos_dados<span class="sc">$</span>horas_estudo, <span class="at">nota_prevista =</span> <span class="fu">round</span>(pred, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Predição para novos valores de horas_estudo</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>novos_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>))</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># Predição pontual</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados)</span>
+<span id="cb21-6"><a href="#cb21-6"></a></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="co"># Predição com intervalo de confiança (para a média)</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>pred_ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9"></a></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="co"># Predição com intervalo de predição (para uma nova observação)</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>pred_ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb21-12"><a href="#cb21-12"></a></span>
+<span id="cb21-13"><a href="#cb21-13"></a><span class="fu">cat</span>(<span class="st">"Predições pontuais:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Predições pontuais:</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">data.frame</span>(<span class="at">horas =</span> novos_dados<span class="sc">$</span>horas_estudo, <span class="at">nota_prevista =</span> <span class="fu">round</span>(pred, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  horas nota_prevista
+1     5          5.86
+2     8          6.97
+3    10          7.71
+4    12          8.44
+5    15          9.55</code></pre>
+</div>
 </div>
 </section>
 <section id="passo-4-análise-de-resíduos" class="level3" data-number="4.6.4">
 <h3 data-number="4.6.4" class="anchored" data-anchor-id="passo-4-análise-de-resíduos"><span class="header-section-number">4.6.4</span> Passo 4: Análise de resíduos</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Gráficos diagnósticos automáticos do R</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">plot</span>(modelo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Gráficos diagnósticos automáticos do R</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">plot</span>(modelo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="04-regressao_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Gráficos diagnósticos do modelo de regressão linear simples.</figcaption>
+</figure>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Análise manual dos resíduos</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>residuos <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>ajustados <span class="ot">&lt;-</span> <span class="fu">fitted</span>(modelo)</span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co"># Gráfico: Resíduos vs Ajustados</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="fu">plot</span>(ajustados, residuos,</span>
-<span id="cb10-9"><a href="#cb10-9"></a>     <span class="at">xlab =</span> <span class="st">"Valores Ajustados"</span>,</span>
-<span id="cb10-10"><a href="#cb10-10"></a>     <span class="at">ylab =</span> <span class="st">"Resíduos"</span>,</span>
-<span id="cb10-11"><a href="#cb10-11"></a>     <span class="at">main =</span> <span class="st">"Resíduos vs Ajustados"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb10-14"><a href="#cb10-14"></a></span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="co"># QQ-plot dos resíduos</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a><span class="fu">qqnorm</span>(residuos, <span class="at">main =</span> <span class="st">"QQ-Plot dos Resíduos"</span>,</span>
-<span id="cb10-17"><a href="#cb10-17"></a>       <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
-<span id="cb10-18"><a href="#cb10-18"></a><span class="fu">qqline</span>(residuos, <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Análise manual dos resíduos</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>residuos <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>ajustados <span class="ot">&lt;-</span> <span class="fu">fitted</span>(modelo)</span>
+<span id="cb26-4"><a href="#cb26-4"></a></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="co"># Gráfico: Resíduos vs Ajustados</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb26-7"><a href="#cb26-7"></a></span>
+<span id="cb26-8"><a href="#cb26-8"></a><span class="fu">plot</span>(ajustados, residuos,</span>
+<span id="cb26-9"><a href="#cb26-9"></a>     <span class="at">xlab =</span> <span class="st">"Valores Ajustados"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10"></a>     <span class="at">ylab =</span> <span class="st">"Resíduos"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11"></a>     <span class="at">main =</span> <span class="st">"Resíduos vs Ajustados"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
+<span id="cb26-13"><a href="#cb26-13"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb26-14"><a href="#cb26-14"></a></span>
+<span id="cb26-15"><a href="#cb26-15"></a><span class="co"># QQ-plot dos resíduos</span></span>
+<span id="cb26-16"><a href="#cb26-16"></a><span class="fu">qqnorm</span>(residuos, <span class="at">main =</span> <span class="st">"QQ-Plot dos Resíduos"</span>,</span>
+<span id="cb26-17"><a href="#cb26-17"></a>       <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
+<span id="cb26-18"><a href="#cb26-18"></a><span class="fu">qqline</span>(residuos, <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-regressao_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Teste de normalidade dos resíduos (Shapiro-Wilk)</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">shapiro.test</span>(residuos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Teste de normalidade dos resíduos (Shapiro-Wilk)</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">shapiro.test</span>(residuos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  residuos
+W = 0.8955, p-value = 0.0003425</code></pre>
+</div>
 </div>
 </section>
 <section id="passo-5-visualização-completa" class="level3" data-number="4.6.5">
 <h3 data-number="4.6.5" class="anchored" data-anchor-id="passo-5-visualização-completa"><span class="header-section-number">4.6.5</span> Passo 5: Visualização completa</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Gráfico com reta de regressão e intervalos</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>novos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>horas_estudo),</span>
-<span id="cb12-3"><a href="#cb12-3"></a>                                        <span class="fu">max</span>(dados<span class="sc">$</span>horas_estudo),</span>
-<span id="cb12-4"><a href="#cb12-4"></a>                                        <span class="at">length.out =</span> <span class="dv">100</span>))</span>
-<span id="cb12-5"><a href="#cb12-5"></a>ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6"></a>ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
-<span id="cb12-7"><a href="#cb12-7"></a></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
-<span id="cb12-9"><a href="#cb12-9"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
-<span id="cb12-11"><a href="#cb12-11"></a>     <span class="at">main =</span> <span class="st">"Regressão Linear com Intervalos"</span>,</span>
-<span id="cb12-12"><a href="#cb12-12"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>,</span>
-<span id="cb12-13"><a href="#cb12-13"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(ip[, <span class="st">"lwr"</span>]), <span class="fu">max</span>(ip[, <span class="st">"upr"</span>])))</span>
-<span id="cb12-14"><a href="#cb12-14"></a></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="co"># Reta ajustada</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"fit"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb12-17"><a href="#cb12-17"></a></span>
-<span id="cb12-18"><a href="#cb12-18"></a><span class="co"># Intervalo de confiança (mais estreito)</span></span>
-<span id="cb12-19"><a href="#cb12-19"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb12-21"><a href="#cb12-21"></a></span>
-<span id="cb12-22"><a href="#cb12-22"></a><span class="co"># Intervalo de predição (mais largo)</span></span>
-<span id="cb12-23"><a href="#cb12-23"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb12-24"><a href="#cb12-24"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb12-25"><a href="#cb12-25"></a></span>
-<span id="cb12-26"><a href="#cb12-26"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
-<span id="cb12-27"><a href="#cb12-27"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Dados"</span>, <span class="st">"Reta ajustada"</span>, <span class="st">"IC (média)"</span>, <span class="st">"IP (nova obs.)"</span>),</span>
-<span id="cb12-28"><a href="#cb12-28"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#448EE3"</span>, <span class="st">"#2D4188"</span>, <span class="st">"#2D4188"</span>, <span class="st">"gray50"</span>),</span>
-<span id="cb12-29"><a href="#cb12-29"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
-<span id="cb12-30"><a href="#cb12-30"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb12-31"><a href="#cb12-31"></a>       <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb12-32"><a href="#cb12-32"></a>       <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Gráfico com reta de regressão e intervalos</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>novos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>horas_estudo),</span>
+<span id="cb29-3"><a href="#cb29-3"></a>                                        <span class="fu">max</span>(dados<span class="sc">$</span>horas_estudo),</span>
+<span id="cb29-4"><a href="#cb29-4"></a>                                        <span class="at">length.out =</span> <span class="dv">100</span>))</span>
+<span id="cb29-5"><a href="#cb29-5"></a>ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6"></a>ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7"></a></span>
+<span id="cb29-8"><a href="#cb29-8"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
+<span id="cb29-9"><a href="#cb29-9"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
+<span id="cb29-11"><a href="#cb29-11"></a>     <span class="at">main =</span> <span class="st">"Regressão Linear com Intervalos"</span>,</span>
+<span id="cb29-12"><a href="#cb29-12"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>,</span>
+<span id="cb29-13"><a href="#cb29-13"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(ip[, <span class="st">"lwr"</span>]), <span class="fu">max</span>(ip[, <span class="st">"upr"</span>])))</span>
+<span id="cb29-14"><a href="#cb29-14"></a></span>
+<span id="cb29-15"><a href="#cb29-15"></a><span class="co"># Reta ajustada</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"fit"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb29-17"><a href="#cb29-17"></a></span>
+<span id="cb29-18"><a href="#cb29-18"></a><span class="co"># Intervalo de confiança (mais estreito)</span></span>
+<span id="cb29-19"><a href="#cb29-19"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb29-20"><a href="#cb29-20"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb29-21"><a href="#cb29-21"></a></span>
+<span id="cb29-22"><a href="#cb29-22"></a><span class="co"># Intervalo de predição (mais largo)</span></span>
+<span id="cb29-23"><a href="#cb29-23"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb29-24"><a href="#cb29-24"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb29-25"><a href="#cb29-25"></a></span>
+<span id="cb29-26"><a href="#cb29-26"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb29-27"><a href="#cb29-27"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Dados"</span>, <span class="st">"Reta ajustada"</span>, <span class="st">"IC (média)"</span>, <span class="st">"IP (nova obs.)"</span>),</span>
+<span id="cb29-28"><a href="#cb29-28"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#448EE3"</span>, <span class="st">"#2D4188"</span>, <span class="st">"#2D4188"</span>, <span class="st">"gray50"</span>),</span>
+<span id="cb29-29"><a href="#cb29-29"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
+<span id="cb29-30"><a href="#cb29-30"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb29-31"><a href="#cb29-31"></a>       <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb29-32"><a href="#cb29-32"></a>       <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-regressao_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Exercício de Fixação">
 <div class="callout-header d-flex align-content-center">
@@ -1539,591 +1648,591 @@ e_i = y_i - \hat{y}_i
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./A-intro-r.html" class="pagination-link" aria-label="Introducao ao R">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Introducao ao R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./05-problemas-pesquisa-aplicados.html" class="pagination-link" aria-label="Problemas de Pesquisa Aplicados">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Problemas de Pesquisa Aplicados</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu"># Regressão Linear Simples {#cap-regressao}</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>Nos capítulos anteriores, aprendemos a descrever variáveis individualmente (Estatística Descritiva) e a fazer inferências sobre parâmetros populacionais (Inferência Estatística). Agora, daremos um passo além: investigar a **relação entre duas variáveis quantitativas**. A ferramenta fundamental para isso é a **Regressão Linear Simples**.</span>
-<span id="cb13-4"><a href="#cb13-4"></a></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">## Introdução: Relações entre Variáveis</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a></span>
-<span id="cb13-7"><a href="#cb13-7"></a>Muitas perguntas de pesquisa envolvem a relação entre duas variáveis:</span>
-<span id="cb13-8"><a href="#cb13-8"></a></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="ss">- </span>Alunos que estudam mais horas obtêm notas mais altas?</span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="ss">- </span>Funcionários com mais experiência recebem salários maiores?</span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="ss">- </span>O consumo de combustível de um carro depende da velocidade?</span>
-<span id="cb13-12"><a href="#cb13-12"></a></span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="fu">### Diagramas de dispersão</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a></span>
-<span id="cb13-15"><a href="#cb13-15"></a>O primeiro passo para investigar a relação entre duas variáveis quantitativas é construir um **diagrama de dispersão** (*scatter plot*), no qual cada observação é representada por um ponto no plano cartesiano.</span>
-<span id="cb13-16"><a href="#cb13-16"></a></span>
-<span id="cb13-19"><a href="#cb13-19"></a><span class="in">```{r}</span></span>
-<span id="cb13-20"><a href="#cb13-20"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-21"><a href="#cb13-21"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-22"><a href="#cb13-22"></a></span>
-<span id="cb13-23"><a href="#cb13-23"></a><span class="co"># Carregar dados</span></span>
-<span id="cb13-24"><a href="#cb13-24"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dados/pesquisa_exemplo.csv"</span>)</span>
-<span id="cb13-25"><a href="#cb13-25"></a></span>
-<span id="cb13-26"><a href="#cb13-26"></a><span class="co"># Diagrama de dispersão: horas_estudo vs nota_final</span></span>
-<span id="cb13-27"><a href="#cb13-27"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
-<span id="cb13-28"><a href="#cb13-28"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
-<span id="cb13-29"><a href="#cb13-29"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
-<span id="cb13-30"><a href="#cb13-30"></a>     <span class="at">main =</span> <span class="st">"Relação entre Horas de Estudo e Nota Final"</span>,</span>
-<span id="cb13-31"><a href="#cb13-31"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb13-32"><a href="#cb13-32"></a>     <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
-<span id="cb13-33"><a href="#cb13-33"></a><span class="in">```</span></span>
-<span id="cb13-34"><a href="#cb13-34"></a></span>
-<span id="cb13-35"><a href="#cb13-35"></a><span class="fu">### Correlação vs. Causalidade</span></span>
-<span id="cb13-36"><a href="#cb13-36"></a></span>
-<span id="cb13-37"><a href="#cb13-37"></a>::: {.callout-note title="Definição"}</span>
-<span id="cb13-38"><a href="#cb13-38"></a>O **coeficiente de correlação de Pearson** ($r$) mede a intensidade e a direção da relação **linear** entre duas variáveis quantitativas:</span>
-<span id="cb13-39"><a href="#cb13-39"></a></span>
-<span id="cb13-40"><a href="#cb13-40"></a>$$</span>
-<span id="cb13-41"><a href="#cb13-41"></a>r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2 \cdot \sum_{i=1}^{n}(y_i - \bar{y})^2}}</span>
-<span id="cb13-42"><a href="#cb13-42"></a>$$</span>
-<span id="cb13-43"><a href="#cb13-43"></a></span>
-<span id="cb13-44"><a href="#cb13-44"></a>O valor de $r$ varia entre $-1$ e $+1$.</span>
-<span id="cb13-45"><a href="#cb13-45"></a>:::</span>
-<span id="cb13-46"><a href="#cb13-46"></a></span>
-<span id="cb13-47"><a href="#cb13-47"></a>**Interpretação:**</span>
-<span id="cb13-48"><a href="#cb13-48"></a></span>
-<span id="cb13-49"><a href="#cb13-49"></a><span class="pp">|</span> Valor de $r$ <span class="pp">|</span> Interpretação <span class="pp">|</span></span>
-<span id="cb13-50"><a href="#cb13-50"></a><span class="pp">|---|---|</span></span>
-<span id="cb13-51"><a href="#cb13-51"></a><span class="pp">|</span> $r = +1$ <span class="pp">|</span> Correlação linear positiva perfeita <span class="pp">|</span></span>
-<span id="cb13-52"><a href="#cb13-52"></a><span class="pp">|</span> $0{,}7 \leq r &lt; 1$ <span class="pp">|</span> Correlação positiva forte <span class="pp">|</span></span>
-<span id="cb13-53"><a href="#cb13-53"></a><span class="pp">|</span> $0{,}3 \leq r &lt; 0{,}7$ <span class="pp">|</span> Correlação positiva moderada <span class="pp">|</span></span>
-<span id="cb13-54"><a href="#cb13-54"></a><span class="pp">|</span> $0 &lt; r &lt; 0{,}3$ <span class="pp">|</span> Correlação positiva fraca <span class="pp">|</span></span>
-<span id="cb13-55"><a href="#cb13-55"></a><span class="pp">|</span> $r = 0$ <span class="pp">|</span> Ausência de correlação linear <span class="pp">|</span></span>
-<span id="cb13-56"><a href="#cb13-56"></a><span class="pp">|</span> $r &lt; 0$ <span class="pp">|</span> Correlação negativa (análogo) <span class="pp">|</span></span>
-<span id="cb13-57"><a href="#cb13-57"></a></span>
-<span id="cb13-58"><a href="#cb13-58"></a>::: {.callout-warning title="Atenção"}</span>
-<span id="cb13-59"><a href="#cb13-59"></a>**Correlação não implica causalidade.** Duas variáveis podem estar correlacionadas por diversos motivos: relação causal direta, causa comum (variável confundidora) ou até mera coincidência. Apenas estudos experimentais bem desenhados permitem inferir causalidade.</span>
-<span id="cb13-60"><a href="#cb13-60"></a>:::</span>
-<span id="cb13-61"><a href="#cb13-61"></a></span>
-<span id="cb13-64"><a href="#cb13-64"></a><span class="in">```{r}</span></span>
-<span id="cb13-65"><a href="#cb13-65"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-66"><a href="#cb13-66"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-67"><a href="#cb13-67"></a></span>
-<span id="cb13-68"><a href="#cb13-68"></a><span class="co"># Calcular a correlação entre horas_estudo e nota_final</span></span>
-<span id="cb13-69"><a href="#cb13-69"></a>r <span class="ot">&lt;-</span> <span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final)</span>
-<span id="cb13-70"><a href="#cb13-70"></a><span class="fu">cat</span>(<span class="st">"Correlação de Pearson (horas_estudo, nota_final):"</span>, <span class="fu">round</span>(r, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-71"><a href="#cb13-71"></a><span class="in">```</span></span>
-<span id="cb13-72"><a href="#cb13-72"></a></span>
-<span id="cb13-73"><a href="#cb13-73"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-74"><a href="#cb13-74"></a>**Exercício 4.1** ⭐</span>
-<span id="cb13-75"><a href="#cb13-75"></a></span>
-<span id="cb13-76"><a href="#cb13-76"></a>Classifique cada afirmação como verdadeira ou falsa:</span>
-<span id="cb13-77"><a href="#cb13-77"></a></span>
-<span id="cb13-78"><a href="#cb13-78"></a>a) Se $r = 0{,}95$, então a relação entre as variáveis é necessariamente causal.</span>
-<span id="cb13-79"><a href="#cb13-79"></a>b) O coeficiente de correlação de Pearson só detecta relações lineares.</span>
-<span id="cb13-80"><a href="#cb13-80"></a>c) Se $r = 0$, não existe nenhuma relação entre as variáveis.</span>
-<span id="cb13-81"><a href="#cb13-81"></a>d) A correlação é sensível a outliers.</span>
-<span id="cb13-82"><a href="#cb13-82"></a>:::</span>
-<span id="cb13-83"><a href="#cb13-83"></a></span>
-<span id="cb13-84"><a href="#cb13-84"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-85"><a href="#cb13-85"></a>**Exercício 4.2** ⭐⭐</span>
-<span id="cb13-86"><a href="#cb13-86"></a></span>
-<span id="cb13-87"><a href="#cb13-87"></a>Usando o conjunto de dados <span class="in">`pesquisa_exemplo.csv`</span>, calcule a correlação de Pearson entre:</span>
-<span id="cb13-88"><a href="#cb13-88"></a></span>
-<span id="cb13-89"><a href="#cb13-89"></a>a) <span class="in">`idade`</span> e <span class="in">`renda`</span></span>
-<span id="cb13-90"><a href="#cb13-90"></a>b) <span class="in">`idade`</span> e <span class="in">`nota_final`</span></span>
-<span id="cb13-91"><a href="#cb13-91"></a>c) <span class="in">`renda`</span> e <span class="in">`nota_final`</span></span>
-<span id="cb13-92"><a href="#cb13-92"></a></span>
-<span id="cb13-93"><a href="#cb13-93"></a>Interprete cada resultado. Qual par de variáveis apresenta a correlação mais forte?</span>
-<span id="cb13-94"><a href="#cb13-94"></a>:::</span>
-<span id="cb13-95"><a href="#cb13-95"></a></span>
-<span id="cb13-96"><a href="#cb13-96"></a><span class="fu">## O Modelo Linear Simples</span></span>
-<span id="cb13-97"><a href="#cb13-97"></a></span>
-<span id="cb13-98"><a href="#cb13-98"></a>O modelo de **Regressão Linear Simples** busca descrever a relação entre uma variável **resposta** (ou dependente) $Y$ e uma variável **explicativa** (ou independente) $X$ por meio de uma reta.</span>
-<span id="cb13-99"><a href="#cb13-99"></a></span>
-<span id="cb13-100"><a href="#cb13-100"></a>::: {.callout-note title="Definição"}</span>
-<span id="cb13-101"><a href="#cb13-101"></a>O **modelo de Regressão Linear Simples** é dado por:</span>
-<span id="cb13-102"><a href="#cb13-102"></a></span>
-<span id="cb13-103"><a href="#cb13-103"></a>$$</span>
-<span id="cb13-104"><a href="#cb13-104"></a>Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n</span>
-<span id="cb13-105"><a href="#cb13-105"></a>$$</span>
-<span id="cb13-106"><a href="#cb13-106"></a></span>
-<span id="cb13-107"><a href="#cb13-107"></a>onde:</span>
-<span id="cb13-108"><a href="#cb13-108"></a></span>
-<span id="cb13-109"><a href="#cb13-109"></a><span class="ss">- </span>$Y_i$ é o valor observado da variável resposta para a $i$-ésima observação</span>
-<span id="cb13-110"><a href="#cb13-110"></a><span class="ss">- </span>$X_i$ é o valor da variável explicativa</span>
-<span id="cb13-111"><a href="#cb13-111"></a><span class="ss">- </span>$\beta_0$ é o **intercepto** (valor esperado de $Y$ quando $X = 0$)</span>
-<span id="cb13-112"><a href="#cb13-112"></a><span class="ss">- </span>$\beta_1$ é o **coeficiente angular** (variação esperada em $Y$ para cada aumento de uma unidade em $X$)</span>
-<span id="cb13-113"><a href="#cb13-113"></a><span class="ss">- </span>$\varepsilon_i$ é o **erro aleatório** (componente não explicado pelo modelo)</span>
-<span id="cb13-114"><a href="#cb13-114"></a>:::</span>
-<span id="cb13-115"><a href="#cb13-115"></a></span>
-<span id="cb13-116"><a href="#cb13-116"></a><span class="fu">### Pressupostos do modelo</span></span>
-<span id="cb13-117"><a href="#cb13-117"></a></span>
-<span id="cb13-118"><a href="#cb13-118"></a>Para que a inferência baseada no modelo seja válida, os seguintes pressupostos devem ser satisfeitos:</span>
-<span id="cb13-119"><a href="#cb13-119"></a></span>
-<span id="cb13-120"><a href="#cb13-120"></a><span class="ss">1. </span>**Linearidade**: a relação entre $X$ e $Y$ é linear (na média).</span>
-<span id="cb13-121"><a href="#cb13-121"></a><span class="ss">2. </span>**Independência**: os erros $\varepsilon_i$ são independentes entre si.</span>
-<span id="cb13-122"><a href="#cb13-122"></a><span class="ss">3. </span>**Homocedasticidade**: a variância dos erros é constante: $\text{Var}(\varepsilon_i) = \sigma^2$ para todo $i$.</span>
-<span id="cb13-123"><a href="#cb13-123"></a><span class="ss">4. </span>**Normalidade**: os erros seguem distribuição normal: $\varepsilon_i \sim N(0, \sigma^2)$.</span>
-<span id="cb13-124"><a href="#cb13-124"></a></span>
-<span id="cb13-125"><a href="#cb13-125"></a>Esses pressupostos podem ser resumidos como:</span>
-<span id="cb13-126"><a href="#cb13-126"></a></span>
-<span id="cb13-127"><a href="#cb13-127"></a>$$</span>
-<span id="cb13-128"><a href="#cb13-128"></a>\varepsilon_i \overset{\text{iid}}{\sim} N(0, \sigma^2)</span>
-<span id="cb13-129"><a href="#cb13-129"></a>$$</span>
-<span id="cb13-130"><a href="#cb13-130"></a></span>
-<span id="cb13-131"><a href="#cb13-131"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-132"><a href="#cb13-132"></a>**Exercício 4.3** ⭐</span>
-<span id="cb13-133"><a href="#cb13-133"></a></span>
-<span id="cb13-134"><a href="#cb13-134"></a>No contexto do nosso conjunto de dados, queremos modelar <span class="in">`nota_final`</span> como função de <span class="in">`horas_estudo`</span>. Identifique:</span>
-<span id="cb13-135"><a href="#cb13-135"></a></span>
-<span id="cb13-136"><a href="#cb13-136"></a>a) A variável resposta ($Y$) e a variável explicativa ($X$).</span>
-<span id="cb13-137"><a href="#cb13-137"></a>b) O significado prático de $\beta_0$ e $\beta_1$ neste contexto.</span>
-<span id="cb13-138"><a href="#cb13-138"></a>c) O que o termo $\varepsilon_i$ representa neste problema.</span>
-<span id="cb13-139"><a href="#cb13-139"></a>:::</span>
-<span id="cb13-140"><a href="#cb13-140"></a></span>
-<span id="cb13-141"><a href="#cb13-141"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-142"><a href="#cb13-142"></a>**Exercício 4.4** ⭐⭐</span>
-<span id="cb13-143"><a href="#cb13-143"></a></span>
-<span id="cb13-144"><a href="#cb13-144"></a>Explique, com exemplos práticos, o que acontece quando cada um dos pressupostos do modelo linear é violado:</span>
-<span id="cb13-145"><a href="#cb13-145"></a></span>
-<span id="cb13-146"><a href="#cb13-146"></a>a) Violação da linearidade.</span>
-<span id="cb13-147"><a href="#cb13-147"></a>b) Violação da homocedasticidade.</span>
-<span id="cb13-148"><a href="#cb13-148"></a>c) Violação da normalidade dos erros.</span>
-<span id="cb13-149"><a href="#cb13-149"></a>:::</span>
-<span id="cb13-150"><a href="#cb13-150"></a></span>
-<span id="cb13-151"><a href="#cb13-151"></a><span class="fu">## Estimação por Mínimos Quadrados (OLS)</span></span>
-<span id="cb13-152"><a href="#cb13-152"></a></span>
-<span id="cb13-153"><a href="#cb13-153"></a>O método dos **Mínimos Quadrados Ordinários** (*Ordinary Least Squares* — OLS) encontra os valores de $\beta_0$ e $\beta_1$ que minimizam a soma dos quadrados dos resíduos.</span>
-<span id="cb13-154"><a href="#cb13-154"></a></span>
-<span id="cb13-155"><a href="#cb13-155"></a><span class="fu">### Ideia geométrica</span></span>
-<span id="cb13-156"><a href="#cb13-156"></a></span>
-<span id="cb13-157"><a href="#cb13-157"></a>A reta de regressão $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$ é aquela que minimiza a soma das distâncias verticais ao quadrado entre os pontos observados e a reta:</span>
-<span id="cb13-158"><a href="#cb13-158"></a></span>
-<span id="cb13-159"><a href="#cb13-159"></a>$$</span>
-<span id="cb13-160"><a href="#cb13-160"></a>\text{SQE} = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = \sum_{i=1}^{n}(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i)^2</span>
-<span id="cb13-161"><a href="#cb13-161"></a>$$</span>
-<span id="cb13-162"><a href="#cb13-162"></a></span>
-<span id="cb13-163"><a href="#cb13-163"></a><span class="fu">### Derivação das fórmulas</span></span>
-<span id="cb13-164"><a href="#cb13-164"></a></span>
-<span id="cb13-165"><a href="#cb13-165"></a>Para minimizar SQE, calculamos as derivadas parciais em relação a $\hat{\beta}_0$ e $\hat{\beta}_1$ e igualamos a zero:</span>
-<span id="cb13-166"><a href="#cb13-166"></a></span>
-<span id="cb13-167"><a href="#cb13-167"></a>$$</span>
-<span id="cb13-168"><a href="#cb13-168"></a>\frac{\partial \text{SQE}}{\partial \hat{\beta}_0} = -2\sum_{i=1}^{n}(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i) = 0</span>
-<span id="cb13-169"><a href="#cb13-169"></a>$$</span>
-<span id="cb13-170"><a href="#cb13-170"></a></span>
-<span id="cb13-171"><a href="#cb13-171"></a>$$</span>
-<span id="cb13-172"><a href="#cb13-172"></a>\frac{\partial \text{SQE}}{\partial \hat{\beta}_1} = -2\sum_{i=1}^{n}x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i) = 0</span>
-<span id="cb13-173"><a href="#cb13-173"></a>$$</span>
-<span id="cb13-174"><a href="#cb13-174"></a></span>
-<span id="cb13-175"><a href="#cb13-175"></a>Resolvendo esse sistema de **equações normais**, obtemos:</span>
-<span id="cb13-176"><a href="#cb13-176"></a></span>
-<span id="cb13-177"><a href="#cb13-177"></a>::: {.callout-note title="Definição"}</span>
-<span id="cb13-178"><a href="#cb13-178"></a>**Estimadores de Mínimos Quadrados:**</span>
-<span id="cb13-179"><a href="#cb13-179"></a></span>
-<span id="cb13-180"><a href="#cb13-180"></a>$$</span>
-<span id="cb13-181"><a href="#cb13-181"></a>\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n}(x_i - \bar{x})^2} = \frac{S_{xy}}{S_{xx}}</span>
-<span id="cb13-182"><a href="#cb13-182"></a>$$</span>
-<span id="cb13-183"><a href="#cb13-183"></a></span>
-<span id="cb13-184"><a href="#cb13-184"></a>$$</span>
-<span id="cb13-185"><a href="#cb13-185"></a>\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}</span>
-<span id="cb13-186"><a href="#cb13-186"></a>$$</span>
-<span id="cb13-187"><a href="#cb13-187"></a></span>
-<span id="cb13-188"><a href="#cb13-188"></a>onde:</span>
-<span id="cb13-189"><a href="#cb13-189"></a></span>
-<span id="cb13-190"><a href="#cb13-190"></a><span class="ss">- </span>$S_{xy} = \sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})$ é a soma dos produtos cruzados</span>
-<span id="cb13-191"><a href="#cb13-191"></a><span class="ss">- </span>$S_{xx} = \sum_{i=1}^{n}(x_i - \bar{x})^2$ é a soma dos quadrados de $X$</span>
-<span id="cb13-192"><a href="#cb13-192"></a>:::</span>
-<span id="cb13-193"><a href="#cb13-193"></a></span>
-<span id="cb13-194"><a href="#cb13-194"></a>Observe que $\hat{\beta}_1$ tem uma relação direta com a correlação de Pearson:</span>
-<span id="cb13-195"><a href="#cb13-195"></a></span>
-<span id="cb13-196"><a href="#cb13-196"></a>$$</span>
-<span id="cb13-197"><a href="#cb13-197"></a>\hat{\beta}_1 = r \cdot \frac{s_y}{s_x}</span>
-<span id="cb13-198"><a href="#cb13-198"></a>$$</span>
-<span id="cb13-199"><a href="#cb13-199"></a></span>
-<span id="cb13-200"><a href="#cb13-200"></a>e a reta de regressão sempre passa pelo ponto $(\bar{x}, \bar{y})$.</span>
-<span id="cb13-201"><a href="#cb13-201"></a></span>
-<span id="cb13-202"><a href="#cb13-202"></a><span class="fu">### Cálculo manual (exemplo)</span></span>
-<span id="cb13-203"><a href="#cb13-203"></a></span>
-<span id="cb13-204"><a href="#cb13-204"></a>Considere cinco observações:</span>
-<span id="cb13-205"><a href="#cb13-205"></a></span>
-<span id="cb13-206"><a href="#cb13-206"></a><span class="pp">|</span> $x$ <span class="pp">|</span> $y$ <span class="pp">|</span></span>
-<span id="cb13-207"><a href="#cb13-207"></a><span class="pp">|---|---|</span></span>
-<span id="cb13-208"><a href="#cb13-208"></a><span class="pp">|</span> 2 <span class="pp">|</span> 4 <span class="pp">|</span></span>
-<span id="cb13-209"><a href="#cb13-209"></a><span class="pp">|</span> 4 <span class="pp">|</span> 7 <span class="pp">|</span></span>
-<span id="cb13-210"><a href="#cb13-210"></a><span class="pp">|</span> 6 <span class="pp">|</span> 8 <span class="pp">|</span></span>
-<span id="cb13-211"><a href="#cb13-211"></a><span class="pp">|</span> 8 <span class="pp">|</span> 11 <span class="pp">|</span></span>
-<span id="cb13-212"><a href="#cb13-212"></a><span class="pp">|</span> 10 <span class="pp">|</span> 13 <span class="pp">|</span></span>
-<span id="cb13-213"><a href="#cb13-213"></a></span>
-<span id="cb13-214"><a href="#cb13-214"></a><span class="ss">- </span>$\bar{x} = 6$, $\bar{y} = 8{,}6$</span>
-<span id="cb13-215"><a href="#cb13-215"></a><span class="ss">- </span>$S_{xy} = (2-6)(4-8{,}6) + (4-6)(7-8{,}6) + \ldots + (10-6)(13-8{,}6) = 18{,}4 + 3{,}2 + 0 + 4{,}8 + 17{,}6 = 44$</span>
-<span id="cb13-216"><a href="#cb13-216"></a><span class="ss">- </span>$S_{xx} = 16 + 4 + 0 + 4 + 16 = 40$</span>
-<span id="cb13-217"><a href="#cb13-217"></a><span class="ss">- </span>$\hat{\beta}_1 = 44/40 = 1{,}1$</span>
-<span id="cb13-218"><a href="#cb13-218"></a><span class="ss">- </span>$\hat{\beta}_0 = 8{,}6 - 1{,}1 \times 6 = 2{,}0$</span>
-<span id="cb13-219"><a href="#cb13-219"></a><span class="ss">- </span>Reta: $\hat{y} = 2{,}0 + 1{,}1x$</span>
-<span id="cb13-220"><a href="#cb13-220"></a></span>
-<span id="cb13-221"><a href="#cb13-221"></a>**Interpretação**: para cada hora adicional de estudo, a nota aumenta, em média, 1,1 ponto.</span>
-<span id="cb13-222"><a href="#cb13-222"></a></span>
-<span id="cb13-223"><a href="#cb13-223"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-224"><a href="#cb13-224"></a>**Exercício 4.5** ⭐⭐</span>
-<span id="cb13-225"><a href="#cb13-225"></a></span>
-<span id="cb13-226"><a href="#cb13-226"></a>Dados os seguintes pares $(x, y)$: $(1, 3)$, $(2, 5)$, $(3, 4)$, $(4, 8)$, $(5, 9)$.</span>
-<span id="cb13-227"><a href="#cb13-227"></a></span>
-<span id="cb13-228"><a href="#cb13-228"></a>a) Calcule $\bar{x}$, $\bar{y}$, $S_{xy}$ e $S_{xx}$.</span>
-<span id="cb13-229"><a href="#cb13-229"></a>b) Obtenha $\hat{\beta}_0$ e $\hat{\beta}_1$.</span>
-<span id="cb13-230"><a href="#cb13-230"></a>c) Escreva a equação da reta de regressão.</span>
-<span id="cb13-231"><a href="#cb13-231"></a>d) Usando a reta, preveja o valor de $Y$ quando $X = 3{,}5$.</span>
-<span id="cb13-232"><a href="#cb13-232"></a>:::</span>
-<span id="cb13-233"><a href="#cb13-233"></a></span>
-<span id="cb13-234"><a href="#cb13-234"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-235"><a href="#cb13-235"></a>**Exercício 4.6** ⭐⭐</span>
-<span id="cb13-236"><a href="#cb13-236"></a></span>
-<span id="cb13-237"><a href="#cb13-237"></a>Demonstre que a reta de regressão estimada sempre passa pelo ponto $(\bar{x}, \bar{y})$. *Dica*: substitua $x = \bar{x}$ na equação $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$ e use a relação $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$.</span>
-<span id="cb13-238"><a href="#cb13-238"></a>:::</span>
-<span id="cb13-239"><a href="#cb13-239"></a></span>
-<span id="cb13-240"><a href="#cb13-240"></a><span class="fu">## Coeficiente de Determinação ($R^2$)</span></span>
-<span id="cb13-241"><a href="#cb13-241"></a></span>
-<span id="cb13-242"><a href="#cb13-242"></a>Uma vez ajustado o modelo, precisamos medir o quanto ele explica da variação observada em $Y$.</span>
-<span id="cb13-243"><a href="#cb13-243"></a></span>
-<span id="cb13-244"><a href="#cb13-244"></a><span class="fu">### Decomposição da variabilidade</span></span>
-<span id="cb13-245"><a href="#cb13-245"></a></span>
-<span id="cb13-246"><a href="#cb13-246"></a>A variação total de $Y$ pode ser decomposta em duas partes:</span>
-<span id="cb13-247"><a href="#cb13-247"></a></span>
-<span id="cb13-248"><a href="#cb13-248"></a>$$</span>
-<span id="cb13-249"><a href="#cb13-249"></a>\underbrace{\sum_{i=1}^{n}(y_i - \bar{y})^2}_{\text{SQT}} = \underbrace{\sum_{i=1}^{n}(\hat{y}_i - \bar{y})^2}_{\text{SQR}} + \underbrace{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}_{\text{SQE}}</span>
-<span id="cb13-250"><a href="#cb13-250"></a>$$</span>
-<span id="cb13-251"><a href="#cb13-251"></a></span>
-<span id="cb13-252"><a href="#cb13-252"></a>onde:</span>
-<span id="cb13-253"><a href="#cb13-253"></a></span>
-<span id="cb13-254"><a href="#cb13-254"></a><span class="ss">- </span>**SQT** (Soma de Quadrados Total): variação total de $Y$.</span>
-<span id="cb13-255"><a href="#cb13-255"></a><span class="ss">- </span>**SQR** (Soma de Quadrados da Regressão): variação de $Y$ explicada pelo modelo.</span>
-<span id="cb13-256"><a href="#cb13-256"></a><span class="ss">- </span>**SQE** (Soma de Quadrados dos Erros/Resíduos): variação não explicada.</span>
-<span id="cb13-257"><a href="#cb13-257"></a></span>
-<span id="cb13-258"><a href="#cb13-258"></a>::: {.callout-note title="Definição"}</span>
-<span id="cb13-259"><a href="#cb13-259"></a>O **Coeficiente de Determinação** $R^2$ é a proporção da variação total de $Y$ que é explicada pelo modelo de regressão:</span>
-<span id="cb13-260"><a href="#cb13-260"></a></span>
-<span id="cb13-261"><a href="#cb13-261"></a>$$</span>
-<span id="cb13-262"><a href="#cb13-262"></a>R^2 = \frac{\text{SQR}}{\text{SQT}} = 1 - \frac{\text{SQE}}{\text{SQT}}</span>
-<span id="cb13-263"><a href="#cb13-263"></a>$$</span>
-<span id="cb13-264"><a href="#cb13-264"></a></span>
-<span id="cb13-265"><a href="#cb13-265"></a>onde $0 \leq R^2 \leq 1$.</span>
-<span id="cb13-266"><a href="#cb13-266"></a>:::</span>
-<span id="cb13-267"><a href="#cb13-267"></a></span>
-<span id="cb13-268"><a href="#cb13-268"></a>**Interpretação:**</span>
-<span id="cb13-269"><a href="#cb13-269"></a></span>
-<span id="cb13-270"><a href="#cb13-270"></a><span class="ss">- </span>$R^2 = 0$: o modelo não explica nada da variação de $Y$.</span>
-<span id="cb13-271"><a href="#cb13-271"></a><span class="ss">- </span>$R^2 = 1$: o modelo explica toda a variação de $Y$ (ajuste perfeito).</span>
-<span id="cb13-272"><a href="#cb13-272"></a><span class="ss">- </span>$R^2 = 0{,}85$: 85% da variação de $Y$ é explicada pela variável $X$.</span>
-<span id="cb13-273"><a href="#cb13-273"></a></span>
-<span id="cb13-274"><a href="#cb13-274"></a>Na regressão linear simples, $R^2 = r^2$ (quadrado da correlação de Pearson).</span>
-<span id="cb13-275"><a href="#cb13-275"></a></span>
-<span id="cb13-276"><a href="#cb13-276"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-277"><a href="#cb13-277"></a>**Exercício 4.7** ⭐</span>
-<span id="cb13-278"><a href="#cb13-278"></a></span>
-<span id="cb13-279"><a href="#cb13-279"></a>Se a correlação de Pearson entre $X$ e $Y$ é $r = -0{,}80$, qual é o valor de $R^2$? Interprete o resultado.</span>
-<span id="cb13-280"><a href="#cb13-280"></a>:::</span>
-<span id="cb13-281"><a href="#cb13-281"></a></span>
-<span id="cb13-282"><a href="#cb13-282"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-283"><a href="#cb13-283"></a>**Exercício 4.8** ⭐⭐</span>
-<span id="cb13-284"><a href="#cb13-284"></a></span>
-<span id="cb13-285"><a href="#cb13-285"></a>Um modelo de regressão foi ajustado e obteve-se SQT = 500 e SQE = 120.</span>
-<span id="cb13-286"><a href="#cb13-286"></a></span>
-<span id="cb13-287"><a href="#cb13-287"></a>a) Calcule SQR e $R^2$.</span>
-<span id="cb13-288"><a href="#cb13-288"></a>b) Interprete o valor de $R^2$ obtido.</span>
-<span id="cb13-289"><a href="#cb13-289"></a>c) É possível ter $R^2$ alto mas o modelo ser inadequado? Dê um exemplo.</span>
-<span id="cb13-290"><a href="#cb13-290"></a>:::</span>
-<span id="cb13-291"><a href="#cb13-291"></a></span>
-<span id="cb13-292"><a href="#cb13-292"></a><span class="fu">## Análise de Resíduos</span></span>
-<span id="cb13-293"><a href="#cb13-293"></a></span>
-<span id="cb13-294"><a href="#cb13-294"></a>O ajuste de um modelo de regressão não está completo sem a verificação dos pressupostos. A **análise de resíduos** é a principal ferramenta para essa verificação.</span>
-<span id="cb13-295"><a href="#cb13-295"></a></span>
-<span id="cb13-296"><a href="#cb13-296"></a>::: {.callout-note title="Definição"}</span>
-<span id="cb13-297"><a href="#cb13-297"></a>O **resíduo** da $i$-ésima observação é a diferença entre o valor observado e o valor predito pelo modelo:</span>
-<span id="cb13-298"><a href="#cb13-298"></a></span>
-<span id="cb13-299"><a href="#cb13-299"></a>$$</span>
-<span id="cb13-300"><a href="#cb13-300"></a>e_i = y_i - \hat{y}_i</span>
-<span id="cb13-301"><a href="#cb13-301"></a>$$</span>
-<span id="cb13-302"><a href="#cb13-302"></a>:::</span>
-<span id="cb13-303"><a href="#cb13-303"></a></span>
-<span id="cb13-304"><a href="#cb13-304"></a>Se o modelo estiver bem ajustado e os pressupostos forem satisfeitos, os resíduos devem se comportar como realizações de variáveis aleatórias normais com média zero e variância constante.</span>
-<span id="cb13-305"><a href="#cb13-305"></a></span>
-<span id="cb13-306"><a href="#cb13-306"></a><span class="fu">### Gráficos diagnósticos</span></span>
-<span id="cb13-307"><a href="#cb13-307"></a></span>
-<span id="cb13-308"><a href="#cb13-308"></a>Os principais gráficos para análise de resíduos são:</span>
-<span id="cb13-309"><a href="#cb13-309"></a></span>
-<span id="cb13-310"><a href="#cb13-310"></a><span class="ss">1. </span>**Resíduos vs. Valores ajustados** ($e_i$ vs. $\hat{y}_i$): verifica linearidade e homocedasticidade. Deve apresentar pontos distribuídos aleatoriamente em torno de zero, sem padrão.</span>
-<span id="cb13-311"><a href="#cb13-311"></a></span>
-<span id="cb13-312"><a href="#cb13-312"></a><span class="ss">2. </span>**QQ-plot dos resíduos**: verifica normalidade. Os pontos devem seguir aproximadamente a diagonal.</span>
-<span id="cb13-313"><a href="#cb13-313"></a></span>
-<span id="cb13-314"><a href="#cb13-314"></a><span class="ss">3. </span>**Resíduos vs. Ordem** (se os dados forem sequenciais): verifica independência.</span>
-<span id="cb13-315"><a href="#cb13-315"></a></span>
-<span id="cb13-316"><a href="#cb13-316"></a>**Padrões problemáticos:**</span>
-<span id="cb13-317"><a href="#cb13-317"></a></span>
-<span id="cb13-318"><a href="#cb13-318"></a><span class="ss">- </span>**Funil** (variância crescente): violação da homocedasticidade.</span>
-<span id="cb13-319"><a href="#cb13-319"></a><span class="ss">- </span>**Curvatura**: violação da linearidade — pode ser necessário transformar variáveis ou usar modelo não linear.</span>
-<span id="cb13-320"><a href="#cb13-320"></a><span class="ss">- </span>**Pontos isolados**: possíveis outliers ou observações influentes.</span>
-<span id="cb13-321"><a href="#cb13-321"></a></span>
-<span id="cb13-322"><a href="#cb13-322"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-323"><a href="#cb13-323"></a>**Exercício 4.9** ⭐⭐</span>
-<span id="cb13-324"><a href="#cb13-324"></a></span>
-<span id="cb13-325"><a href="#cb13-325"></a>Descreva o que cada um dos padrões abaixo no gráfico de resíduos vs. valores ajustados indica sobre o modelo:</span>
-<span id="cb13-326"><a href="#cb13-326"></a></span>
-<span id="cb13-327"><a href="#cb13-327"></a>a) Pontos espalhados aleatoriamente em torno de zero.</span>
-<span id="cb13-328"><a href="#cb13-328"></a>b) Padrão em formato de "U" (parábola).</span>
-<span id="cb13-329"><a href="#cb13-329"></a>c) Formato de funil (variância aumentando da esquerda para a direita).</span>
-<span id="cb13-330"><a href="#cb13-330"></a>d) Um ponto muito distante dos demais.</span>
-<span id="cb13-331"><a href="#cb13-331"></a>:::</span>
-<span id="cb13-332"><a href="#cb13-332"></a></span>
-<span id="cb13-333"><a href="#cb13-333"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-334"><a href="#cb13-334"></a>**Exercício 4.10** ⭐⭐</span>
-<span id="cb13-335"><a href="#cb13-335"></a></span>
-<span id="cb13-336"><a href="#cb13-336"></a>Explique por que dividimos a SQE por $n - 2$ (e não por $n$) para estimar $\sigma^2$ no modelo de regressão linear simples:</span>
-<span id="cb13-337"><a href="#cb13-337"></a></span>
-<span id="cb13-338"><a href="#cb13-338"></a>$$</span>
-<span id="cb13-339"><a href="#cb13-339"></a>\hat{\sigma}^2 = \frac{\text{SQE}}{n - 2} = \frac{\sum_{i=1}^{n} e_i^2}{n - 2}</span>
-<span id="cb13-340"><a href="#cb13-340"></a>$$</span>
-<span id="cb13-341"><a href="#cb13-341"></a></span>
-<span id="cb13-342"><a href="#cb13-342"></a>*Dica*: quantos parâmetros foram estimados?</span>
-<span id="cb13-343"><a href="#cb13-343"></a>:::</span>
-<span id="cb13-344"><a href="#cb13-344"></a></span>
-<span id="cb13-345"><a href="#cb13-345"></a><span class="fu">## Aplicação em R</span></span>
-<span id="cb13-346"><a href="#cb13-346"></a></span>
-<span id="cb13-347"><a href="#cb13-347"></a>Vamos realizar uma análise completa de regressão linear simples utilizando o conjunto de dados <span class="in">`pesquisa_exemplo.csv`</span>, investigando a relação entre **horas de estudo** ($X$) e **nota final** ($Y$).</span>
-<span id="cb13-348"><a href="#cb13-348"></a></span>
-<span id="cb13-349"><a href="#cb13-349"></a><span class="fu">### Passo 1: Exploração visual</span></span>
-<span id="cb13-350"><a href="#cb13-350"></a></span>
-<span id="cb13-353"><a href="#cb13-353"></a><span class="in">```{r}</span></span>
-<span id="cb13-354"><a href="#cb13-354"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-355"><a href="#cb13-355"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-356"><a href="#cb13-356"></a></span>
-<span id="cb13-357"><a href="#cb13-357"></a><span class="co"># Carregar dados</span></span>
-<span id="cb13-358"><a href="#cb13-358"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dados/pesquisa_exemplo.csv"</span>)</span>
-<span id="cb13-359"><a href="#cb13-359"></a></span>
-<span id="cb13-360"><a href="#cb13-360"></a><span class="co"># Estatísticas descritivas das variáveis</span></span>
-<span id="cb13-361"><a href="#cb13-361"></a><span class="fu">summary</span>(dados[, <span class="fu">c</span>(<span class="st">"horas_estudo"</span>, <span class="st">"nota_final"</span>)])</span>
-<span id="cb13-362"><a href="#cb13-362"></a><span class="in">```</span></span>
-<span id="cb13-363"><a href="#cb13-363"></a></span>
-<span id="cb13-366"><a href="#cb13-366"></a><span class="in">```{r}</span></span>
-<span id="cb13-367"><a href="#cb13-367"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-368"><a href="#cb13-368"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-369"><a href="#cb13-369"></a></span>
-<span id="cb13-370"><a href="#cb13-370"></a><span class="co"># Diagrama de dispersão com reta de regressão</span></span>
-<span id="cb13-371"><a href="#cb13-371"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
-<span id="cb13-372"><a href="#cb13-372"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
-<span id="cb13-373"><a href="#cb13-373"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
-<span id="cb13-374"><a href="#cb13-374"></a>     <span class="at">main =</span> <span class="st">"Regressão: Nota Final ~ Horas de Estudo"</span>,</span>
-<span id="cb13-375"><a href="#cb13-375"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb13-376"><a href="#cb13-376"></a>     <span class="at">col =</span> <span class="st">"#448EE3"</span>,</span>
-<span id="cb13-377"><a href="#cb13-377"></a>     <span class="at">cex =</span> <span class="fl">1.2</span>)</span>
-<span id="cb13-378"><a href="#cb13-378"></a><span class="fu">abline</span>(<span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados),</span>
-<span id="cb13-379"><a href="#cb13-379"></a>       <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb13-380"><a href="#cb13-380"></a><span class="fu">grid</span>()</span>
-<span id="cb13-381"><a href="#cb13-381"></a><span class="in">```</span></span>
-<span id="cb13-382"><a href="#cb13-382"></a></span>
-<span id="cb13-383"><a href="#cb13-383"></a><span class="fu">### Passo 2: Ajuste do modelo</span></span>
-<span id="cb13-384"><a href="#cb13-384"></a></span>
-<span id="cb13-387"><a href="#cb13-387"></a><span class="in">```{r}</span></span>
-<span id="cb13-388"><a href="#cb13-388"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-389"><a href="#cb13-389"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-390"><a href="#cb13-390"></a></span>
-<span id="cb13-391"><a href="#cb13-391"></a><span class="co"># Ajustar o modelo de regressão</span></span>
-<span id="cb13-392"><a href="#cb13-392"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados)</span>
-<span id="cb13-393"><a href="#cb13-393"></a></span>
-<span id="cb13-394"><a href="#cb13-394"></a><span class="co"># Resumo completo do modelo</span></span>
-<span id="cb13-395"><a href="#cb13-395"></a><span class="fu">summary</span>(modelo)</span>
-<span id="cb13-396"><a href="#cb13-396"></a><span class="in">```</span></span>
-<span id="cb13-397"><a href="#cb13-397"></a></span>
-<span id="cb13-398"><a href="#cb13-398"></a>**Interpretação da saída:**</span>
-<span id="cb13-399"><a href="#cb13-399"></a></span>
-<span id="cb13-400"><a href="#cb13-400"></a><span class="ss">- </span><span class="in">`(Intercept)`</span>: estimativa de $\hat{\beta}_0$ — valor esperado da nota quando horas de estudo = 0.</span>
-<span id="cb13-401"><a href="#cb13-401"></a><span class="ss">- </span><span class="in">`horas_estudo`</span>: estimativa de $\hat{\beta}_1$ — acréscimo esperado na nota para cada hora adicional de estudo.</span>
-<span id="cb13-402"><a href="#cb13-402"></a><span class="ss">- </span><span class="in">`Pr(&gt;|t|)`</span>: valor-p do teste $H_0: \beta = 0$. Valores pequenos indicam significância.</span>
-<span id="cb13-403"><a href="#cb13-403"></a><span class="ss">- </span><span class="in">`Multiple R-squared`</span>: $R^2$ — proporção da variação da nota explicada pelas horas de estudo.</span>
-<span id="cb13-404"><a href="#cb13-404"></a><span class="ss">- </span><span class="in">`F-statistic`</span>: teste global do modelo ($H_0: \beta_1 = 0$).</span>
-<span id="cb13-405"><a href="#cb13-405"></a></span>
-<span id="cb13-408"><a href="#cb13-408"></a><span class="in">```{r}</span></span>
-<span id="cb13-409"><a href="#cb13-409"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-410"><a href="#cb13-410"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-411"><a href="#cb13-411"></a></span>
-<span id="cb13-412"><a href="#cb13-412"></a><span class="co"># Extraindo os coeficientes</span></span>
-<span id="cb13-413"><a href="#cb13-413"></a>coefs <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
-<span id="cb13-414"><a href="#cb13-414"></a><span class="fu">cat</span>(<span class="st">"Intercepto (beta_0):"</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-415"><a href="#cb13-415"></a><span class="fu">cat</span>(<span class="st">"Coeficiente angular (beta_1):"</span>, <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-416"><a href="#cb13-416"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Equação da reta: nota_final ="</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">"+"</span>,</span>
-<span id="cb13-417"><a href="#cb13-417"></a>    <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"* horas_estudo</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-418"><a href="#cb13-418"></a><span class="in">```</span></span>
-<span id="cb13-419"><a href="#cb13-419"></a></span>
-<span id="cb13-422"><a href="#cb13-422"></a><span class="in">```{r}</span></span>
-<span id="cb13-423"><a href="#cb13-423"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-424"><a href="#cb13-424"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-425"><a href="#cb13-425"></a></span>
-<span id="cb13-426"><a href="#cb13-426"></a><span class="co"># R² e correlação</span></span>
-<span id="cb13-427"><a href="#cb13-427"></a>r_quadrado <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo)<span class="sc">$</span>r.squared</span>
-<span id="cb13-428"><a href="#cb13-428"></a><span class="fu">cat</span>(<span class="st">"R²:"</span>, <span class="fu">round</span>(r_quadrado, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-429"><a href="#cb13-429"></a><span class="fu">cat</span>(<span class="st">"Correlação de Pearson:"</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final), <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-430"><a href="#cb13-430"></a><span class="fu">cat</span>(<span class="st">"Verificação: r² ="</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final)<span class="sc">^</span><span class="dv">2</span>, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-431"><a href="#cb13-431"></a><span class="in">```</span></span>
-<span id="cb13-432"><a href="#cb13-432"></a></span>
-<span id="cb13-433"><a href="#cb13-433"></a><span class="fu">### Passo 3: Predição</span></span>
-<span id="cb13-434"><a href="#cb13-434"></a></span>
-<span id="cb13-437"><a href="#cb13-437"></a><span class="in">```{r}</span></span>
-<span id="cb13-438"><a href="#cb13-438"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-439"><a href="#cb13-439"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-440"><a href="#cb13-440"></a></span>
-<span id="cb13-441"><a href="#cb13-441"></a><span class="co"># Predição para novos valores de horas_estudo</span></span>
-<span id="cb13-442"><a href="#cb13-442"></a>novos_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>))</span>
-<span id="cb13-443"><a href="#cb13-443"></a></span>
-<span id="cb13-444"><a href="#cb13-444"></a><span class="co"># Predição pontual</span></span>
-<span id="cb13-445"><a href="#cb13-445"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados)</span>
-<span id="cb13-446"><a href="#cb13-446"></a></span>
-<span id="cb13-447"><a href="#cb13-447"></a><span class="co"># Predição com intervalo de confiança (para a média)</span></span>
-<span id="cb13-448"><a href="#cb13-448"></a>pred_ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
-<span id="cb13-449"><a href="#cb13-449"></a></span>
-<span id="cb13-450"><a href="#cb13-450"></a><span class="co"># Predição com intervalo de predição (para uma nova observação)</span></span>
-<span id="cb13-451"><a href="#cb13-451"></a>pred_ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
-<span id="cb13-452"><a href="#cb13-452"></a></span>
-<span id="cb13-453"><a href="#cb13-453"></a><span class="fu">cat</span>(<span class="st">"Predições pontuais:</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-454"><a href="#cb13-454"></a><span class="fu">data.frame</span>(<span class="at">horas =</span> novos_dados<span class="sc">$</span>horas_estudo, <span class="at">nota_prevista =</span> <span class="fu">round</span>(pred, <span class="dv">2</span>))</span>
-<span id="cb13-455"><a href="#cb13-455"></a><span class="in">```</span></span>
-<span id="cb13-456"><a href="#cb13-456"></a></span>
-<span id="cb13-457"><a href="#cb13-457"></a><span class="fu">### Passo 4: Análise de resíduos</span></span>
-<span id="cb13-458"><a href="#cb13-458"></a></span>
-<span id="cb13-461"><a href="#cb13-461"></a><span class="in">```{r}</span></span>
-<span id="cb13-462"><a href="#cb13-462"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-463"><a href="#cb13-463"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-464"><a href="#cb13-464"></a><span class="co">#| fig-cap: "Gráficos diagnósticos do modelo de regressão linear simples."</span></span>
-<span id="cb13-465"><a href="#cb13-465"></a></span>
-<span id="cb13-466"><a href="#cb13-466"></a><span class="co"># Gráficos diagnósticos automáticos do R</span></span>
-<span id="cb13-467"><a href="#cb13-467"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb13-468"><a href="#cb13-468"></a><span class="fu">plot</span>(modelo)</span>
-<span id="cb13-469"><a href="#cb13-469"></a><span class="in">```</span></span>
-<span id="cb13-470"><a href="#cb13-470"></a></span>
-<span id="cb13-473"><a href="#cb13-473"></a><span class="in">```{r}</span></span>
-<span id="cb13-474"><a href="#cb13-474"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-475"><a href="#cb13-475"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-476"><a href="#cb13-476"></a></span>
-<span id="cb13-477"><a href="#cb13-477"></a><span class="co"># Análise manual dos resíduos</span></span>
-<span id="cb13-478"><a href="#cb13-478"></a>residuos <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo)</span>
-<span id="cb13-479"><a href="#cb13-479"></a>ajustados <span class="ot">&lt;-</span> <span class="fu">fitted</span>(modelo)</span>
-<span id="cb13-480"><a href="#cb13-480"></a></span>
-<span id="cb13-481"><a href="#cb13-481"></a><span class="co"># Gráfico: Resíduos vs Ajustados</span></span>
-<span id="cb13-482"><a href="#cb13-482"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb13-483"><a href="#cb13-483"></a></span>
-<span id="cb13-484"><a href="#cb13-484"></a><span class="fu">plot</span>(ajustados, residuos,</span>
-<span id="cb13-485"><a href="#cb13-485"></a>     <span class="at">xlab =</span> <span class="st">"Valores Ajustados"</span>,</span>
-<span id="cb13-486"><a href="#cb13-486"></a>     <span class="at">ylab =</span> <span class="st">"Resíduos"</span>,</span>
-<span id="cb13-487"><a href="#cb13-487"></a>     <span class="at">main =</span> <span class="st">"Resíduos vs Ajustados"</span>,</span>
-<span id="cb13-488"><a href="#cb13-488"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
-<span id="cb13-489"><a href="#cb13-489"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb13-490"><a href="#cb13-490"></a></span>
-<span id="cb13-491"><a href="#cb13-491"></a><span class="co"># QQ-plot dos resíduos</span></span>
-<span id="cb13-492"><a href="#cb13-492"></a><span class="fu">qqnorm</span>(residuos, <span class="at">main =</span> <span class="st">"QQ-Plot dos Resíduos"</span>,</span>
-<span id="cb13-493"><a href="#cb13-493"></a>       <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
-<span id="cb13-494"><a href="#cb13-494"></a><span class="fu">qqline</span>(residuos, <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb13-495"><a href="#cb13-495"></a><span class="in">```</span></span>
-<span id="cb13-496"><a href="#cb13-496"></a></span>
-<span id="cb13-499"><a href="#cb13-499"></a><span class="in">```{r}</span></span>
-<span id="cb13-500"><a href="#cb13-500"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-501"><a href="#cb13-501"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-502"><a href="#cb13-502"></a></span>
-<span id="cb13-503"><a href="#cb13-503"></a><span class="co"># Teste de normalidade dos resíduos (Shapiro-Wilk)</span></span>
-<span id="cb13-504"><a href="#cb13-504"></a><span class="fu">shapiro.test</span>(residuos)</span>
-<span id="cb13-505"><a href="#cb13-505"></a><span class="in">```</span></span>
-<span id="cb13-506"><a href="#cb13-506"></a></span>
-<span id="cb13-507"><a href="#cb13-507"></a><span class="fu">### Passo 5: Visualização completa</span></span>
-<span id="cb13-508"><a href="#cb13-508"></a></span>
-<span id="cb13-511"><a href="#cb13-511"></a><span class="in">```{r}</span></span>
-<span id="cb13-512"><a href="#cb13-512"></a><span class="co">#| echo: true</span></span>
-<span id="cb13-513"><a href="#cb13-513"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-514"><a href="#cb13-514"></a></span>
-<span id="cb13-515"><a href="#cb13-515"></a><span class="co"># Gráfico com reta de regressão e intervalos</span></span>
-<span id="cb13-516"><a href="#cb13-516"></a>novos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>horas_estudo),</span>
-<span id="cb13-517"><a href="#cb13-517"></a>                                        <span class="fu">max</span>(dados<span class="sc">$</span>horas_estudo),</span>
-<span id="cb13-518"><a href="#cb13-518"></a>                                        <span class="at">length.out =</span> <span class="dv">100</span>))</span>
-<span id="cb13-519"><a href="#cb13-519"></a>ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
-<span id="cb13-520"><a href="#cb13-520"></a>ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
-<span id="cb13-521"><a href="#cb13-521"></a></span>
-<span id="cb13-522"><a href="#cb13-522"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
-<span id="cb13-523"><a href="#cb13-523"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
-<span id="cb13-524"><a href="#cb13-524"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
-<span id="cb13-525"><a href="#cb13-525"></a>     <span class="at">main =</span> <span class="st">"Regressão Linear com Intervalos"</span>,</span>
-<span id="cb13-526"><a href="#cb13-526"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>,</span>
-<span id="cb13-527"><a href="#cb13-527"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(ip[, <span class="st">"lwr"</span>]), <span class="fu">max</span>(ip[, <span class="st">"upr"</span>])))</span>
-<span id="cb13-528"><a href="#cb13-528"></a></span>
-<span id="cb13-529"><a href="#cb13-529"></a><span class="co"># Reta ajustada</span></span>
-<span id="cb13-530"><a href="#cb13-530"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"fit"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb13-531"><a href="#cb13-531"></a></span>
-<span id="cb13-532"><a href="#cb13-532"></a><span class="co"># Intervalo de confiança (mais estreito)</span></span>
-<span id="cb13-533"><a href="#cb13-533"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb13-534"><a href="#cb13-534"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb13-535"><a href="#cb13-535"></a></span>
-<span id="cb13-536"><a href="#cb13-536"></a><span class="co"># Intervalo de predição (mais largo)</span></span>
-<span id="cb13-537"><a href="#cb13-537"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb13-538"><a href="#cb13-538"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb13-539"><a href="#cb13-539"></a></span>
-<span id="cb13-540"><a href="#cb13-540"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
-<span id="cb13-541"><a href="#cb13-541"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Dados"</span>, <span class="st">"Reta ajustada"</span>, <span class="st">"IC (média)"</span>, <span class="st">"IP (nova obs.)"</span>),</span>
-<span id="cb13-542"><a href="#cb13-542"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#448EE3"</span>, <span class="st">"#2D4188"</span>, <span class="st">"#2D4188"</span>, <span class="st">"gray50"</span>),</span>
-<span id="cb13-543"><a href="#cb13-543"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
-<span id="cb13-544"><a href="#cb13-544"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb13-545"><a href="#cb13-545"></a>       <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
-<span id="cb13-546"><a href="#cb13-546"></a>       <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
-<span id="cb13-547"><a href="#cb13-547"></a><span class="in">```</span></span>
-<span id="cb13-548"><a href="#cb13-548"></a></span>
-<span id="cb13-549"><a href="#cb13-549"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-550"><a href="#cb13-550"></a>**Exercício 4.11** ⭐⭐</span>
-<span id="cb13-551"><a href="#cb13-551"></a></span>
-<span id="cb13-552"><a href="#cb13-552"></a>Usando o R e o conjunto de dados <span class="in">`pesquisa_exemplo.csv`</span>:</span>
-<span id="cb13-553"><a href="#cb13-553"></a></span>
-<span id="cb13-554"><a href="#cb13-554"></a>a) Ajuste um modelo de regressão linear de <span class="in">`renda`</span> em função de <span class="in">`idade`</span>.</span>
-<span id="cb13-555"><a href="#cb13-555"></a>b) Apresente a equação da reta e o $R^2$.</span>
-<span id="cb13-556"><a href="#cb13-556"></a>c) Interprete o coeficiente angular no contexto do problema.</span>
-<span id="cb13-557"><a href="#cb13-557"></a>d) Produza os gráficos diagnósticos e comente se os pressupostos parecem satisfeitos.</span>
-<span id="cb13-558"><a href="#cb13-558"></a>:::</span>
-<span id="cb13-559"><a href="#cb13-559"></a></span>
-<span id="cb13-560"><a href="#cb13-560"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
-<span id="cb13-561"><a href="#cb13-561"></a>**Exercício 4.12** ⭐⭐⭐</span>
-<span id="cb13-562"><a href="#cb13-562"></a></span>
-<span id="cb13-563"><a href="#cb13-563"></a>Considere a regressão de <span class="in">`nota_final`</span> em função de <span class="in">`horas_estudo`</span>.</span>
-<span id="cb13-564"><a href="#cb13-564"></a></span>
-<span id="cb13-565"><a href="#cb13-565"></a>a) Se um aluno estuda 20 horas por semana, qual a nota prevista pelo modelo? Você confia nessa previsão? Justifique.</span>
-<span id="cb13-566"><a href="#cb13-566"></a>b) Calcule manualmente $\hat{\beta}_1$ usando a fórmula $\hat{\beta}_1 = r \cdot s_y / s_x$ e compare com a saída do <span class="in">`lm()`</span>.</span>
-<span id="cb13-567"><a href="#cb13-567"></a>c) Identifique a observação com o maior resíduo (positivo ou negativo). Essa observação pode ser considerada um outlier?</span>
-<span id="cb13-568"><a href="#cb13-568"></a>:::</span>
-<span id="cb13-569"><a href="#cb13-569"></a></span>
-<span id="cb13-570"><a href="#cb13-570"></a><span class="fu">## Resumo</span></span>
-<span id="cb13-571"><a href="#cb13-571"></a></span>
-<span id="cb13-572"><a href="#cb13-572"></a>Neste capítulo, estudamos a **Regressão Linear Simples**, técnica que modela a relação entre uma variável resposta e uma variável explicativa.</span>
-<span id="cb13-573"><a href="#cb13-573"></a></span>
-<span id="cb13-574"><a href="#cb13-574"></a>**Conceitos-chave:**</span>
-<span id="cb13-575"><a href="#cb13-575"></a></span>
-<span id="cb13-576"><a href="#cb13-576"></a><span class="ss">- </span>O **diagrama de dispersão** é o ponto de partida para investigar relações entre variáveis.</span>
-<span id="cb13-577"><a href="#cb13-577"></a><span class="ss">- </span>**Correlação** ($r$) mede a força da relação linear, mas **não implica causalidade**.</span>
-<span id="cb13-578"><a href="#cb13-578"></a><span class="ss">- </span>O modelo $Y = \beta_0 + \beta_1 X + \varepsilon$ descreve a relação linear, onde $\beta_1$ indica a variação em $Y$ para cada unidade de $X$.</span>
-<span id="cb13-579"><a href="#cb13-579"></a><span class="ss">- </span>Os estimadores de **Mínimos Quadrados** minimizam a soma dos quadrados dos resíduos:</span>
-<span id="cb13-580"><a href="#cb13-580"></a><span class="ss">  - </span>$\hat{\beta}_1 = S_{xy} / S_{xx}$</span>
-<span id="cb13-581"><a href="#cb13-581"></a><span class="ss">  - </span>$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}$</span>
-<span id="cb13-582"><a href="#cb13-582"></a><span class="ss">- </span>O **coeficiente de determinação** $R^2$ indica a proporção da variação de $Y$ explicada por $X$. Na regressão simples, $R^2 = r^2$.</span>
-<span id="cb13-583"><a href="#cb13-583"></a><span class="ss">- </span>A **análise de resíduos** é essencial para verificar os pressupostos: linearidade, independência, homocedasticidade e normalidade.</span>
-<span id="cb13-584"><a href="#cb13-584"></a><span class="ss">- </span>**Pressupostos violados** podem invalidar as inferências do modelo.</span>
-<span id="cb13-585"><a href="#cb13-585"></a></span>
-<span id="cb13-586"><a href="#cb13-586"></a>**Funções R essenciais:**</span>
-<span id="cb13-587"><a href="#cb13-587"></a></span>
-<span id="cb13-588"><a href="#cb13-588"></a><span class="pp">|</span> Função <span class="pp">|</span> Finalidade <span class="pp">|</span></span>
-<span id="cb13-589"><a href="#cb13-589"></a><span class="pp">|---|---|</span></span>
-<span id="cb13-590"><a href="#cb13-590"></a><span class="pp">|</span> <span class="in">`lm()`</span> <span class="pp">|</span> Ajustar modelo de regressão linear <span class="pp">|</span></span>
-<span id="cb13-591"><a href="#cb13-591"></a><span class="pp">|</span> <span class="in">`summary()`</span> <span class="pp">|</span> Resumo do modelo (coeficientes, $R^2$, testes) <span class="pp">|</span></span>
-<span id="cb13-592"><a href="#cb13-592"></a><span class="pp">|</span> <span class="in">`coef()`</span> <span class="pp">|</span> Extrair coeficientes estimados <span class="pp">|</span></span>
-<span id="cb13-593"><a href="#cb13-593"></a><span class="pp">|</span> <span class="in">`predict()`</span> <span class="pp">|</span> Predição para novos dados <span class="pp">|</span></span>
-<span id="cb13-594"><a href="#cb13-594"></a><span class="pp">|</span> <span class="in">`residuals()`</span> <span class="pp">|</span> Obter resíduos do modelo <span class="pp">|</span></span>
-<span id="cb13-595"><a href="#cb13-595"></a><span class="pp">|</span> <span class="in">`plot(modelo)`</span> <span class="pp">|</span> Gráficos diagnósticos <span class="pp">|</span></span>
-<span id="cb13-596"><a href="#cb13-596"></a><span class="pp">|</span> <span class="in">`cor()`</span> <span class="pp">|</span> Coeficiente de correlação de Pearson <span class="pp">|</span></span>
-<span id="cb13-597"><a href="#cb13-597"></a><span class="pp">|</span> <span class="in">`shapiro.test()`</span> <span class="pp">|</span> Teste de normalidade <span class="pp">|</span></span>
-<span id="cb13-598"><a href="#cb13-598"></a></span>
-<span id="cb13-599"><a href="#cb13-599"></a>::: {.callout-note title="Leitura complementar"}</span>
-<span id="cb13-600"><a href="#cb13-600"></a>Para aprofundamento, consulte:</span>
-<span id="cb13-601"><a href="#cb13-601"></a></span>
-<span id="cb13-602"><a href="#cb13-602"></a><span class="ss">- </span>BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**, Cap. 14–15.</span>
-<span id="cb13-603"><a href="#cb13-603"></a><span class="ss">- </span>MOORE, D. S.; McCABE, G. P. **Introduction to the Practice of Statistics**, Cap. 10.</span>
-<span id="cb13-604"><a href="#cb13-604"></a>:::</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu"># Regressão Linear Simples {#cap-regressao}</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a>Nos capítulos anteriores, aprendemos a descrever variáveis individualmente (Estatística Descritiva) e a fazer inferências sobre parâmetros populacionais (Inferência Estatística). Agora, daremos um passo além: investigar a **relação entre duas variáveis quantitativas**. A ferramenta fundamental para isso é a **Regressão Linear Simples**.</span>
+<span id="cb30-4"><a href="#cb30-4"></a></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="fu">## Introdução: Relações entre Variáveis</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a></span>
+<span id="cb30-7"><a href="#cb30-7"></a>Muitas perguntas de pesquisa envolvem a relação entre duas variáveis:</span>
+<span id="cb30-8"><a href="#cb30-8"></a></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="ss">- </span>Alunos que estudam mais horas obtêm notas mais altas?</span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="ss">- </span>Funcionários com mais experiência recebem salários maiores?</span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="ss">- </span>O consumo de combustível de um carro depende da velocidade?</span>
+<span id="cb30-12"><a href="#cb30-12"></a></span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="fu">### Diagramas de dispersão</span></span>
+<span id="cb30-14"><a href="#cb30-14"></a></span>
+<span id="cb30-15"><a href="#cb30-15"></a>O primeiro passo para investigar a relação entre duas variáveis quantitativas é construir um **diagrama de dispersão** (*scatter plot*), no qual cada observação é representada por um ponto no plano cartesiano.</span>
+<span id="cb30-16"><a href="#cb30-16"></a></span>
+<span id="cb30-19"><a href="#cb30-19"></a><span class="in">```{r}</span></span>
+<span id="cb30-20"><a href="#cb30-20"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-21"><a href="#cb30-21"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-22"><a href="#cb30-22"></a></span>
+<span id="cb30-23"><a href="#cb30-23"></a><span class="co"># Carregar dados</span></span>
+<span id="cb30-24"><a href="#cb30-24"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dados/pesquisa_exemplo.csv"</span>)</span>
+<span id="cb30-25"><a href="#cb30-25"></a></span>
+<span id="cb30-26"><a href="#cb30-26"></a><span class="co"># Diagrama de dispersão: horas_estudo vs nota_final</span></span>
+<span id="cb30-27"><a href="#cb30-27"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
+<span id="cb30-28"><a href="#cb30-28"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
+<span id="cb30-29"><a href="#cb30-29"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
+<span id="cb30-30"><a href="#cb30-30"></a>     <span class="at">main =</span> <span class="st">"Relação entre Horas de Estudo e Nota Final"</span>,</span>
+<span id="cb30-31"><a href="#cb30-31"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb30-32"><a href="#cb30-32"></a>     <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
+<span id="cb30-33"><a href="#cb30-33"></a><span class="in">```</span></span>
+<span id="cb30-34"><a href="#cb30-34"></a></span>
+<span id="cb30-35"><a href="#cb30-35"></a><span class="fu">### Correlação vs. Causalidade</span></span>
+<span id="cb30-36"><a href="#cb30-36"></a></span>
+<span id="cb30-37"><a href="#cb30-37"></a>::: {.callout-note title="Definição"}</span>
+<span id="cb30-38"><a href="#cb30-38"></a>O **coeficiente de correlação de Pearson** ($r$) mede a intensidade e a direção da relação **linear** entre duas variáveis quantitativas:</span>
+<span id="cb30-39"><a href="#cb30-39"></a></span>
+<span id="cb30-40"><a href="#cb30-40"></a>$$</span>
+<span id="cb30-41"><a href="#cb30-41"></a>r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2 \cdot \sum_{i=1}^{n}(y_i - \bar{y})^2}}</span>
+<span id="cb30-42"><a href="#cb30-42"></a>$$</span>
+<span id="cb30-43"><a href="#cb30-43"></a></span>
+<span id="cb30-44"><a href="#cb30-44"></a>O valor de $r$ varia entre $-1$ e $+1$.</span>
+<span id="cb30-45"><a href="#cb30-45"></a>:::</span>
+<span id="cb30-46"><a href="#cb30-46"></a></span>
+<span id="cb30-47"><a href="#cb30-47"></a>**Interpretação:**</span>
+<span id="cb30-48"><a href="#cb30-48"></a></span>
+<span id="cb30-49"><a href="#cb30-49"></a><span class="pp">|</span> Valor de $r$ <span class="pp">|</span> Interpretação <span class="pp">|</span></span>
+<span id="cb30-50"><a href="#cb30-50"></a><span class="pp">|---|---|</span></span>
+<span id="cb30-51"><a href="#cb30-51"></a><span class="pp">|</span> $r = +1$ <span class="pp">|</span> Correlação linear positiva perfeita <span class="pp">|</span></span>
+<span id="cb30-52"><a href="#cb30-52"></a><span class="pp">|</span> $0{,}7 \leq r &lt; 1$ <span class="pp">|</span> Correlação positiva forte <span class="pp">|</span></span>
+<span id="cb30-53"><a href="#cb30-53"></a><span class="pp">|</span> $0{,}3 \leq r &lt; 0{,}7$ <span class="pp">|</span> Correlação positiva moderada <span class="pp">|</span></span>
+<span id="cb30-54"><a href="#cb30-54"></a><span class="pp">|</span> $0 &lt; r &lt; 0{,}3$ <span class="pp">|</span> Correlação positiva fraca <span class="pp">|</span></span>
+<span id="cb30-55"><a href="#cb30-55"></a><span class="pp">|</span> $r = 0$ <span class="pp">|</span> Ausência de correlação linear <span class="pp">|</span></span>
+<span id="cb30-56"><a href="#cb30-56"></a><span class="pp">|</span> $r &lt; 0$ <span class="pp">|</span> Correlação negativa (análogo) <span class="pp">|</span></span>
+<span id="cb30-57"><a href="#cb30-57"></a></span>
+<span id="cb30-58"><a href="#cb30-58"></a>::: {.callout-warning title="Atenção"}</span>
+<span id="cb30-59"><a href="#cb30-59"></a>**Correlação não implica causalidade.** Duas variáveis podem estar correlacionadas por diversos motivos: relação causal direta, causa comum (variável confundidora) ou até mera coincidência. Apenas estudos experimentais bem desenhados permitem inferir causalidade.</span>
+<span id="cb30-60"><a href="#cb30-60"></a>:::</span>
+<span id="cb30-61"><a href="#cb30-61"></a></span>
+<span id="cb30-64"><a href="#cb30-64"></a><span class="in">```{r}</span></span>
+<span id="cb30-65"><a href="#cb30-65"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-66"><a href="#cb30-66"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-67"><a href="#cb30-67"></a></span>
+<span id="cb30-68"><a href="#cb30-68"></a><span class="co"># Calcular a correlação entre horas_estudo e nota_final</span></span>
+<span id="cb30-69"><a href="#cb30-69"></a>r <span class="ot">&lt;-</span> <span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final)</span>
+<span id="cb30-70"><a href="#cb30-70"></a><span class="fu">cat</span>(<span class="st">"Correlação de Pearson (horas_estudo, nota_final):"</span>, <span class="fu">round</span>(r, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-71"><a href="#cb30-71"></a><span class="in">```</span></span>
+<span id="cb30-72"><a href="#cb30-72"></a></span>
+<span id="cb30-73"><a href="#cb30-73"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-74"><a href="#cb30-74"></a>**Exercício 4.1** ⭐</span>
+<span id="cb30-75"><a href="#cb30-75"></a></span>
+<span id="cb30-76"><a href="#cb30-76"></a>Classifique cada afirmação como verdadeira ou falsa:</span>
+<span id="cb30-77"><a href="#cb30-77"></a></span>
+<span id="cb30-78"><a href="#cb30-78"></a>a) Se $r = 0{,}95$, então a relação entre as variáveis é necessariamente causal.</span>
+<span id="cb30-79"><a href="#cb30-79"></a>b) O coeficiente de correlação de Pearson só detecta relações lineares.</span>
+<span id="cb30-80"><a href="#cb30-80"></a>c) Se $r = 0$, não existe nenhuma relação entre as variáveis.</span>
+<span id="cb30-81"><a href="#cb30-81"></a>d) A correlação é sensível a outliers.</span>
+<span id="cb30-82"><a href="#cb30-82"></a>:::</span>
+<span id="cb30-83"><a href="#cb30-83"></a></span>
+<span id="cb30-84"><a href="#cb30-84"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-85"><a href="#cb30-85"></a>**Exercício 4.2** ⭐⭐</span>
+<span id="cb30-86"><a href="#cb30-86"></a></span>
+<span id="cb30-87"><a href="#cb30-87"></a>Usando o conjunto de dados <span class="in">`pesquisa_exemplo.csv`</span>, calcule a correlação de Pearson entre:</span>
+<span id="cb30-88"><a href="#cb30-88"></a></span>
+<span id="cb30-89"><a href="#cb30-89"></a>a) <span class="in">`idade`</span> e <span class="in">`renda`</span></span>
+<span id="cb30-90"><a href="#cb30-90"></a>b) <span class="in">`idade`</span> e <span class="in">`nota_final`</span></span>
+<span id="cb30-91"><a href="#cb30-91"></a>c) <span class="in">`renda`</span> e <span class="in">`nota_final`</span></span>
+<span id="cb30-92"><a href="#cb30-92"></a></span>
+<span id="cb30-93"><a href="#cb30-93"></a>Interprete cada resultado. Qual par de variáveis apresenta a correlação mais forte?</span>
+<span id="cb30-94"><a href="#cb30-94"></a>:::</span>
+<span id="cb30-95"><a href="#cb30-95"></a></span>
+<span id="cb30-96"><a href="#cb30-96"></a><span class="fu">## O Modelo Linear Simples</span></span>
+<span id="cb30-97"><a href="#cb30-97"></a></span>
+<span id="cb30-98"><a href="#cb30-98"></a>O modelo de **Regressão Linear Simples** busca descrever a relação entre uma variável **resposta** (ou dependente) $Y$ e uma variável **explicativa** (ou independente) $X$ por meio de uma reta.</span>
+<span id="cb30-99"><a href="#cb30-99"></a></span>
+<span id="cb30-100"><a href="#cb30-100"></a>::: {.callout-note title="Definição"}</span>
+<span id="cb30-101"><a href="#cb30-101"></a>O **modelo de Regressão Linear Simples** é dado por:</span>
+<span id="cb30-102"><a href="#cb30-102"></a></span>
+<span id="cb30-103"><a href="#cb30-103"></a>$$</span>
+<span id="cb30-104"><a href="#cb30-104"></a>Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n</span>
+<span id="cb30-105"><a href="#cb30-105"></a>$$</span>
+<span id="cb30-106"><a href="#cb30-106"></a></span>
+<span id="cb30-107"><a href="#cb30-107"></a>onde:</span>
+<span id="cb30-108"><a href="#cb30-108"></a></span>
+<span id="cb30-109"><a href="#cb30-109"></a><span class="ss">- </span>$Y_i$ é o valor observado da variável resposta para a $i$-ésima observação</span>
+<span id="cb30-110"><a href="#cb30-110"></a><span class="ss">- </span>$X_i$ é o valor da variável explicativa</span>
+<span id="cb30-111"><a href="#cb30-111"></a><span class="ss">- </span>$\beta_0$ é o **intercepto** (valor esperado de $Y$ quando $X = 0$)</span>
+<span id="cb30-112"><a href="#cb30-112"></a><span class="ss">- </span>$\beta_1$ é o **coeficiente angular** (variação esperada em $Y$ para cada aumento de uma unidade em $X$)</span>
+<span id="cb30-113"><a href="#cb30-113"></a><span class="ss">- </span>$\varepsilon_i$ é o **erro aleatório** (componente não explicado pelo modelo)</span>
+<span id="cb30-114"><a href="#cb30-114"></a>:::</span>
+<span id="cb30-115"><a href="#cb30-115"></a></span>
+<span id="cb30-116"><a href="#cb30-116"></a><span class="fu">### Pressupostos do modelo</span></span>
+<span id="cb30-117"><a href="#cb30-117"></a></span>
+<span id="cb30-118"><a href="#cb30-118"></a>Para que a inferência baseada no modelo seja válida, os seguintes pressupostos devem ser satisfeitos:</span>
+<span id="cb30-119"><a href="#cb30-119"></a></span>
+<span id="cb30-120"><a href="#cb30-120"></a><span class="ss">1. </span>**Linearidade**: a relação entre $X$ e $Y$ é linear (na média).</span>
+<span id="cb30-121"><a href="#cb30-121"></a><span class="ss">2. </span>**Independência**: os erros $\varepsilon_i$ são independentes entre si.</span>
+<span id="cb30-122"><a href="#cb30-122"></a><span class="ss">3. </span>**Homocedasticidade**: a variância dos erros é constante: $\text{Var}(\varepsilon_i) = \sigma^2$ para todo $i$.</span>
+<span id="cb30-123"><a href="#cb30-123"></a><span class="ss">4. </span>**Normalidade**: os erros seguem distribuição normal: $\varepsilon_i \sim N(0, \sigma^2)$.</span>
+<span id="cb30-124"><a href="#cb30-124"></a></span>
+<span id="cb30-125"><a href="#cb30-125"></a>Esses pressupostos podem ser resumidos como:</span>
+<span id="cb30-126"><a href="#cb30-126"></a></span>
+<span id="cb30-127"><a href="#cb30-127"></a>$$</span>
+<span id="cb30-128"><a href="#cb30-128"></a>\varepsilon_i \overset{\text{iid}}{\sim} N(0, \sigma^2)</span>
+<span id="cb30-129"><a href="#cb30-129"></a>$$</span>
+<span id="cb30-130"><a href="#cb30-130"></a></span>
+<span id="cb30-131"><a href="#cb30-131"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-132"><a href="#cb30-132"></a>**Exercício 4.3** ⭐</span>
+<span id="cb30-133"><a href="#cb30-133"></a></span>
+<span id="cb30-134"><a href="#cb30-134"></a>No contexto do nosso conjunto de dados, queremos modelar <span class="in">`nota_final`</span> como função de <span class="in">`horas_estudo`</span>. Identifique:</span>
+<span id="cb30-135"><a href="#cb30-135"></a></span>
+<span id="cb30-136"><a href="#cb30-136"></a>a) A variável resposta ($Y$) e a variável explicativa ($X$).</span>
+<span id="cb30-137"><a href="#cb30-137"></a>b) O significado prático de $\beta_0$ e $\beta_1$ neste contexto.</span>
+<span id="cb30-138"><a href="#cb30-138"></a>c) O que o termo $\varepsilon_i$ representa neste problema.</span>
+<span id="cb30-139"><a href="#cb30-139"></a>:::</span>
+<span id="cb30-140"><a href="#cb30-140"></a></span>
+<span id="cb30-141"><a href="#cb30-141"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-142"><a href="#cb30-142"></a>**Exercício 4.4** ⭐⭐</span>
+<span id="cb30-143"><a href="#cb30-143"></a></span>
+<span id="cb30-144"><a href="#cb30-144"></a>Explique, com exemplos práticos, o que acontece quando cada um dos pressupostos do modelo linear é violado:</span>
+<span id="cb30-145"><a href="#cb30-145"></a></span>
+<span id="cb30-146"><a href="#cb30-146"></a>a) Violação da linearidade.</span>
+<span id="cb30-147"><a href="#cb30-147"></a>b) Violação da homocedasticidade.</span>
+<span id="cb30-148"><a href="#cb30-148"></a>c) Violação da normalidade dos erros.</span>
+<span id="cb30-149"><a href="#cb30-149"></a>:::</span>
+<span id="cb30-150"><a href="#cb30-150"></a></span>
+<span id="cb30-151"><a href="#cb30-151"></a><span class="fu">## Estimação por Mínimos Quadrados (OLS)</span></span>
+<span id="cb30-152"><a href="#cb30-152"></a></span>
+<span id="cb30-153"><a href="#cb30-153"></a>O método dos **Mínimos Quadrados Ordinários** (*Ordinary Least Squares* — OLS) encontra os valores de $\beta_0$ e $\beta_1$ que minimizam a soma dos quadrados dos resíduos.</span>
+<span id="cb30-154"><a href="#cb30-154"></a></span>
+<span id="cb30-155"><a href="#cb30-155"></a><span class="fu">### Ideia geométrica</span></span>
+<span id="cb30-156"><a href="#cb30-156"></a></span>
+<span id="cb30-157"><a href="#cb30-157"></a>A reta de regressão $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$ é aquela que minimiza a soma das distâncias verticais ao quadrado entre os pontos observados e a reta:</span>
+<span id="cb30-158"><a href="#cb30-158"></a></span>
+<span id="cb30-159"><a href="#cb30-159"></a>$$</span>
+<span id="cb30-160"><a href="#cb30-160"></a>\text{SQE} = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = \sum_{i=1}^{n}(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i)^2</span>
+<span id="cb30-161"><a href="#cb30-161"></a>$$</span>
+<span id="cb30-162"><a href="#cb30-162"></a></span>
+<span id="cb30-163"><a href="#cb30-163"></a><span class="fu">### Derivação das fórmulas</span></span>
+<span id="cb30-164"><a href="#cb30-164"></a></span>
+<span id="cb30-165"><a href="#cb30-165"></a>Para minimizar SQE, calculamos as derivadas parciais em relação a $\hat{\beta}_0$ e $\hat{\beta}_1$ e igualamos a zero:</span>
+<span id="cb30-166"><a href="#cb30-166"></a></span>
+<span id="cb30-167"><a href="#cb30-167"></a>$$</span>
+<span id="cb30-168"><a href="#cb30-168"></a>\frac{\partial \text{SQE}}{\partial \hat{\beta}_0} = -2\sum_{i=1}^{n}(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i) = 0</span>
+<span id="cb30-169"><a href="#cb30-169"></a>$$</span>
+<span id="cb30-170"><a href="#cb30-170"></a></span>
+<span id="cb30-171"><a href="#cb30-171"></a>$$</span>
+<span id="cb30-172"><a href="#cb30-172"></a>\frac{\partial \text{SQE}}{\partial \hat{\beta}_1} = -2\sum_{i=1}^{n}x_i(y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i) = 0</span>
+<span id="cb30-173"><a href="#cb30-173"></a>$$</span>
+<span id="cb30-174"><a href="#cb30-174"></a></span>
+<span id="cb30-175"><a href="#cb30-175"></a>Resolvendo esse sistema de **equações normais**, obtemos:</span>
+<span id="cb30-176"><a href="#cb30-176"></a></span>
+<span id="cb30-177"><a href="#cb30-177"></a>::: {.callout-note title="Definição"}</span>
+<span id="cb30-178"><a href="#cb30-178"></a>**Estimadores de Mínimos Quadrados:**</span>
+<span id="cb30-179"><a href="#cb30-179"></a></span>
+<span id="cb30-180"><a href="#cb30-180"></a>$$</span>
+<span id="cb30-181"><a href="#cb30-181"></a>\hat{\beta}_1 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n}(x_i - \bar{x})^2} = \frac{S_{xy}}{S_{xx}}</span>
+<span id="cb30-182"><a href="#cb30-182"></a>$$</span>
+<span id="cb30-183"><a href="#cb30-183"></a></span>
+<span id="cb30-184"><a href="#cb30-184"></a>$$</span>
+<span id="cb30-185"><a href="#cb30-185"></a>\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}</span>
+<span id="cb30-186"><a href="#cb30-186"></a>$$</span>
+<span id="cb30-187"><a href="#cb30-187"></a></span>
+<span id="cb30-188"><a href="#cb30-188"></a>onde:</span>
+<span id="cb30-189"><a href="#cb30-189"></a></span>
+<span id="cb30-190"><a href="#cb30-190"></a><span class="ss">- </span>$S_{xy} = \sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})$ é a soma dos produtos cruzados</span>
+<span id="cb30-191"><a href="#cb30-191"></a><span class="ss">- </span>$S_{xx} = \sum_{i=1}^{n}(x_i - \bar{x})^2$ é a soma dos quadrados de $X$</span>
+<span id="cb30-192"><a href="#cb30-192"></a>:::</span>
+<span id="cb30-193"><a href="#cb30-193"></a></span>
+<span id="cb30-194"><a href="#cb30-194"></a>Observe que $\hat{\beta}_1$ tem uma relação direta com a correlação de Pearson:</span>
+<span id="cb30-195"><a href="#cb30-195"></a></span>
+<span id="cb30-196"><a href="#cb30-196"></a>$$</span>
+<span id="cb30-197"><a href="#cb30-197"></a>\hat{\beta}_1 = r \cdot \frac{s_y}{s_x}</span>
+<span id="cb30-198"><a href="#cb30-198"></a>$$</span>
+<span id="cb30-199"><a href="#cb30-199"></a></span>
+<span id="cb30-200"><a href="#cb30-200"></a>e a reta de regressão sempre passa pelo ponto $(\bar{x}, \bar{y})$.</span>
+<span id="cb30-201"><a href="#cb30-201"></a></span>
+<span id="cb30-202"><a href="#cb30-202"></a><span class="fu">### Cálculo manual (exemplo)</span></span>
+<span id="cb30-203"><a href="#cb30-203"></a></span>
+<span id="cb30-204"><a href="#cb30-204"></a>Considere cinco observações:</span>
+<span id="cb30-205"><a href="#cb30-205"></a></span>
+<span id="cb30-206"><a href="#cb30-206"></a><span class="pp">|</span> $x$ <span class="pp">|</span> $y$ <span class="pp">|</span></span>
+<span id="cb30-207"><a href="#cb30-207"></a><span class="pp">|---|---|</span></span>
+<span id="cb30-208"><a href="#cb30-208"></a><span class="pp">|</span> 2 <span class="pp">|</span> 4 <span class="pp">|</span></span>
+<span id="cb30-209"><a href="#cb30-209"></a><span class="pp">|</span> 4 <span class="pp">|</span> 7 <span class="pp">|</span></span>
+<span id="cb30-210"><a href="#cb30-210"></a><span class="pp">|</span> 6 <span class="pp">|</span> 8 <span class="pp">|</span></span>
+<span id="cb30-211"><a href="#cb30-211"></a><span class="pp">|</span> 8 <span class="pp">|</span> 11 <span class="pp">|</span></span>
+<span id="cb30-212"><a href="#cb30-212"></a><span class="pp">|</span> 10 <span class="pp">|</span> 13 <span class="pp">|</span></span>
+<span id="cb30-213"><a href="#cb30-213"></a></span>
+<span id="cb30-214"><a href="#cb30-214"></a><span class="ss">- </span>$\bar{x} = 6$, $\bar{y} = 8{,}6$</span>
+<span id="cb30-215"><a href="#cb30-215"></a><span class="ss">- </span>$S_{xy} = (2-6)(4-8{,}6) + (4-6)(7-8{,}6) + \ldots + (10-6)(13-8{,}6) = 18{,}4 + 3{,}2 + 0 + 4{,}8 + 17{,}6 = 44$</span>
+<span id="cb30-216"><a href="#cb30-216"></a><span class="ss">- </span>$S_{xx} = 16 + 4 + 0 + 4 + 16 = 40$</span>
+<span id="cb30-217"><a href="#cb30-217"></a><span class="ss">- </span>$\hat{\beta}_1 = 44/40 = 1{,}1$</span>
+<span id="cb30-218"><a href="#cb30-218"></a><span class="ss">- </span>$\hat{\beta}_0 = 8{,}6 - 1{,}1 \times 6 = 2{,}0$</span>
+<span id="cb30-219"><a href="#cb30-219"></a><span class="ss">- </span>Reta: $\hat{y} = 2{,}0 + 1{,}1x$</span>
+<span id="cb30-220"><a href="#cb30-220"></a></span>
+<span id="cb30-221"><a href="#cb30-221"></a>**Interpretação**: para cada hora adicional de estudo, a nota aumenta, em média, 1,1 ponto.</span>
+<span id="cb30-222"><a href="#cb30-222"></a></span>
+<span id="cb30-223"><a href="#cb30-223"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-224"><a href="#cb30-224"></a>**Exercício 4.5** ⭐⭐</span>
+<span id="cb30-225"><a href="#cb30-225"></a></span>
+<span id="cb30-226"><a href="#cb30-226"></a>Dados os seguintes pares $(x, y)$: $(1, 3)$, $(2, 5)$, $(3, 4)$, $(4, 8)$, $(5, 9)$.</span>
+<span id="cb30-227"><a href="#cb30-227"></a></span>
+<span id="cb30-228"><a href="#cb30-228"></a>a) Calcule $\bar{x}$, $\bar{y}$, $S_{xy}$ e $S_{xx}$.</span>
+<span id="cb30-229"><a href="#cb30-229"></a>b) Obtenha $\hat{\beta}_0$ e $\hat{\beta}_1$.</span>
+<span id="cb30-230"><a href="#cb30-230"></a>c) Escreva a equação da reta de regressão.</span>
+<span id="cb30-231"><a href="#cb30-231"></a>d) Usando a reta, preveja o valor de $Y$ quando $X = 3{,}5$.</span>
+<span id="cb30-232"><a href="#cb30-232"></a>:::</span>
+<span id="cb30-233"><a href="#cb30-233"></a></span>
+<span id="cb30-234"><a href="#cb30-234"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-235"><a href="#cb30-235"></a>**Exercício 4.6** ⭐⭐</span>
+<span id="cb30-236"><a href="#cb30-236"></a></span>
+<span id="cb30-237"><a href="#cb30-237"></a>Demonstre que a reta de regressão estimada sempre passa pelo ponto $(\bar{x}, \bar{y})$. *Dica*: substitua $x = \bar{x}$ na equação $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$ e use a relação $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$.</span>
+<span id="cb30-238"><a href="#cb30-238"></a>:::</span>
+<span id="cb30-239"><a href="#cb30-239"></a></span>
+<span id="cb30-240"><a href="#cb30-240"></a><span class="fu">## Coeficiente de Determinação ($R^2$)</span></span>
+<span id="cb30-241"><a href="#cb30-241"></a></span>
+<span id="cb30-242"><a href="#cb30-242"></a>Uma vez ajustado o modelo, precisamos medir o quanto ele explica da variação observada em $Y$.</span>
+<span id="cb30-243"><a href="#cb30-243"></a></span>
+<span id="cb30-244"><a href="#cb30-244"></a><span class="fu">### Decomposição da variabilidade</span></span>
+<span id="cb30-245"><a href="#cb30-245"></a></span>
+<span id="cb30-246"><a href="#cb30-246"></a>A variação total de $Y$ pode ser decomposta em duas partes:</span>
+<span id="cb30-247"><a href="#cb30-247"></a></span>
+<span id="cb30-248"><a href="#cb30-248"></a>$$</span>
+<span id="cb30-249"><a href="#cb30-249"></a>\underbrace{\sum_{i=1}^{n}(y_i - \bar{y})^2}_{\text{SQT}} = \underbrace{\sum_{i=1}^{n}(\hat{y}_i - \bar{y})^2}_{\text{SQR}} + \underbrace{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}_{\text{SQE}}</span>
+<span id="cb30-250"><a href="#cb30-250"></a>$$</span>
+<span id="cb30-251"><a href="#cb30-251"></a></span>
+<span id="cb30-252"><a href="#cb30-252"></a>onde:</span>
+<span id="cb30-253"><a href="#cb30-253"></a></span>
+<span id="cb30-254"><a href="#cb30-254"></a><span class="ss">- </span>**SQT** (Soma de Quadrados Total): variação total de $Y$.</span>
+<span id="cb30-255"><a href="#cb30-255"></a><span class="ss">- </span>**SQR** (Soma de Quadrados da Regressão): variação de $Y$ explicada pelo modelo.</span>
+<span id="cb30-256"><a href="#cb30-256"></a><span class="ss">- </span>**SQE** (Soma de Quadrados dos Erros/Resíduos): variação não explicada.</span>
+<span id="cb30-257"><a href="#cb30-257"></a></span>
+<span id="cb30-258"><a href="#cb30-258"></a>::: {.callout-note title="Definição"}</span>
+<span id="cb30-259"><a href="#cb30-259"></a>O **Coeficiente de Determinação** $R^2$ é a proporção da variação total de $Y$ que é explicada pelo modelo de regressão:</span>
+<span id="cb30-260"><a href="#cb30-260"></a></span>
+<span id="cb30-261"><a href="#cb30-261"></a>$$</span>
+<span id="cb30-262"><a href="#cb30-262"></a>R^2 = \frac{\text{SQR}}{\text{SQT}} = 1 - \frac{\text{SQE}}{\text{SQT}}</span>
+<span id="cb30-263"><a href="#cb30-263"></a>$$</span>
+<span id="cb30-264"><a href="#cb30-264"></a></span>
+<span id="cb30-265"><a href="#cb30-265"></a>onde $0 \leq R^2 \leq 1$.</span>
+<span id="cb30-266"><a href="#cb30-266"></a>:::</span>
+<span id="cb30-267"><a href="#cb30-267"></a></span>
+<span id="cb30-268"><a href="#cb30-268"></a>**Interpretação:**</span>
+<span id="cb30-269"><a href="#cb30-269"></a></span>
+<span id="cb30-270"><a href="#cb30-270"></a><span class="ss">- </span>$R^2 = 0$: o modelo não explica nada da variação de $Y$.</span>
+<span id="cb30-271"><a href="#cb30-271"></a><span class="ss">- </span>$R^2 = 1$: o modelo explica toda a variação de $Y$ (ajuste perfeito).</span>
+<span id="cb30-272"><a href="#cb30-272"></a><span class="ss">- </span>$R^2 = 0{,}85$: 85% da variação de $Y$ é explicada pela variável $X$.</span>
+<span id="cb30-273"><a href="#cb30-273"></a></span>
+<span id="cb30-274"><a href="#cb30-274"></a>Na regressão linear simples, $R^2 = r^2$ (quadrado da correlação de Pearson).</span>
+<span id="cb30-275"><a href="#cb30-275"></a></span>
+<span id="cb30-276"><a href="#cb30-276"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-277"><a href="#cb30-277"></a>**Exercício 4.7** ⭐</span>
+<span id="cb30-278"><a href="#cb30-278"></a></span>
+<span id="cb30-279"><a href="#cb30-279"></a>Se a correlação de Pearson entre $X$ e $Y$ é $r = -0{,}80$, qual é o valor de $R^2$? Interprete o resultado.</span>
+<span id="cb30-280"><a href="#cb30-280"></a>:::</span>
+<span id="cb30-281"><a href="#cb30-281"></a></span>
+<span id="cb30-282"><a href="#cb30-282"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-283"><a href="#cb30-283"></a>**Exercício 4.8** ⭐⭐</span>
+<span id="cb30-284"><a href="#cb30-284"></a></span>
+<span id="cb30-285"><a href="#cb30-285"></a>Um modelo de regressão foi ajustado e obteve-se SQT = 500 e SQE = 120.</span>
+<span id="cb30-286"><a href="#cb30-286"></a></span>
+<span id="cb30-287"><a href="#cb30-287"></a>a) Calcule SQR e $R^2$.</span>
+<span id="cb30-288"><a href="#cb30-288"></a>b) Interprete o valor de $R^2$ obtido.</span>
+<span id="cb30-289"><a href="#cb30-289"></a>c) É possível ter $R^2$ alto mas o modelo ser inadequado? Dê um exemplo.</span>
+<span id="cb30-290"><a href="#cb30-290"></a>:::</span>
+<span id="cb30-291"><a href="#cb30-291"></a></span>
+<span id="cb30-292"><a href="#cb30-292"></a><span class="fu">## Análise de Resíduos</span></span>
+<span id="cb30-293"><a href="#cb30-293"></a></span>
+<span id="cb30-294"><a href="#cb30-294"></a>O ajuste de um modelo de regressão não está completo sem a verificação dos pressupostos. A **análise de resíduos** é a principal ferramenta para essa verificação.</span>
+<span id="cb30-295"><a href="#cb30-295"></a></span>
+<span id="cb30-296"><a href="#cb30-296"></a>::: {.callout-note title="Definição"}</span>
+<span id="cb30-297"><a href="#cb30-297"></a>O **resíduo** da $i$-ésima observação é a diferença entre o valor observado e o valor predito pelo modelo:</span>
+<span id="cb30-298"><a href="#cb30-298"></a></span>
+<span id="cb30-299"><a href="#cb30-299"></a>$$</span>
+<span id="cb30-300"><a href="#cb30-300"></a>e_i = y_i - \hat{y}_i</span>
+<span id="cb30-301"><a href="#cb30-301"></a>$$</span>
+<span id="cb30-302"><a href="#cb30-302"></a>:::</span>
+<span id="cb30-303"><a href="#cb30-303"></a></span>
+<span id="cb30-304"><a href="#cb30-304"></a>Se o modelo estiver bem ajustado e os pressupostos forem satisfeitos, os resíduos devem se comportar como realizações de variáveis aleatórias normais com média zero e variância constante.</span>
+<span id="cb30-305"><a href="#cb30-305"></a></span>
+<span id="cb30-306"><a href="#cb30-306"></a><span class="fu">### Gráficos diagnósticos</span></span>
+<span id="cb30-307"><a href="#cb30-307"></a></span>
+<span id="cb30-308"><a href="#cb30-308"></a>Os principais gráficos para análise de resíduos são:</span>
+<span id="cb30-309"><a href="#cb30-309"></a></span>
+<span id="cb30-310"><a href="#cb30-310"></a><span class="ss">1. </span>**Resíduos vs. Valores ajustados** ($e_i$ vs. $\hat{y}_i$): verifica linearidade e homocedasticidade. Deve apresentar pontos distribuídos aleatoriamente em torno de zero, sem padrão.</span>
+<span id="cb30-311"><a href="#cb30-311"></a></span>
+<span id="cb30-312"><a href="#cb30-312"></a><span class="ss">2. </span>**QQ-plot dos resíduos**: verifica normalidade. Os pontos devem seguir aproximadamente a diagonal.</span>
+<span id="cb30-313"><a href="#cb30-313"></a></span>
+<span id="cb30-314"><a href="#cb30-314"></a><span class="ss">3. </span>**Resíduos vs. Ordem** (se os dados forem sequenciais): verifica independência.</span>
+<span id="cb30-315"><a href="#cb30-315"></a></span>
+<span id="cb30-316"><a href="#cb30-316"></a>**Padrões problemáticos:**</span>
+<span id="cb30-317"><a href="#cb30-317"></a></span>
+<span id="cb30-318"><a href="#cb30-318"></a><span class="ss">- </span>**Funil** (variância crescente): violação da homocedasticidade.</span>
+<span id="cb30-319"><a href="#cb30-319"></a><span class="ss">- </span>**Curvatura**: violação da linearidade — pode ser necessário transformar variáveis ou usar modelo não linear.</span>
+<span id="cb30-320"><a href="#cb30-320"></a><span class="ss">- </span>**Pontos isolados**: possíveis outliers ou observações influentes.</span>
+<span id="cb30-321"><a href="#cb30-321"></a></span>
+<span id="cb30-322"><a href="#cb30-322"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-323"><a href="#cb30-323"></a>**Exercício 4.9** ⭐⭐</span>
+<span id="cb30-324"><a href="#cb30-324"></a></span>
+<span id="cb30-325"><a href="#cb30-325"></a>Descreva o que cada um dos padrões abaixo no gráfico de resíduos vs. valores ajustados indica sobre o modelo:</span>
+<span id="cb30-326"><a href="#cb30-326"></a></span>
+<span id="cb30-327"><a href="#cb30-327"></a>a) Pontos espalhados aleatoriamente em torno de zero.</span>
+<span id="cb30-328"><a href="#cb30-328"></a>b) Padrão em formato de "U" (parábola).</span>
+<span id="cb30-329"><a href="#cb30-329"></a>c) Formato de funil (variância aumentando da esquerda para a direita).</span>
+<span id="cb30-330"><a href="#cb30-330"></a>d) Um ponto muito distante dos demais.</span>
+<span id="cb30-331"><a href="#cb30-331"></a>:::</span>
+<span id="cb30-332"><a href="#cb30-332"></a></span>
+<span id="cb30-333"><a href="#cb30-333"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-334"><a href="#cb30-334"></a>**Exercício 4.10** ⭐⭐</span>
+<span id="cb30-335"><a href="#cb30-335"></a></span>
+<span id="cb30-336"><a href="#cb30-336"></a>Explique por que dividimos a SQE por $n - 2$ (e não por $n$) para estimar $\sigma^2$ no modelo de regressão linear simples:</span>
+<span id="cb30-337"><a href="#cb30-337"></a></span>
+<span id="cb30-338"><a href="#cb30-338"></a>$$</span>
+<span id="cb30-339"><a href="#cb30-339"></a>\hat{\sigma}^2 = \frac{\text{SQE}}{n - 2} = \frac{\sum_{i=1}^{n} e_i^2}{n - 2}</span>
+<span id="cb30-340"><a href="#cb30-340"></a>$$</span>
+<span id="cb30-341"><a href="#cb30-341"></a></span>
+<span id="cb30-342"><a href="#cb30-342"></a>*Dica*: quantos parâmetros foram estimados?</span>
+<span id="cb30-343"><a href="#cb30-343"></a>:::</span>
+<span id="cb30-344"><a href="#cb30-344"></a></span>
+<span id="cb30-345"><a href="#cb30-345"></a><span class="fu">## Aplicação em R</span></span>
+<span id="cb30-346"><a href="#cb30-346"></a></span>
+<span id="cb30-347"><a href="#cb30-347"></a>Vamos realizar uma análise completa de regressão linear simples utilizando o conjunto de dados <span class="in">`pesquisa_exemplo.csv`</span>, investigando a relação entre **horas de estudo** ($X$) e **nota final** ($Y$).</span>
+<span id="cb30-348"><a href="#cb30-348"></a></span>
+<span id="cb30-349"><a href="#cb30-349"></a><span class="fu">### Passo 1: Exploração visual</span></span>
+<span id="cb30-350"><a href="#cb30-350"></a></span>
+<span id="cb30-353"><a href="#cb30-353"></a><span class="in">```{r}</span></span>
+<span id="cb30-354"><a href="#cb30-354"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-355"><a href="#cb30-355"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-356"><a href="#cb30-356"></a></span>
+<span id="cb30-357"><a href="#cb30-357"></a><span class="co"># Carregar dados</span></span>
+<span id="cb30-358"><a href="#cb30-358"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dados/pesquisa_exemplo.csv"</span>)</span>
+<span id="cb30-359"><a href="#cb30-359"></a></span>
+<span id="cb30-360"><a href="#cb30-360"></a><span class="co"># Estatísticas descritivas das variáveis</span></span>
+<span id="cb30-361"><a href="#cb30-361"></a><span class="fu">summary</span>(dados[, <span class="fu">c</span>(<span class="st">"horas_estudo"</span>, <span class="st">"nota_final"</span>)])</span>
+<span id="cb30-362"><a href="#cb30-362"></a><span class="in">```</span></span>
+<span id="cb30-363"><a href="#cb30-363"></a></span>
+<span id="cb30-366"><a href="#cb30-366"></a><span class="in">```{r}</span></span>
+<span id="cb30-367"><a href="#cb30-367"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-368"><a href="#cb30-368"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-369"><a href="#cb30-369"></a></span>
+<span id="cb30-370"><a href="#cb30-370"></a><span class="co"># Diagrama de dispersão com reta de regressão</span></span>
+<span id="cb30-371"><a href="#cb30-371"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
+<span id="cb30-372"><a href="#cb30-372"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
+<span id="cb30-373"><a href="#cb30-373"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
+<span id="cb30-374"><a href="#cb30-374"></a>     <span class="at">main =</span> <span class="st">"Regressão: Nota Final ~ Horas de Estudo"</span>,</span>
+<span id="cb30-375"><a href="#cb30-375"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb30-376"><a href="#cb30-376"></a>     <span class="at">col =</span> <span class="st">"#448EE3"</span>,</span>
+<span id="cb30-377"><a href="#cb30-377"></a>     <span class="at">cex =</span> <span class="fl">1.2</span>)</span>
+<span id="cb30-378"><a href="#cb30-378"></a><span class="fu">abline</span>(<span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados),</span>
+<span id="cb30-379"><a href="#cb30-379"></a>       <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb30-380"><a href="#cb30-380"></a><span class="fu">grid</span>()</span>
+<span id="cb30-381"><a href="#cb30-381"></a><span class="in">```</span></span>
+<span id="cb30-382"><a href="#cb30-382"></a></span>
+<span id="cb30-383"><a href="#cb30-383"></a><span class="fu">### Passo 2: Ajuste do modelo</span></span>
+<span id="cb30-384"><a href="#cb30-384"></a></span>
+<span id="cb30-387"><a href="#cb30-387"></a><span class="in">```{r}</span></span>
+<span id="cb30-388"><a href="#cb30-388"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-389"><a href="#cb30-389"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-390"><a href="#cb30-390"></a></span>
+<span id="cb30-391"><a href="#cb30-391"></a><span class="co"># Ajustar o modelo de regressão</span></span>
+<span id="cb30-392"><a href="#cb30-392"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(nota_final <span class="sc">~</span> horas_estudo, <span class="at">data =</span> dados)</span>
+<span id="cb30-393"><a href="#cb30-393"></a></span>
+<span id="cb30-394"><a href="#cb30-394"></a><span class="co"># Resumo completo do modelo</span></span>
+<span id="cb30-395"><a href="#cb30-395"></a><span class="fu">summary</span>(modelo)</span>
+<span id="cb30-396"><a href="#cb30-396"></a><span class="in">```</span></span>
+<span id="cb30-397"><a href="#cb30-397"></a></span>
+<span id="cb30-398"><a href="#cb30-398"></a>**Interpretação da saída:**</span>
+<span id="cb30-399"><a href="#cb30-399"></a></span>
+<span id="cb30-400"><a href="#cb30-400"></a><span class="ss">- </span><span class="in">`(Intercept)`</span>: estimativa de $\hat{\beta}_0$ — valor esperado da nota quando horas de estudo = 0.</span>
+<span id="cb30-401"><a href="#cb30-401"></a><span class="ss">- </span><span class="in">`horas_estudo`</span>: estimativa de $\hat{\beta}_1$ — acréscimo esperado na nota para cada hora adicional de estudo.</span>
+<span id="cb30-402"><a href="#cb30-402"></a><span class="ss">- </span><span class="in">`Pr(&gt;|t|)`</span>: valor-p do teste $H_0: \beta = 0$. Valores pequenos indicam significância.</span>
+<span id="cb30-403"><a href="#cb30-403"></a><span class="ss">- </span><span class="in">`Multiple R-squared`</span>: $R^2$ — proporção da variação da nota explicada pelas horas de estudo.</span>
+<span id="cb30-404"><a href="#cb30-404"></a><span class="ss">- </span><span class="in">`F-statistic`</span>: teste global do modelo ($H_0: \beta_1 = 0$).</span>
+<span id="cb30-405"><a href="#cb30-405"></a></span>
+<span id="cb30-408"><a href="#cb30-408"></a><span class="in">```{r}</span></span>
+<span id="cb30-409"><a href="#cb30-409"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-410"><a href="#cb30-410"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-411"><a href="#cb30-411"></a></span>
+<span id="cb30-412"><a href="#cb30-412"></a><span class="co"># Extraindo os coeficientes</span></span>
+<span id="cb30-413"><a href="#cb30-413"></a>coefs <span class="ot">&lt;-</span> <span class="fu">coef</span>(modelo)</span>
+<span id="cb30-414"><a href="#cb30-414"></a><span class="fu">cat</span>(<span class="st">"Intercepto (beta_0):"</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-415"><a href="#cb30-415"></a><span class="fu">cat</span>(<span class="st">"Coeficiente angular (beta_1):"</span>, <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-416"><a href="#cb30-416"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Equação da reta: nota_final ="</span>, <span class="fu">round</span>(coefs[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">"+"</span>,</span>
+<span id="cb30-417"><a href="#cb30-417"></a>    <span class="fu">round</span>(coefs[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"* horas_estudo</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-418"><a href="#cb30-418"></a><span class="in">```</span></span>
+<span id="cb30-419"><a href="#cb30-419"></a></span>
+<span id="cb30-422"><a href="#cb30-422"></a><span class="in">```{r}</span></span>
+<span id="cb30-423"><a href="#cb30-423"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-424"><a href="#cb30-424"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-425"><a href="#cb30-425"></a></span>
+<span id="cb30-426"><a href="#cb30-426"></a><span class="co"># R² e correlação</span></span>
+<span id="cb30-427"><a href="#cb30-427"></a>r_quadrado <span class="ot">&lt;-</span> <span class="fu">summary</span>(modelo)<span class="sc">$</span>r.squared</span>
+<span id="cb30-428"><a href="#cb30-428"></a><span class="fu">cat</span>(<span class="st">"R²:"</span>, <span class="fu">round</span>(r_quadrado, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-429"><a href="#cb30-429"></a><span class="fu">cat</span>(<span class="st">"Correlação de Pearson:"</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final), <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-430"><a href="#cb30-430"></a><span class="fu">cat</span>(<span class="st">"Verificação: r² ="</span>, <span class="fu">round</span>(<span class="fu">cor</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final)<span class="sc">^</span><span class="dv">2</span>, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-431"><a href="#cb30-431"></a><span class="in">```</span></span>
+<span id="cb30-432"><a href="#cb30-432"></a></span>
+<span id="cb30-433"><a href="#cb30-433"></a><span class="fu">### Passo 3: Predição</span></span>
+<span id="cb30-434"><a href="#cb30-434"></a></span>
+<span id="cb30-437"><a href="#cb30-437"></a><span class="in">```{r}</span></span>
+<span id="cb30-438"><a href="#cb30-438"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-439"><a href="#cb30-439"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-440"><a href="#cb30-440"></a></span>
+<span id="cb30-441"><a href="#cb30-441"></a><span class="co"># Predição para novos valores de horas_estudo</span></span>
+<span id="cb30-442"><a href="#cb30-442"></a>novos_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>))</span>
+<span id="cb30-443"><a href="#cb30-443"></a></span>
+<span id="cb30-444"><a href="#cb30-444"></a><span class="co"># Predição pontual</span></span>
+<span id="cb30-445"><a href="#cb30-445"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados)</span>
+<span id="cb30-446"><a href="#cb30-446"></a></span>
+<span id="cb30-447"><a href="#cb30-447"></a><span class="co"># Predição com intervalo de confiança (para a média)</span></span>
+<span id="cb30-448"><a href="#cb30-448"></a>pred_ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb30-449"><a href="#cb30-449"></a></span>
+<span id="cb30-450"><a href="#cb30-450"></a><span class="co"># Predição com intervalo de predição (para uma nova observação)</span></span>
+<span id="cb30-451"><a href="#cb30-451"></a>pred_ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos_dados, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb30-452"><a href="#cb30-452"></a></span>
+<span id="cb30-453"><a href="#cb30-453"></a><span class="fu">cat</span>(<span class="st">"Predições pontuais:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-454"><a href="#cb30-454"></a><span class="fu">data.frame</span>(<span class="at">horas =</span> novos_dados<span class="sc">$</span>horas_estudo, <span class="at">nota_prevista =</span> <span class="fu">round</span>(pred, <span class="dv">2</span>))</span>
+<span id="cb30-455"><a href="#cb30-455"></a><span class="in">```</span></span>
+<span id="cb30-456"><a href="#cb30-456"></a></span>
+<span id="cb30-457"><a href="#cb30-457"></a><span class="fu">### Passo 4: Análise de resíduos</span></span>
+<span id="cb30-458"><a href="#cb30-458"></a></span>
+<span id="cb30-461"><a href="#cb30-461"></a><span class="in">```{r}</span></span>
+<span id="cb30-462"><a href="#cb30-462"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-463"><a href="#cb30-463"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-464"><a href="#cb30-464"></a><span class="co">#| fig-cap: "Gráficos diagnósticos do modelo de regressão linear simples."</span></span>
+<span id="cb30-465"><a href="#cb30-465"></a></span>
+<span id="cb30-466"><a href="#cb30-466"></a><span class="co"># Gráficos diagnósticos automáticos do R</span></span>
+<span id="cb30-467"><a href="#cb30-467"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb30-468"><a href="#cb30-468"></a><span class="fu">plot</span>(modelo)</span>
+<span id="cb30-469"><a href="#cb30-469"></a><span class="in">```</span></span>
+<span id="cb30-470"><a href="#cb30-470"></a></span>
+<span id="cb30-473"><a href="#cb30-473"></a><span class="in">```{r}</span></span>
+<span id="cb30-474"><a href="#cb30-474"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-475"><a href="#cb30-475"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-476"><a href="#cb30-476"></a></span>
+<span id="cb30-477"><a href="#cb30-477"></a><span class="co"># Análise manual dos resíduos</span></span>
+<span id="cb30-478"><a href="#cb30-478"></a>residuos <span class="ot">&lt;-</span> <span class="fu">residuals</span>(modelo)</span>
+<span id="cb30-479"><a href="#cb30-479"></a>ajustados <span class="ot">&lt;-</span> <span class="fu">fitted</span>(modelo)</span>
+<span id="cb30-480"><a href="#cb30-480"></a></span>
+<span id="cb30-481"><a href="#cb30-481"></a><span class="co"># Gráfico: Resíduos vs Ajustados</span></span>
+<span id="cb30-482"><a href="#cb30-482"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb30-483"><a href="#cb30-483"></a></span>
+<span id="cb30-484"><a href="#cb30-484"></a><span class="fu">plot</span>(ajustados, residuos,</span>
+<span id="cb30-485"><a href="#cb30-485"></a>     <span class="at">xlab =</span> <span class="st">"Valores Ajustados"</span>,</span>
+<span id="cb30-486"><a href="#cb30-486"></a>     <span class="at">ylab =</span> <span class="st">"Resíduos"</span>,</span>
+<span id="cb30-487"><a href="#cb30-487"></a>     <span class="at">main =</span> <span class="st">"Resíduos vs Ajustados"</span>,</span>
+<span id="cb30-488"><a href="#cb30-488"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
+<span id="cb30-489"><a href="#cb30-489"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb30-490"><a href="#cb30-490"></a></span>
+<span id="cb30-491"><a href="#cb30-491"></a><span class="co"># QQ-plot dos resíduos</span></span>
+<span id="cb30-492"><a href="#cb30-492"></a><span class="fu">qqnorm</span>(residuos, <span class="at">main =</span> <span class="st">"QQ-Plot dos Resíduos"</span>,</span>
+<span id="cb30-493"><a href="#cb30-493"></a>       <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>)</span>
+<span id="cb30-494"><a href="#cb30-494"></a><span class="fu">qqline</span>(residuos, <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb30-495"><a href="#cb30-495"></a><span class="in">```</span></span>
+<span id="cb30-496"><a href="#cb30-496"></a></span>
+<span id="cb30-499"><a href="#cb30-499"></a><span class="in">```{r}</span></span>
+<span id="cb30-500"><a href="#cb30-500"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-501"><a href="#cb30-501"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-502"><a href="#cb30-502"></a></span>
+<span id="cb30-503"><a href="#cb30-503"></a><span class="co"># Teste de normalidade dos resíduos (Shapiro-Wilk)</span></span>
+<span id="cb30-504"><a href="#cb30-504"></a><span class="fu">shapiro.test</span>(residuos)</span>
+<span id="cb30-505"><a href="#cb30-505"></a><span class="in">```</span></span>
+<span id="cb30-506"><a href="#cb30-506"></a></span>
+<span id="cb30-507"><a href="#cb30-507"></a><span class="fu">### Passo 5: Visualização completa</span></span>
+<span id="cb30-508"><a href="#cb30-508"></a></span>
+<span id="cb30-511"><a href="#cb30-511"></a><span class="in">```{r}</span></span>
+<span id="cb30-512"><a href="#cb30-512"></a><span class="co">#| echo: true</span></span>
+<span id="cb30-513"><a href="#cb30-513"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-514"><a href="#cb30-514"></a></span>
+<span id="cb30-515"><a href="#cb30-515"></a><span class="co"># Gráfico com reta de regressão e intervalos</span></span>
+<span id="cb30-516"><a href="#cb30-516"></a>novos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">horas_estudo =</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>horas_estudo),</span>
+<span id="cb30-517"><a href="#cb30-517"></a>                                        <span class="fu">max</span>(dados<span class="sc">$</span>horas_estudo),</span>
+<span id="cb30-518"><a href="#cb30-518"></a>                                        <span class="at">length.out =</span> <span class="dv">100</span>))</span>
+<span id="cb30-519"><a href="#cb30-519"></a>ic <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb30-520"><a href="#cb30-520"></a>ip <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb30-521"><a href="#cb30-521"></a></span>
+<span id="cb30-522"><a href="#cb30-522"></a><span class="fu">plot</span>(dados<span class="sc">$</span>horas_estudo, dados<span class="sc">$</span>nota_final,</span>
+<span id="cb30-523"><a href="#cb30-523"></a>     <span class="at">xlab =</span> <span class="st">"Horas de Estudo"</span>,</span>
+<span id="cb30-524"><a href="#cb30-524"></a>     <span class="at">ylab =</span> <span class="st">"Nota Final"</span>,</span>
+<span id="cb30-525"><a href="#cb30-525"></a>     <span class="at">main =</span> <span class="st">"Regressão Linear com Intervalos"</span>,</span>
+<span id="cb30-526"><a href="#cb30-526"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#448EE3"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>,</span>
+<span id="cb30-527"><a href="#cb30-527"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(ip[, <span class="st">"lwr"</span>]), <span class="fu">max</span>(ip[, <span class="st">"upr"</span>])))</span>
+<span id="cb30-528"><a href="#cb30-528"></a></span>
+<span id="cb30-529"><a href="#cb30-529"></a><span class="co"># Reta ajustada</span></span>
+<span id="cb30-530"><a href="#cb30-530"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"fit"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb30-531"><a href="#cb30-531"></a></span>
+<span id="cb30-532"><a href="#cb30-532"></a><span class="co"># Intervalo de confiança (mais estreito)</span></span>
+<span id="cb30-533"><a href="#cb30-533"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb30-534"><a href="#cb30-534"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ic[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"#2D4188"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb30-535"><a href="#cb30-535"></a></span>
+<span id="cb30-536"><a href="#cb30-536"></a><span class="co"># Intervalo de predição (mais largo)</span></span>
+<span id="cb30-537"><a href="#cb30-537"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"lwr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb30-538"><a href="#cb30-538"></a><span class="fu">lines</span>(novos<span class="sc">$</span>horas_estudo, ip[, <span class="st">"upr"</span>], <span class="at">col =</span> <span class="st">"gray50"</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb30-539"><a href="#cb30-539"></a></span>
+<span id="cb30-540"><a href="#cb30-540"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb30-541"><a href="#cb30-541"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Dados"</span>, <span class="st">"Reta ajustada"</span>, <span class="st">"IC (média)"</span>, <span class="st">"IP (nova obs.)"</span>),</span>
+<span id="cb30-542"><a href="#cb30-542"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#448EE3"</span>, <span class="st">"#2D4188"</span>, <span class="st">"#2D4188"</span>, <span class="st">"gray50"</span>),</span>
+<span id="cb30-543"><a href="#cb30-543"></a>       <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>),</span>
+<span id="cb30-544"><a href="#cb30-544"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb30-545"><a href="#cb30-545"></a>       <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb30-546"><a href="#cb30-546"></a>       <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
+<span id="cb30-547"><a href="#cb30-547"></a><span class="in">```</span></span>
+<span id="cb30-548"><a href="#cb30-548"></a></span>
+<span id="cb30-549"><a href="#cb30-549"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-550"><a href="#cb30-550"></a>**Exercício 4.11** ⭐⭐</span>
+<span id="cb30-551"><a href="#cb30-551"></a></span>
+<span id="cb30-552"><a href="#cb30-552"></a>Usando o R e o conjunto de dados <span class="in">`pesquisa_exemplo.csv`</span>:</span>
+<span id="cb30-553"><a href="#cb30-553"></a></span>
+<span id="cb30-554"><a href="#cb30-554"></a>a) Ajuste um modelo de regressão linear de <span class="in">`renda`</span> em função de <span class="in">`idade`</span>.</span>
+<span id="cb30-555"><a href="#cb30-555"></a>b) Apresente a equação da reta e o $R^2$.</span>
+<span id="cb30-556"><a href="#cb30-556"></a>c) Interprete o coeficiente angular no contexto do problema.</span>
+<span id="cb30-557"><a href="#cb30-557"></a>d) Produza os gráficos diagnósticos e comente se os pressupostos parecem satisfeitos.</span>
+<span id="cb30-558"><a href="#cb30-558"></a>:::</span>
+<span id="cb30-559"><a href="#cb30-559"></a></span>
+<span id="cb30-560"><a href="#cb30-560"></a>::: {.callout-tip title="Exercício de Fixação"}</span>
+<span id="cb30-561"><a href="#cb30-561"></a>**Exercício 4.12** ⭐⭐⭐</span>
+<span id="cb30-562"><a href="#cb30-562"></a></span>
+<span id="cb30-563"><a href="#cb30-563"></a>Considere a regressão de <span class="in">`nota_final`</span> em função de <span class="in">`horas_estudo`</span>.</span>
+<span id="cb30-564"><a href="#cb30-564"></a></span>
+<span id="cb30-565"><a href="#cb30-565"></a>a) Se um aluno estuda 20 horas por semana, qual a nota prevista pelo modelo? Você confia nessa previsão? Justifique.</span>
+<span id="cb30-566"><a href="#cb30-566"></a>b) Calcule manualmente $\hat{\beta}_1$ usando a fórmula $\hat{\beta}_1 = r \cdot s_y / s_x$ e compare com a saída do <span class="in">`lm()`</span>.</span>
+<span id="cb30-567"><a href="#cb30-567"></a>c) Identifique a observação com o maior resíduo (positivo ou negativo). Essa observação pode ser considerada um outlier?</span>
+<span id="cb30-568"><a href="#cb30-568"></a>:::</span>
+<span id="cb30-569"><a href="#cb30-569"></a></span>
+<span id="cb30-570"><a href="#cb30-570"></a><span class="fu">## Resumo</span></span>
+<span id="cb30-571"><a href="#cb30-571"></a></span>
+<span id="cb30-572"><a href="#cb30-572"></a>Neste capítulo, estudamos a **Regressão Linear Simples**, técnica que modela a relação entre uma variável resposta e uma variável explicativa.</span>
+<span id="cb30-573"><a href="#cb30-573"></a></span>
+<span id="cb30-574"><a href="#cb30-574"></a>**Conceitos-chave:**</span>
+<span id="cb30-575"><a href="#cb30-575"></a></span>
+<span id="cb30-576"><a href="#cb30-576"></a><span class="ss">- </span>O **diagrama de dispersão** é o ponto de partida para investigar relações entre variáveis.</span>
+<span id="cb30-577"><a href="#cb30-577"></a><span class="ss">- </span>**Correlação** ($r$) mede a força da relação linear, mas **não implica causalidade**.</span>
+<span id="cb30-578"><a href="#cb30-578"></a><span class="ss">- </span>O modelo $Y = \beta_0 + \beta_1 X + \varepsilon$ descreve a relação linear, onde $\beta_1$ indica a variação em $Y$ para cada unidade de $X$.</span>
+<span id="cb30-579"><a href="#cb30-579"></a><span class="ss">- </span>Os estimadores de **Mínimos Quadrados** minimizam a soma dos quadrados dos resíduos:</span>
+<span id="cb30-580"><a href="#cb30-580"></a><span class="ss">  - </span>$\hat{\beta}_1 = S_{xy} / S_{xx}$</span>
+<span id="cb30-581"><a href="#cb30-581"></a><span class="ss">  - </span>$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}$</span>
+<span id="cb30-582"><a href="#cb30-582"></a><span class="ss">- </span>O **coeficiente de determinação** $R^2$ indica a proporção da variação de $Y$ explicada por $X$. Na regressão simples, $R^2 = r^2$.</span>
+<span id="cb30-583"><a href="#cb30-583"></a><span class="ss">- </span>A **análise de resíduos** é essencial para verificar os pressupostos: linearidade, independência, homocedasticidade e normalidade.</span>
+<span id="cb30-584"><a href="#cb30-584"></a><span class="ss">- </span>**Pressupostos violados** podem invalidar as inferências do modelo.</span>
+<span id="cb30-585"><a href="#cb30-585"></a></span>
+<span id="cb30-586"><a href="#cb30-586"></a>**Funções R essenciais:**</span>
+<span id="cb30-587"><a href="#cb30-587"></a></span>
+<span id="cb30-588"><a href="#cb30-588"></a><span class="pp">|</span> Função <span class="pp">|</span> Finalidade <span class="pp">|</span></span>
+<span id="cb30-589"><a href="#cb30-589"></a><span class="pp">|---|---|</span></span>
+<span id="cb30-590"><a href="#cb30-590"></a><span class="pp">|</span> <span class="in">`lm()`</span> <span class="pp">|</span> Ajustar modelo de regressão linear <span class="pp">|</span></span>
+<span id="cb30-591"><a href="#cb30-591"></a><span class="pp">|</span> <span class="in">`summary()`</span> <span class="pp">|</span> Resumo do modelo (coeficientes, $R^2$, testes) <span class="pp">|</span></span>
+<span id="cb30-592"><a href="#cb30-592"></a><span class="pp">|</span> <span class="in">`coef()`</span> <span class="pp">|</span> Extrair coeficientes estimados <span class="pp">|</span></span>
+<span id="cb30-593"><a href="#cb30-593"></a><span class="pp">|</span> <span class="in">`predict()`</span> <span class="pp">|</span> Predição para novos dados <span class="pp">|</span></span>
+<span id="cb30-594"><a href="#cb30-594"></a><span class="pp">|</span> <span class="in">`residuals()`</span> <span class="pp">|</span> Obter resíduos do modelo <span class="pp">|</span></span>
+<span id="cb30-595"><a href="#cb30-595"></a><span class="pp">|</span> <span class="in">`plot(modelo)`</span> <span class="pp">|</span> Gráficos diagnósticos <span class="pp">|</span></span>
+<span id="cb30-596"><a href="#cb30-596"></a><span class="pp">|</span> <span class="in">`cor()`</span> <span class="pp">|</span> Coeficiente de correlação de Pearson <span class="pp">|</span></span>
+<span id="cb30-597"><a href="#cb30-597"></a><span class="pp">|</span> <span class="in">`shapiro.test()`</span> <span class="pp">|</span> Teste de normalidade <span class="pp">|</span></span>
+<span id="cb30-598"><a href="#cb30-598"></a></span>
+<span id="cb30-599"><a href="#cb30-599"></a>::: {.callout-note title="Leitura complementar"}</span>
+<span id="cb30-600"><a href="#cb30-600"></a>Para aprofundamento, consulte:</span>
+<span id="cb30-601"><a href="#cb30-601"></a></span>
+<span id="cb30-602"><a href="#cb30-602"></a><span class="ss">- </span>BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**, Cap. 14–15.</span>
+<span id="cb30-603"><a href="#cb30-603"></a><span class="ss">- </span>MOORE, D. S.; McCABE, G. P. **Introduction to the Practice of Statistics**, Cap. 10.</span>
+<span id="cb30-604"><a href="#cb30-604"></a>:::</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
